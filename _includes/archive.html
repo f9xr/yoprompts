@@ -116,7 +116,15 @@
         {%- assign cycle = forloop.index | modulo: 4 -%}
         {%- assign show_art = false -%}
         {%- if cycle == 0 or cycle == 2 -%}{%- assign show_art = true -%}{%- endif -%}
-        {% include prompt-card.html prompt=p art=show_art copy=true delay="reveal--{{ cycle | plus: 1 }}" %}
+        {%- comment -%}
+          Include params are always passed as bare variables, never as
+          "x={{ }}" strings. Jekyll matches any {{ }} inside an include tag
+          and then treats the entire tag as a filename, which fails
+          validation with "File contains invalid characters or sequences".
+        {%- endcomment -%}
+        {%- assign delay_step = cycle | plus: 1 -%}
+        {%- assign delay_class = "reveal--" | append: delay_step -%}
+        {% include prompt-card.html prompt=p art=show_art copy="true" delay=delay_class %}
       {%- endfor -%}
     </div>
 

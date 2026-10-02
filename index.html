@@ -88,7 +88,8 @@ description: >-
         </div>
 
         <div class="card__actions">
-          {% include copy-button.html copy_key="src-{{ featured.slug }}" %}
+          {%- assign featured_copy_id = "src-" | append: featured.slug -%}
+          {% include copy-button.html copy_key=featured_copy_id %}
           <a class="button" href="{{ featured.url | relative_url }}">View prompt</a>
         </div>
       </div>
@@ -244,7 +245,8 @@ description: >-
               <span class="meta-mono">Curated</span>
             </span>
           </span>
-          {% include copy-button.html copy_key="src-{{ p.slug }}" copy_label="Copy" copy_sm=true %}
+          {%- assign story_copy_id = "src-" | append: p.slug -%}
+          {% include copy-button.html copy_key=story_copy_id copy_label="Copy" copy_sm="true" %}
         </div>
 
         <script class="prompt-source" type="application/x-prompt" data-key="src-{{ p.slug }}">{{ p.prompt }}</script>

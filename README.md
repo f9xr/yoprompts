@@ -68,17 +68,21 @@ anything visual.
 
 ## Running it locally
 
-**Ruby and Jekyll are not installed in this environment yet.** The site was
-written without being able to build it, so the first local build is also the
-first real build. On Windows:
+Ruby and Jekyll **are** installed in this environment, pinned to the exact
+versions GitHub Pages uses (`jekyll 3.10.0`, `liquid 4.0.4`), so a local build
+matches CI. On a fresh machine:
 
 ```powershell
-winget install RubyInstaller.Ruby
+winget install RubyInstallerTeam.Ruby.3.2
 # restart the shell, then:
-cd C:\Users\inanj\OneDrive\Documents\GitHub\yoprompts
-gem install jekyll
+gem install jekyll -v 3.10.0 --no-document
+gem install jekyll-seo-tag -v 2.8.0 jekyll-feed -v 0.17.0 jekyll-sitemap -v 1.4
 jekyll serve
 ```
+
+`jekyll 3.10.0` pulls `em-websocket` → `eventmachine`, a C++ extension, which
+needs a compiler on Windows. If that fails, install the MSYS2 devkit
+(`winget install RubyInstallerTeam.RubyWithDevKit.3.2`, then `ridk install 1 2 3`).
 
 The site then runs at <http://127.0.0.1:4000/yoprompts/> — note the `/yoprompts`
 base path, which comes from `baseurl` in `_config.yml`.
@@ -90,6 +94,28 @@ ignores both.
 
 If you only need the design system and do not want to install Ruby, open the
 generated specimen page instead (see [Validating changes](#validating-changes)).
+
+### Two Liquid traps this site has already hit
+
+Both of these break the **build**, not just the output, and neither is caught by
+reading the template. They are the reason a real `jekyll build` matters.
+
+**Never put `{{ }}` inside an `{% include %}` tag.** Jekyll's
+`VARIABLE_SYNTAX` (`lib/jekyll/tags/include.rb`) matches *any* markup containing
+`{{ ... }}`, then treats the whole tag as a filename and fails validation:
+
+```liquid
+{% include prompt-card.html delay="reveal--{{ forloop.index }}" %}
+{%- assign reveal_class = "reveal--" | append: forloop.index -%}
+{% include prompt-card.html delay=reveal_class %}
+```
+
+Assign first, then pass the value as a **bare variable**. Note the second form
+has no quotes — `delay="{{ reveal_class }}"` reintroduces the bug.
+
+**Never use a compound condition in `where_exp`.** Its parser accepts one
+comparison only; `and` or `or` fails with
+`Expected end_of_string but found id`. Use a plain `{% if %}` loop instead.
 
 ### Before the first deploy
 
@@ -308,18 +334,28 @@ control all content selection.
 
 ## Validating changes
 
-There is no Ruby in this environment, so `jekyll build` cannot run. Two scripts
-live outside the repo in `%LOCALAPPDATA%\Temp\opencode\`:
+Run the real build first. It catches Liquid and include-tag errors that no
+static check will, and it is now the authority:
+
+```powershell
+$env:PATH = "C:\Ruby32-x64\bin;$env:PATH"
+jekyll build
+```
+
+A clean build takes about 0.3s and should print `done in ...` with no
+`Liquid Exception`. Two supporting scripts live outside the repo in
+`%LOCALAPPDATA%\Temp\opencode\`:
 
 | Script | Purpose |
 |---|---|
-| `validate_yoprompts.py` | Front matter YAML, include and layout resolution, Liquid block balance, HTML tag balance, `site.*` keys, prompt required fields, taxonomy slug integrity, internal link targets, CSS classes used but never defined |
+| `validate_yoprompts.py` | Front matter YAML, include and layout resolution, Liquid block balance, HTML tag balance, `site.*` keys, prompt required fields, taxonomy slug integrity, internal link targets, CSS classes used but never defined, compound `where_exp` conditions |
 | `build_specimen.py` | Regenerates a standalone design-system specimen HTML from the live `main.css` |
-
-Run both after any structural change:
+| `audit_site.py` | Walks `_site/` after a build: leftover unrendered Liquid, JSON-LD validity, whether every `data-copy` target resolves, duplicate keys, populated prompt sources, `/yoprompts` baseurl coverage |
 
 ```powershell
+jekyll build
 python "$env:LOCALAPPDATA\Temp\opencode\validate_yoprompts.py"
+python "$env:LOCALAPPDATA\Temp\opencode\audit_site.py"
 python "$env:LOCALAPPDATA\Temp\opencode\build_specimen.py"
 ```
 
@@ -330,12 +366,12 @@ The validator should report **0 errors**. Warnings mean one of:
 - a CSS class appears in HTML but is not defined in `main.css` or `main.js`
 - a homepage row does not have enough prompts to fill it
 
-The specimen page is the only way to *see* the design without a build. Open
+The specimen page is a way to *see* the design without a server. Open
 `%LOCALAPPDATA%\Temp\opencode\yoprompts-specimen.html` in a browser, and resize
-past 1024px and 767px to check the breakpoints.
+past 1024px and 767px to check the breakpoints. Note it renders `main.css` only,
+so it will not exercise Liquid.
 
-Neither script is committed, deliberately. Once Ruby is available, `jekyll
-build` supersedes the validator and these can be deleted.
+None of these scripts are committed, deliberately.
 
 ---
 
@@ -368,15 +404,22 @@ Honest list of what is not finished.
 
 - `/ai-tools/`, `/resources/`, `/about/`, `/contact/`, `/submit-a-prompt/`
 - `/privacy/`, `/terms/`, `/disclaimer/`, `/cookies/`
-- `robots.txt`, `robots` meta
-- Open Graph image (`assets/img/og-default.png`, 1200×630) — referenced by
-  nothing yet, so social shares currently fall back to the favicon
-- Guides: the library exists, `_posts/` is empty
+- Open Graph image (`assets/img/og-default.png`, 1200×630) — nothing references
+  it yet, so `twitter:card` resolves to `summary` instead of
+  `summary_large_image` and shares fall back to the favicon
+- Guides: the library exists, `_posts/` is empty, so `feed.xml` is empty too
+
+`robots.txt` is **not** hand-written: `jekyll-sitemap` generates it from `url`
+and `baseurl`, and it already points at the right sitemap. Changing the domain in
+`_config.yml` is enough.
 
 **Known limitations:**
 
-- **No local build has ever been run.** The site was authored without Ruby.
-  Expect to fix small things on the first `jekyll serve`.
+- **`jekyll serve` needs a working C++ toolchain on Windows** (live-reload pulls
+  `eventmachine`). `jekyll build` does not, and is the command to rely on.
+- **Every category has exactly one prompt**, so the "Related prompts" section is
+  always empty and its markup is skipped. Adding prompts in Pass 3 fixes this;
+  adding a cross-category fallback would only mislabel unrelated prompts.
 - **Client-side search means no server-rendered results.** Filters do not
   produce indexable URLs, so deep-linking to a filtered view is not possible
   beyond `?q=`.

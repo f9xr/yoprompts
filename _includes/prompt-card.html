@@ -43,7 +43,8 @@
       <span class="meta-mono">{{ p.read_time }} min</span>
       <span class="meta-mono">{{ p.difficulty }}</span>
       {%- if include.copy %}
-      {% include copy-button.html copy_key="src-{{ p.slug }}" copy_label="Copy" copy_sm=true %}
+      {%- assign copy_id = "src-" | append: p.slug -%}
+      {% include copy-button.html copy_key=copy_id copy_label="Copy" copy_sm="true" %}
       {%- endif -%}
     </div>
   </div>

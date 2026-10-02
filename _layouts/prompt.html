@@ -194,7 +194,8 @@ layout: default
       <h2 class="display-sm detail-section__title" id="related-title">Related prompts</h2>
       <div class="related-grid">
         {%- for p in related limit: 3 %}
-        {% include prompt-card.html prompt=p delay="reveal--{{ forloop.index }}" %}
+        {%- assign reveal_class = "reveal--" | append: forloop.index -%}
+      {% include prompt-card.html prompt=p delay=reveal_class %}
         {%- endfor %}
       </div>
     </section>
