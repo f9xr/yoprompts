@@ -1,0 +1,38 @@
+# Prompt categories. `slug` matches the `category:` value on a prompt
+# document and drives both the filter pills and /categories/<slug>/ pages.
+- slug: writing
+  label: AI Writing
+  blurb: Long-form drafts, editing passes, and tone control.
+- slug: marketing
+  label: Marketing
+  blurb: Campaign angles, launch copy, and messaging systems.
+- slug: seo
+  label: SEO
+  blurb: Keyword research, content briefs, and technical audits.
+- slug: business
+  label: Business
+  blurb: Strategy, research, pricing, and decision support.
+- slug: coding
+  label: Coding
+  blurb: Code review, refactors, and debugging with real context.
+- slug: research
+  label: Research
+  blurb: Systematic investigation and source-critical synthesis.
+- slug: productivity
+  label: Productivity
+  blurb: Planning, prioritisation, and meeting-to-action conversion.
+- slug: social
+  label: Social Media
+  blurb: Platform-native posts, calendars, and repurposing.
+- slug: images
+  label: Image Generation
+  blurb: Structured visual briefs for image models.
+- slug: career
+  label: Career
+  blurb: Resumes, interview prep, and negotiation support.
+- slug: data
+  label: Data Analysis
+  blurb: Interpreting tables, metrics, and charts honestly.
+- slug: presentations
+  label: Presentations
+  blurb: Outlines, slide copy, and speaker notes.

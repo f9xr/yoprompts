@@ -1,0 +1,61 @@
+{%- comment -%}
+  Inline SVG artwork for prompt cards. Every variant is built from DESIGN.md's
+  accent palette on {accent-midnight} — sparse geometric composition, no
+  photography, no gradients that fight the canvas.
+
+  Expects: include.art (workflow | terminal | chart | palette)
+{%- endcomment -%}
+{%- assign art = include.art | default: 'workflow' -%}
+
+{%- if art == 'terminal' -%}
+<svg viewBox="0 0 320 180" fill="none" role="img" aria-label="Abstract prompt window">
+  <rect width="320" height="180" fill="#0d1726"/>
+  <rect x="28" y="26" width="264" height="128" rx="8" fill="#111318" stroke="#212327"/>
+  <circle cx="46" cy="44" r="3" fill="#7d8187"/>
+  <circle cx="58" cy="44" r="3" fill="#363a3f"/>
+  <rect x="44" y="62" width="146" height="7" rx="3.5" fill="#7c3aed"/>
+  <rect x="44" y="80" width="216" height="7" rx="3.5" fill="#363a3f"/>
+  <rect x="44" y="98" width="188" height="7" rx="3.5" fill="#363a3f"/>
+  <rect x="44" y="116" width="112" height="7" rx="3.5" fill="#c4b5fd" opacity="0.55"/>
+  <rect x="212" y="112" width="64" height="22" rx="9999" fill="none" stroke="#ffffff" stroke-opacity="0.25"/>
+</svg>
+
+{%- elsif art == 'chart' -%}
+<svg viewBox="0 0 320 180" fill="none" role="img" aria-label="Abstract analytics composition">
+  <rect width="320" height="180" fill="#0d1726"/>
+  <path d="M32 140h256" stroke="#212327"/>
+  <rect x="48" y="98" width="20" height="42" rx="4" fill="#363a3f"/>
+  <rect x="82" y="78" width="20" height="62" rx="4" fill="#363a3f"/>
+  <rect x="116" y="106" width="20" height="34" rx="4" fill="#363a3f"/>
+  <rect x="150" y="56" width="20" height="84" rx="4" fill="#7c3aed"/>
+  <rect x="184" y="88" width="20" height="52" rx="4" fill="#363a3f"/>
+  <rect x="218" y="42" width="20" height="98" rx="4" fill="#a0c3ec" opacity="0.7"/>
+  <rect x="252" y="70" width="20" height="70" rx="4" fill="#363a3f"/>
+  <path d="M48 128l34-46 34 14 34-64 34 40 34-30 34 22 34-52" stroke="#c4b5fd" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+{%- elsif art == 'palette' -%}
+<svg viewBox="0 0 320 180" fill="none" role="img" aria-label="Abstract composition of overlapping shapes">
+  <rect width="320" height="180" fill="#0d1726"/>
+  <circle cx="96" cy="90" r="54" fill="#7c3aed" opacity="0.55"/>
+  <circle cx="160" cy="90" r="54" fill="#c4b5fd" opacity="0.35"/>
+  <rect x="164" y="36" width="108" height="108" rx="8" fill="#a0c3ec" opacity="0.22"/>
+  <path d="M232 36v108" stroke="#ff7a17" stroke-width="1.6" stroke-opacity="0.8"/>
+  <rect x="48" y="34" width="1.6" height="112" fill="#ffffff" fill-opacity="0.25"/>
+</svg>
+
+{%- else -%}
+<svg viewBox="0 0 320 180" fill="none" role="img" aria-label="Abstract workflow composition">
+  <rect width="320" height="180" fill="#0d1726"/>
+  <path d="M44 90h232" stroke="#363a3f"/>
+  <circle cx="60" cy="90" r="18" fill="#7c3aed"/>
+  <circle cx="140" cy="90" r="18" fill="#111318" stroke="#363a3f" stroke-width="1.6"/>
+  <circle cx="220" cy="90" r="18" fill="#111318" stroke="#363a3f" stroke-width="1.6"/>
+  <rect x="74" y="84" width="48" height="12" rx="6" fill="#363a3f"/>
+  <rect x="154" y="84" width="48" height="12" rx="6" fill="#363a3f"/>
+  <path d="M60 54v-14M140 126v14M220 54v-14" stroke="#363a3f"/>
+  <rect x="40" y="28" width="40" height="12" rx="6" fill="#c4b5fd" opacity="0.5"/>
+  <rect x="120" y="140" width="40" height="12" rx="6" fill="#a0c3ec" opacity="0.4"/>
+  <rect x="200" y="28" width="40" height="12" rx="6" fill="#ff7a17" opacity="0.55"/>
+</svg>
+{%- endif -%}

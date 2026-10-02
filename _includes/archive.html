@@ -1,0 +1,134 @@
+{%- comment -%}
+  The prompt archive: live search plus three filter axes (category, AI tool,
+  difficulty) over a single responsive grid. Filtering happens client-side
+  against data attributes on the cards, so it works with no search index and
+  no round trip.
+
+  Expects:
+    include.limit         (optional) cap the grid, e.g. limit=12
+    include.more_href     (optional) render the "See more prompts" pill
+    include.heading       (optional) section headline
+    include.heading_tag   (optional) h1 on a standalone page, h2 in a band
+    include.eyebrow       (optional) mono label above the headline
+    include.lede          (optional) supporting line under the headline
+{%- endcomment -%}
+
+{%- assign archive_items = site.prompts | reverse -%}
+{%- assign heading = include.heading | default: 'Latest prompts' -%}
+{%- assign heading_tag = include.heading_tag | default: 'h2' -%}
+{%- assign heading_id = 'archive-title' -%}
+
+{%- if include.limit -%}
+  {%- assign archive_items = archive_items | slice: 0, include.limit -%}
+{%- endif -%}
+
+{%- comment -%} Only offer filters that would return results. {%- endcomment -%}
+{%- assign used_categories = site.prompts | map: "category" | uniq -%}
+{%- assign used_tools = site.prompts | map: "tools" | join: " " | split: " " | uniq -%}
+{%- assign used_levels = site.prompts | map: "difficulty" | uniq -%}
+
+<section class="band" id="latest-prompts" data-archive aria-labelledby="archive-title">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">{{ include.eyebrow | default: 'Prompt library' }}</p>
+        <{{ heading_tag }} class="display-md section-head__title" id="{{ heading_id }}">{{ heading }}</{{ heading_tag }}>
+        {%- if include.lede %}
+        <p class="body-lg section-head__lede">{{ include.lede }}</p>
+        {%- else %}
+        <p class="body-lg section-head__lede">
+          Freshly crafted prompts for your next AI session. Search by title,
+          use case, model, or category.
+        </p>
+        {%- endif %}
+      </div>
+
+      <div class="search-field">
+        <svg class="search-field__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+          <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M10.5 10.5L14.5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <label class="sr-only" for="library-search">Search prompts</label>
+        <input class="text-input" type="search" id="library-search" placeholder="Search prompts&hellip;" autocomplete="off" data-filter-search>
+        <button class="icon-button search-clear" type="button" data-filter-clear aria-label="Clear search">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M4.5 4.5l7 7M11.5 4.5l-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="archive__toolbar">
+      <span class="archive__count eyebrow-mono eyebrow-mono--muted" data-filter-count aria-live="polite">{{ archive_items | size }} prompts</span>
+    </div>
+
+    <div class="archive__filters">
+
+      <div class="filter-row">
+        <span class="filter-row__label eyebrow-mono eyebrow-mono--muted">Category</span>
+        <div class="category-list" data-filter-group="category" role="group" aria-label="Filter by category">
+          <button class="category-pill is-active" type="button" data-filter-value="all" aria-pressed="true">All</button>
+          {%- for category in site.data.categories -%}
+            {%- if used_categories contains category.slug -%}
+          <button class="category-pill" type="button" data-filter-value="{{ category.slug }}" aria-pressed="false">{{ category.label }}</button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-row__label eyebrow-mono eyebrow-mono--muted">AI tool</span>
+        <div class="category-list" data-filter-group="tool" role="group" aria-label="Filter by AI tool">
+          <button class="category-pill is-active" type="button" data-filter-value="all" aria-pressed="true">All</button>
+          {%- for tool in site.data.ai_tools -%}
+            {%- if used_tools contains tool.slug -%}
+          <button class="category-pill" type="button" data-filter-value="{{ tool.slug }}" aria-pressed="false">{{ tool.label }}</button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-row__label eyebrow-mono eyebrow-mono--muted">Level</span>
+        <div class="category-list" data-filter-group="difficulty" role="group" aria-label="Filter by difficulty">
+          <button class="category-pill is-active" type="button" data-filter-value="all" aria-pressed="true">All</button>
+          {%- if used_levels contains "beginner" -%}
+          <button class="category-pill" type="button" data-filter-value="beginner" aria-pressed="false">Beginner</button>
+          {%- endif -%}
+          {%- if used_levels contains "intermediate" -%}
+          <button class="category-pill" type="button" data-filter-value="intermediate" aria-pressed="false">Intermediate</button>
+          {%- endif -%}
+          {%- if used_levels contains "advanced" -%}
+          <button class="category-pill" type="button" data-filter-value="advanced" aria-pressed="false">Advanced</button>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grid grid-3">
+      {%- for p in archive_items -%}
+        {%- comment -%}
+          Alternate illustrated and text-only cards so the grid does not read as
+          one repeated module. Art cards carry the use case as the visual.
+        {%- endcomment -%}
+        {%- assign cycle = forloop.index | modulo: 4 -%}
+        {%- assign show_art = false -%}
+        {%- if cycle == 0 or cycle == 2 -%}{%- assign show_art = true -%}{%- endif -%}
+        {% include prompt-card.html prompt=p art=show_art copy=true delay="reveal--{{ cycle | plus: 1 }}" %}
+      {%- endfor -%}
+    </div>
+
+    <p class="archive__empty" data-filter-empty>
+      No prompts match that combination. Try a broader search or reset a filter.
+    </p>
+
+    {%- if include.more_href -%}
+    <div class="archive__footer">
+      <a class="button button--lg" href="{{ include.more_href | relative_url }}">See more prompts</a>
+    </div>
+    {%- endif -%}
+
+  </div>
+</section>

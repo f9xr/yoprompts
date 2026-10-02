@@ -1,0 +1,56 @@
+{%- comment -%}
+  The product's core unit. A prompt card, not an article card: the artwork
+  represents the use case, and the micro-actions are read time, model, and a
+  copy control rather than a favourite count.
+
+  Expects:
+    include.prompt   (required) a document from the `prompts` collection
+    include.art      (optional) true to render the artwork variant
+    include.copy     (optional) true to include the copy control
+    include.delay    (optional) reveal stagger class, e.g. reveal--2
+{%- endcomment -%}
+{%- assign p = include.prompt -%}
+{%- assign primary = site.data.ai_tools | where: "slug", p.tools[0] | first -%}
+<article class="prompt-card{% if include.art %} prompt-card--art{% endif %}{% if include.copy %} prompt-card--with-copy{% endif %} reveal {% if include.delay %}{{ include.delay }}{% endif %}"
+  data-filter-item
+  data-title="{{ p.title | escape }}"
+  data-search="{{ p.tags | join: ' ' }} {{ p.excerpt | escape }}"
+  data-category="{{ p.category }}"
+  data-tools="{{ p.tools | join: ' ' }}"
+  data-difficulty="{{ p.difficulty }}">
+
+  {%- if include.art -%}
+  <div class="prompt-card__art">
+    {% include prompt-art.html art=p.art %}
+  </div>
+  {%- endif -%}
+
+  <div class="prompt-card__body">
+    <div class="prompt-card__tags">
+      <span class="tag-mono">{{ p.category_label }}</span>
+      {%- if primary %}
+      <span class="tag-mono tag-mono--accent">{{ primary.label }}</span>
+      {%- endif -%}
+    </div>
+
+    <h3 class="prompt-card__title">
+      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+    </h3>
+
+    <p class="prompt-card__excerpt">{{ p.excerpt }}</p>
+
+    <div class="prompt-card__foot">
+      <span class="meta-mono">{{ p.read_time }} min</span>
+      <span class="meta-mono">{{ p.difficulty }}</span>
+      {%- if include.copy %}
+      {% include copy-button.html copy_key="src-{{ p.slug }}" copy_label="Copy" copy_sm=true %}
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%}
+    The full prompt text travels with the card so Copy works without a request.
+    display:none keeps it out of layout, so it costs no visual weight.
+  {%- endcomment -%}
+  <script class="prompt-source" type="application/x-prompt" data-key="src-{{ p.slug }}">{{ p.prompt }}</script>
+</article>

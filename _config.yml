@@ -1,42 +1,56 @@
-title: "My Blogs Name"
-author: "Default Author Name"
-description: "Some short description of your blog can go here." # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
+title: "YoPrompts"
+author: "F9XR Team"
+description: >-
+  Ready-made AI prompts crafted by F9XR Team to help you write better, create
+  faster, and get better results from ChatGPT, Claude, Gemini, and your
+  favorite AI tools.
+tagline: "Think. Prompt. Create. Copy. Paste. Repeat."
 
-# Email / Social media user names used by the minima theme:
-# All of these are optional and can be removed or commented out
-email: "example@mail.com"
-twitter_username: "twitteruser"
-github_username: "githubuser"
-linkedin_username: "linkedinuser"
-#facebook_username: username
-#flickr_username: username
-#instagram_username: username
-#pinterest_username: username
-#youtube_username: username
-#googleplus_username: +username
+# TODO(inanj): confirm before first deploy. These are GitHub Pages project-site
+# defaults for github.com/f9xr/yoprompts. Correct them if a custom domain or
+# user/org site is used instead.
+url: "https://f9xr.github.io"
+baseurl: "/yoprompts"
 
-#########################################################################################
-######### Nothing below needs to be changed (unless you know what you're doing) #########
-#########################################################################################
-theme: "minima"
+email: ""
 
 rss: rss
 
+markdown: kramdown
 kramdown:
-  syntax_highlighter_opts:
-    disable: true
-    
+  input: GFM
+
 plugins:
+  - jekyll-seo-tag
   - jekyll-feed
   - jekyll-sitemap
 
-titles_from_headings:
-  strip_title: true
-  collections: true
+collections:
+  prompts:
+    output: true
+    permalink: /prompts/:slug/
 
 defaults:
   - scope:
       path: ""
-      type: post
+      type: prompts
     values:
-      tags: Other
+      layout: prompt
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      tags: Guide
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - skills
+  - DESIGN.md
+  - todo.txt
+  - demo-html-site
+  - README.md
+  - .kilo

@@ -1,0 +1,14 @@
+{%- comment -%}
+  Copy action for a prompt. Expects `include.copy_key` — either "body" on a
+  prompt detail page, or "src-<slug>" for a card whose prompt text lives in a
+  hidden source script.
+
+  Optional: include.copy_label (defaults to "Copy Prompt").
+{%- endcomment -%}
+<button class="button {% if include.copy_sm %}button--sm{% endif %}{% if include.copy_block %} button--block{% endif %}" type="button" data-copy="{{ include.copy_key }}">
+  <svg class="button__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
+    <rect x="4.5" y="4.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M9.5 2.5H3A1.5 1.5 0 0 0 1.5 4v6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>
+  <span class="button__label">{{ include.copy_label | default: 'Copy Prompt' }}</span>
+</button>

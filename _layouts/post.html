@@ -1,30 +1,72 @@
 ---
 layout: default
 ---
-<link href="/css/override.css" rel="stylesheet" type="text/css">
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+{%- comment -%}
+  Guide layout. Reading time is derived from the rendered word count rather
+  than stored, so it cannot drift from the actual article.
+{%- endcomment -%}
 
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {% assign author = page.author | default: site.author %}
-      {%- if author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-      {%- endif -%}</p>
-  </header>
+{%- assign words = content | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | plus: 1 -%}
+{%- assign primary_tag = page.tags | first | default: 'Guide' -%}
 
-  <div class="share-links">
-    {% include sharelinks.html %}
+<article class="band page-head">
+
+  <div class="container">
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+    </nav>
+
+    <header class="page-head__header">
+      <p class="eyebrow-mono">{{ primary_tag }}</p>
+      <h1 class="display-lg page-head__title">{{ page.title }}</h1>
+
+      {%- if page.description %}
+      <p class="body-lg page-head__lede">{{ page.description }}</p>
+      {%- endif %}
+
+      <div class="meta-row">
+        <span class="meta-mono">{{ minutes }} min read</span>
+        <span class="meta-mono">{{ page.date | date: "%b %-d, %Y" }}</span>
+        <span class="meta-mono">F9XR Team</span>
+      </div>
+    </header>
+
+    <div class="detail-cols">
+      <div class="prose">
+        {{ content }}
+      </div>
+
+      <aside class="detail-side">
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Find a prompt</p>
+          <p class="body-sm card__body">
+            Every guide here exists to get you to a working prompt faster.
+          </p>
+          <div class="card__actions">
+            <a class="button button--primary button--block" href="{{ '/prompts/' | relative_url }}">Browse prompts</a>
+          </div>
+        </div>
+
+        {%- if page.tags and page.tags.size > 0 %}
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Filed under</p>
+          <div class="tool-list">
+            {%- for tag in page.tags %}
+            <span class="tag-mono">{{ tag }}</span>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endif %}
+      </aside>
+    </div>
+
+    <div class="archive__footer">
+      <a class="button button--lg" href="{{ '/blog/' | relative_url }}">More guides</a>
+    </div>
+
   </div>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
-    {% include navlinks.html %}
-  </div>
-
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

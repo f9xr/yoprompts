@@ -1,0 +1,66 @@
+---
+layout: default
+title: Blog
+body-class: blog
+description: >-
+  Guides on prompting, AI workflows, and getting better results from ChatGPT,
+  Claude, Gemini, and the rest — from the team behind YoPrompts.
+---
+
+<div class="band band--flush-top">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+      <span>Blog</span>
+    </nav>
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Guides and tutorials</p>
+        <h1 class="display-lg section-head__title" id="blog-heading">The blog</h1>
+        <p class="body-lg section-head__lede">
+          Prompting fundamentals, AI workflows, and honest notes on what
+          actually changed our own results.
+        </p>
+      </div>
+    </div>
+
+    {%- if site.posts.size > 0 %}
+    <div class="grid grid-3">
+      {%- for post in site.posts -%}
+      {%- assign cycle = forloop.index | modulo: 4 -%}
+      <article class="prompt-card prompt-card--art reveal reveal--{{ cycle | plus: 1 }}">
+        <div class="prompt-card__art">
+          {%- assign art = post.art | default: 'workflow' -%}
+          {% include prompt-art.html art=art %}
+        </div>
+        <div class="prompt-card__body">
+          <div class="prompt-card__tags">
+            <span class="tag-mono">{{ post.tags | first | default: 'Guide' }}</span>
+          </div>
+          <h2 class="prompt-card__title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h2>
+          <p class="prompt-card__excerpt">{{ post.description | default: post.excerpt | strip_html | truncate: 150 }}</p>
+          <div class="prompt-card__foot">
+            <span class="meta-mono">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <a class="button button--sm" href="{{ post.url | relative_url }}">Read</a>
+          </div>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+    {%- else %}
+    <p class="archive__empty is-visible">
+      No guides published yet. The prompt library is open in the meantime.
+    </p>
+    {%- endif %}
+
+  </div>
+</section>

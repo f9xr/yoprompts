@@ -1,0 +1,44 @@
+<header class="nav-bar" data-header>
+  <div class="nav-bar__inner">
+
+    {% include brand.html %}
+
+    <nav aria-label="Primary">
+      <ul class="nav-bar__links" role="list">
+        {% include nav-links.html %}
+      </ul>
+    </nav>
+
+    <div class="nav-bar__actions">
+      <a class="nav-bar__search" href="{{ '/prompts/' | relative_url }}#library-search" aria-label="Search prompts">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+          <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M10.5 10.5L14.5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </a>
+
+      <a class="button button--primary" href="{{ '/prompts/' | relative_url }}">Explore Prompts</a>
+
+      <button class="nav-drawer-toggle" type="button" data-drawer-toggle aria-expanded="false" aria-controls="nav-drawer">
+        <span class="sr-only">Menu</span>
+        <svg class="icon-menu" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+          <path d="M2 4.5h12M2 8h12M2 11.5h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+          <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-drawer" id="nav-drawer" data-drawer hidden>
+  <div class="nav-drawer__list">
+    <ul role="list">
+      {% include nav-links.html %}
+    </ul>
+    <div class="nav-drawer__actions">
+      <a class="button button--primary button--block" href="{{ '/prompts/' | relative_url }}">Explore Prompts</a>
+    </div>
+  </div>
+</div>

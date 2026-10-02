@@ -1,0 +1,9 @@
+{%- comment -%}
+  Emits one list item per primary navigation entry so the desktop bar and the
+  mobile drawer can never drift apart. Callers supply the wrapping element.
+{%- endcomment -%}
+{%- for item in site.data.nav.primary -%}
+  <li>
+    <a class="nav-link" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+  </li>
+{%- endfor -%}

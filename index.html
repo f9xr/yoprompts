@@ -1,0 +1,368 @@
+---
+layout: default
+title: "YoPrompts"
+body-class: home
+description: >-
+  Ready-made AI prompts by F9XR Team. Copy, paste, and get better results from
+  ChatGPT, Claude, Gemini, and every tool that follows them.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "YoPrompts",
+  "alternateName": "YoPrompts by F9XR Team",
+  "url": "{{ '/' | absolute_url }}",
+  "description": {{ site.description | strip_newlines | strip | jsonify }},
+  "publisher": {
+    "@type": "Organization",
+    "name": "F9XR Team",
+    "url": "{{ '/' | absolute_url }}"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ '/prompts/' | absolute_url }}?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{%- assign featured = site.prompts | where_exp: "p", "p.featured == true" | first -%}
+{%- if featured == nil -%}
+  {%- assign featured = site.prompts | first -%}
+{%- endif -%}
+
+{%- assign top_picks = site.prompts | where_exp: "p", "p.picks contains 'essential'" -%}
+{%- assign weekly = site.prompts | where_exp: "p", "p.picks contains 'weekly'" -%}
+
+
+<!-- 01  Hero =========================================================== -->
+<section class="hero-band" aria-labelledby="hero-title">
+  <div class="container hero-band__inner">
+    <div class="hero-band__text">
+      <p class="eyebrow-mono">AI prompts</p>
+
+      <h1 class="display-xl hero-band__headline" id="hero-title">
+        Think. Prompt. Create.<br>
+        Copy. Paste. Repeat.
+      </h1>
+
+      <p class="body-lg hero-band__lede">
+        Ready-made prompts crafted to help you write better, create faster, and
+        get more from ChatGPT, Claude, Gemini, and your favorite AI tools.
+        No login, no setup — copy the prompt and open the chat.
+      </p>
+
+      <div class="hero-band__actions">
+        <a class="button button--primary button--lg" href="{{ '/prompts/' | relative_url }}">Explore Prompts</a>
+        <a class="button button--lg" href="#prompt-of-the-week">Prompt of the week</a>
+      </div>
+    </div>
+
+    <a class="icon-button scroll-cue" href="#prompt-of-the-week" aria-label="Scroll to the prompt of the week">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+        <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- 02  Prompt of the week ============================================= -->
+{%- if featured -%}
+<section class="band band--flush-top" id="prompt-of-the-week" aria-labelledby="featured-title">
+  <div class="container">
+
+    <div class="feature reveal">
+      <div class="feature__panel">
+        <div>
+          <p class="eyebrow-mono">Prompt of the week</p>
+          <h2 class="display-md feature__title" id="featured-title">
+            <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
+          </h2>
+          <p class="body-lg feature__excerpt">{{ featured.excerpt }}</p>
+        </div>
+
+        <div class="card__actions">
+          {% include copy-button.html copy_key="src-{{ featured.slug }}" %}
+          <a class="button" href="{{ featured.url | relative_url }}">View prompt</a>
+        </div>
+      </div>
+
+      <div class="prompt-window">
+        <div class="prompt-window__bar">
+          <span class="prompt-window__dot prompt-window__dot--live"></span>
+          <span class="prompt-window__dot"></span>
+          <span class="prompt-window__dot"></span>
+          <span class="prompt-window__file">{{ featured.category_label }}</span>
+        </div>
+
+        <div class="prompt-window__body">
+          <p class="eyebrow-mono eyebrow-mono--muted prompt-window__label">
+            What the prompt does
+          </p>
+
+          <ol class="prompt-window__steps">
+            {%- for step in featured.workflow -%}
+            {%- assign step_index = forloop.index | prepend: '0' | slice: -2, 2 -%}
+            <li class="prompt-window__step">
+              <span class="prompt-window__step-index">{{ step_index }}</span>
+              <span class="prompt-window__step-text">{{ step }}</span>
+            </li>
+            {%- endfor -%}
+          </ol>
+
+          {%- if featured.output_preview -%}
+          <div class="prompt-window__output">
+            <span class="eyebrow-mono-sm prompt-window__output-label">Output shape</span>
+            <p class="prompt-window__output-text">{{ featured.output_preview }}</p>
+          </div>
+          {%- endif -%}
+        </div>
+
+        <div class="prompt-window__actions">
+          <a class="button button--block" href="{{ featured.url | relative_url }}">Open full prompt</a>
+        </div>
+      </div>
+    </div>
+
+    <script class="prompt-source" type="application/x-prompt" data-key="src-{{ featured.slug }}">{{ featured.prompt }}</script>
+
+  </div>
+</section>
+{%- endif -%}
+
+
+<!-- 03  Recent top picks =============================================== -->
+{%- if top_picks.size > 0 -%}
+<section class="band band--tight" aria-labelledby="top-picks-title">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Essential prompts</p>
+        <h2 class="display-md section-head__title" id="top-picks-title">
+          Start with these four
+        </h2>
+      </div>
+      <a class="button" href="{{ '/prompts/' | relative_url }}">Browse all</a>
+    </div>
+
+    <div class="top-picks">
+      {%- for p in top_picks limit: 4 -%}
+      <a class="quick-link reveal reveal--{{ forloop.index }}" href="{{ p.url | relative_url }}">
+        <span class="eyebrow-mono-sm quick-link__tag">{{ p.category_label }}</span>
+        <span class="quick-link__hook">{{ p.title }}</span>
+        <svg class="quick-link__arrow" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
+          <path d="M2.5 11.5L11.5 2.5M11.5 2.5H4.5M11.5 2.5V9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+{%- endif -%}
+
+
+<!-- 04  Categories ===================================================== -->
+<section class="band band--tight" aria-labelledby="categories-title">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Browse by subject</p>
+        <h2 class="display-md section-head__title" id="categories-title">
+          Twelve ways to use a prompt
+        </h2>
+        <p class="body-lg section-head__lede">
+          Every prompt is filed under the job it does, not the model it was
+          tested on.
+        </p>
+      </div>
+      <a class="button" href="{{ '/categories/' | relative_url }}">All categories</a>
+    </div>
+
+    <div class="category-list">
+      <a class="category-pill" href="{{ '/prompts/' | relative_url }}">All</a>
+      {%- for category in site.data.categories -%}
+      <a class="category-pill" href="{{ '/categories/' | relative_url }}#{{ category.slug }}">
+        {{ category.label }}
+      </a>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 05  Prompt picks =================================================== -->
+{%- if weekly.size > 0 -%}
+<section class="band band--tight" aria-labelledby="picks-title">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Prompt picks</p>
+        <h2 class="display-md section-head__title" id="picks-title">
+          Prompts worth using
+        </h2>
+        <p class="body-lg section-head__lede">
+          The ones people keep coming back to, and the reason they work.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      {%- for p in weekly limit: 3 -%}
+      <article class="pick-card reveal reveal--{{ forloop.index }}">
+        <div class="pick-card__art">
+          {% include prompt-art.html art=p.art %}
+        </div>
+
+        <div class="prompt-card__tags">
+          <span class="tag-mono">{{ p.category_label }}</span>
+          <span class="tag-mono tag-mono--breeze">{{ p.difficulty }}</span>
+        </div>
+
+        <h3 class="pick-card__title">
+          <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        </h3>
+
+        <p class="body-sm pick-card__excerpt">{{ p.excerpt }}</p>
+
+        <div class="pick-card__meta">
+          <span class="meta-mono">{{ p.read_time }} min</span>
+          <span class="pick-card__author">
+            <span class="story-card__avatar" aria-hidden="true">F9</span>
+            <span>
+              <span class="story-card__who body-sm">F9XR Team</span>
+              <span class="meta-mono">Curated</span>
+            </span>
+          </span>
+          {% include copy-button.html copy_key="src-{{ p.slug }}" copy_label="Copy" copy_sm=true %}
+        </div>
+
+        <script class="prompt-source" type="application/x-prompt" data-key="src-{{ p.slug }}">{{ p.prompt }}</script>
+      </article>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+{%- endif -%}
+
+
+<!-- 06  User stories =================================================== -->
+<section class="band band--tight" data-carousel aria-labelledby="stories-title">
+  <div class="container">
+
+    <div class="stories__head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Wall of fame</p>
+        <h2 class="display-md section-head__title" id="stories-title">
+          User success stories
+        </h2>
+      </div>
+
+      <div class="stories__controls">
+        <button class="icon-button" type="button" data-carousel-prev aria-label="Previous stories">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="icon-button" type="button" data-carousel-next aria-label="Next stories">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="stories__track" data-carousel-track">
+      {%- comment -%}
+        PLACEHOLDER QUOTES. These are illustrative, not collected from real
+        users. Replace with verified submissions before launch — see
+        /submit-a-prompt/. Do not ship fabricated social proof.
+      {%- endcomment -%}
+      <figure class="story-card story-card--dusk">
+        <blockquote class="story-card__quote">
+          I stopped rewriting prompts from scratch. The content brief prompt
+          alone removed a full afternoon of outlining every week.
+        </blockquote>
+        <figcaption class="story-card__attribution">
+          <span class="story-card__avatar" aria-hidden="true">MK</span>
+          <span>
+            <span class="story-card__who body-sm">Freelance content strategist</span>
+            <span class="meta-mono">Marketing</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="story-card story-card--breeze">
+        <blockquote class="story-card__quote">
+          My code review prompt has caught the same classes of bug my senior
+          devs used to flag. It asks the right questions before I even read
+          the diff.
+        </blockquote>
+        <figcaption class="story-card__attribution">
+          <span class="story-card__avatar" aria-hidden="true">RS</span>
+          <span>
+            <span class="story-card__who body-sm">Backend engineer</span>
+            <span class="meta-mono">Coding</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="story-card story-card--sunset">
+        <blockquote class="story-card__quote">
+          The research prompts made me admit what I did not know before
+          starting. That alone was worth more than the hours saved.
+        </blockquote>
+        <figcaption class="story-card__attribution">
+          <span class="story-card__avatar" aria-hidden="true">AT</span>
+          <span>
+            <span class="story-card__who body-sm">Operations lead</span>
+            <span class="meta-mono">Research</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="story-card story-card--dusk">
+        <blockquote class="story-card__quote">
+          I hand new hires the onboarding prompt pack. Same quality of output
+          regardless of who runs it.
+        </blockquote>
+        <figcaption class="story-card__attribution">
+          <span class="story-card__avatar" aria-hidden="true">JL</span>
+          <span>
+            <span class="story-card__who body-sm">Engineering manager</span>
+            <span class="meta-mono">Productivity</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 07  Brand statement =============================================== -->
+<section class="band band--tight">
+  <div class="container">
+    <div class="brand-statement reveal">
+      <p class="display-lg brand-statement__quote">
+        Good prompts do not replace creativity. They clear the path to it.
+      </p>
+      <p class="eyebrow-mono brand-statement__source">&mdash; F9XR Team</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- 08  Latest prompts & archive engine ================================ -->
+{% include archive.html limit=12 more_href="/prompts/" %}

@@ -1,0 +1,2138 @@
+/* ==========================================================================
+   YoPrompts — by F9XR Team
+
+   The single stylesheet for the site. Every token below mirrors DESIGN.md
+   exactly; do not introduce values that are not defined there.
+
+   Rules of the system:
+     - {canvas} is the only page surface. There is no light mode.
+     - Weight 400 for all display type. The brand never bolds.
+     - {rounded.pill} on every interactive element.
+     - No shadows. Hairline borders carry all elevation.
+
+   File map
+     01  Tokens
+     02  Base & reset
+     03  Typography
+     04  Layout primitives
+     05  Buttons & pills
+     06  Forms & search
+     07  Cards
+     08  Header & navigation
+     09  Hero
+     10  Featured prompt (split card)
+     11  Top picks
+     12  Prompt picks
+     13  Stories carousel
+     14  Archive / prompt grid
+     15  Categories
+     16  CTA bleed
+     17  Footer
+     18  Prompt detail
+     19  Article & prose
+     20  Utilities, motion, responsive
+   ========================================================================== */
+
+
+/* 01  Tokens ============================================================= */
+
+:root {
+  /* Brand & accent */
+  --primary: #ffffff;
+  --on-primary: #0a0a0a;
+  --accent-sunset: #ff7a17;
+  --accent-sunset-soft: #ffc285;
+  --accent-dusk: #7c3aed;
+  --accent-twilight: #c4b5fd;
+  --accent-breeze: #a0c3ec;
+  --accent-midnight: #0d1726;
+
+  /* Surface */
+  --canvas: #0a0a0a;
+  --canvas-soft: #1a1c20;
+  --canvas-card: #191919;
+  --canvas-mid: #363a3f;
+  --hairline: #212327;
+  --hairline-strong: rgba(255, 255, 255, 0.25);
+
+  /* Text */
+  --ink: #ffffff;
+  --ink-hover: #fafaf7;
+  --body: #dadbdf;
+  --body-mid: #7d8187;
+
+  /* Type families.
+     universalSans is proprietary; DESIGN.md names Inter as the closest
+     open-source substitute, Geist Mono its documented mono companion
+     (JetBrains Mono is the alternate used here, as Geist Mono is not
+     available on Google Fonts). */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+
+  /* Spacing — base unit 4px */
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 48px;
+  --spacing-4xl: 64px;
+
+  /* Shapes */
+  --rounded-sm: 8px;
+  --rounded-pill: 9999px;
+
+  /* Layout */
+  --container: 1200px;
+  --band-padding: var(--spacing-4xl);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --dur: 180ms;
+}
+
+
+/* 02  Base & reset ====================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font: 400 var(--type-body-md, 16px) / 24px var(--font-sans);
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+ol,
+ul {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--ink-hover);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: var(--spacing-3xl) 0;
+}
+
+::selection {
+  background: var(--accent-dusk);
+  color: var(--primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: var(--rounded-xs, 2px);
+}
+
+
+/* 03  Typography ======================================================== */
+
+/* Display ladder — weight 400 throughout, with the aggressive negative
+   tracking that gives the brand its gathered precision. */
+.display-xl {
+  font: 400 96px / 96px var(--font-sans);
+  letter-spacing: -2.4px;
+}
+
+.display-lg {
+  font: 400 72px / 72px var(--font-sans);
+  letter-spacing: -1.8px;
+}
+
+.display-md {
+  font: 400 48px / 48px var(--font-sans);
+  letter-spacing: -1.2px;
+}
+
+.display-sm {
+  font: 400 32px / 36px var(--font-sans);
+  letter-spacing: -0.6px;
+}
+
+.display-xs {
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: 0;
+}
+
+.body-lg {
+  font: 400 18px / 28px var(--font-sans);
+  letter-spacing: 0;
+}
+
+.body-md {
+  font: 400 16px / 24px var(--font-sans);
+  letter-spacing: 0;
+}
+
+.body-sm {
+  font: 400 14px / 20px var(--font-sans);
+  letter-spacing: 0;
+}
+
+/* The brand's signature label style: every section eyebrow reads as a code
+   comment rather than a marketing label. */
+.eyebrow-mono {
+  font: 400 14px / 20px var(--font-mono);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.eyebrow-mono-sm {
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.eyebrow-mono--muted {
+  color: var(--body-mid);
+}
+
+.text-body {
+  color: var(--body);
+}
+
+.text-body-mid {
+  color: var(--body-mid);
+}
+
+.link-underline {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--hairline-strong);
+  transition: text-decoration-color var(--dur) var(--ease);
+}
+
+.link-underline:hover {
+  text-decoration-color: var(--ink);
+}
+
+.link-inline {
+  color: var(--ink);
+  border-bottom: 1px solid var(--hairline-strong);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.link-inline:hover {
+  border-bottom-color: var(--ink);
+}
+
+
+/* 04  Layout primitives ================================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--spacing-xl);
+}
+
+.band {
+  padding-block: var(--band-padding);
+}
+
+.band--tight {
+  padding-block: var(--spacing-3xl);
+}
+
+.band--flush-top {
+  padding-top: 0;
+}
+
+.divider-hairline {
+  height: 1px;
+  background: var(--hairline);
+  border: 0;
+}
+
+/* Section head: eyebrow above a display-md headline, optional supporting
+   copy, optional right-hand control cluster. */
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.section-head__text {
+  max-width: 620px;
+}
+
+.section-head__title {
+  margin-top: var(--spacing-lg);
+}
+
+.section-head__lede {
+  margin-top: var(--spacing-lg);
+  color: var(--body);
+}
+
+.grid {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stack-sm > * + * {
+  margin-top: var(--spacing-sm);
+}
+
+.stack-md > * + * {
+  margin-top: var(--spacing-md);
+}
+
+.stack-lg > * + * {
+  margin-top: var(--spacing-lg);
+}
+
+.stack-xl > * + * {
+  margin-top: var(--spacing-xl);
+}
+
+
+/* 05  Buttons & pills =================================================== */
+
+/* The pill is the brand's entire shape system. It never varies. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  min-height: 32px;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  background: transparent;
+  color: var(--ink);
+  font: 400 14px / 20px var(--font-sans);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.button:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.button[disabled],
+.button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* The rare filled pill. DESIGN.md permits exactly one; on YoPrompts it is
+   the primary Explore Prompts CTA. */
+.button--primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.button--primary:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.button--sm {
+  min-height: 28px;
+  padding: 2px 10px;
+  font-size: 13px;
+}
+
+.button--lg {
+  min-height: 40px;
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.button--block {
+  width: 100%;
+}
+
+.button__icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+/* Circular icon container — used for carousel controls and the hero scroll
+   cue. Same translucent-white border as every other outline. */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+
+.icon-button:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.icon-button[disabled] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.icon-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* 06  Forms & search ==================================================== */
+
+.text-input {
+  width: 100%;
+  min-height: 40px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-soft);
+  color: var(--ink);
+  font: 400 16px / 24px var(--font-sans);
+  appearance: none;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.text-input::placeholder {
+  color: var(--body-mid);
+}
+
+.text-input:hover {
+  border-color: var(--hairline-strong);
+}
+
+.text-input:focus {
+  border-color: rgba(255, 255, 255, 0.45);
+  outline: none;
+}
+
+.search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-field__icon {
+  position: absolute;
+  left: var(--spacing-md);
+  width: 16px;
+  height: 16px;
+  color: var(--body-mid);
+  pointer-events: none;
+}
+
+.search-field .text-input {
+  padding-left: 42px;
+}
+
+.search-clear {
+  position: absolute;
+  right: var(--spacing-xs);
+  display: none;
+}
+
+.search-clear.is-visible {
+  display: inline-flex;
+}
+
+
+/* 07  Cards ============================================================= */
+
+/* card-content — the default chrome. No shadows: the hairline is the only
+   elevation cue in the system. */
+.card {
+  background: var(--canvas-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  padding: var(--spacing-xl);
+  color: var(--ink);
+}
+
+.card--soft {
+  background: var(--canvas-soft);
+}
+
+.card--flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+.card__title {
+  margin-top: var(--spacing-md);
+}
+
+.card__body {
+  margin-top: var(--spacing-md);
+  color: var(--body);
+}
+
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+}
+
+/* Card-cluster heading helper used on hover-raised cards. */
+.card-lift {
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.card-lift:hover {
+  transform: translateY(-2px);
+  border-color: var(--hairline-strong);
+}
+
+
+/* 08  Header & navigation ================================================ */
+
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--canvas);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ease);
+}
+
+/* The bar stays flat on the canvas at rest; the hairline only appears once
+   content passes beneath it. */
+.nav-bar.is-scrolled {
+  border-bottom-color: var(--hairline);
+}
+
+.nav-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: var(--spacing-md) var(--spacing-xl);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: none;
+}
+
+.brand__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  flex: none;
+}
+
+.brand__mark svg {
+  width: 14px;
+  height: 14px;
+}
+
+.brand__name {
+  display: block;
+  font: 400 16px / 20px var(--font-sans);
+  letter-spacing: -0.2px;
+}
+
+.brand__by {
+  display: block;
+  font: 400 11px / 14px var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--body-mid);
+}
+
+.nav-bar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.nav-link {
+  font: 400 14px / 20px var(--font-sans);
+  color: var(--ink);
+  transition: color var(--dur) var(--ease);
+}
+
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  color: var(--ink-hover);
+}
+
+.nav-link[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+.nav-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: none;
+}
+
+.nav-bar__search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  color: var(--ink);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.nav-bar__search:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.nav-bar__search svg {
+  width: 15px;
+  height: 15px;
+}
+
+.nav-drawer-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.nav-drawer-toggle svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* The drawer button swaps its glyph from menu to close on state. */
+.nav-drawer-toggle .icon-close {
+  display: none;
+}
+
+.nav-drawer-toggle[aria-expanded="true"] .icon-menu {
+  display: none;
+}
+
+.nav-drawer-toggle[aria-expanded="true"] .icon-close {
+  display: block;
+}
+
+.nav-drawer {
+  border-top: 1px solid var(--hairline);
+  background: var(--canvas);
+}
+
+.nav-drawer[hidden] {
+  display: none;
+}
+
+.nav-drawer__list {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+}
+
+.nav-drawer__list .nav-link {
+  display: block;
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: var(--type-body-lg, 18px);
+}
+
+.nav-drawer__list .nav-link:last-of-type {
+  border-bottom: 0;
+}
+
+.nav-drawer__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--spacing-lg);
+  top: -64px;
+  z-index: 60;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  background: var(--canvas-soft);
+  color: var(--ink);
+  transition: top var(--dur) var(--ease);
+}
+
+.skip-link:focus {
+  top: var(--spacing-lg);
+}
+
+
+/* 09  Hero ============================================================== */
+
+.hero-band {
+  padding-block: var(--spacing-4xl) var(--spacing-4xl);
+}
+
+.hero-band__inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+}
+
+.hero-band__text {
+  max-width: 900px;
+}
+
+.hero-band__headline {
+  margin-top: var(--spacing-2xl);
+}
+
+.hero-band__lede {
+  margin-top: var(--spacing-2xl);
+  max-width: 620px;
+  color: var(--body);
+}
+
+.hero-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-2xl);
+}
+
+.scroll-cue {
+  flex: none;
+  width: 40px;
+  height: 40px;
+}
+
+.scroll-cue svg {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* 10  Featured prompt (split card) ====================================== */
+
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: var(--spacing-lg);
+}
+
+.feature__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+  min-height: 100%;
+}
+
+.feature__title {
+  margin-top: var(--spacing-lg);
+}
+
+.feature__excerpt {
+  margin-top: var(--spacing-lg);
+  color: var(--body);
+}
+
+/* Right-hand prompt window. Sits on {canvas-mid} and stands in for the
+   deep-purple panel in the source brief, per DESIGN.md's surface tokens. */
+.prompt-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--canvas-mid);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  overflow: hidden;
+}
+
+.prompt-window__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--canvas-soft);
+}
+
+.prompt-window__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--rounded-pill);
+  background: var(--body-mid);
+}
+
+.prompt-window__dot--live {
+  background: var(--accent-dusk);
+}
+
+.prompt-window__file {
+  margin-left: auto;
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--body-mid);
+}
+
+.prompt-window__body {
+  padding: var(--spacing-xl);
+}
+
+.prompt-window__label {
+  margin-bottom: var(--spacing-lg);
+  color: var(--body-mid);
+}
+
+.prompt-window__steps {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.prompt-window__step {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.prompt-window__step:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.prompt-window__step-index {
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  color: var(--accent-twilight);
+  flex: none;
+}
+
+.prompt-window__step-text {
+  font: 400 16px / 24px var(--font-sans);
+  color: var(--ink);
+}
+
+.prompt-window__output {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--accent-midnight);
+}
+
+.prompt-window__output-label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--accent-breeze);
+}
+
+.prompt-window__output-text {
+  font: 400 14px / 20px var(--font-sans);
+  color: var(--body);
+}
+
+.prompt-window__actions {
+  margin-top: auto;
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+}
+
+
+/* 11  Top picks ========================================================= */
+
+/* Four narrow, uniform quick-link badges — a compact row of editorial
+   signposts rather than a feature grid. */
+.top-picks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.quick-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+  min-height: 148px;
+  padding: var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-card);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.quick-link:hover {
+  border-color: var(--hairline-strong);
+  transform: translateY(-2px);
+}
+
+.quick-link__tag {
+  color: var(--accent-twilight);
+}
+
+.quick-link__hook {
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: -0.2px;
+}
+
+.quick-link__arrow {
+  align-self: flex-start;
+  width: 14px;
+  height: 14px;
+  color: var(--body-mid);
+  transition: color var(--dur) var(--ease);
+}
+
+.quick-link:hover .quick-link__arrow {
+  color: var(--ink);
+}
+
+
+/* 12  Prompt picks ====================================================== */
+
+.pick-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-card);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.pick-card:hover {
+  border-color: var(--hairline-strong);
+  transform: translateY(-2px);
+}
+
+.pick-card__art {
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--accent-midnight);
+  overflow: hidden;
+}
+
+.pick-card__title {
+  font: 400 24px / 32px var(--font-sans);
+  letter-spacing: -0.4px;
+}
+
+.pick-card__excerpt {
+  color: var(--body);
+}
+
+.pick-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: auto;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--hairline);
+}
+
+.pick-card__author {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-right: auto;
+}
+
+
+/* 13  Stories carousel ================================================== */
+
+.stories__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.stories__controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex: none;
+}
+
+.stories__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(320px, 1fr);
+  gap: var(--spacing-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--canvas-mid) transparent;
+  padding-bottom: var(--spacing-sm);
+}
+
+.stories__track::-webkit-scrollbar {
+  height: 4px;
+}
+
+.stories__track::-webkit-scrollbar-thumb {
+  background: var(--canvas-mid);
+  border-radius: var(--rounded-pill);
+}
+
+.story-card {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  border-top: 2px solid var(--accent);
+}
+
+.story-card--dusk {
+  --accent: var(--accent-dusk);
+  background: var(--canvas-soft);
+}
+
+.story-card--breeze {
+  --accent: var(--accent-breeze);
+  background: var(--canvas-card);
+}
+
+.story-card--sunset {
+  --accent: var(--accent-sunset);
+  background: var(--canvas-mid);
+}
+
+.story-card__quote {
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: -0.2px;
+}
+
+.story-card__attribution {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: auto;
+}
+
+.story-card__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  color: var(--ink);
+}
+
+.story-card__who {
+  display: block;
+}
+
+.story-card__role {
+  display: block;
+  color: var(--body-mid);
+}
+
+/* Brand statement — the editorial alternative to a testimonial wall when no
+   verified customer quotes exist. */
+.brand-statement {
+  padding: var(--spacing-4xl) var(--spacing-2xl);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  text-align: center;
+}
+
+.brand-statement__quote {
+  font: 400 48px / 48px var(--font-sans);
+  letter-spacing: -1.2px;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.brand-statement__source {
+  margin-top: var(--spacing-xl);
+}
+
+
+/* 14  Archive / prompt grid ============================================= */
+
+.archive__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.archive__filters {
+  display: grid;
+  gap: var(--spacing-lg);
+  padding-block: var(--spacing-xl);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.filter-row__label {
+  min-width: 78px;
+  margin-right: var(--spacing-sm);
+  color: var(--body-mid);
+}
+
+.archive__count {
+  color: var(--body-mid);
+}
+
+.archive__empty {
+  display: none;
+  padding: var(--spacing-3xl) 0;
+  text-align: center;
+  color: var(--body-mid);
+}
+
+.archive__empty.is-visible {
+  display: block;
+}
+
+.archive__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-3xl);
+}
+
+.prompt-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--canvas-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  padding: var(--spacing-xl);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.prompt-card:hover {
+  border-color: var(--hairline-strong);
+  transform: translateY(-2px);
+}
+
+.prompt-card--art {
+  padding: 0;
+  overflow: hidden;
+}
+
+.prompt-card--art .prompt-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+}
+
+/* Hidden prompt source. Not rendered, not laid out, so it costs no visual
+   weight — the copy button reads its textContent on demand. */
+.prompt-source,
+.copy-source {
+  display: none;
+}
+
+.prompt-card__art {
+  aspect-ratio: 16 / 10;
+  display: block;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--accent-midnight);
+  overflow: hidden;
+}
+
+.prompt-card__art > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.prompt-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.tag-mono {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-pill);
+  font: 400 11px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--body);
+  white-space: nowrap;
+}
+
+.tag-mono--accent {
+  border-color: rgba(124, 58, 237, 0.45);
+  color: var(--accent-twilight);
+}
+
+.tag-mono--breeze {
+  border-color: rgba(160, 195, 236, 0.4);
+  color: var(--accent-breeze);
+}
+
+.tag-mono--sunset {
+  border-color: rgba(255, 122, 23, 0.45);
+  color: var(--accent-sunset-soft);
+}
+
+.prompt-card__title {
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: -0.2px;
+}
+
+.prompt-card__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.prompt-card__excerpt {
+  color: var(--body);
+  font: 400 14px / 20px var(--font-sans);
+}
+
+.prompt-card__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: auto;
+  padding-top: var(--spacing-lg);
+}
+
+.prompt-card--art .prompt-card__foot,
+.prompt-card--with-copy .prompt-card__foot {
+  border-top: 1px solid var(--hairline);
+}
+
+.prompt-card__foot .button {
+  position: relative;
+  z-index: 1;
+}
+
+.meta-mono {
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--body-mid);
+}
+
+.meta-mono + .meta-mono {
+  padding-left: var(--spacing-md);
+  border-left: 1px solid var(--hairline);
+}
+
+.prompt-card.is-filtered-out {
+  display: none;
+}
+
+
+/* 15  Categories ======================================================== */
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-height: 32px;
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-pill);
+  background: transparent;
+  color: var(--body);
+  font: 400 14px / 20px var(--font-sans);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.category-pill:hover {
+  border-color: var(--hairline-strong);
+  color: var(--ink);
+}
+
+.category-pill[aria-pressed="true"],
+.category-pill.is-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.category-pill__count {
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  opacity: 0.7;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-card);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.category-card:hover {
+  border-color: var(--hairline-strong);
+  transform: translateY(-2px);
+}
+
+.category-card__name {
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: -0.2px;
+}
+
+
+/* 16  CTA bleed ========================================================= */
+
+/* Massive faint display type bleeding past the viewport edges, with the
+   footer card floating over it. */
+.cta-bleed {
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--spacing-4xl);
+}
+
+.cta-bleed__type {
+  margin: 0;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  font: 400 200px / 180px var(--font-sans);
+  letter-spacing: -8px;
+  color: rgba(255, 255, 255, 0.055);
+  text-align: center;
+  transform: translateX(-4%);
+}
+
+.cta-bleed__foot {
+  position: relative;
+  margin-top: calc(var(--spacing-4xl) * -1);
+  padding-bottom: var(--spacing-4xl);
+}
+
+
+/* 17  Footer ============================================================ */
+
+.footer {
+  padding: var(--spacing-3xl) 0;
+  background: var(--canvas);
+  color: var(--body);
+  font: 400 14px / 20px var(--font-sans);
+}
+
+/* The floating card that overlaps the CTA bleed. Dark counterpart to the
+   white card in the source brief, per DESIGN.md's canvas-only rule. */
+.footer-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr) minmax(0, 0.9fr);
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-2xl);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-soft);
+}
+
+.footer-card__brand .brand__name {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.footer-card__tagline {
+  margin-top: var(--spacing-md);
+  max-width: 260px;
+  color: var(--body);
+}
+
+.footer-card__cols {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.footer-card__col-title {
+  display: block;
+  margin-bottom: var(--spacing-lg);
+  color: var(--body-mid);
+}
+
+.footer-card__col a {
+  display: block;
+  padding: 5px 0;
+  color: var(--body);
+  transition: color var(--dur) var(--ease);
+}
+
+.footer-card__col a:hover {
+  color: var(--ink);
+}
+
+/* Right-hand micro-workspace widget. */
+.footer-widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-card);
+}
+
+.footer-widget__title {
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: -0.2px;
+}
+
+.footer-widget__actions {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-xl);
+  color: var(--body-mid);
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+
+/* 18  Prompt detail ===================================================== */
+
+.page-head {
+  padding-top: var(--spacing-3xl);
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--body-mid);
+}
+
+.breadcrumbs a {
+  color: var(--body-mid);
+  transition: color var(--dur) var(--ease);
+}
+
+.breadcrumbs a:hover {
+  color: var(--ink);
+}
+
+.breadcrumbs__sep {
+  color: var(--canvas-mid);
+}
+
+.page-head__title {
+  margin-top: var(--spacing-lg);
+  max-width: 900px;
+}
+
+.page-head__lede {
+  margin-top: var(--spacing-xl);
+  max-width: 680px;
+  color: var(--body);
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--hairline);
+}
+
+/* The prompt container. This is the product — it gets the most generous
+   treatment on the page. */
+.prompt-body {
+  margin-top: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-soft);
+  color: var(--ink);
+  font: 400 14px / 24px var(--font-mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.prompt-body-shell {
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  overflow: hidden;
+  margin-top: var(--spacing-2xl);
+}
+
+.prompt-body-shell__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--canvas-card);
+}
+
+.prompt-body-shell__label {
+  color: var(--body-mid);
+}
+
+.prompt-body-shell__bar .button {
+  margin-left: auto;
+}
+
+.prompt-body-shell .prompt-body {
+  margin-top: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--canvas-soft);
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.copy-state {
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--accent-twilight);
+}
+
+.copy-state:empty {
+  display: none;
+}
+
+.prompt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.detail-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--spacing-2xl);
+  align-items: start;
+}
+
+.detail-side {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.page-head__header {
+  margin-top: var(--spacing-xl);
+}
+
+.detail-section {
+  margin-top: var(--spacing-4xl);
+}
+
+.detail-section__title {
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.detail-section__body {
+  margin-top: var(--spacing-lg);
+  color: var(--body);
+}
+
+.detail-list {
+  display: grid;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+/* Example output sits in the same chrome as the prompt body but reads as
+   prose, not as something you paste. */
+.output-block {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-soft);
+  font: 400 14px / 24px var(--font-sans);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.detail-list li {
+  position: relative;
+  padding-left: var(--spacing-xl);
+  color: var(--body);
+}
+
+.detail-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 1px;
+  background: var(--accent-twilight);
+}
+
+.numbered-list {
+  counter-reset: step;
+  display: grid;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.numbered-list li {
+  counter-increment: step;
+  position: relative;
+  padding-left: var(--spacing-2xl);
+  color: var(--body);
+}
+
+.numbered-list li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font: 400 12px / 24px var(--font-mono);
+  letter-spacing: 1.2px;
+  color: var(--accent-twilight);
+}
+
+.faq-list {
+  margin-top: var(--spacing-lg);
+}
+
+.faq-list details {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) 0;
+  cursor: pointer;
+  list-style: none;
+  font: 400 18px / 28px var(--font-sans);
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 0v12M0 6h12' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 0v12M0 6h12' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform var(--dur) var(--ease);
+}
+
+.faq-list details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-list details > p {
+  padding-bottom: var(--spacing-lg);
+  color: var(--body);
+  max-width: 640px;
+}
+
+.tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+}
+
+
+/* 19  Article & prose =================================================== */
+
+.prose {
+  max-width: 680px;
+}
+
+.prose > * + * {
+  margin-top: var(--spacing-xl);
+}
+
+.prose h2 {
+  margin-top: var(--spacing-3xl);
+  font: 400 32px / 36px var(--font-sans);
+  letter-spacing: -0.6px;
+}
+
+.prose h3 {
+  margin-top: var(--spacing-2xl);
+  font: 400 24px / 32px var(--font-sans);
+  letter-spacing: -0.4px;
+}
+
+.prose p,
+.prose li {
+  color: var(--body);
+}
+
+.prose ul,
+.prose ol {
+  display: grid;
+  gap: var(--spacing-md);
+  padding-left: var(--spacing-xl);
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose strong {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--hairline-strong);
+}
+
+.prose a:hover {
+  text-decoration-color: var(--ink);
+}
+
+.prose code {
+  padding: 1px 6px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-card);
+  font: 400 13px / 20px var(--font-mono);
+}
+
+.prose pre {
+  padding: var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-soft);
+  overflow-x: auto;
+}
+
+.prose pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.prose blockquote {
+  padding-left: var(--spacing-lg);
+  border-left: 1px solid var(--accent-dusk);
+  color: var(--body);
+}
+
+.post-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: center;
+  margin-top: var(--spacing-lg);
+}
+
+
+/* 20  Utilities, motion, responsive ===================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+/* Restrained entrance motion. Cards fade upward; nothing bounces, spins or
+   follows the cursor. */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 520ms var(--ease), transform 520ms var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger. Long grids would otherwise animate as one undifferentiated
+   block, so the delay is capped low enough to stay imperceptible. */
+.reveal--1 { transition-delay: 60ms; }
+.reveal--2 { transition-delay: 120ms; }
+.reveal--3 { transition-delay: 180ms; }
+.reveal--4 { transition-delay: 240ms; }
+.reveal--5 { transition-delay: 300ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Desktop — >= 768px is the only breakpoint DESIGN.md defines. The 1024px
+   rule exists only to protect the 3-up archive grid on small laptops. */
+@media (min-width: 1024px) {
+  .prompt-card__art {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Tablet — grids step down one column. */
+@media (max-width: 1023px) {
+  .grid-3,
+  .grid-4,
+  .category-grid,
+  .related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .top-picks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .detail-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nav-bar__links {
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Mobile — < 768px */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  :root {
+    --band-padding: var(--spacing-3xl);
+  }
+
+  .container {
+    padding-inline: var(--spacing-lg);
+  }
+
+  /* Display ladder steps down for small screens. */
+  .display-xl {
+    font: 400 48px / 52px var(--font-sans);
+    letter-spacing: -1.4px;
+  }
+
+  .display-lg {
+    font: 400 40px / 44px var(--font-sans);
+    letter-spacing: -1.1px;
+  }
+
+  .display-md {
+    font: 400 32px / 36px var(--font-sans);
+    letter-spacing: -0.9px;
+  }
+
+  .display-sm {
+    font: 400 24px / 30px var(--font-sans);
+    letter-spacing: -0.5px;
+  }
+
+  .brand-statement {
+    padding: var(--spacing-3xl) var(--spacing-lg);
+  }
+
+  .brand-statement__quote {
+    font: 400 28px / 34px var(--font-sans);
+    letter-spacing: -0.7px;
+  }
+
+  .prompt-card__title {
+    font: 400 18px / 26px var(--font-sans);
+  }
+
+  .pick-card__title {
+    font: 400 20px / 28px var(--font-sans);
+    letter-spacing: -0.3px;
+  }
+
+  /* Mobile inflates every touch target to meet WCAG 44 x 44. */
+  .button,
+  .category-pill,
+  .icon-button,
+  .nav-bar__search,
+  .nav-drawer-toggle {
+    min-height: 44px;
+  }
+
+  .icon-button,
+  .nav-bar__search,
+  .nav-drawer-toggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .section-head,
+  .stories__head,
+  .archive__toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+  }
+
+  .hero-band__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2xl);
+  }
+
+  .hero-band__actions .button {
+    flex: 1 1 auto;
+  }
+
+  /* Collapse the split feature card and every grid to a single column. */
+  .feature,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .top-picks,
+  .category-grid,
+  .related-grid,
+  .footer-card__cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stories__track {
+    grid-auto-columns: minmax(280px, 84%);
+  }
+
+  .cta-bleed__type {
+    font: 400 88px / 84px var(--font-sans);
+    letter-spacing: -4px;
+    transform: translateX(-6%);
+  }
+
+  .cta-bleed__foot {
+    margin-top: calc(var(--spacing-3xl) * -1);
+  }
+
+  .nav-bar__inner {
+    padding-inline: var(--spacing-lg);
+  }
+
+  .nav-bar__links {
+    display: none;
+  }
+
+  .nav-drawer-toggle {
+    display: inline-flex;
+  }
+
+  .nav-drawer__list {
+    padding-inline: var(--spacing-lg);
+  }
+
+  /* Only the brand, search and drawer toggle fit at this width. */
+  .nav-bar__actions .button--primary {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .top-picks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .quick-link {
+    min-height: 0;
+  }
+}

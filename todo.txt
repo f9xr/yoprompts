@@ -1,0 +1,63 @@
+Name: YoPrompts
+by F9XR Team
+URL: f9xr.org/yoprompts 
+Work: Provide ready made strong prompts for users to copy paste and use with their ai chat bots to get amaizing results
+
+
+Follow DESIGN.md file
+
+Act as an expert Senior UI/UX Designer and Frontend Engineer. Your task is to generate a comprehensive, modern, pixel-perfect blog website named "YoPrompts" by "F9XR Team". The core purpose of this platform is to provide high-quality, copy-pasteable AI prompts that yield exceptional results. 
+
+Base the layout, spacing, and rhythm strictly on the provided Pitch blog reference, adapting the content to fit the prompt library niche.
+
+### 🎨 1. DESIGN SYSTEM & VISUAL STYLE
+- Theme: Ultra-modern, premium tech-forward SaaS aesthetic.
+- Color Palette: 
+  * Backgrounds: Pure White (#FFFFFF) for body text readability, paired with light, muted pastel purple/lavender (#F3E8FF) block backgrounds.
+  * Primary Accents: Deep Deep Royal Violet/Indigo (#2E1065) and Electric Royal Purple (#6B21A8) used for dark container blocks, hero elements, footer, and heavy contrast.
+  * Secondary Accents: Vibrant Neon Mint (#86EFAC) or Soft Cyber Sage (#BBF7D0) for specialized status badges or testimonial borders.
+- Typography: High-contrast, clean sans-serif (e.g., Inter, Plus Jakarta Sans, or Satoshi). 
+  * Hero Headlines: Bold, massive, tightly tracked, using multi-tonal text gradients (e.g., solid dark purple transitioning into semi-transparent or lighter lavender text).
+- Component Styling: Rounded corners (border-radius: 16px to 24px). Soft, diffused box shadows for floating card elements. Avoid harsh black borders. Use precise, generous vertical padding to create breathing room between structural sections.
+
+### 🧱 2. STRUCTURE & PAGE HIERARCHY
+
+#### [SECTION 1: NAVBAR & LOGO]
+- Left Side: Sleek text logo "YoPrompts" with a small subtitle or tagline reading "by F9XR Team". 
+- Center: Minimal text navigation links (Categories, Top Prompts, Live Tools, Resources, Pricing).
+- Right Side: Direct call-to-action buttons ("Log in" as a text button, "Sign up free" as a high-contrast pill button).
+
+#### [SECTION 2: HERO ZONE & FEATURED PIN]
+- Headline: A massive statement layout with split-tonal typography: "Think. Prompt. Create. / Copy. Paste. Repeat."
+- Main Split Banner: A two-column prominent featured grid card with a split dark/light layout.
+  * Left Half (Soft Muted Lavender Base): Displays a primary text label "🔥 PROMPT OF THE WEEK", a title ("An elite system prompt for automated codebase auditing"), and a descriptive summary snippet.
+  * Right Half (Deep Royal Purple Container): Visually demonstrates the prompt utility. Model it as an interactive code snippet box or a stylized chat widget mockup showing structured input parameters ("Search code", "Apply strict schemas"). Include a prominent, stylized "Copy Prompt" action asset.
+
+#### [SECTION 3: RECENT TOP PICKS GRID]
+- A horizontal multi-card layout displaying 4 narrow, uniform quick-link prompt badges stacked side-by-side. 
+- Each card should feature a distinct categorical tag (e.g., "MIDJOURNEY V6", "GPT-4O DATA", "CLAUDE CODING") paired with a short, punchy hook.
+
+#### [SECTION 4: CUSTOMER STORIES / WALL OF FAME]
+- Headline: "User Success Stories" with manual slider arrow navigation anchors positioned on the top right.
+- Carousel Cards: A 3-column horizontal card grid.
+  * Cards use soft background colors (such as Mint Green, Light Purple, Dark Purple) to differentiate user profiles.
+  * Content: Direct blockquotes highlighting specific workflow efficiency improvements achieved using YoPrompts.
+
+#### [SECTION 5: MAIN BLOG & PROMPT ARCHIVE ENGINE]
+- Header: Left-aligned clean title reading "Our Latest Prompts & Guides", paired with a horizontal inline row of minimalist category filter tabs ("All", "Coding", "Marketing", "Data Analysis", "Image Generation").
+- Dynamic Card Grid: A perfectly balanced 3-column grid structure containing multiple rectangular cards.
+- Card Layout Archetype (replicate across the grid):
+  * Outer structure: Clean rectangular card with a subtle top border or a full solid card background.
+  * Header element: Bold, contrasting tag badge indicating the target model or platform (e.g., "PRODUCTIVITY", "UI/UX DESIGN").
+  * Title: Extremely legible, mid-weight heading defining the exact prompt outcome.
+  * Footer metadata: Minimalist icons depicting reading time, user favorited count, and an active pill-shaped "Copy" or "View Prompt" action button.
+  * Graphic Element (Alternating): Interspersed inside the grid, replace simple text cards with highly stylized visual preview cards (e.g., showcasing a vibrant AI image output or a clean vector dashboard UI mockup).
+- Grid Bottom: Centered, prominent pill button reading "See more prompts".
+
+#### [SECTION 6: THE FOOTER COOPERATIVE]
+- Pre-Footer Visual: A deep purple transition bleed reading "Let's Prompt." in massive, faint background typography.
+- Main Footer Card: A crisp white floating card container containing:
+  * Left Section: "YoPrompts by F9XR Team" with comprehensive vertical column directories linking to detailed legal pages, product features, engineering documents, and company contact avenues.
+  * Right Section: A distinct dark purple box acting as a standalone micro-workspace widget reading "A complete prompt engineering hub." accompanied by clear user authentication buttons ("Sign in" / "Sign up").
+
+

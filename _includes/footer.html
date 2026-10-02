@@ -1,0 +1,72 @@
+<!-- CTA bleed: oversized faint display type running past the viewport
+     edges, with the footer card floating over it. -->
+<div class="cta-bleed" aria-hidden="true">
+  <p class="cta-bleed__type">Let&rsquo;s prompt.</p>
+</div>
+
+<div class="cta-bleed__foot">
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-card">
+        <div class="footer-card__brand">
+          {% include brand.html %}
+          <p class="footer-card__tagline">
+            Ready-made AI prompts for better results from ChatGPT, Claude,
+            Gemini, and every tool that follows them.
+          </p>
+        </div>
+
+        <div class="footer-card__cols">
+          <div class="footer-card__col">
+            <span class="footer-card__col-title eyebrow-mono eyebrow-mono--muted">Prompts</span>
+            <a href="{{ '/prompts/' | relative_url }}">All prompts</a>
+            <a href="{{ '/prompts/' | relative_url }}#library-search">Search</a>
+            <a href="{{ '/categories/' | relative_url }}">Categories</a>
+            <a href="{{ '/prompts/' | relative_url }}#beginner">Beginner</a>
+          </div>
+
+          <div class="footer-card__col">
+            <span class="footer-card__col-title eyebrow-mono eyebrow-mono--muted">Resources</span>
+            <a href="{{ '/resources/' | relative_url }}">Guides</a>
+            <a href="{{ '/blog/' | relative_url }}">Blog</a>
+            <a href="{{ '/ai-tools/' | relative_url }}">AI tools</a>
+            <a href="{{ '/resources/' | relative_url }}#prompting-basics">Prompting basics</a>
+          </div>
+
+          <div class="footer-card__col">
+            <span class="footer-card__col-title eyebrow-mono eyebrow-mono--muted">Company</span>
+            <a href="{{ '/about/' | relative_url }}">About</a>
+            <a href="{{ '/contact/' | relative_url }}">Contact</a>
+            <a href="{{ '/submit-a-prompt/' | relative_url }}">Submit a prompt</a>
+          </div>
+
+          <div class="footer-card__col">
+            <span class="footer-card__col-title eyebrow-mono eyebrow-mono--muted">Legal</span>
+            <a href="{{ '/privacy/' | relative_url }}">Privacy</a>
+            <a href="{{ '/terms/' | relative_url }}">Terms</a>
+            <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a>
+            <a href="{{ '/cookies/' | relative_url }}">Cookies</a>
+          </div>
+        </div>
+
+        <div class="footer-widget">
+          <p class="eyebrow-mono eyebrow-mono--muted">Prompt library</p>
+          <p class="footer-widget__title">
+            Your next strong result starts with the right prompt.
+          </p>
+          <div class="footer-widget__actions">
+            <a class="button button--primary button--block" href="{{ '/prompts/' | relative_url }}">Explore Prompts</a>
+            <a class="button button--block" href="{{ '/categories/' | relative_url }}">Browse Categories</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bar">
+        <span>&copy; {{ 'now' | date: "%Y" }} YoPrompts by F9XR Team</span>
+        <span>All rights reserved</span>
+      </div>
+
+    </div>
+  </footer>
+</div>

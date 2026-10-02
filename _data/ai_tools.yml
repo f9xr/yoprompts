@@ -1,0 +1,27 @@
+# AI tools YoPrompts is tested against. `slug` is what a prompt document lists
+# in its `tools:` array; `label` is what gets printed on screen; `url` powers
+# the "open in" actions on a prompt page.
+- slug: chatgpt
+  label: ChatGPT
+  short: GPT
+  url: https://chatgpt.com/
+- slug: claude
+  label: Claude
+  short: Claude
+  url: https://claude.ai/new
+- slug: gemini
+  label: Gemini
+  short: Gemini
+  url: https://gemini.google.com/app
+- slug: perplexity
+  label: Perplexity
+  short: Perplexity
+  url: https://www.perplexity.ai/
+- slug: grok
+  label: Grok
+  short: Grok
+  url: https://grok.com/
+- slug: copilot
+  label: Copilot
+  short: Copilot
+  url: https://copilot.microsoft.com/

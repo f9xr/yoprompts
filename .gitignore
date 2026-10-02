@@ -1,1 +1,7 @@
 ﻿_site
+.jekyll-cache
+.jekyll-metadata
+
+# Local agent tooling - not part of the published site
+skills/
+.kilo/

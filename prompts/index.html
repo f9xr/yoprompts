@@ -1,0 +1,20 @@
+---
+layout: default
+title: All prompts
+body-class: library
+description: >-
+  Every YoPrompts prompt in one searchable library. Filter by category, AI
+  tool, or difficulty, then copy the prompt straight into your chat.
+---
+
+<div class="band band--flush-top">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+      <span>Prompts</span>
+    </nav>
+  </div>
+</div>
+
+{% include archive.html heading="All prompts" heading_tag=h1 eyebrow="Prompt library" lede="Every prompt we publish, in one place. Copy it, paste it into whichever chat you are already using." %}

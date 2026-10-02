@@ -1,0 +1,15 @@
+{%- comment -%}
+  Renders one .brand mark. Expects `include.label_class` when the caller needs
+  the larger treatment used inside the footer card.
+{%- endcomment -%}
+<a class="brand" href="{{ '/' | relative_url }}">
+  <span class="brand__mark" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" focusable="false">
+      <path d="M8 1l1.6 4.9L14.5 8l-4.9 1.6L8 14.5l-1.6-4.9L1.5 8l4.9-2.1L8 1z" fill="currentColor"/>
+    </svg>
+  </span>
+  <span>
+    <span class="brand__name">YoPrompts</span>
+    <span class="brand__by">by F9XR Team</span>
+  </span>
+</a>

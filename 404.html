@@ -1,0 +1,28 @@
+---
+layout: default
+title: Page not found
+body-class: error
+permalink: /404.html
+sitemap: false
+---
+
+<section class="band">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Error 404</p>
+        <h1 class="display-lg section-head__title" id="not-found">This prompt does not exist</h1>
+        <p class="body-lg section-head__lede">
+          The page you asked for is not here. It may have been renamed, or the
+          link may have been mistyped. The prompt library is the fastest way
+          back.
+        </p>
+      </div>
+    </div>
+
+    <div class="card__actions">
+      <a class="button button--primary button--lg" href="{{ '/prompts/' | relative_url }}">Browse all prompts</a>
+      <a class="button button--lg" href="{{ '/' | relative_url }}">Back to home</a>
+    </div>
+  </div>
+</section>

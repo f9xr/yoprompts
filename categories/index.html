@@ -1,0 +1,60 @@
+---
+layout: default
+title: Categories
+body-class: categories
+description: >-
+  Browse YoPrompts by subject: AI writing, marketing, SEO, business, coding,
+  research, productivity, social media, image generation, career, data
+  analysis, and presentations.
+---
+
+<div class="band band--flush-top">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+      <span>Categories</span>
+    </nav>
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Browse by subject</p>
+        <h1 class="display-lg section-head__title" id="categories-heading">Categories</h1>
+        <p class="body-lg section-head__lede">
+          Every prompt is filed under the job it does, not the model it was
+          tested on. The same prompt often works better somewhere else, and
+          the category only tells you where we found it most useful.
+        </p>
+      </div>
+    </div>
+
+    {%- comment -%}
+      Only categories that actually have prompts are listed, so no card is a
+      dead end.
+    {%- endcomment -%}
+    {%- assign used = site.prompts | map: "category" | uniq -%}
+
+    <div class="category-grid">
+      {%- for category in site.data.categories -%}
+        {%- if used contains category.slug -%}
+        {%- assign count = site.prompts | where: "category", category.slug | size -%}
+        <article class="category-card reveal reveal--{{ forloop.index }}" id="{{ category.slug }}">
+          <span class="tag-mono tag-mono--accent">{{ count }} {% if count == 1 %}prompt{% else %}prompts{% endif %}</span>
+          <h2 class="category-card__name">{{ category.label }}</h2>
+          <p class="body-sm text-body">{{ category.blurb }}</p>
+          <a class="link-inline body-sm" href="{{ '/prompts/' | relative_url }}#library-search">Browse {{ category.label }}</a>
+        </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <p class="archive__empty{% if used.size == 0 %} is-visible{% endif %}">
+      No prompts published yet.
+    </p>
+
+  </div>
+</section>

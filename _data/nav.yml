@@ -1,0 +1,11 @@
+primary:
+  - label: Categories
+    url: /categories/
+  - label: Top Prompts
+    url: /prompts/
+  - label: Live Tools
+    url: /ai-tools/
+  - label: Resources
+    url: /resources/
+  - label: Blog
+    url: /blog/
