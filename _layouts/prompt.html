@@ -12,7 +12,20 @@ layout: default
 
 {%- assign tools = site.data.ai_tools | where_exp: "t", "page.tools contains t.slug" -%}
 {%- assign cats = site.data.categories | where: "slug", page.category | first -%}
-{%- assign related = site.prompts | where_exp: "p", "p.category == page.category and p.slug != page.slug" -%}
+{%- comment -%}
+  Related prompts: same category, excluding this one.
+  Written as an explicit loop rather than where_exp with a compound
+  condition ("a == b and c != d"). Jekyll's where_exp parser only
+  accepts a single comparison, and a boolean operator in the
+  expression fails the build with "Expected end_of_string but
+  found id". A plain Liquid if with and is always safe.
+{%- endcomment -%}
+{%- assign related = "" | split: "" -%}
+{%- for candidate in site.prompts -%}
+  {%- if candidate.category == page.category and candidate.slug != page.slug -%}
+    {%- assign related = related | push: candidate -%}
+  {%- endif -%}
+{%- endfor -%}
 
 <script type="application/ld+json">
 {
