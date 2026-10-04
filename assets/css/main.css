@@ -1535,6 +1535,21 @@ hr {
   text-transform: uppercase;
 }
 
+/* Attribution link in the footer bar. Underlined rather than filled so it does
+   not read as a second CTA against "Explore Prompts" above it. */
+.footer__credit {
+  color: var(--body-mid);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+  transition: color 160ms var(--ease);
+}
+
+.footer__credit:hover {
+  color: var(--ink);
+  text-decoration-color: currentColor;
+}
+
 
 /* 18  Prompt detail ===================================================== */
 
@@ -1543,11 +1558,20 @@ hr {
 }
 
 .breadcrumbs {
+  color: var(--body-mid);
+}
+
+/* Reset the list semantics: this reads as one inline run of links, and the
+   default markers and indentation would break that. The <ol> stays in the
+   markup because BreadcrumbList structured data describes a list. */
+.breadcrumbs__list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--spacing-sm);
-  color: var(--body-mid);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .breadcrumbs a {
@@ -1919,25 +1943,30 @@ hr {
 }
 
 /* Restrained entrance motion. Cards fade upward; nothing bounces, spins or
-   follows the cursor. */
-.reveal {
+   follows the cursor.
+
+   The hidden state is opt-in, gated on `.reveal-ready`, which main.js adds only
+   once the IntersectionObserver is actually attached. The default is fully
+   visible, so a crawler, a browser with JavaScript disabled, and a script
+   bundle that fails to load all render the cards instead of an empty page. */
+.reveal-ready .reveal {
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 520ms var(--ease), transform 520ms var(--ease);
 }
 
-.reveal.is-visible {
+.reveal-ready .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
 /* Stagger. Long grids would otherwise animate as one undifferentiated
    block, so the delay is capped low enough to stay imperceptible. */
-.reveal--1 { transition-delay: 60ms; }
-.reveal--2 { transition-delay: 120ms; }
-.reveal--3 { transition-delay: 180ms; }
-.reveal--4 { transition-delay: 240ms; }
-.reveal--5 { transition-delay: 300ms; }
+.reveal-ready .reveal--1 { transition-delay: 60ms; }
+.reveal-ready .reveal--2 { transition-delay: 120ms; }
+.reveal-ready .reveal--3 { transition-delay: 180ms; }
+.reveal-ready .reveal--4 { transition-delay: 240ms; }
+.reveal-ready .reveal--5 { transition-delay: 300ms; }
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1952,7 +1981,7 @@ hr {
     transition-duration: 0.001ms !important;
   }
 
-  .reveal {
+  .reveal-ready .reveal {
     opacity: 1;
     transform: none;
   }
@@ -2117,13 +2146,49 @@ hr {
     display: inline-flex;
   }
 
-  .nav-drawer__list {
+.nav-drawer__list {
     padding-inline: var(--spacing-lg);
+  }
+
+  .nav-drawer__list a {
+    min-height: 44px;
   }
 
   /* Only the brand, search and drawer toggle fit at this width. */
   .nav-bar__actions .button--primary {
     display: none;
+  }
+
+  /* Touch targets. The compact 32/36px sizing above is deliberate on pointer
+     devices, where it keeps the pill shape the design system is built on. On a
+     touchscreen the same elements need a 44px minimum to be reliably hittable
+     (WCAG 2.5.5, and the iOS/Material guidance). Only the hit area grows — the
+     type scale and padding are untouched. */
+  .button,
+  .button--sm,
+  .button--lg {
+    min-height: 44px;
+  }
+
+  .icon-button {
+    height: 44px;
+    width: 44px;
+  }
+
+  .category-pill,
+  .nav-bar__search,
+  .quick-link {
+    min-height: 44px;
+  }
+
+  /* Keep the label optically centred once the box is taller than the text. */
+  .button,
+  .button--sm,
+  .button--lg,
+  .category-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -2134,5 +2199,151 @@ hr {
 
   .quick-link {
     min-height: 0;
+  }
+}
+/* ==========================================================================
+   Consent banner
+
+   Docked, non-modal, and hidden until main.js reveals it. Every dimension uses
+   the existing spacing scale; nothing here introduces a new token.
+   ========================================================================== */
+
+.consent {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 60;
+  padding-block: var(--spacing-md);
+  background: var(--bg-elevated, #14161a);
+  border-top: 1px solid var(--border-strong, rgba(255, 255, 255, 0.14));
+  box-shadow: 0 -18px 40px -24px rgba(0, 0, 0, 0.9);
+}
+
+/* The `hidden` attribute must beat the layout display value below. */
+.consent[hidden] {
+  display: none;
+}
+
+.consent__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.consent__text {
+  flex: 1 1 22rem;
+  min-width: 0;
+}
+
+.consent__title {
+  margin: 0 0 var(--spacing-xs);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.consent__body {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.consent__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--spacing-sm);
+}
+
+.consent__actions .button {
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .consent__inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .consent__actions {
+    justify-content: stretch;
+  }
+
+  .consent__actions .button {
+    flex: 1 1 0;
+  }
+}
+
+/* ==========================================================================
+   Consent banner
+
+   Docked, non-modal, and hidden until main.js reveals it. Uses the existing
+   spacing, surface and text tokens; nothing new is introduced here.
+   ========================================================================== */
+
+.consent {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 60;
+  padding-block: var(--spacing-lg);
+  background: var(--canvas-card);
+  border-top: 1px solid var(--hairline-strong);
+  box-shadow: 0 -18px 40px -24px rgba(0, 0, 0, 0.9);
+}
+
+/* The `hidden` attribute has to beat the layout display value. */
+.consent[hidden] {
+  display: none;
+}
+
+.consent__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+.consent__text {
+  flex: 1 1 22rem;
+  min-width: 0;
+}
+
+.consent__title {
+  margin: 0 0 var(--spacing-xs);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.consent__body {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--body);
+}
+
+.consent__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--spacing-sm);
+}
+
+/* Pointer targets sized to the 44px minimum the rest of the site uses. */
+.consent__actions .button {
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .consent__inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .consent__actions .button {
+    flex: 1 1 0;
   }
 }

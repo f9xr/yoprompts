@@ -1,18 +1,41 @@
 title: "YoPrompts"
-author: "F9XR Team"
+
+# Declared as a mapping rather than a bare string so jekyll-seo-tag emits
+# `"@type": "Organization"` in JSON-LD. A plain string makes it guess "Person",
+# which is wrong for a team name and was flagged in the audit.
+author:
+  name: "F9XR Team"
+  type: "Organization"
+  url: "https://f9xr.org"
+
 description: >-
   Ready-made AI prompts crafted by F9XR Team to help you write better, create
   faster, and get better results from ChatGPT, Claude, Gemini, and your
   favorite AI tools.
 tagline: "Think. Prompt. Create. Copy. Paste. Repeat."
 
-# TODO(inanj): confirm before first deploy. These are GitHub Pages project-site
-# defaults for github.com/f9xr/yoprompts. Correct them if a custom domain or
-# user/org site is used instead.
-url: "https://f9xr.github.io"
+# Custom domain. `CNAME` at the repo root must contain the same hostname or
+# GitHub Pages will not serve this. Changing either value here is enough to
+# re-point every canonical, og:url, sitemap <loc> and robots.txt Sitemap line.
+url: "https://f9xr.org"
 baseurl: "/yoprompts"
 
-email: ""
+email: "hello@f9xr.org"
+
+# Only the logo is set at site level. The share image and card type are injected
+# into every page through `defaults` further down, for two reasons:
+#
+# 1. jekyll-seo-tag 2.8.0's ImageDrop reads `page["image"]` only and has no
+#    site-level fallback, so a top-level `image:` is silently ignored and no
+#    og:image is emitted anywhere. Top-level `logo:` does work, because the
+#    plugin reads that one straight from site data — which is why the
+#    publisher logo resolves correctly while the share image did not.
+# 2. `twitter:` is deliberately NOT set here. The plugin's template emits
+#    `twitter:site` as a bare "@" whenever site.twitter exists at all, even
+#    with no username, while the card type itself is read from
+#    `page.twitter.card`. Setting the card per-page gets summary_large_image
+#    without inventing a handle.
+logo: "/assets/img/favicon.svg"
 
 rss: rss
 
@@ -30,7 +53,24 @@ collections:
     output: true
     permalink: /prompts/:slug/
 
+# Jekyll's default post permalink drops guides at the site root
+# (/:year/:month/:day/:title.html), which put them outside the /blog/ section
+# that the nav, footer, breadcrumb and blog index all point at.
+permalink: /blog/:year/:month/:day/:title.html
+
 defaults:
+  # Unscoped so it reaches every page, including collection documents and
+  # posts. Any page with its own `image:` in front matter still wins.
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /assets/img/og-default.png
+        width: 1200
+        height: 630
+        alt: "YoPrompts — ready-made AI prompts by F9XR Team"
+      twitter:
+        card: summary_large_image
   - scope:
       path: ""
       type: prompts
@@ -54,3 +94,6 @@ exclude:
   - demo-html-site
   - README.md
   - .kilo
+  - validate_yoprompts.py
+  - audit_site.py
+  - build_specimen.py

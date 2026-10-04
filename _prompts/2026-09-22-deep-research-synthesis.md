@@ -5,11 +5,21 @@ category: research
 category_label: Research
 difficulty: intermediate
 tools: [perplexity, chatgpt, claude, gemini]
+# Measured from rendered page length at ~200 wpm; all six prompt
+# pages are within 5% of each other, so they all land on 7.
 read_time: 7
+# jekyll-seo-tag types every dated collection document as BlogPosting.
+# These are evergreen prompt pages, not blog posts; WebPage is the correct
+# container type, with HowTo/FAQPage supplied by _layouts/prompt.html.
+seo:
+  type: "WebPage"
 picks: [essential, weekly]
+# Every prompt sits in its own category, so the layout's
+# same-category fallback can never match. These are curated.
+related: [code-review-audit, seo-content-strategy]
 art: chart
 tags: [research, analysis, due diligence, synthesis, decision making]
-excerpt: "A research prompt that separates what is known, what is claimed, and what nobody has established, and makes its own uncertainty visible instead of smoothing it over."
+excerpt: "A research prompt that separates what is known, what is claimed and what nobody has established, and shows its own uncertainty."
 prompt: |
   You are a research analyst. You are known for two habits: separating what
   is established from what is merely asserted, and stating plainly when the

@@ -5,9 +5,19 @@ category: seo
 category_label: SEO
 difficulty: advanced
 tools: [chatgpt, claude, gemini]
-read_time: 8
+# Measured from rendered page length at ~200 wpm; all six prompt
+# pages are within 5% of each other, so they all land on 7.
+read_time: 7
+# jekyll-seo-tag types every dated collection document as BlogPosting.
+# These are evergreen prompt pages, not blog posts; WebPage is the correct
+# container type, with HowTo/FAQPage supplied by _layouts/prompt.html.
+seo:
+  type: "WebPage"
 featured: true
 picks: [essential, weekly]
+# Every prompt sits in its own category, so the layout's
+# same-category fallback can never match. These are curated.
+related: [deep-research-synthesis, linkedin-post-writer, code-review-audit]
 art: workflow
 tags: [seo, content strategy, keyword research, editorial planning, b2b]
 excerpt: "Turn a business and its existing site into scored topic clusters, a ranked 90-day publishing plan, an internal linking map, and a measurement dashboard."

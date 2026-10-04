@@ -3,18 +3,34 @@ layout: default
 title: Categories
 body-class: categories
 description: >-
-  Browse YoPrompts by subject: AI writing, marketing, SEO, business, coding,
-  research, productivity, social media, image generation, career, data
-  analysis, and presentations.
+  Browse YoPrompts by subject: coding, image generation, productivity, research,
+  SEO and social media — the six categories every published prompt sits under.
+# Lists only the six categories that currently have prompts. The previous copy
+# promised twelve, including AI writing, marketing, business, career, data
+# analysis and presentations, none of which are populated.
+seo:
+  type: "CollectionPage"
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Categories", "item": {{ '/categories/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
 
 <div class="band band--flush-top">
   <div class="container">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
-      <span>Categories</span>
-    </nav>
+    {% include breadcrumbs.html trail="Home~/|Categories" %}
   </div>
 </div>
 

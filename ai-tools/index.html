@@ -1,0 +1,115 @@
+---
+layout: default
+title: AI Tools
+body-class: page
+description: >-
+  Every AI tool YoPrompts is tested against — ChatGPT, Claude, Gemini,
+  Perplexity, Grok and Copilot — and which prompts are tuned for each one.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      "name": "AI tools YoPrompts is tested against",
+      "url": {{ page.url | absolute_url | jsonify }},
+      "description": {{ page.description | strip_newlines | strip | jsonify }},
+      "numberOfItems": {{ site.data.ai_tools | size }},
+      "itemListElement": [
+        {%- for tool in site.data.ai_tools -%}
+        {%- assign prompt_count = site.prompts | where_exp: "p", "p.tools contains tool.slug" | size -%}
+        {%- unless forloop.first %},{% endunless -%}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "name": {{ tool.label | jsonify }},
+          "url": {{ tool.url | jsonify }}
+        }
+        {%- endfor -%}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "AI tools", "item": {{ '/ai-tools/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top">
+  <div class="container">
+    {% include breadcrumbs.html trail="Home~/|AI tools" %}
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Live tools</p>
+        <h1 class="display-lg section-head__title" id="ai-tools-heading">Where these prompts run</h1>
+        <p class="body-lg section-head__lede">
+          Every prompt in the library is plain text, so it works in any of these.
+          Where a prompt has been tuned against a specific tool, that tool is
+          listed on its page &mdash; and the filter below narrows the library to
+          match.
+        </p>
+      </div>
+    </div>
+
+    {%- comment -%}
+      Only tools with at least one prompt are listed, so this page never offers
+      a dead end. Same guard archive.html applies to the filter pills.
+    {%- endcomment -%}
+    {%- assign used_tools = site.prompts | map: "tools" | join: " " | split: " " | uniq -%}
+
+    <div class="grid grid-3">
+      {%- for tool in site.data.ai_tools -%}
+        {%- if used_tools contains tool.slug -%}
+        {%- assign tool_prompts = site.prompts | where_exp: "p", "p.tools contains tool.slug" -%}
+        <article class="prompt-card reveal reveal--{{ forloop.index | modulo: 4 | plus: 1 }}">
+          <div class="prompt-card__body">
+            <div class="prompt-card__tags">
+              <span class="tag-mono tag-mono--accent">{{ tool_prompts | size }} {% if tool_prompts.size == 1 %}prompt{% else %}prompts{% endif %}</span>
+              <span class="tag-mono">{{ tool.short }}</span>
+            </div>
+
+            <h2 class="prompt-card__title">
+              <a href="{{ tool.url }}" target="_blank" rel="noopener noreferrer">{{ tool.label }}</a>
+            </h2>
+
+            <p class="prompt-card__excerpt">
+              {{ tool_prompts | map: "title" | join: ", " }}
+            </p>
+
+            <div class="prompt-card__foot">
+              <a class="button button--sm" href="{{ '/prompts/' | relative_url }}?q={{ tool.label | url_encode }}">
+                View prompts
+              </a>
+              <a class="button button--sm" href="{{ tool.url }}" target="_blank" rel="noopener noreferrer">Open</a>
+            </div>
+          </div>
+        </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if used_tools.size == 0 %}
+    <p class="archive__empty is-visible">
+      No prompts published yet. The library is the fastest way back.
+    </p>
+    {%- endif %}
+
+    <div class="archive__footer">
+      <a class="button button--lg" href="{{ '/prompts/' | relative_url }}">Browse the full library</a>
+    </div>
+
+  </div>
+</section>

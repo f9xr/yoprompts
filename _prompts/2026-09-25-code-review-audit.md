@@ -5,8 +5,18 @@ category: coding
 category_label: Coding
 difficulty: advanced
 tools: [chatgpt, claude, copilot]
-read_time: 8
+# Measured from rendered page length at ~200 wpm; all six prompt
+# pages are within 5% of each other, so they all land on 7.
+read_time: 7
+# jekyll-seo-tag types every dated collection document as BlogPosting.
+# These are evergreen prompt pages, not blog posts; WebPage is the correct
+# container type, with HowTo/FAQPage supplied by _layouts/prompt.html.
+seo:
+  type: "WebPage"
 picks: [essential, weekly]
+# Every prompt sits in its own category, so the layout's
+# same-category fallback can never match. These are curated.
+related: [deep-research-synthesis, meeting-to-action-plan]
 art: terminal
 tags: [code review, refactoring, debugging, software engineering, quality]
 excerpt: "Paste a diff and get a severity-ranked review that leads with what will actually break in production, plus the refactor you should do while you are in there."

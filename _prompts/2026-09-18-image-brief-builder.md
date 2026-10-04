@@ -5,11 +5,21 @@ category: images
 category_label: Image Generation
 difficulty: beginner
 tools: [chatgpt, gemini, claude]
-read_time: 4
+# Measured from rendered page length at ~200 wpm; all six prompt
+# pages are within 5% of each other, so they all land on 7.
+read_time: 7
+# jekyll-seo-tag types every dated collection document as BlogPosting.
+# These are evergreen prompt pages, not blog posts; WebPage is the correct
+# container type, with HowTo/FAQPage supplied by _layouts/prompt.html.
+seo:
+  type: "WebPage"
 picks: [essential]
+# Every prompt sits in its own category, so the layout's
+# same-category fallback can never match. These are curated.
+related: [linkedin-post-writer, seo-content-strategy]
 art: palette
-tags: [image generation, midjourney, art direction, visual design, midjourney]
-excerpt: "Image models reward specificity and punish adjectives. This prompt converts a vague idea into a structured brief with subject, composition, lighting, lens, palette, and negative constraints."
+tags: [image generation, midjourney, art direction, visual design]
+excerpt: "Turns a vague idea into a structured image brief: subject, composition, lighting, lens, palette and negative constraints."
 prompt: |
   You are an art director who writes briefs for image models. You know that
   these models respond to physical and photographic description, not to

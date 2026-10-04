@@ -1,0 +1,167 @@
+---
+layout: default
+title: Submit a prompt
+body-class: page
+description: >-
+  Send a prompt to the YoPrompts library. What makes a submission worth
+  publishing, what we need with it, and how long it takes to get an answer.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Submit a prompt", "item": {{ '/submit-a-prompt/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top">
+  <div class="container">
+    {% include breadcrumbs.html trail="Home~/|Submit a prompt" %}
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Contribute</p>
+        <h1 class="display-lg section-head__title" id="submit-heading">Submit a prompt</h1>
+        <p class="body-lg section-head__lede">
+          If you have built something that reliably beats the model's default
+          behaviour, we want it. Send it to
+          <a class="link-inline" href="mailto:hello@f9xr.org">hello@f9xr.org</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="detail-cols">
+      <div class="prose">
+
+        <h2>What makes something worth publishing</h2>
+
+        <p>
+          The bar is high on purpose. The library is small because most prompt
+          content is filler, and padding it back out would undo the point.
+        </p>
+
+        <p>A submission is a strong candidate if it does at least one of these:</p>
+
+        <ul>
+          <li>
+            <strong>Fixes a specific, repeatable failure.</strong> Not
+            &ldquo;write better&rdquo; &mdash; but &ldquo;stops the model
+            inventing a deadline I never gave it,&rdquo; which is a real,
+            common, expensive bug.
+          </li>
+          <li>
+            <strong>Forbids hallucination in a domain where it hurts.</strong>
+            Research, legal, medical or financial drafting needs the model held
+            on a short leash. Those prompts get priority.
+          </li>
+          <li>
+            <strong>Compresses a multi-step workflow into one pass.</strong> If
+            it replaces four prompts and a manual cleanup step, that is worth
+            documenting properly.
+          </li>
+          <li>
+            <strong>Degrades gracefully.</strong> A prompt that says
+            <em>&ldquo;if my input is too thin, ask me the one thing you need and
+            stop&rdquo;</em> is worth more than one that always produces output,
+            because always producing output is the problem.
+          </li>
+        </ul>
+
+        <h2>What we will decline</h2>
+
+        <ul>
+          <li>Anything that mostly restates the provider's own documentation.</li>
+          <li>Jailbreaks, filter bypasses, or prompts aimed at guardrails.</li>
+          <li>Thin rewordings of a prompt already in the library.</li>
+          <li>Anything promotional in disguise, or requiring an affiliate link.</li>
+          <li>Prompts whose only trick is length.</li>
+        </ul>
+
+        <h2>What to include</h2>
+
+        <p>
+          Send the prompt in full, plus enough context that someone else could
+          run it cold:
+        </p>
+
+        <ol>
+          <li><strong>The prompt text itself</strong>, exactly as you use it.</li>
+          <li>
+            <strong>What it is for</strong> &mdash; the task, and what went
+            wrong without it.
+          </li>
+          <li>
+            <strong>Which models you tested it against</strong>, and roughly
+            how often.
+          </li>
+          <li>
+            <strong>One real example</strong> of input and output, with anything
+            confidential removed.
+          </li>
+          <li>
+            <strong>Its limits.</strong> Where it breaks down. This is the part
+            most submissions omit and it is usually the most useful.
+          </li>
+        </ol>
+
+        <h2>What happens next</h2>
+
+        <p>
+          A human reads every submission. You will get a reply either way,
+          usually within a week, saying one of three things: published,
+          published with edits, or declined with a reason.
+        </p>
+
+        <p>
+          We may rewrite for clarity or trim for length, and we will tell you if
+          we did. Your name goes in the credits only if you want it to &mdash;
+          we will ask, and &ldquo;anonymous&rdquo; is a fine answer.
+        </p>
+
+        <p>
+          By submitting you confirm the work is yours to share, and you agree to
+          the <a href="{{ '/terms/' | relative_url }}">terms</a> &mdash;
+          including that published prompts stay free to copy and use.
+        </p>
+
+      </div>
+
+      <aside class="detail-side">
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Send it</p>
+          <p class="body-sm card__body">
+            <a class="link-inline" href="mailto:hello@f9xr.org">hello@f9xr.org</a>
+          </p>
+          <div class="card__actions">
+            <a class="button button--primary button--block" href="mailto:hello@f9xr.org?subject=YoPrompts%20submission">Email a prompt</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Read first</p>
+          <p class="body-sm card__body">
+            The five techniques every good prompt here already uses.
+          </p>
+          <div class="card__actions">
+            <a class="button button--block" href="{{ '/resources/' | relative_url }}#prompting-basics">Prompting basics</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>

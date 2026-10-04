@@ -13,7 +13,13 @@
      05  Scroll reveals
      06  Stories carousel
      07  Archive filtering (search + pill groups)
+     08  Analytics consent
    ========================================================================== */
+
+  /* Analytics identity. Kept here rather than in head.html so that gtag.js is
+     never requested until consent has actually been granted. */
+  var GA_ID = 'G-SYTFR8FYXC';
+  var CONSENT_KEY = 'yoprompts_consent';
 
 (function () {
   'use strict';
@@ -196,9 +202,30 @@
       return;
     }
 
+    var FOCUSABLE =
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    function focusables() {
+      return Array.prototype.filter.call(
+        drawer.querySelectorAll(FOCUSABLE),
+        function (node) {
+          /* offsetParent is null for display:none subtrees, which is how the
+             closed drawer reports its own contents as unfocusable. */
+          return node.offsetParent !== null;
+        }
+      );
+    }
+
     function setOpen(open) {
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       drawer.hidden = !open;
+
+      if (open) {
+        var items = focusables();
+        if (items.length) {
+          items[0].focus();
+        }
+      }
     }
 
     on(toggle, 'click', function () {
@@ -206,9 +233,37 @@
     });
 
     on(document, 'keydown', function (event) {
-      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+      if (toggle.getAttribute('aria-expanded') !== 'true') {
+        return;
+      }
+
+      if (event.key === 'Escape') {
         setOpen(false);
         toggle.focus();
+        return;
+      }
+
+      /* Trap Tab inside the drawer while it is open, otherwise focus walks
+         out to the page behind it and the open panel becomes a keyboard trap
+         of its own. */
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      var items = focusables();
+      if (!items.length) {
+        return;
+      }
+
+      var first = items[0];
+      var last = items[items.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        last.focus();
+        event.preventDefault();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        first.focus();
+        event.preventDefault();
       }
     });
 
@@ -249,9 +304,13 @@
       { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
     );
 
+    /* Only now does the stylesheet hide anything. Adding the class last means a
+       browser that never got here still renders every card fully visible. */
     each(targets, function (node) {
       observer.observe(node);
     });
+
+    document.documentElement.classList.add('reveal-ready');
   }
 
 
@@ -292,6 +351,34 @@
 
       on(region.querySelector('[data-carousel-next]'), 'click', function () {
         track.scrollLeft += step();
+      });
+
+      /* The track is a scrollable region, so it has to be reachable and
+         operable from the keyboard. Native scrolling only responds to arrow
+         keys when the element itself takes focus, which is why the markup
+         gives it tabindex="0". */
+      on(track, 'keydown', function (event) {
+        var distance = step();
+
+        switch (event.key) {
+          case 'ArrowLeft':
+            track.scrollLeft -= distance;
+            break;
+          case 'ArrowRight':
+            track.scrollLeft += distance;
+            break;
+          case 'Home':
+            track.scrollLeft = 0;
+            break;
+          case 'End':
+            track.scrollLeft = track.scrollWidth;
+            break;
+          default:
+            return;
+        }
+
+        event.preventDefault();
+        sync();
       });
 
       on(track, 'scroll', function () {
@@ -447,6 +534,139 @@
   }
 
 
+  /* 08  Analytics consent ================================================= */
+
+  /* Nothing here runs unless the visitor answers the banner, and the banner
+     itself is hidden in the markup. The defaults in head.html already deny
+     every storage type, so if this module never executes, analytics is off and
+     no Google script is ever requested. */
+
+  function readConsent() {
+    try {
+      var value = window.localStorage.getItem(CONSENT_KEY);
+      return value === 'granted' || value === 'denied' ? value : null;
+    } catch (error) {
+      /* Private mode or blocked storage. Treat as undecided, which means the
+         banner still appears but nothing is persisted. */
+      return null;
+    }
+  }
+
+  function writeConsent(choice) {
+    try {
+      window.localStorage.setItem(CONSENT_KEY, choice);
+    } catch (error) {
+      /* Choice applies for this page view only. */
+    }
+  }
+
+  function loadGA() {
+    if (document.getElementById('yoprompts-ga')) {
+      return;
+    }
+
+    window.gtag('consent', 'update', {
+      analytics_storage: 'granted',
+      functionality_storage: 'granted',
+      personalization_storage: 'granted',
+      security_storage: 'granted'
+    });
+
+    var script = document.createElement('script');
+    script.id = 'yoprompts-ga';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(script);
+
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID);
+  }
+
+  function doNotTrack() {
+    var dnt =
+      navigator.doNotTrack ||
+      window.doNotTrack ||
+      navigator.msDoNotTrack ||
+      null;
+    return dnt === '1' || dnt === 'yes';
+  }
+
+  function initConsent() {
+    if (typeof window.gtag !== 'function') {
+      return;
+    }
+
+    var banner = document.querySelector('[data-consent-banner]');
+    var status = document.querySelector('[data-consent-status]');
+    var stored = readConsent();
+
+    if (stored === 'granted') {
+      loadGA();
+    }
+
+    var describe = function () {
+      if (!status) {
+        return;
+      }
+      if (stored === 'granted') {
+        status.textContent =
+          'Analytics are currently allowed on this device. Google Analytics loads when you visit.';
+      } else if (stored === 'denied') {
+        status.textContent =
+          'Analytics are currently declined on this device. No analytics script is requested.';
+      } else {
+        status.textContent =
+          'No choice saved yet, so no analytics code is running.';
+      }
+    };
+
+    var apply = function (choice) {
+      stored = choice;
+      writeConsent(choice);
+
+      if (choice === 'granted') {
+        loadGA();
+      } else {
+        /* Nothing to unload — gtag.js is only ever injected after consent, so
+           declining means it was never requested in the first place. */
+      }
+
+      if (banner) {
+        banner.hidden = true;
+      }
+
+      describe();
+    };
+
+    each(document.querySelectorAll('[data-consent-accept]'), function (button) {
+      on(button, 'click', function () {
+        apply('granted');
+      });
+    });
+
+    each(document.querySelectorAll('[data-consent-reject]'), function (button) {
+      on(button, 'click', function () {
+        apply('denied');
+      });
+    });
+
+    describe();
+
+    /* Ask only when there is no saved decision, and not at all when the browser
+       is already signalling Do Not Track. */
+    if (banner && !stored && !doNotTrack()) {
+      banner.hidden = false;
+
+      /* Non-modal, so focus is moved to the region rather than trapped. A
+         keyboard visitor should not be left unaware that the prompt is there. */
+      var firstButton = banner.querySelector('[data-consent-accept]');
+      if (firstButton) {
+        firstButton.focus();
+      }
+    }
+  }
+
+
   /* Boot ================================================================== */
 
   function boot() {
@@ -456,6 +676,7 @@
     initReveals();
     initCarousels();
     initFilters();
+    initConsent();
   }
 
   if (document.readyState === 'loading') {

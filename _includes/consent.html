@@ -1,0 +1,33 @@
+<!-- Consent banner.
+
+     Hidden by default and revealed by main.js only when there is no saved
+     choice, so a returning visitor never sees a flash of it. The site is fully
+     usable if this never appears: every feature works with analytics off.
+
+     Not a modal dialog — it does not block the page or trap focus, so it is
+     marked up as a labelled region rather than role="dialog". -->
+
+<div class="consent" id="consent-banner" data-consent-banner hidden>
+  <div class="container consent__inner">
+    <div class="consent__text">
+      <h2 class="consent__title" id="consent-banner-title">Analytics, optionally</h2>
+      <p class="consent__body">
+        This site uses Google Analytics for aggregate page-view counts, and
+        nothing else. No analytics script loads until you accept. Declining
+        leaves the prompt library working exactly as it is.
+        <a class="link-inline" href="{{ '/privacy/' | relative_url }}">Privacy policy</a>
+        &middot;
+        <a class="link-inline" href="{{ '/cookies/' | relative_url }}">Cookie policy</a>
+      </p>
+    </div>
+
+    <div class="consent__actions">
+      <button class="button button--sm" type="button" data-consent-reject>
+        Decline
+      </button>
+      <button class="button button--sm button--primary" type="button" data-consent-accept>
+        Accept
+      </button>
+    </div>
+  </div>
+</div>

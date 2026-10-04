@@ -1,0 +1,39 @@
+{%- comment -%}
+  Breadcrumb trail. Exists for the same reason nav-links.html does: the same
+  markup was being copied into every page by hand, and a copy is a drift risk.
+
+  Expects `include.trail` — a pipe-delimited list of `Label~Path` crumbs, in
+  order from the site root. `~` separates the label from the path so paths may
+  contain slashes freely; `|` separates crumbs. The final crumb is rendered as
+  plain text because it is the current page.
+
+    {% include breadcrumbs.html trail="Home~/|Categories~/categories/|Career" %}
+
+  Note the `/` after the first `~`: a crumb with an empty path is a label with
+  nowhere to link to, which is not what you want for an intermediate crumb.
+
+  The final crumb is rendered as plain text because it is the current page.
+  When that label is dynamic — a post title — pass `current` instead of
+  trailing it onto `trail`, so every entry in `trail` stays a link:
+
+    {% include breadcrumbs.html trail="Home~/|Blog~/blog/" current=page.title %}
+
+  Output is wrapped in an ordered list because BreadcrumbList structured data
+  describes a list, and screen readers announce position in a list usefully.
+{%- endcomment -%}
+{%- assign crumbs = include.trail | split: "|" -%}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumbs__list">
+    {%- for crumb in crumbs -%}
+      {%- assign bits = crumb | split: "~" -%}
+      {%- if forloop.last and include.current == nil -%}
+    <li class="breadcrumbs__item"><span aria-current="page">{{ bits[0] }}</span></li>
+      {%- else -%}
+    <li class="breadcrumbs__item"><a href="{{ bits[1] | relative_url }}">{{ bits[0] }}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span></li>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if include.current -%}
+    <li class="breadcrumbs__item"><span aria-current="page">{{ include.current }}</span></li>
+    {%- endif -%}
+  </ol>
+</nav>

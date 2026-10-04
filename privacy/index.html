@@ -1,0 +1,191 @@
+---
+layout: default
+title: Privacy Policy
+body-class: page legal
+description: >-
+  How YoPrompts handles your data. No accounts, no database, no server-side
+  tracking. Analytics are consent-gated and optional. Last updated 4October 2026.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Privacy", "item": {{ '/privacy/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top">
+  <div class="container">
+    {% include breadcrumbs.html trail="Home~/|Privacy" %}
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Legal</p>
+        <h1 class="display-lg section-head__title" id="privacy-heading">Privacy Policy</h1>
+        <p class="body-lg section-head__lede">
+          The short version: there is nothing to sign up for, nothing stored in
+          a database, and no tracking of you unless you actively agree to it.
+        </p>
+        <div class="meta-row">
+          <span class="meta-mono">Last updated 4 October 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-cols">
+      <div class="prose">
+
+        <h2>Who runs this site</h2>
+
+        <p>
+          YoPrompts is published by <strong>F9XR Team</strong>
+          (<a href="https://f9xr.org" rel="noopener noreferrer">f9xr.org</a>).
+          For any privacy question, email
+          <a href="mailto:hello@f9xr.org">hello@f9xr.org</a>.
+        </p>
+
+        <h2>The honest summary</h2>
+
+        <ul>
+          <li>No account, no login, no user database.</li>
+          <li>No server-side code and no server-side logging of visitors.</li>
+          <li>Your prompt text never leaves your browser unless you copy it yourself.</li>
+          <li>Analytics are off until you click accept.</li>
+        </ul>
+
+        <h2>What we collect ourselves</h2>
+
+        <p>
+          We operate a static site. There is no application server, no database,
+          and no first-party analytics of our own. When you press
+          <strong>Copy</strong> on a prompt, that happens entirely in your
+          browser via the clipboard API. Your prompt text is not transmitted to
+          us or to anyone else.
+        </p>
+
+        <h2>Analytics</h2>
+
+        <p>
+          We use <strong>Google Analytics 4</strong> to count page views and see
+          which prompts are read. It is strictly opt-in: a consent banner appears
+          on your first visit and no analytics script loads until you accept.
+          If you decline, or dismiss the banner without choosing, analytics
+          stays off permanently.
+        </p>
+
+        <p>Where you do accept, Google Analytics may collect:</p>
+
+        <ul>
+          <li>Pages viewed and time on page, in aggregate.</li>
+          <li>
+            Approximate location at country level, and device/browser
+            information, both derived from your IP address and user agent.
+          </li>
+          <li>A cookie or similar identifier, set only after your consent.</li>
+        </ul>
+
+        <p>
+          We do not use Google Analytics to build advertising audiences, and we
+          have not enabled Google Signals or any advertising-features
+          personalisation. We look at aggregate counts only &mdash; never at
+          identifiable visitors.
+        </p>
+
+        <p>
+          Google's own handling of this data is governed by the
+          <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Google Privacy Policy</a>
+          and the
+          <a href="https://business.safety.google/adsprocessorterms/" rel="noopener noreferrer" target="_blank">Google Ads Data Processing Terms</a>.
+          To decline without seeing a banner, enable your browser's
+          &ldquo;Do Not Track&rdquo; or a content blocker, or see the
+          <a href="{{ '/cookies/' | relative_url }}">cookie policy</a>.
+        </p>
+
+        <h2>Cookies and local storage</h2>
+
+        <p>
+          Before you choose, we store one item in your browser's
+          <code>localStorage</code>: your consent choice, so the banner does not
+          reappear on every page. That value never leaves your device and cannot
+          identify you. Full detail is on the
+          <a href="{{ '/cookies/' | relative_url }}">cookie policy</a>.
+        </p>
+
+        <h2>Hosting</h2>
+
+        <p>
+          The site is hosted on <strong>GitHub Pages</strong>. Like any web host,
+          GitHub processes the request data required to deliver a page &mdash;
+          your IP address and user agent &mdash; in order to serve it, and
+          retains it in its own
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener noreferrer" target="_blank">privacy statement</a>.
+          That processing is necessary for the site to exist and is not under our
+          control.
+        </p>
+
+        <h2>Third-party links</h2>
+
+        <p>
+          Prompt pages link out to AI providers such as ChatGPT, Claude and
+          Gemini so you can paste and run the prompt. Following one of those
+          links takes you to a third party under their own privacy policy, over
+          which we have no control. We do not receive whatever you do there.
+        </p>
+
+        <h2>Children</h2>
+
+        <p>
+          This site is not directed at children and collects no personal
+          information from anyone, including children.
+        </p>
+
+        <h2>Your rights</h2>
+
+        <p>
+          Because we hold no identifiable data about you, there is normally
+          nothing to export, correct or erase. To find out what Google holds
+          about your visit, use Google's
+          <a href="https://myaccount.google.com/data-and-privacy" rel="noopener noreferrer" target="_blank">My Activity</a>
+          and <a href="https://tools.google.com/dlpage" rel="noopener noreferrer" target="_blank">Analytics opt-out</a>
+          tools. To withdraw consent here, clear your browser storage for this
+          site and the banner will reappear.
+        </p>
+
+        <h2>Changes</h2>
+
+        <p>
+          If this policy changes materially, the date at the top of this page
+          changes with it. We do not currently send email, so we cannot notify
+          you directly.
+        </p>
+
+      </div>
+
+      <aside class="detail-side">
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Related</p>
+          <div class="card__actions">
+            <a class="button button--block" href="{{ '/cookies/' | relative_url }}">Cookie policy</a>
+            <a class="button button--block" href="{{ '/terms/' | relative_url }}">Terms</a>
+            <a class="button button--block" href="{{ '/contact/' | relative_url }}">Contact</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>

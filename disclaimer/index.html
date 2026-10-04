@@ -1,0 +1,178 @@
+---
+layout: default
+title: Accuracy Disclaimer
+body-class: page legal
+description: >-
+  AI output can be wrong, and this library cannot fix that. How prompts here
+  are tested, what remains unverified, and what you must check yourself.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Disclaimer", "item": {{ '/disclaimer/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top">
+  <div class="container">
+    {% include breadcrumbs.html trail="Home~/|Disclaimer" %}
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Legal</p>
+        <h1 class="display-lg section-head__title" id="disclaimer-heading">Accuracy disclaimer</h1>
+        <p class="body-lg section-head__lede">
+          A good prompt does not make a model truthful. It makes a model more
+          consistently produce the shape of output you wanted. Those are
+          different things, and conflating them is how people end up confidently
+          wrong.
+        </p>
+        <div class="meta-row">
+          <span class="meta-mono">Last updated 4 October 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-cols">
+      <div class="prose">
+
+        <h2>The core limitation</h2>
+
+        <p>
+          Every prompt on this site improves the <em>form</em> of a response. None
+          of them can guarantee its <em>content</em> is true. Models generate
+          plausible text, and plausible is not the same as correct. They will
+          invent statistics, citations, dates, quotations and job titles with
+          complete confidence, and a prompt that makes output look more
+          professional does nothing to change that.
+        </p>
+
+        <h2>How prompts here are tested</h2>
+
+        <p>Be clear about what our testing does and does not establish.</p>
+
+        <p>Testing a prompt means running it repeatedly against named models and checking whether it reliably produces:</p>
+
+        <ul>
+          <li>The intended structure and level of detail.</li>
+          <li>Output without invented sources or figures.</li>
+          <li>Consistent behaviour across different inputs.</li>
+          <li>Behaviour that holds up when the input is deliberately thin.</li>
+        </ul>
+
+        <p>Testing a prompt does not establish:</p>
+
+        <ul>
+          <li>That any factual claim in the output is correct.</li>
+          <li>
+            That it will behave identically on your account, your plan, or a
+            future model version.
+          </li>
+          <li>That it performs safely in a regulated domain.</li>
+        </ul>
+
+        <h2>Models change without notice</h2>
+
+        <p>
+          Providers release model updates continuously and roll them out
+          gradually. A prompt that worked reliably last month may produce
+          noticeably different output this month, on the same settings. Where a
+          prompt lists the models it was tested against, that list is a
+          timestamped record, not a guarantee.
+        </p>
+
+        <h2>What you must verify yourself</h2>
+
+        <p>
+          Treat AI output as a first draft produced by a fast, confident
+          non-expert. Before acting on it, check:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Figures and arithmetic.</strong> Recompute anything numeric
+            before it reaches a document.
+          </li>
+          <li>
+            <strong>Quotations and sources.</strong> If the output cites
+            something, open the source. Confirm it says what the output claims.
+          </li>
+          <li>
+            <strong>Dates, versions and prices.</strong> These drift constantly
+            and are frequently stale in training data.
+          </li>
+          <li>
+            <strong>Named people and job titles.</strong> Assumptions about
+            someone's role, employer or location are usually invented.
+          </li>
+          <li>
+            <strong>Code.</strong> Run it. Run the tests. A plausible-looking
+            function can still be wrong.
+          </li>
+          <li>
+            <strong>Anything you cannot afford to be wrong about.</strong> Check
+            it against a primary source.
+          </li>
+        </ul>
+
+        <h2>High-stakes domains</h2>
+
+        <p>
+          Prompts touching medical, legal, financial, tax or safety decisions
+          require professional review. An AI system is not a substitute for a
+          licensed practitioner, and nothing generated using a prompt from this
+          site should be treated as professional advice. This applies to
+          research summarisation and code review with real consequences just as
+          much as it does to direct advice.
+        </p>
+
+        <h2>Bias and limitations of the models themselves</h2>
+
+        <p>
+          AI models reflect their training data, which contains human
+          assumptions, omissions and prejudice. Asking for output &ldquo;without
+          bias&rdquo; does not remove bias from the underlying model. Be aware of
+          this when generating anything about people, particularly groups
+          already underrepresented in that data.
+        </p>
+
+        <h2>Errors in these pages</h2>
+
+        <p>
+          We correct factual errors when we find them. If something here is
+          wrong, tell us at
+          <a href="mailto:hello@f9xr.org">hello@f9xr.org</a> and we will fix it.
+          We would rather correct a page than defend it.
+        </p>
+
+      </div>
+
+      <aside class="detail-side">
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Related</p>
+          <div class="card__actions">
+            <a class="button button--block" href="{{ '/terms/' | relative_url }}">Terms of use</a>
+            <a class="button button--block" href="{{ '/privacy/' | relative_url }}">Privacy policy</a>
+            <a class="button button--block" href="{{ '/contact/' | relative_url }}">Report an error</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>

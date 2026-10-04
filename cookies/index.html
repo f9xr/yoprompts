@@ -1,0 +1,169 @@
+---
+layout: default
+title: Cookie Policy
+body-class: page legal
+description: >-
+  Exactly which cookies and local storage YoPrompts sets. Nothing by default;
+  Google Analytics only after you accept the consent banner.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Cookies", "item": {{ '/cookies/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top">
+  <div class="container">
+    {% include breadcrumbs.html trail="Home~/|Cookies" %}
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Legal</p>
+        <h1 class="display-lg section-head__title" id="cookies-heading">Cookie Policy</h1>
+        <p class="body-lg section-head__lede">
+          What this site sets, in plain terms. The default answer is
+          &ldquo;nothing&rdquo;, and that is not a figure of speech.
+        </p>
+        <div class="meta-row">
+          <span class="meta-mono">Last updated 4 October 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-cols">
+      <div class="prose">
+
+        <h2>By default: nothing</h2>
+
+        <p>
+          Load this site and decline the consent banner &mdash; or ignore it
+          entirely &mdash; and no analytics code executes, no third-party script
+          runs, and no cookie is set. The prompt library, search and copy
+          buttons all work with tracking fully off. There is nothing to opt out
+          of because nothing was ever switched on.
+        </p>
+
+        <h2>What is always set</h2>
+
+        <p>
+          One value in <code>localStorage</code>, not a cookie:
+        </p>
+
+        <ul>
+          <li>
+            <strong><code>yoprompts_consent</code></strong> &mdash; records
+            that you answered the banner, either <code>granted</code> or
+            <code>denied</code>.
+          </li>
+        </ul>
+
+        <p>
+          Its only job is to stop the banner reappearing on every page. It never
+          leaves your browser, contains no identifier, and cannot be used to
+          recognise you. Deleting your browser data for this site resets it and
+          the banner returns.
+        </p>
+
+        <h2>What is set if you accept</h2>
+
+        <p>
+          Accepting the banner loads <strong>Google Analytics 4</strong>, which
+          may then set the following. Rejecting keeps all of it off.
+        </p>
+
+        <ul>
+          <li>
+            <strong><code>_ga</code></strong> &mdash; distinguishes visitors for
+            aggregate page-view counting. Two years.
+          </li>
+          <li>
+            <strong><code>_ga_<container-id></code></strong> &mdash; persists
+            the above across sessions, so returning visits are not double
+            counted. Two years.
+          </li>
+        </ul>
+
+        <p>
+          Google may additionally use IP addresses, user agents and device
+          signals to derive approximate country and device type. That is
+          processed by Google, not by us. See the
+          <a href="{{ '/privacy/' | relative_url }}">privacy policy</a> for the
+          full breakdown.
+        </p>
+
+        <h2>Declining without a banner</h2>
+
+        <p>
+          If you already answered, you can change your answer at any time on the
+          <a href="{{ '/cookies/preferences/' | relative_url }}">cookie preferences page</a>.
+          The change takes effect straight away, without a reload.
+        </p>
+
+        <p>
+          You can suppress the banner and the analytics entirely by using a
+          content blocker, enabling your browser's Do Not Track setting, or
+          installing the
+          <a href="https://tools.google.com/dlpage" rel="noopener noreferrer" target="_blank">Google Analytics Opt-out Browser Add-on</a>.
+          The banner also stays hidden if your browser already signals a Do Not
+          Track preference.
+        </p>
+
+        <h2>Fonts</h2>
+
+        <p>
+          Type is loaded from Google Fonts. Serving a font requires your browser
+          to contact Google, which means Google sees your IP address and user
+          agent as part of delivering the file. Fonts are not a tracking cookie
+          and no identifier is set, but it is a third-party request, and it
+          happens whether or not you accept analytics. Self-hosting the fonts
+          would remove it and is a reasonable thing for us to do next.
+        </p>
+
+        <h2>Embedded content</h2>
+
+        <p>
+          Card artwork is inline SVG, so there are no iframes, no embedded
+          players and no social widgets loading third-party scripts. That is
+          deliberate.
+        </p>
+
+        <h2>Changing your mind</h2>
+
+        <p>
+          Clear this site's browser data and the consent banner reappears, or
+          email <a href="mailto:hello@f9xr.org">hello@f9xr.org</a> if you would
+          rather we treated your site data as blocked at the source.
+        </p>
+
+      </div>
+
+      <aside class="detail-side">
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Related</p>
+          <div class="card__actions">
+            <a class="button button--block" href="{{ '/cookies/preferences/' | relative_url }}">Change your choice</a>
+        <a class="button button--block" href="{{ '/privacy/' | relative_url }}">Privacy policy</a>
+            <a class="button button--block" href="{{ '/terms/' | relative_url }}">Terms</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>

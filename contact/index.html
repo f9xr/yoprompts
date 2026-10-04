@@ -1,0 +1,141 @@
+---
+layout: default
+title: Contact
+body-class: page
+description: >-
+  Get in touch with F9XR Team about a YoPrompts prompt that stopped working,
+  a correction, a licensing question, or a prompt you want to contribute.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }},
+      "name": "F9XR Team",
+      "url": "https://f9xr.org",
+      "email": "mailto:hello@f9xr.org",
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ '/assets/img/favicon.svg' | absolute_url | jsonify }}
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Contact", "item": {{ '/contact/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top">
+  <div class="container">
+    {% include breadcrumbs.html trail="Home~/|Contact" %}
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Contact</p>
+        <h1 class="display-lg section-head__title" id="contact-heading">Talk to a human</h1>
+        <p class="body-lg section-head__lede">
+          One inbox, read by the people who write the prompts. Email is the
+          fastest route &mdash; there is no form, no ticket queue and no chatbot.
+        </p>
+      </div>
+    </div>
+
+    <div class="detail-cols">
+      <div class="prose">
+
+        <h2>Email</h2>
+
+        <p>
+          <a href="mailto:hello@f9xr.org">hello@f9xr.org</a>
+        </p>
+
+        <p>
+          That address reaches F9XR Team. It is the same inbox behind
+          <a href="https://f9xr.org" rel="noopener noreferrer">f9xr.org</a>, so
+          anything site-specific is best titled <em>YoPrompts</em> so it does
+          not get lost.
+        </p>
+
+        <h2>What to write about</h2>
+
+        <ul>
+          <li>
+            <strong>A prompt that stopped working.</strong> Tell us which
+            prompt, which model, and what it produced instead. Model releases
+            break things silently and we cannot test every version of every
+            tool, so this is genuinely useful.
+          </li>
+          <li>
+            <strong>A factual correction.</strong> If something here is wrong,
+            say so plainly and we will fix the page.
+          </li>
+          <li>
+            <strong>Reusing a prompt.</strong> The prompts are free to copy and
+            use, including commercially. See the
+            <a href="{{ '/terms/' | relative_url }}">terms</a> for the exact
+            position, or just ask if your case is unusual.
+          </li>
+          <li>
+            <strong>A prompt you want to contribute.</strong> Read
+            <a href="{{ '/submit-a-prompt/' | relative_url }}">submit a
+            prompt</a> first &mdash; it explains what makes an entry worth
+            publishing.
+          </li>
+        </ul>
+
+        <h2>Response time</h2>
+
+        <p>
+          This is a small independent project, not a support desk. Treat a week
+          as a reasonable expectation and assume sooner rather than later. We
+          are not going to pretend otherwise by promising 24-hour turnaround.
+        </p>
+
+        <h2>What we cannot help with</h2>
+
+        <p>
+          We do not have access to your account at any AI provider, cannot see
+          your prompts or outputs, and cannot recover anything for you. If a
+          model refused to do something, that decision sits with the provider.
+        </p>
+
+      </div>
+
+      <aside class="detail-side">
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Direct</p>
+          <p class="body-sm card__body">
+            <a class="link-inline" href="mailto:hello@f9xr.org">hello@f9xr.org</a><br>
+            <a class="link-inline" href="https://f9xr.org" rel="noopener noreferrer">f9xr.org</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Faster routes</p>
+          <p class="body-sm card__body">
+            Some requests have a dedicated page, which saves a round trip.
+          </p>
+          <div class="card__actions">
+            <a class="button button--block" href="{{ '/submit-a-prompt/' | relative_url }}">Submit a prompt</a>
+            <a class="button button--block" href="{{ '/disclaimer/' | relative_url }}">Accuracy disclaimer</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>

@@ -47,6 +47,12 @@
             <a href="{{ '/terms/' | relative_url }}">Terms</a>
             <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a>
             <a href="{{ '/cookies/' | relative_url }}">Cookies</a>
+            {%- comment -%}
+              Linked from the footer on every page, not just the cookies page.
+              Withdrawing consent has to be as easy as giving it, so the control
+              cannot live only where nobody goes looking for it.
+            {%- endcomment -%}
+            <a href="{{ '/cookies/preferences/' | relative_url }}">Cookie choices</a>
           </div>
         </div>
 
@@ -64,7 +70,10 @@
 
       <div class="footer__bar">
         <span>&copy; {{ 'now' | date: "%Y" }} YoPrompts by F9XR Team</span>
-        <span>All rights reserved</span>
+        <span>
+          Made by
+          <a class="footer__credit" href="https://f9xr.org" rel="noopener noreferrer">F9XR Team (f9xr.org)</a>
+        </span>
       </div>
 
     </div>

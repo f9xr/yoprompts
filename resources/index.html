@@ -1,0 +1,189 @@
+---
+layout: default
+title: Resources
+body-class: page
+description: >-
+  Prompting fundamentals and free resources from YoPrompts: the five techniques
+  that fix most bad output, how to write your own prompts, and where to go next.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": {{ '/resources/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top">
+  <div class="container">
+    {% include breadcrumbs.html trail="Home~/|Resources" %}
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Resources</p>
+        <h1 class="display-lg section-head__title" id="resources-heading">Learn to prompt properly once</h1>
+        <p class="body-lg section-head__lede">
+          Most disappointing AI output is not a model failure. It is an
+          underspecified request. These five techniques fix the large majority
+          of it &mdash; and everything else on this site is downstream of them.
+        </p>
+      </div>
+    </div>
+
+    <div class="detail-cols">
+      <div class="prose">
+
+        <h2 id="prompting-basics">The five basics</h2>
+
+        <p>
+          If you read nothing else on this page, read this section. In rough
+          order of how much they improve output.
+        </p>
+
+        <h3>1. Give it a role, not a task</h3>
+
+        <p>
+          <em>&ldquo;Write me a product description&rdquo;</em> gets you
+          marketing filler, because you have not said who is writing or for
+          whom.
+        </p>
+
+        <p>
+          <em>&ldquo;You are a direct-response copywriter who has shipped
+          landing pages for B2B SaaS. Write a product description for&hellip;&rdquo;</em>
+          narrows vocabulary, register and what counts as a good example. One
+          sentence, and it is the highest-leverage sentence in the whole prompt.
+        </p>
+
+        <h3>2. Forbid invention</h3>
+
+        <p>
+          Models will happily invent a statistic, a citation, a deadline or a
+          person's job title to fill a gap you left. Then you spend longer
+          fact-checking than you would have spent writing.
+        </p>
+
+        <p>
+          Close every prompt with an explicit prohibition:
+        </p>
+
+        <blockquote>
+          Never invent a source, a number, or a date. If you need one and I did
+          not give it to you, write <code>[NEEDED]</code> and tell me exactly
+          what you need.
+        </blockquote>
+
+        <p>
+          Giving the model a legal way to decline beats telling it not to
+          guess. <code>[NEEDED]</code> becomes a to-do list; a fabricated
+          citation becomes your problem.
+        </p>
+
+        <h3>3. Say what "done" looks like</h3>
+
+        <p>
+          Vague output is usually an underspecified deliverable. Name the shape:
+          a numbered list, a JSON object with these keys, a 200-word paragraph
+          with no preamble, a diff.
+        </p>
+
+        <p>
+          Every prompt in this
+          <a href="{{ '/prompts/' | relative_url }}">library</a> states its
+          output format for exactly this reason.
+        </p>
+
+        <h3>4. Put the constraints last</h3>
+
+        <p>
+          Models weight recent instructions heavily. Structure a long prompt as
+          role, then task, then hard rules &mdash; and keep the rules at the
+          bottom where they are still in focus when generation starts.
+        </p>
+
+        <h3>5. Make it degrade gracefully</h3>
+
+        <p>
+          Tell it what to do when your input is too thin:
+        </p>
+
+        <blockquote>
+          If what I gave you is not enough to produce section 3, say so, list
+          the one thing you most need, and stop. Do not pad.
+        </blockquote>
+
+        <p>
+          This single line removes most of the filler that makes AI output feel
+          hollow.
+        </p>
+
+        <h2>Writing your own</h2>
+
+        <p>
+          A prompt worth keeping follows a shape. Context, task, format,
+          constraints, and a fallback. You can
+          <a href="{{ '/submit-a-prompt/' | relative_url }}">submit one to the
+          library</a> if you have built something better than what is already
+          here &mdash; genuinely better, not just different.
+        </p>
+
+        <h2>Where to go next</h2>
+
+        <ul>
+          <li>
+            <a href="{{ '/prompts/' | relative_url }}">The prompt library</a>
+            &mdash; tested prompts you can copy and use right now.
+          </li>
+          <li>
+            <a href="{{ '/blog/' | relative_url }}">Guides</a> &mdash; longer
+            walkthroughs of specific workflows.
+          </li>
+          <li>
+            <a href="{{ '/ai-tools/' | relative_url }}">AI tools</a> &mdash;
+            where each prompt is meant to be run.
+          </li>
+        </ul>
+
+      </div>
+
+      <aside class="detail-side">
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Jump to</p>
+          <div class="tool-list">
+            <span class="tag-mono">Role</span>
+            <span class="tag-mono">No invention</span>
+            <span class="tag-mono">Output shape</span>
+            <span class="tag-mono">Constraint order</span>
+            <span class="tag-mono">Graceful failure</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Put it to work</p>
+          <p class="body-sm card__body">
+            Every technique above is already applied in the library, so you can
+            see it working rather than only reading about it.
+          </p>
+          <div class="card__actions">
+            <a class="button button--primary button--block" href="{{ '/prompts/' | relative_url }}">Browse prompts</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>

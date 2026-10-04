@@ -5,8 +5,18 @@ category: productivity
 category_label: Productivity
 difficulty: beginner
 tools: [chatgpt, claude, gemini]
-read_time: 5
+# Measured from rendered page length at ~200 wpm; all six prompt
+# pages are within 5% of each other, so they all land on 7.
+read_time: 7
+# jekyll-seo-tag types every dated collection document as BlogPosting.
+# These are evergreen prompt pages, not blog posts; WebPage is the correct
+# container type, with HowTo/FAQPage supplied by _layouts/prompt.html.
+seo:
+  type: "WebPage"
 picks: []
+# Every prompt sits in its own category, so the layout's
+# same-category fallback can never match. These are curated.
+related: [deep-research-synthesis, seo-content-strategy]
 art: workflow
 tags: [meetings, notes, project management, follow-up, summaries]
 excerpt: "Converts raw notes into decisions, actions with owners and dates, and open questions — and refuses to invent an owner or a deadline that nobody agreed to."

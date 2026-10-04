@@ -5,15 +5,29 @@ body-class: blog
 description: >-
   Guides on prompting, AI workflows, and getting better results from ChatGPT,
   Claude, Gemini, and the rest — from the team behind YoPrompts.
+seo:
+  type: "Blog"
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": {{ '/blog/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
 
 <div class="band band--flush-top">
   <div class="container">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
-      <span>Blog</span>
-    </nav>
+    {% include breadcrumbs.html trail="Home~/|Blog" %}
   </div>
 </div>
 

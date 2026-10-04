@@ -8,8 +8,28 @@
   {%- seo -%}
   <!-- End SEO -->
 
+  <!-- Google Consent Mode v2. Denied by default, before any analytics code is
+       ever requested. main.js calls gtag('consent','update', …) only if the
+       visitor accepts, then injects the gtag.js script at that point. Nothing
+       here sets a cookie or sends a request; it only records the default. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+      security_storage: 'denied',
+      wait_for_update: 500
+    });
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400&amp;display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400&amp;display=swap">
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">

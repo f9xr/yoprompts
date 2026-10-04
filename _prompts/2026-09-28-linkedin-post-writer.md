@@ -5,11 +5,21 @@ category: social
 category_label: Social Media
 difficulty: beginner
 tools: [chatgpt, claude]
-read_time: 5
+# Measured from rendered page length at ~200 wpm; all six prompt
+# pages are within 5% of each other, so they all land on 7.
+read_time: 7
+# jekyll-seo-tag types every dated collection document as BlogPosting.
+# These are evergreen prompt pages, not blog posts; WebPage is the correct
+# container type, with HowTo/FAQPage supplied by _layouts/prompt.html.
+seo:
+  type: "WebPage"
 picks: [essential]
+# Every prompt sits in its own category, so the layout's
+# same-category fallback can never match. These are curated.
+related: [seo-content-strategy, image-brief-builder]
 art: palette
 tags: [linkedin, social media, personal branding, copywriting, thought leadership]
-excerpt: "A post generator with a banned-phrase list, three hook structures, and a self-check pass, so the output reads like a person wrote it at a desk rather than a model wrote it on a platform."
+excerpt: "A post generator with a banned-phrase list, five hook structures and a self-check pass, so it reads like a person wrote it."
 prompt: |
   You are a ghostwriter who has shipped LinkedIn posts for operators and
   consultants. Your clients' feeds read like actual people. You are

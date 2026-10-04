@@ -13,7 +13,14 @@ layout: default
 {%- assign tools = site.data.ai_tools | where_exp: "t", "page.tools contains t.slug" -%}
 {%- assign cats = site.data.categories | where: "slug", page.category | first -%}
 {%- comment -%}
-  Related prompts: same category, excluding this one.
+  Related prompts.
+
+  Every prompt currently sits in its own category, so a same-category lookup
+  can never match and the section would never render. Curated cross-category
+  links in front matter take precedence; the same-category pass below is kept
+  as a fallback so a future prompt added to an existing category still gets
+  suggestions without anyone editing the layout.
+
   Written as an explicit loop rather than where_exp with a compound
   condition ("a == b and c != d"). Jekyll's where_exp parser only
   accepts a single comparison, and a boolean operator in the
@@ -21,11 +28,20 @@ layout: default
   found id". A plain Liquid if with and is always safe.
 {%- endcomment -%}
 {%- assign related = "" | split: "" -%}
-{%- for candidate in site.prompts -%}
-  {%- if candidate.category == page.category and candidate.slug != page.slug -%}
-    {%- assign related = related | push: candidate -%}
-  {%- endif -%}
-{%- endfor -%}
+{%- if page.related -%}
+  {%- for slug in page.related -%}
+    {%- assign candidate = site.prompts | where: "slug", slug | first -%}
+    {%- if candidate and candidate.slug != page.slug -%}
+      {%- assign related = related | push: candidate -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- for candidate in site.prompts -%}
+    {%- if candidate.category == page.category and candidate.slug != page.slug -%}
+      {%- assign related = related | push: candidate -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
 
 <script type="application/ld+json">
 {
@@ -33,10 +49,12 @@ layout: default
   "@graph": [
     {
       "@type": "HowTo",
+      "@id": {{ page.url | absolute_url | jsonify }},
       "name": {{ page.title | jsonify }},
       "description": {{ page.excerpt | strip_newlines | strip | jsonify }},
       "totalTime": "PT{{ page.read_time }}M",
       "inLanguage": "en",
+      "author": { "@type": "Organization", "name": "F9XR Team", "url": "https://f9xr.org" },
       "step": [
         {%- for step in page.how_to_use -%}
           {%- unless forloop.first %},{% endunless -%}
@@ -46,6 +64,8 @@ layout: default
     },
     {
       "@type": "FAQPage",
+      "@id": {{ page.url | absolute_url | append: '#faq' | jsonify }},
+      "isPartOf": { "@id": {{ page.url | absolute_url | jsonify }} },
       "mainEntity": [
         {%- for item in page.faq -%}
           {%- unless forloop.first %},{% endunless -%}
@@ -55,6 +75,7 @@ layout: default
     },
     {
       "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
         { "@type": "ListItem", "position": 2, "name": "Prompts", "item": {{ '/prompts/' | absolute_url | jsonify }} }{% if cats %},
@@ -142,7 +163,13 @@ layout: default
         </section>
         {%- endif %}
 
-        {%- if content != "" %}
+        {%- comment -%}
+          `content` is nil, not "", when a prompt document has no Markdown
+          body. Testing `content != ""` alone evaluates true for nil, which
+          rendered an empty "Notes" heading on every prompt page. The leading
+          `content and` short-circuits on nil first.
+        {%- endcomment %}
+        {%- if content and content != "" %}
         <section class="detail-section prose" aria-labelledby="notes-title">
           <h2 class="display-sm detail-section__title" id="notes-title">Notes</h2>
           {{ content }}

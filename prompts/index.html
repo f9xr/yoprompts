@@ -5,16 +5,35 @@ body-class: library
 description: >-
   Every YoPrompts prompt in one searchable library. Filter by category, AI
   tool, or difficulty, then copy the prompt straight into your chat.
+seo:
+  type: "CollectionPage"
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Prompts", "item": {{ '/prompts/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
 
 <div class="band band--flush-top">
   <div class="container">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
-      <span>Prompts</span>
-    </nav>
+    {% include breadcrumbs.html trail="Home~/|Prompts" %}
   </div>
 </div>
 
-{% include archive.html heading="All prompts" heading_tag=h1 eyebrow="Prompt library" lede="Every prompt we publish, in one place. Copy it, paste it into whichever chat you are already using." %}
+{%- comment -%}
+  heading_tag must be quoted. Jekyll's include parser silently drops unquoted
+  params that begin with a letter, so heading_tag=h1 arrived as nil and the
+  page rendered an <h2> with no <h1> at all.
+{%- endcomment -%}
+{% include archive.html heading="All prompts" heading_tag="h1" eyebrow="Prompt library" lede="Every prompt we publish, in one place. Copy it, paste it into whichever chat you are already using." %}
