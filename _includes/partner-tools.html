@@ -1,0 +1,53 @@
+{%- comment -%}
+  Prompt generator tools hosted on Troolify, our partner site. Rendered with
+  YoPrompts card chrome and Lucide icons so the hand-off reads as part of the
+  same library rather than a row of outbound links.
+{%- endcomment -%}
+
+<section class="band divider-hairline" id="prompt-generators" aria-labelledby="partner-tools-title">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Prompt generators</p>
+        <h2 class="display-md section-head__title" id="partner-tools-title">Build the prompt before you paste it</h2>
+        <p class="body-lg section-head__lede">
+          Guided generators from
+          <a class="link-inline" href="https://f9xr.org/troolify/" target="_blank" rel="noopener noreferrer">Troolify</a>,
+          our partner site. Answer a few questions, get a structured prompt
+          out, and paste it straight into ChatGPT, Claude or Gemini.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      {%- for tool in site.data.partner_tools -%}
+      {%- assign delay = forloop.index | modulo: 4 | plus: 1 -%}
+      <article class="partner-card reveal reveal--{{ delay }}">
+        <div class="partner-card__top">
+          <span class="partner-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+              {%- for d in tool.icon -%}<path d="{{ d }}"/>{%- endfor -%}
+            </svg>
+          </span>
+          <span class="tag-mono tag-mono--accent">Troolify</span>
+        </div>
+
+        <h3 class="partner-card__title">
+          <a href="{{ tool.url }}" target="_blank" rel="noopener noreferrer">{{ tool.name }}</a>
+        </h3>
+
+        <p class="partner-card__intro">{{ tool.intro }}</p>
+
+        <div class="partner-card__foot">
+          <a class="button button--sm" href="{{ tool.url }}" target="_blank" rel="noopener noreferrer">
+            Open generator
+            <svg class="button__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </a>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>

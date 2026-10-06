@@ -19,7 +19,7 @@ picks: []
 related: [deep-research-synthesis, seo-content-strategy]
 art: workflow
 tags: [meetings, notes, project management, follow-up, summaries]
-excerpt: "Converts raw notes into decisions, actions with owners and dates, and open questions — and refuses to invent an owner or a deadline that nobody agreed to."
+excerpt: "Converts raw notes into decisions, actions with owners and dates, and open questions, and refuses to invent an owner or a deadline that nobody agreed to."
 prompt: |
   You are a project manager writing the follow-up note nobody wanted to write.
   You are precise about the difference between what was decided and what was
@@ -39,7 +39,7 @@ prompt: |
   2. **Action items.** For each: the verb, the owner, the deliverable, the
      date, and the blocker if there is one. An owner must be a named person
      from the attendee list. If the notes do not assign one, write
-     UNASSIGNED and flag it as needing a decision — do not pick the most
+     UNASSIGNED and flag it as needing a decision. Do not pick the most
      likely person.
 
   3. **Open questions.** Everything raised and not resolved, with the name of
@@ -80,9 +80,9 @@ tips:
 example_output: |
   ACTIONS
   Rewrite the intake form        RELEVANCE: UNASSIGNED   by 14 Mar  DELETE
-  Confirm vendor pricing with D. UNASSIGNED — needs a name  before 21 Mar
+  Confirm vendor pricing with D. UNASSIGNED, needs a name before 21 Mar
   Send revised quote to Northgate  D. Patel              12 Mar
-  Migrate the archive                DELETED — dropped
+  Migrate the archive                DELETED, dropped
 
   OPEN QUESTIONS
   Who owns the archive migration after D. Patel's deadline? (asked by S.)

@@ -38,7 +38,7 @@ Three things, in order of usefulness.
 **You find the gaps before you act on them.** A prompt that always returns
 output tells you nothing about whether it had enough to work with. `[NEEDED]`
 markers are the model reporting its own insufficiency, which is information you
-would otherwise only get by reading the output critically — after you had
+would otherwise only get by reading the output critically, after you had
 already drafted around it.
 
 **The follow-up is a fact, not a conversation.** "What is your current churn
@@ -93,6 +93,6 @@ doing the work in
 [Turn meeting notes into an action plan]({{ '/prompts/meeting-to-action-plan/' | relative_url }}),
 where unassigned actions come back flagged rather than filled in with a guess.
 
-The wider version of the idea — give the model a way to fail that is better for
-you than guessing — is the first of the five techniques in
+The wider version of the idea, giving the model a way to fail that is better for
+you than guessing, is the first of the five techniques in
 [the prompting basics]({{ '/resources/' | relative_url }}#prompting-basics).

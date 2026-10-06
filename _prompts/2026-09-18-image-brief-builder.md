@@ -62,7 +62,7 @@ prompt: |
   - Describe what a camera or a lens would see. If a word would not survive
     being pointed at a physical object, cut it.
   - No style-imitation instructions, no artist names, no "trending".
-  - If the brief would be under 40 words, something is missing — ask me the
+  - If the brief would be under 40 words, something is missing. Ask me the
     one question that resolves it rather than padding.
   - Give me the brief as one paragraph, ready to paste, after the breakdown.
   - Then give me two variations that change exactly one parameter each, so I
@@ -97,7 +97,7 @@ example_output: |
   #d9cbb0; exclude all blue. No gloves, no text, no logos.
 
   VARIATION A (change one parameter)
-  Same brief, aperture f/11 — the entire bolt goes sharp and the image
+  Same brief, aperture f/11: the entire bolt goes sharp and the image
   loses its intimacy.
 faq:
   - q: "Does this work with Midjourney parameters?"
@@ -107,5 +107,5 @@ faq:
   - q: "Can I reuse it for video?"
     a: "Partially. Composition, lens, and palette carry over. The subject needs a motion clause, and light behaviour needs to be described across time rather than at an instant."
   - q: "What if my idea genuinely needs a person with an expression?"
-    a: "Describe the expression as muscle and posture — brows drawn, mouth held flat — rather than as an emotion. Models map physical description far more reliably than emotional labels."
+    a: "Describe the expression as muscle and posture (brows drawn, mouth held flat) rather than as an emotion. Models map physical description far more reliably than emotional labels."
 ---

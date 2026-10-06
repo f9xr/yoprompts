@@ -1,5 +1,5 @@
 /* ==========================================================================
-   YoPrompts — by F9XR Team
+   YoPrompts by F9XR Team
 
    The single stylesheet for the site. Every token below mirrors DESIGN.md
    exactly; do not introduce values that are not defined there.
@@ -29,9 +29,16 @@
      16  CTA bleed
      17  Footer
      18  Prompt detail
-     19  Article & prose
-     20  Utilities, motion, responsive
-   ========================================================================== */
+      19  Article & prose
+      20  Utilities, motion, responsive
+      21  Nav dropdown panels
+      22  AI Tools Directory cards
+      23  Partner prompt generator cards
+      24  HTML sitemap
+      25  Footer partners
+      26  Footer reveal
+      27  View Transitions
+    ========================================================================== */
 
 
 /* 01  Tokens ============================================================= */
@@ -71,7 +78,7 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
     monospace;
 
-  /* Spacing — base unit 4px */
+  /* Spacing: base unit 4px */
   --spacing-xxs: 2px;
   --spacing-xs: 4px;
   --spacing-sm: 8px;
@@ -183,7 +190,7 @@ hr {
 
 /* 03  Typography ======================================================== */
 
-/* Display ladder — weight 400 throughout, with the aggressive negative
+/* Display ladder: weight 400 throughout, with the aggressive negative
    tracking that gives the brand its gathered precision. */
 .display-xl {
   font: 400 96px / 96px var(--font-sans);
@@ -425,7 +432,7 @@ hr {
   flex: none;
 }
 
-/* Circular icon container — used for carousel controls and the hero scroll
+/* Circular icon container: used for carousel controls and the hero scroll
    cue. Same translucent-white border as every other outline. */
 .icon-button {
   display: inline-flex;
@@ -517,7 +524,7 @@ hr {
 
 /* 07  Cards ============================================================= */
 
-/* card-content — the default chrome. No shadows: the hairline is the only
+/* card-content: the default chrome. No shadows: the hairline is the only
    elevation cue in the system. */
 .card {
   background: var(--canvas-card);
@@ -732,9 +739,12 @@ hr {
   font-size: var(--type-body-lg, 18px);
 }
 
-.nav-drawer__list .nav-link:last-of-type {
-  border-bottom: 0;
-}
+  /* :last-of-type on the anchor matches every link in the drawer, because
+     each one is the only <a> inside its own <li>. The border has to hang off
+     the list item instead. */
+  .nav-drawer__list li:last-of-type .nav-link {
+    border-bottom: 0;
+  }
 
 .nav-drawer__actions {
   display: flex;
@@ -937,7 +947,7 @@ hr {
 
 /* 11  Top picks ========================================================= */
 
-/* Four narrow, uniform quick-link badges — a compact row of editorial
+/* Four narrow, uniform quick-link badges: a compact row of editorial
    signposts rather than a feature grid. */
 .top-picks {
   display: grid;
@@ -1136,7 +1146,7 @@ hr {
   color: var(--body-mid);
 }
 
-/* Brand statement — the editorial alternative to a testimonial wall when no
+/* Brand statement: the editorial alternative to a testimonial wall when no
    verified customer quotes exist. */
 .brand-statement {
   padding: var(--spacing-4xl) var(--spacing-2xl);
@@ -1239,7 +1249,7 @@ hr {
 }
 
 /* Hidden prompt source. Not rendered, not laid out, so it costs no visual
-   weight — the copy button reads its textContent on demand. */
+   weight: the copy button reads its textContent on demand. */
 .prompt-source,
 .copy-source {
   display: none;
@@ -1608,7 +1618,7 @@ hr {
   border-top: 1px solid var(--hairline);
 }
 
-/* The prompt container. This is the product — it gets the most generous
+/* The prompt container. This is the product: it gets the most generous
    treatment on the page. */
 .prompt-body {
   margin-top: var(--spacing-2xl);
@@ -1987,7 +1997,7 @@ hr {
   }
 }
 
-/* Desktop — >= 768px is the only breakpoint DESIGN.md defines. The 1024px
+/* Desktop: >= 768px is the only breakpoint DESIGN.md defines. The 1024px
    rule exists only to protect the 3-up archive grid on small laptops. */
 @media (min-width: 1024px) {
   .prompt-card__art {
@@ -1995,7 +2005,7 @@ hr {
   }
 }
 
-/* Tablet — grids step down one column. */
+/* Tablet: grids step down one column. */
 @media (max-width: 1023px) {
   .grid-3,
   .grid-4,
@@ -2021,7 +2031,7 @@ hr {
   }
 }
 
-/* Mobile — < 768px */
+/* Mobile: < 768px */
 @media (max-width: 767px) {
   html {
     scroll-padding-top: 72px;
@@ -2162,7 +2172,7 @@ hr {
   /* Touch targets. The compact 32/36px sizing above is deliberate on pointer
      devices, where it keeps the pill shape the design system is built on. On a
      touchscreen the same elements need a 44px minimum to be reliably hittable
-     (WCAG 2.5.5, and the iOS/Material guidance). Only the hit area grows — the
+     (WCAG 2.5.5, and the iOS/Material guidance). Only the hit area grows: the
      type scale and padding are untouched. */
   .button,
   .button--sm,
@@ -2345,5 +2355,528 @@ hr {
 
   .consent__actions .button {
     flex: 1 1 0;
+  }
+}
+
+
+/* ==========================================================================
+   21  Nav dropdown panels
+
+   CSS-first: :hover and :focus-within both open the panel, so the menu works
+   before main.js runs and with JavaScript off entirely. main.js only adds the
+   Escape handling and keeps aria-expanded in sync.
+   ========================================================================== */
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item__row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+}
+
+.nav-item__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--body-mid);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.nav-item__toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.nav-item:hover .nav-item__toggle,
+.nav-item:focus-within .nav-item__toggle,
+.nav-item.is-open .nav-item__toggle {
+  color: var(--ink);
+  transform: rotate(180deg);
+}
+
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 45;
+  min-width: 216px;
+  padding-top: var(--spacing-sm);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
+    visibility 0s linear var(--dur);
+}
+
+.nav-item:hover > .nav-menu,
+.nav-item:focus-within > .nav-menu,
+.nav-item.is-open > .nav-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.nav-menu__link {
+  display: block;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-bottom: 0;
+  background: var(--canvas-soft);
+  color: var(--body);
+  font: 400 14px / 20px var(--font-sans);
+  white-space: nowrap;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.nav-menu__link:first-child {
+  border-radius: var(--rounded-sm) var(--rounded-sm) 0 0;
+}
+
+.nav-menu__link:last-child {
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0 0 var(--rounded-sm) var(--rounded-sm);
+}
+
+.nav-menu__link:hover,
+.nav-menu__link[aria-current="page"] {
+  background: var(--canvas-card);
+  color: var(--ink);
+}
+
+.nav-menu__link--all {
+  color: var(--ink);
+}
+
+.nav-menu__link--all::after {
+  content: " \2192";
+  color: var(--body-mid);
+}
+
+/* The drawer flattens the tree, so children need to read as one level down. */
+.nav-drawer__sub {
+  padding-left: var(--spacing-xl);
+}
+
+.nav-drawer__sub .nav-link {
+  font-size: var(--type-body-md, 16px);
+  color: var(--body-mid);
+}
+
+/* Open source entry in the bar: same hit area and glyph weight as the
+   search control beside it. */
+.nav-bar__github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: var(--rounded-pill);
+  color: var(--body);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.nav-bar__github:hover {
+  color: var(--ink);
+  border-color: var(--hairline-strong);
+}
+
+.nav-bar__github svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* ==========================================================================
+   22  AI Tools Directory cards
+   ========================================================================== */
+
+.tool-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  background: var(--canvas-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.tool-card:hover {
+  border-color: var(--hairline-strong);
+  transform: translateY(-2px);
+}
+
+.tool-card.is-filtered-out {
+  display: none;
+}
+
+.tool-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+/* The logo tile doubles as its own fallback: the first letter of the tool
+   sits underneath, so a dead hotlink degrades to a monogram instead of a
+   broken image. */
+.tool-card__logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--primary);
+  color: var(--on-primary);
+  font: 400 15px / 1 var(--font-mono);
+}
+
+.tool-card__logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  object-fit: contain;
+}
+
+.tool-card__title {
+  margin: 0;
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: -0.3px;
+}
+
+.tool-card__title a {
+  color: var(--ink);
+}
+
+.tool-card__title a:hover {
+  color: var(--ink-hover);
+}
+
+.tool-card__intro {
+  margin: 0;
+  color: var(--body);
+  font: 400 14px / 22px var(--font-sans);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tool-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-top: auto;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--hairline);
+}
+
+.tool-card__icon {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  color: var(--body-mid);
+}
+
+
+/* ==========================================================================
+   23  Partner prompt generator cards (Troolify)
+   ========================================================================== */
+
+.partner-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  background: var(--canvas-soft);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.partner-card:hover {
+  border-color: var(--hairline-strong);
+  transform: translateY(-2px);
+}
+
+.partner-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.partner-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  color: var(--ink);
+}
+
+.partner-card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.partner-card__title {
+  margin: 0;
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: -0.3px;
+}
+
+.partner-card__title a {
+  color: var(--ink);
+}
+
+.partner-card__title a:hover {
+  color: var(--ink-hover);
+}
+
+.partner-card__intro {
+  margin: 0;
+  color: var(--body);
+  font: 400 14px / 22px var(--font-sans);
+}
+
+.partner-card__foot {
+  margin-top: auto;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--hairline);
+}
+
+
+/* ==========================================================================
+   24  HTML sitemap
+   ========================================================================== */
+
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.sitemap-grid--tight {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sitemap-section {
+  margin-top: var(--spacing-3xl);
+}
+
+.sitemap-group__title {
+  display: block;
+  margin-bottom: var(--spacing-lg);
+}
+
+.sitemap-group__title--sub {
+  color: var(--ink);
+  font: 400 15px / 22px var(--font-sans);
+  letter-spacing: -0.2px;
+  text-transform: none;
+}
+
+.sitemap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sitemap-list li + li {
+  margin-top: var(--spacing-xs);
+}
+
+.sitemap-list a {
+  display: inline-block;
+  color: var(--body);
+  font: 400 14px / 22px var(--font-sans);
+  transition: color var(--dur) var(--ease);
+}
+
+.sitemap-list a:hover {
+  color: var(--ink);
+}
+
+.sitemap-list a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.sitemap-list__muted {
+  color: var(--body-mid);
+  font: 400 14px / 22px var(--font-sans);
+}
+
+.sitemap-list--columns {
+  columns: 3;
+  column-gap: var(--spacing-xl);
+}
+
+.sitemap-list--columns li {
+  break-inside: avoid;
+}
+
+
+/* ==========================================================================
+   25  Footer partners
+   ========================================================================== */
+
+.footer-partners {
+  grid-column: 1 / -1;
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--hairline);
+}
+
+.footer-partners__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md) var(--spacing-xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-partners__list a {
+  color: var(--body);
+  font: 400 14px / 22px var(--font-sans);
+  transition: color var(--dur) var(--ease);
+}
+
+.footer-partners__list a:hover {
+  color: var(--ink);
+}
+
+
+/* ==========================================================================
+   26  Footer reveal
+
+   The footer is pinned behind the page and uncovered as the content slides
+   off it. main.js measures the footer, writes --footer-h, and only then adds
+   .footer-reveal-ready, so an unmeasured or over-tall footer never gets
+   stuck behind the layout.
+   ========================================================================== */
+
+.footer-reveal-ready .cta-bleed__foot {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 0;
+  margin-top: 0;
+}
+
+.footer-reveal-ready #main {
+  position: relative;
+  z-index: 1;
+  background: var(--canvas);
+  margin-bottom: var(--footer-h, 0px);
+}
+
+
+/* ==========================================================================
+   27  View Transitions
+
+   Cross-document transitions between pages. Browsers that do not support the
+   at-rule or the API ignore all of this and get the default instant
+   navigation, so there is no capability check to get wrong.
+   ========================================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+.nav-bar {
+  view-transition-name: site-header;
+}
+
+.footer {
+  view-transition-name: site-footer;
+}
+
+::view-transition-old(root) {
+  animation: yp-page-out 180ms var(--ease) both;
+}
+
+::view-transition-new(root) {
+  animation: yp-page-in 260ms var(--ease) both;
+}
+
+@keyframes yp-page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes yp-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+
+/* Responsive rules for the sections added after section 20. Kept here rather
+   than folded into the original media queries so the file map above stays
+   accurate. */
+@media (max-width: 1023px) {
+  .sitemap-grid,
+  .sitemap-grid--tight {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sitemap-list--columns {
+    columns: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .sitemap-grid,
+  .sitemap-grid--tight {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sitemap-list--columns {
+    columns: 1;
+  }
+
+  .nav-bar__github {
+    width: 44px;
+    height: 44px;
+  }
+
+  .tool-card,
+  .partner-card {
+    padding: var(--spacing-lg);
   }
 }

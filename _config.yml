@@ -28,7 +28,7 @@ email: "hello@f9xr.org"
 # 1. jekyll-seo-tag 2.8.0's ImageDrop reads `page["image"]` only and has no
 #    site-level fallback, so a top-level `image:` is silently ignored and no
 #    og:image is emitted anywhere. Top-level `logo:` does work, because the
-#    plugin reads that one straight from site data — which is why the
+#    plugin reads that one straight from site data, which is why the
 #    publisher logo resolves correctly while the share image did not.
 # 2. `twitter:` is deliberately NOT set here. The plugin's template emits
 #    `twitter:site` as a bare "@" whenever site.twitter exists at all, even
@@ -68,7 +68,7 @@ defaults:
         path: /assets/img/og-default.png
         width: 1200
         height: 630
-        alt: "YoPrompts — ready-made AI prompts by F9XR Team"
+        alt: "YoPrompts: ready-made AI prompts by F9XR Team"
       twitter:
         card: summary_large_image
   - scope:
@@ -91,6 +91,8 @@ exclude:
   - skills
   - DESIGN.md
   - todo.txt
+  - backlinks.md
+  - all-urls.txt
   - demo-html-site
   - README.md
   - .kilo

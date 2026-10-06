@@ -1,9 +1,45 @@
 {%- comment -%}
   Emits one list item per primary navigation entry so the desktop bar and the
   mobile drawer can never drift apart. Callers supply the wrapping element.
+
+  include.variant:
+    "menu"  (default) entries that declare `children` render as a hoverable /
+            keyboard-reachable dropdown, with the parent page kept as the
+            first row of the panel so the hierarchy still links both ways.
+    "flat"  children are emitted as their own list items underneath the
+            parent. The mobile drawer has no room for a panel, so it gets
+            the whole tree as one indented column instead.
 {%- endcomment -%}
+{%- assign variant = include.variant | default: 'menu' -%}
 {%- for item in site.data.nav.primary -%}
+  {%- if item.children and variant == 'flat' -%}
   <li>
     <a class="nav-link" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
   </li>
+    {%- for child in item.children -%}
+  <li class="nav-drawer__sub">
+    <a class="nav-link" href="{% if child.url contains '://' %}{{ child.url }}{% else %}{{ child.url | relative_url }}{% endif %}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.label }}</a>
+    </li>
+    {%- endfor -%}
+  {%- elsif item.children -%}
+  <li class="nav-item has-menu" data-nav-menu>
+    <span class="nav-item__row">
+      <a class="nav-link" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      <button class="nav-item__toggle" type="button" data-nav-menu-toggle aria-expanded="false" aria-controls="nav-menu-{{ forloop.index }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+        <span class="sr-only">{{ item.label }} menu</span>
+      </button>
+    </span>
+    <div class="nav-menu" id="nav-menu-{{ forloop.index }}" data-nav-menu-panel>
+      <a class="nav-menu__link nav-menu__link--all" href="{{ item.url | relative_url }}">All {{ item.label }}</a>
+      {%- for child in item.children -%}
+      <a class="nav-menu__link" href="{% if child.url contains '://' %}{{ child.url }}{% else %}{{ child.url | relative_url }}{% endif %}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.label }}</a>
+      {%- endfor -%}
+    </div>
+  </li>
+  {%- else -%}
+  <li>
+    <a class="nav-link" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+  </li>
+  {%- endif -%}
 {%- endfor -%}

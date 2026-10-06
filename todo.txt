@@ -58,7 +58,6 @@ and BreadcrumbList structured data:
 
 Other SEO work completed in the same pass:
 
-  - url/baseurl corrected to https://f9xr.org + /yoprompts, CNAME added
   - 1200x630 og-default.png generated; og/twitter tags now resolve
   - one page-entity per page: the duplicate WebSite on the homepage and the
     BlogPosting typing on prompt pages are gone
@@ -71,3 +70,47 @@ Other SEO work completed in the same pass:
   - carousel keyboard support, drawer focus trap, 44px touch targets on mobile
   - categories description corrected from twelve categories to the six that
     have prompts 
+
+
+
+
+
+dont use long dashes (—) in our website.
+	
+
+also add: OpenSource at GitHub linked to https://github.com/f9xr/yoprompts
+add dropdown to top navbar
+in footer, add our Partners section with below links:
+https://f9xr.org/articles/
+https://f9xr.org/troolify/
+https://f9xr.org/directories/
+https://f9xr.org/seo-audit-report-skill/
+https://f9xr.org/boredpup/
+https://f9xr.org/dev9b/
+https://f9xr.org/resumio/
+
+
+
+Rename Live tools to AI Tools Directory
+
+extract data from this Google Sheet:
+https://docs.google.com/spreadsheets/d/1Hr3oGmWGUZPO4wgtmb7bDQBgZcB-RtzCuNDpMDA6l8Q/edit?usp=sharing
+
+create HTML Sitemap page and link it to footer
+also we have some prompt generator tools in https://f9xr.org/troolify/tools/prompts (its our partner site), so I want to display these tools with our branding cards, from their tools and sitemap of troolify
+use icons from lucide 
+
+
+And, of course, each preceding stage in the hierarchy links to the next stage & vice versa! So, the authority juice flows to all the different pages & all the pages also are indexed by Google!
+
+It sounds like you are trying to create a "footer reveal" effect. In this effect, the footer stays fixed behind the main content, and as the user scrolls to the bottom, the content slides up to uncover it.
+
+Complete CSS View Transitions API setup
+
+
+Hey Opencode, As you already know about our site, so now research, how to get FREE backlinks for this site in, create a .md file with a table with list of sites where I can get free backlinks In according to our niche which can help us to grow our website and boost our ranking on google. 
+
+
+
+only keep Made by F9XR Team
+© 2026 YoPrompts by F9XR Team (url linked to f9xr.org)

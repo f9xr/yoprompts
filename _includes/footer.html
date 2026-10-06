@@ -4,7 +4,7 @@
   <p class="cta-bleed__type">Let&rsquo;s prompt.</p>
 </div>
 
-<div class="cta-bleed__foot">
+<div class="cta-bleed__foot" data-footer-reveal>
   <footer class="footer" role="contentinfo">
     <div class="container">
 
@@ -32,6 +32,7 @@
             <a href="{{ '/blog/' | relative_url }}">Blog</a>
             <a href="{{ '/ai-tools/' | relative_url }}">AI tools</a>
             <a href="{{ '/resources/' | relative_url }}#prompting-basics">Prompting basics</a>
+            <a href="{{ '/html-sitemap/' | relative_url }}">HTML sitemap</a>
           </div>
 
           <div class="footer-card__col">
@@ -39,6 +40,7 @@
             <a href="{{ '/about/' | relative_url }}">About</a>
             <a href="{{ '/contact/' | relative_url }}">Contact</a>
             <a href="{{ '/submit-a-prompt/' | relative_url }}">Submit a prompt</a>
+            <a href="https://github.com/f9xr/yoprompts" target="_blank" rel="noopener noreferrer">Open source</a>
           </div>
 
           <div class="footer-card__col">
@@ -56,6 +58,24 @@
           </div>
         </div>
 
+        {%- comment -%}
+          Partner properties. Their own block rather than a sixth column:
+          seven links in a row that narrow would wrap into an unreadable
+          stack at every width the footer card supports.
+        {%- endcomment -%}
+        <div class="footer-partners">
+          <span class="footer-card__col-title eyebrow-mono eyebrow-mono--muted">Partners</span>
+          <ul class="footer-partners__list" role="list">
+            <li><a href="https://f9xr.org/articles/">Articles</a></li>
+            <li><a href="https://f9xr.org/troolify/">Troolify</a></li>
+            <li><a href="https://f9xr.org/directories/">Directories</a></li>
+            <li><a href="https://f9xr.org/seo-audit-report-skill/">SEO Audit Report Skill</a></li>
+            <li><a href="https://f9xr.org/boredpup/">BoredPup</a></li>
+            <li><a href="https://f9xr.org/dev9b/">Dev9B</a></li>
+            <li><a href="https://f9xr.org/resumio/">Resumio</a></li>
+          </ul>
+        </div>
+
         <div class="footer-widget">
           <p class="eyebrow-mono eyebrow-mono--muted">Prompt library</p>
           <p class="footer-widget__title">
@@ -69,10 +89,10 @@
       </div>
 
       <div class="footer__bar">
-        <span>&copy; {{ 'now' | date: "%Y" }} YoPrompts by F9XR Team</span>
+        <span>Made by F9XR Team</span>
         <span>
-          Made by
-          <a class="footer__credit" href="https://f9xr.org" rel="noopener noreferrer">F9XR Team (f9xr.org)</a>
+          &copy; {{ 'now' | date: "%Y" }}
+          <a class="footer__credit" href="https://f9xr.org" rel="noopener noreferrer">YoPrompts by F9XR Team</a>
         </span>
       </div>
 

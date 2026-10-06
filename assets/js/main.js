@@ -1,5 +1,5 @@
 /* ==========================================================================
-   YoPrompts — by F9XR Team
+   YoPrompts by F9XR Team
 
    Progressive enhancement only. Every feature below is additive: with
    JavaScript disabled the pages still render, still link, and the prompt
@@ -14,7 +14,9 @@
      06  Stories carousel
      07  Archive filtering (search + pill groups)
      08  Analytics consent
-   ========================================================================== */
+     09  Nav dropdown panels
+     10  Footer reveal
+    ========================================================================== */
 
   /* Analytics identity. Kept here rather than in head.html so that gtag.js is
      never requested until consent has actually been granted. */
@@ -408,6 +410,7 @@
       }
 
       var state = { search: '', category: 'all', tool: 'all', difficulty: 'all' };
+      var unit = archive.getAttribute('data-filter-unit') || 'prompts';
 
       var haystack = function (item) {
         var cached = item.getAttribute('data-haystack');
@@ -435,12 +438,12 @@
           }
         }
 
-        if (
-          state.category !== 'all' &&
-          item.getAttribute('data-category') !== state.category
-        ) {
-          return false;
-        }
+      if (
+        state.category !== 'all' &&
+        (item.getAttribute('data-category') || '').split(' ').indexOf(state.category) === -1
+      ) {
+        return false;
+      }
 
         if (state.difficulty !== 'all' &&
           item.getAttribute('data-difficulty') !== state.difficulty) {
@@ -484,8 +487,8 @@
         if (counter) {
           counter.textContent =
             shown === total
-              ? total + ' prompts'
-              : shown + ' of ' + total + ' prompts';
+              ? total + ' ' + unit
+              : shown + ' of ' + total + ' ' + unit;
         }
 
         if (empty) {
@@ -627,7 +630,7 @@
       if (choice === 'granted') {
         loadGA();
       } else {
-        /* Nothing to unload — gtag.js is only ever injected after consent, so
+        /* Nothing to unload: gtag.js is only ever injected after consent, so
            declining means it was never requested in the first place. */
       }
 
@@ -667,6 +670,133 @@
   }
 
 
+  /* 09  Nav dropdown panels ============================================== */
+
+  /* The panel itself is CSS driven: `.nav-item.has-menu:hover` and
+     `:focus-within` both open it, so the menu works with JavaScript off and
+     with a keyboard before this module ever runs. What it cannot do without
+     help is close on Escape or keep `aria-expanded` honest, which is all this
+     adds. */
+  function initNavMenus() {
+    var menus = document.querySelectorAll('[data-nav-menu]');
+    if (!menus.length) {
+      return;
+    }
+
+    var close = function (item) {
+      item.classList.remove('is-open');
+      var toggle = item.querySelector('[data-nav-menu-toggle]');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    var open = function (item) {
+      each(menus, close);
+      item.classList.add('is-open');
+      var toggle = item.querySelector('[data-nav-menu-toggle]');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    each(menus, function (item) {
+      var toggle = item.querySelector('[data-nav-menu-toggle]');
+
+      on(toggle, 'click', function (event) {
+        event.preventDefault();
+        if (item.classList.contains('is-open')) {
+          close(item);
+        } else {
+          open(item);
+        }
+      });
+
+      on(item, 'focusin', function () {
+        if (!item.matches(':hover')) {
+          open(item);
+        }
+      });
+
+      on(item, 'mouseleave', function () {
+        if (!item.contains(document.activeElement)) {
+          close(item);
+        }
+      });
+
+      on(item, 'focusout', function () {
+        window.setTimeout(function () {
+          if (!item.contains(document.activeElement)) {
+            close(item);
+          }
+        }, 0);
+      });
+    });
+
+    on(document, 'keydown', function (event) {
+      if (event.key !== 'Escape') {
+        return;
+      }
+      each(menus, function (item) {
+        if (item.classList.contains('is-open')) {
+          var toggle = item.querySelector('[data-nav-menu-toggle]');
+          close(item);
+          if (toggle) {
+            toggle.focus();
+          }
+        }
+      });
+    });
+
+    on(document, 'click', function (event) {
+      each(menus, function (item) {
+        if (!item.contains(event.target)) {
+          close(item);
+        }
+      });
+    });
+  }
+
+
+  /* 10  Footer reveal ==================================================== */
+
+  /* The footer is pinned behind the page and the content slides up off it at
+     the end of the scroll. Purely decorative, so it is opt-in: main.js
+     measures the footer, publishes the height as a custom property, and only
+     then adds the class that switches the footer to fixed. If the footer is
+     taller than the viewport the effect would hide part of it for good, so
+     it is skipped entirely in that case, as it is under reduced motion. */
+  function initFooterReveal() {
+    var foot = document.querySelector('[data-footer-reveal]');
+    var main = document.getElementById('main');
+    var root = document.documentElement;
+
+    if (!foot || !main || reduceMotion) {
+      return;
+    }
+
+    var enabled = false;
+
+    function measure() {
+      var height = foot.offsetHeight;
+      var fits = height > 0 && height < window.innerHeight * 0.92;
+
+      root.style.setProperty('--footer-h', fits ? height + 'px' : '0px');
+
+      if (fits !== enabled) {
+        enabled = fits;
+        root.classList.toggle('footer-reveal-ready', fits);
+      }
+    }
+
+    measure();
+    on(window, 'resize', measure);
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(measure).observe(foot);
+    }
+  }
+
+
   /* Boot ================================================================== */
 
   function boot() {
@@ -677,6 +807,8 @@
     initCarousels();
     initFilters();
     initConsent();
+    initNavMenus();
+    initFooterReveal();
   }
 
   if (document.readyState === 'loading') {

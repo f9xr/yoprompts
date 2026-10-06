@@ -38,7 +38,7 @@ prompt: |
      risks, and incorrect behaviour under concurrency or partial failure.
      For each: the exact input or state that triggers it, and the fix as a
      diff. If you cannot describe a triggering condition, it is not a
-     blocking issue — say so.
+     blocking issue. Say so.
 
   2. **Likely issues.** Correct today by luck of current callers. These are
      the ones that bite after the next feature. Same evidence standard.
@@ -66,7 +66,7 @@ workflow:
   - "Trace each issue to a triggering input"
   - "Cap design notes at three"
   - "Produce one refactor diff for the next author"
-output_preview: "A ranked list where every item names its triggering condition, plus one refactor diff — or a two-line verdict that the code is fine."
+output_preview: "A ranked list where every item names its triggering condition, plus one refactor diff, or a two-line verdict that the code is fine."
 how_to_use:
   - "Paste the real diff, not a rewritten summary. The evidence standard in this prompt only works on actual code."
   - "State the production call path. Most missed bugs are call-path bugs, and the prompt will not find them without this."
@@ -75,7 +75,7 @@ how_to_use:
 tips:
   - "For a large diff, review one file at a time. A 2000-line paste produces shallower analysis than five 200-line pastes."
   - "If it flags something as blocking, ask it to state the exact failure in one sentence with no hedging. If the sentence cannot be written, the finding is noise."
-  - "Add your project's actual constraints — 'this runs on a 2-second Lambda timeout' — and the priority order changes completely."
+  - "Add your project's actual constraints ('this runs on a 2-second Lambda timeout') and the priority order changes completely."
   - "Use the refactor section as a separate task. Ask for it on its own once the bugs are settled."
 example_output: |
   BLOCKING
@@ -98,5 +98,5 @@ faq:
   - q: "Should I run every suggestion through my test suite?"
     a: "The blocking items, yes. The design section is opinion by construction, and the refactor needs a human who knows the team's conventions."
   - q: "Does it work for test code?"
-    a: "Less well. Test review needs different criteria — flakiness and false confidence rather than production failure — and the framing above will push it toward production concerns that do not apply."
+    a: "Less well. Test review needs different criteria (flakiness and false confidence rather than production failure) and the framing above will push it toward production concerns that do not apply."
 ---

@@ -2,7 +2,7 @@
   Breadcrumb trail. Exists for the same reason nav-links.html does: the same
   markup was being copied into every page by hand, and a copy is a drift risk.
 
-  Expects `include.trail` — a pipe-delimited list of `Label~Path` crumbs, in
+  Expects `include.trail`, a pipe-delimited list of `Label~Path` crumbs, in
   order from the site root. `~` separates the label from the path so paths may
   contain slashes freely; `|` separates crumbs. The final crumb is rendered as
   plain text because it is the current page.
@@ -13,7 +13,7 @@
   nowhere to link to, which is not what you want for an intermediate crumb.
 
   The final crumb is rendered as plain text because it is the current page.
-  When that label is dynamic — a post title — pass `current` instead of
+  When that label is dynamic (a post title), pass `current` instead of
   trailing it onto `trail`, so every entry in `trail` stays a link:
 
     {% include breadcrumbs.html trail="Home~/|Blog~/blog/" current=page.title %}

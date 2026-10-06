@@ -3,9 +3,25 @@ primary:
     url: /categories/
   - label: Top Prompts
     url: /prompts/
-  - label: Live Tools
+  - label: AI Tools Directory
     url: /ai-tools/
   - label: Resources
     url: /resources/
+    children:
+      - label: Prompting basics
+        url: /resources/#prompting-basics
+      - label: Guides
+        url: /blog/
+      - label: HTML Sitemap
+        url: /html-sitemap/
   - label: Blog
     url: /blog/
+  - label: Company
+    url: /about/
+    children:
+      - label: Contact
+        url: /contact/
+      - label: Submit a prompt
+        url: /submit-a-prompt/
+      - label: Open source
+        url: https://github.com/f9xr/yoprompts

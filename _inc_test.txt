@@ -1,0 +1,1 @@
+trail=[{{ include.trail }}] split={{ include.trail | split: "|" | inspect }}

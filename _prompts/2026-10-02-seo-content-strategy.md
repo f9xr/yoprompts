@@ -72,7 +72,7 @@ workflow:
   - "Select eight briefs for the first 90 days"
   - "Map internal links both ways"
   - "Set weekly and lagging indicators"
-output_preview: "Six clusters scored on two axes, eight briefs, a two-way linking map, and a four-metric dashboard — plus one question if the context is too thin to proceed."
+output_preview: "Six clusters scored on two axes, eight briefs, a two-way linking map, and a four-metric dashboard, plus one question if the context is too thin to proceed."
 how_to_use:
   - "Fill in every field under Context. An empty field is the most common reason this prompt returns something generic."
   - "Paste your top 20 ranking URLs, or as many as you have. The model treats these as your existing authority."
@@ -85,11 +85,11 @@ tips:
   - "Run the same prompt twice with different context to see how much of the output is being driven by your input."
   - "Have it rewrite any brief that reads like it could describe a competitor's site instead of yours."
 example_output: |
-  CLUSTER 3 — "Comparative evaluation"
+  CLUSTER 3: "Comparative evaluation"
   Core query: best [category] for [segment]  ·  Intent: commercial
   Supporting: [category] vs [alternative], is [tool] worth it, [category] pricing tiers
-  Relevance 5/5 — closest query to signup intent.
-  Difficulty 4/5 — three incumbents with 200+ referring domains.
+  Relevance 5/5, closest query to signup intent.
+  Difficulty 4/5, three incumbents with 200+ referring domains.
   Verdict: publish two comparison pages, not ten.
 
   90-DAY PIECE 1

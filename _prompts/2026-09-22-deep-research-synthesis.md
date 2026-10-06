@@ -87,7 +87,7 @@ example_output: |
   SINGLE-SOURCE    The dose-response claim traces to one 2019 working paper,
                    11 authors, never replicated.
   CONTESTED        Cost-effectiveness depends on the baseline you assume.
-  INFERRED         "Small teams adopt faster" — pattern in 3 case studies I
+  INFERRED         "Small teams adopt faster", pattern in 3 case studies I
                    supplied, no counter-evidence available.
 
   5. WOULD CHANGE THIS
@@ -95,7 +95,7 @@ example_output: |
   then, treat the dose-response as provisional.
 faq:
   - q: "Should I use Perplexity for this?"
-    a: "Yes, if you want sourced claims. This prompt is written to degrade safely without browsing — it labels unverifiable claims rather than inventing citations — but with a browsing tool attached you should still spot-check two of the citations by hand."
+    a: "Yes, if you want sourced claims. This prompt is written to degrade safely without browsing: it labels unverifiable claims rather than inventing citations. But with a browsing tool attached you should still spot-check two of the citations by hand."
   - q: "How is this different from just asking a good question?"
     a: "The value is in the structure, not the topic. Step 3 forces every claim into an evidence bucket, and step 5 forces the analysis to name its own breaking point. Neither happens by default."
   - q: "Can it do competitive research on a company?"
