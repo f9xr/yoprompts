@@ -5,8 +5,8 @@ category: seo
 category_label: SEO
 difficulty: advanced
 tools: [chatgpt, claude, gemini]
-# Measured from rendered page length at ~200 wpm; all six prompt
-# pages are within 5% of each other, so they all land on 7.
+# Shared across every prompt page rather than measured per page: the pages
+# differ by well over 5% in length. Also feeds the HowTo totalTime.
 read_time: 7
 # jekyll-seo-tag types every dated collection document as BlogPosting.
 # These are evergreen prompt pages, not blog posts; WebPage is the correct

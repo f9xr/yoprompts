@@ -5,8 +5,8 @@ category: images
 category_label: Image Generation
 difficulty: beginner
 tools: [chatgpt, gemini, claude]
-# Measured from rendered page length at ~200 wpm; all six prompt
-# pages are within 5% of each other, so they all land on 7.
+# Shared across every prompt page rather than measured per page: the pages
+# differ by well over 5% in length. Also feeds the HowTo totalTime.
 read_time: 7
 # jekyll-seo-tag types every dated collection document as BlogPosting.
 # These are evergreen prompt pages, not blog posts; WebPage is the correct
@@ -16,7 +16,7 @@ seo:
 picks: [essential]
 # Every prompt sits in its own category, so the layout's
 # same-category fallback can never match. These are curated.
-related: [linkedin-post-writer, seo-content-strategy]
+related: [scroll-stopping-image, consistent-character-series, linkedin-post-writer]
 art: palette
 tags: [image generation, midjourney, art direction, visual design]
 excerpt: "Turns a vague idea into a structured image brief: subject, composition, lighting, lens, palette and negative constraints."
