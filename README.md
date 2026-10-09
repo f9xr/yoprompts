@@ -115,7 +115,7 @@ has no quotes — `delay="{{ reveal_class }}"` reintroduces the bug.
 
 **Never use a compound condition in `where_exp`.** Its parser accepts one
 comparison only; `and` or `or` fails with
-`Expected end_of_string but found id`. Use a plain `{% if %}` loop instead.
+`Expected end_of_string but found id`. Use a plain Liquid `if` loop instead.
 
 ### Before the first deploy
 

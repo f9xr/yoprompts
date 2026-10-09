@@ -47,68 +47,98 @@ seo:
         <p class="eyebrow-mono">HTML Sitemap</p>
         <h1 class="display-lg section-head__title">Every page on YoPrompts</h1>
         <p class="body-lg section-head__lede">
-          The full directory of the site, grouped by section. Use it to jump
-          straight to a category, a prompt or a policy. The machine readable
-          version lives at
-          <a class="link-inline" href="{{ '/sitemap.xml' | relative_url }}">/sitemap.xml</a>.
+          The full directory of the site, grouped by section. Jump to a
+          category, a prompt or a policy. The machine readable version lives
+          at <a class="link-inline" href="{{ '/sitemap.xml' | relative_url }}">/sitemap.xml</a>.
         </p>
       </div>
     </div>
 
-    <div class="sitemap-grid">
+    <nav class="sitemap-jump" aria-label="Jump to a section">
+      <a href="#site">Site</a>
+      <a href="#categories">Prompt categories</a>
+      <a href="#guides">Guides</a>
+      <a href="#tools">Prompt tools</a>
+      <a href="#partners">Partners</a>
+      <a href="#feeds">Feeds</a>
+    </nav>
 
-      <div class="sitemap-group">
-        <h2 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Main</h2>
-        <ul class="sitemap-list" role="list">
-          <li><a href="{{ '/' | relative_url }}">Home</a></li>
-          <li><a href="{{ '/prompts/' | relative_url }}">All prompts</a></li>
-          <li><a href="{{ '/categories/' | relative_url }}">Categories</a></li>
-          <li><a href="{{ '/ai-tools/' | relative_url }}">AI Tools Directory</a></li>
-          <li><a href="{{ '/resources/' | relative_url }}">Resources</a></li>
-          <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-          <li><a href="{{ '/html-sitemap/' | relative_url }}" aria-current="page">HTML Sitemap</a></li>
-        </ul>
+    <ul class="sitemap-stats" role="list">
+      <li class="sitemap-stat">
+        <span class="sitemap-stat__n">{{ site.prompts | size }}</span>
+        <span class="sitemap-stat__l">Prompts</span>
+      </li>
+      <li class="sitemap-stat">
+        <span class="sitemap-stat__n">{{ site.data.categories | size }}</span>
+        <span class="sitemap-stat__l">Categories</span>
+      </li>
+      <li class="sitemap-stat">
+        <span class="sitemap-stat__n">{{ site.posts | size }}</span>
+        <span class="sitemap-stat__l">Guides</span>
+      </li>
+      <li class="sitemap-stat">
+        <span class="sitemap-stat__n">{{ site.data.ai_directory | size }}</span>
+        <span class="sitemap-stat__l">AI tools</span>
+      </li>
+    </ul>
+
+    <section class="sitemap-section" id="site" aria-labelledby="sitemap-site">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-site">Site</h2>
+        <span class="sitemap-section__meta meta-mono">Main, company, legal</span>
       </div>
 
-      <div class="sitemap-group">
-        <h2 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Company</h2>
-        <ul class="sitemap-list" role="list">
-          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
-          <li><a href="{{ '/submit-a-prompt/' | relative_url }}">Submit a prompt</a></li>
-          <li><a href="{{ '/resources/' | relative_url }}#prompting-basics">Prompting basics</a></li>
-        </ul>
+      <div class="sitemap-grid sitemap-grid--3">
+        <div class="sitemap-group">
+          <h3 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Main</h3>
+          <ul class="sitemap-list" role="list">
+            <li><a href="{{ '/' | relative_url }}">Home</a></li>
+            <li><a href="{{ '/prompts/' | relative_url }}">All prompts</a></li>
+            <li><a href="{{ '/categories/' | relative_url }}">Categories</a></li>
+            <li><a href="{{ '/ai-tools/' | relative_url }}">AI Tools Directory</a></li>
+            <li><a href="{{ '/resources/' | relative_url }}">Resources</a></li>
+            <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+            <li><a href="{{ '/html-sitemap/' | relative_url }}" aria-current="page">HTML Sitemap</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Company</h3>
+          <ul class="sitemap-list" role="list">
+            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+            <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+            <li><a href="{{ '/submit-a-prompt/' | relative_url }}">Submit a prompt</a></li>
+            <li><a href="{{ '/resources/' | relative_url }}#prompting-basics">Prompting basics</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Legal &amp; cookies</h3>
+          <ul class="sitemap-list" role="list">
+            <li><a href="{{ '/privacy/' | relative_url }}">Privacy</a></li>
+            <li><a href="{{ '/terms/' | relative_url }}">Terms</a></li>
+            <li><a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a></li>
+            <li><a href="{{ '/cookies/' | relative_url }}">Cookies</a></li>
+            <li><a href="{{ '/cookies/preferences/' | relative_url }}">Cookie preferences</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sitemap-section" id="categories" aria-labelledby="sitemap-categories">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-categories">Prompt categories</h2>
+        <span class="sitemap-section__meta meta-mono">{{ site.prompts | size }} prompts published</span>
       </div>
 
-      <div class="sitemap-group">
-        <h2 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Legal &amp; cookies</h2>
-        <ul class="sitemap-list" role="list">
-          <li><a href="{{ '/privacy/' | relative_url }}">Privacy</a></li>
-          <li><a href="{{ '/terms/' | relative_url }}">Terms</a></li>
-          <li><a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a></li>
-          <li><a href="{{ '/cookies/' | relative_url }}">Cookies</a></li>
-          <li><a href="{{ '/cookies/preferences/' | relative_url }}">Cookie preferences</a></li>
-        </ul>
-      </div>
-
-      <div class="sitemap-group">
-        <h2 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Feeds &amp; tools</h2>
-        <ul class="sitemap-list" role="list">
-          <li><a href="{{ '/sitemap.xml' | relative_url }}">XML sitemap</a></li>
-          <li><a href="{{ '/feed.xml' | relative_url }}">RSS feed</a></li>
-          <li><a href="https://github.com/f9xr/yoprompts" target="_blank" rel="noopener noreferrer">Open source at GitHub</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="sitemap-section">
-      <h2 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Prompt categories</h2>
       <div class="sitemap-grid sitemap-grid--tight">
         {%- for cat in site.data.categories -%}
         {%- assign cat_prompts = site.prompts | where: "category", cat.slug -%}
         <div class="sitemap-group">
-          <h3 class="sitemap-group__title sitemap-group__title--sub">{{ cat.label }}</h3>
+          <h3 class="sitemap-group__title sitemap-group__title--sub">
+            {{ cat.label }}
+            <span class="sitemap-list__count">{{ cat_prompts.size }}</span>
+          </h3>
           <ul class="sitemap-list" role="list">
             {%- if cat_prompts.size > 0 -%}
               {%- for p in cat_prompts -%}
@@ -117,15 +147,24 @@ seo:
             {%- else -%}
             <li class="sitemap-list__muted">No prompts published yet</li>
             {%- endif -%}
-            <li><a href="{{ '/categories/' | relative_url }}#{{ cat.slug }}">{{ cat.label }} index</a></li>
+            <li class="sitemap-list__more">
+              {%- if cat_prompts.size > 0 -%}
+              <a href="{{ '/categories/' | relative_url }}#{{ cat.slug }}">{{ cat.label }} index</a>
+              {%- else -%}
+              <a href="{{ '/categories/' | relative_url }}">{{ cat.label }} index</a>
+              {%- endif -%}
+            </li>
           </ul>
         </div>
         {%- endfor -%}
       </div>
-    </div>
+    </section>
 
-    <div class="sitemap-section">
-      <h2 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Guides</h2>
+    <section class="sitemap-section" id="guides" aria-labelledby="sitemap-guides">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-guides">Guides</h2>
+        <span class="sitemap-section__meta meta-mono">{{ site.posts | size }} published</span>
+      </div>
       <ul class="sitemap-list sitemap-list--columns" role="list">
         {%- for post in site.posts -%}
         <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
@@ -133,30 +172,67 @@ seo:
         <li class="sitemap-list__muted">No guides published yet</li>
         {%- endfor -%}
       </ul>
-    </div>
+    </section>
 
-    <div class="sitemap-section">
-      <h2 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Prompt generators on Troolify</h2>
+    <section class="sitemap-section" id="tools" aria-labelledby="sitemap-tools">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-tools">Prompt tools on Troolify</h2>
+        <span class="sitemap-section__meta meta-mono">Partner generators</span>
+      </div>
       <ul class="sitemap-list sitemap-list--columns" role="list">
         {%- for tool in site.data.partner_tools -%}
-        <li><a href="{{ tool.url }}" target="_blank" rel="noopener noreferrer">{{ tool.name }}</a></li>
+        <li><a href="{{ tool.url }}" target="_blank" rel="noopener noreferrer">{{ tool.name }}<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
         {%- endfor -%}
-        <li><a href="https://f9xr.org/troolify/tools/prompts/" target="_blank" rel="noopener noreferrer">All Troolify prompt tools</a></li>
+        <li><a href="https://f9xr.org/troolify/tools/prompts/" target="_blank" rel="noopener noreferrer">All Troolify prompt tools<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
       </ul>
-    </div>
+    </section>
 
-    <div class="sitemap-section">
-      <h2 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Partners</h2>
+    <section class="sitemap-section" id="partners" aria-labelledby="sitemap-partners">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-partners">Partners</h2>
+        <span class="sitemap-section__meta meta-mono">F9XR properties</span>
+      </div>
       <ul class="sitemap-list sitemap-list--columns" role="list">
-        <li><a href="https://f9xr.org/articles/">Articles</a></li>
-        <li><a href="https://f9xr.org/troolify/">Troolify</a></li>
-        <li><a href="https://f9xr.org/directories/">Directories</a></li>
-        <li><a href="https://f9xr.org/seo-audit-report-skill/">SEO Audit Report Skill</a></li>
-        <li><a href="https://f9xr.org/boredpup/">BoredPup</a></li>
-        <li><a href="https://f9xr.org/dev9b/">Dev9B</a></li>
-        <li><a href="https://f9xr.org/resumio/">Resumio</a></li>
+        <li><a href="https://f9xr.org/articles/">Articles<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://f9xr.org/troolify/">Troolify<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://f9xr.org/directories/">Directories<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://f9xr.org/seo-audit-report-skill/">SEO Audit Report Skill<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://f9xr.org/boredpup/">BoredPup<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://f9xr.org/dev9b/">Dev9B<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://f9xr.org/resumio/">Resumio<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
       </ul>
-    </div>
+    </section>
+
+    <section class="sitemap-section" id="feeds" aria-labelledby="sitemap-feeds">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-feeds">Feeds &amp; source</h2>
+        <span class="sitemap-section__meta meta-mono">Machine readable</span>
+      </div>
+      <div class="sitemap-grid sitemap-grid--3">
+        <div class="sitemap-group">
+          <h3 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Subscribe</h3>
+          <ul class="sitemap-list" role="list">
+            <li><a href="{{ '/feed.xml' | relative_url }}">RSS feed</a></li>
+            <li><a href="{{ '/sitemap.xml' | relative_url }}">XML sitemap</a></li>
+            <li><a href="{{ '/robots.txt' | relative_url }}">robots.txt</a></li>
+          </ul>
+        </div>
+        <div class="sitemap-group">
+          <h3 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Source</h3>
+          <ul class="sitemap-list" role="list">
+            <li><a href="https://github.com/f9xr/yoprompts" target="_blank" rel="noopener noreferrer">Open source at GitHub<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+            <li><a href="https://github.com/f9xr/yoprompts/issues" target="_blank" rel="noopener noreferrer">Request a prompt<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+          </ul>
+        </div>
+        <div class="sitemap-group">
+          <h3 class="sitemap-group__title eyebrow-mono eyebrow-mono--muted">Off-site</h3>
+          <ul class="sitemap-list" role="list">
+            <li><a href="{{ '/ai-tools/' | relative_url }}">AI Tools Directory</a></li>
+            <li><a href="https://f9xr.org/troolify/tools/prompts/" target="_blank" rel="noopener noreferrer">Troolify prompt tools<span class="sitemap-list__ext" aria-hidden="true">&#8599;</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
   </div>
 </section>

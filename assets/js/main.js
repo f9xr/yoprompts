@@ -18,13 +18,13 @@
      10  Footer reveal
     ========================================================================== */
 
+(function () {
+  'use strict';
+
   /* Analytics identity. Kept here rather than in head.html so that gtag.js is
      never requested until consent has actually been granted. */
   var GA_ID = 'G-SYTFR8FYXC';
   var CONSENT_KEY = 'yoprompts_consent';
-
-(function () {
-  'use strict';
 
   var reduceMotion = window.matchMedia
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -37,9 +37,9 @@
     Array.prototype.forEach.call(list || [], fn);
   }
 
-  function on(target, type, handler) {
+  function on(target, type, handler, options) {
     if (target) {
-      target.addEventListener(type, handler);
+      target.addEventListener(type, handler, options);
     }
   }
 

@@ -1093,7 +1093,7 @@ hr {
   padding: var(--spacing-xl);
   border: 1px solid var(--hairline);
   border-radius: var(--rounded-sm);
-  border-top: 2px solid var(--accent);
+  border-top: 2px solid var(--accent, var(--hairline-strong));
 }
 
 .story-card--dusk {
@@ -1958,25 +1958,43 @@ hr {
    The hidden state is opt-in, gated on `.reveal-ready`, which main.js adds only
    once the IntersectionObserver is actually attached. The default is fully
    visible, so a crawler, a browser with JavaScript disabled, and a script
-   bundle that fails to load all render the cards instead of an empty page. */
+   bundle that fails to load all render the cards instead of an empty page.
+
+   The entrance is an animation rather than a transition, and it moves the
+   independent `translate` property rather than `transform`. A transition
+   declared here would have to out-specify each card's own rule and would
+   silently kill its hover lift and border-colour easing; an animation leaves
+   both the `transition` list and `transform` alone, so hover still works. */
 .reveal-ready .reveal {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 520ms var(--ease), transform 520ms var(--ease);
 }
 
 .reveal-ready .reveal.is-visible {
-  opacity: 1;
-  transform: none;
+  animation-name: reveal-in;
+  animation-duration: 520ms;
+  animation-timing-function: var(--ease);
+  animation-fill-mode: both;
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
 }
 
 /* Stagger. Long grids would otherwise animate as one undifferentiated
-   block, so the delay is capped low enough to stay imperceptible. */
-.reveal-ready .reveal--1 { transition-delay: 60ms; }
-.reveal-ready .reveal--2 { transition-delay: 120ms; }
-.reveal-ready .reveal--3 { transition-delay: 180ms; }
-.reveal-ready .reveal--4 { transition-delay: 240ms; }
-.reveal-ready .reveal--5 { transition-delay: 300ms; }
+   block, so the delay is capped low enough to stay imperceptible. Set as
+   longhand so the animation shorthand above cannot reset it. */
+.reveal-ready .reveal--1 { animation-delay: 60ms; }
+.reveal-ready .reveal--2 { animation-delay: 120ms; }
+.reveal-ready .reveal--3 { animation-delay: 180ms; }
+.reveal-ready .reveal--4 { animation-delay: 240ms; }
+.reveal-ready .reveal--5 { animation-delay: 300ms; }
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1993,7 +2011,7 @@ hr {
 
   .reveal-ready .reveal {
     opacity: 1;
-    transform: none;
+    translate: none;
   }
 }
 
@@ -2211,81 +2229,6 @@ hr {
     min-height: 0;
   }
 }
-/* ==========================================================================
-   Consent banner
-
-   Docked, non-modal, and hidden until main.js reveals it. Every dimension uses
-   the existing spacing scale; nothing here introduces a new token.
-   ========================================================================== */
-
-.consent {
-  position: fixed;
-  inset: auto 0 0 0;
-  z-index: 60;
-  padding-block: var(--spacing-md);
-  background: var(--bg-elevated, #14161a);
-  border-top: 1px solid var(--border-strong, rgba(255, 255, 255, 0.14));
-  box-shadow: 0 -18px 40px -24px rgba(0, 0, 0, 0.9);
-}
-
-/* The `hidden` attribute must beat the layout display value below. */
-.consent[hidden] {
-  display: none;
-}
-
-.consent__inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-md);
-}
-
-.consent__text {
-  flex: 1 1 22rem;
-  min-width: 0;
-}
-
-.consent__title {
-  margin: 0 0 var(--spacing-xs);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
-  color: var(--text-primary);
-}
-
-.consent__body {
-  margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.55;
-  color: var(--text-secondary);
-}
-
-.consent__actions {
-  display: flex;
-  flex: 0 0 auto;
-  gap: var(--spacing-sm);
-}
-
-.consent__actions .button {
-  min-height: 44px;
-}
-
-@media (max-width: 640px) {
-  .consent__inner {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .consent__actions {
-    justify-content: stretch;
-  }
-
-  .consent__actions .button {
-    flex: 1 1 0;
-  }
-}
-
 /* ==========================================================================
    Consent banner
 
@@ -2742,13 +2685,160 @@ hr {
   break-inside: avoid;
 }
 
+/* In-page jump row. Same outline pill as every other short cut on the
+   site, so the page announces its own structure before the first group. */
+.sitemap-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: calc(var(--spacing-2xl) * -1);
+}
+
+.sitemap-jump a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-pill);
+  color: var(--body);
+  font: 400 14px / 20px var(--font-sans);
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.sitemap-jump a:hover,
+.sitemap-jump a:focus-visible {
+  border-color: var(--hairline-strong);
+  color: var(--ink);
+}
+
+/* Real counts pulled from the collections, not decoration. */
+.sitemap-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-lg);
+  margin: var(--spacing-2xl) 0 0;
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  list-style: none;
+}
+
+.sitemap-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.sitemap-stat__n {
+  font: 400 32px / 36px var(--font-sans);
+  letter-spacing: -0.6px;
+  color: var(--ink);
+}
+
+.sitemap-stat__l {
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--body-mid);
+}
+
+/* Section rule: mono eyebrow title on the left, context on the right, hairline
+   underneath. Gives the long page a spine so the eye can find a section. */
+.sitemap-section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.sitemap-section__title {
+  margin: 0;
+  font: 400 20px / 28px var(--font-sans);
+  letter-spacing: -0.2px;
+  color: var(--ink);
+}
+
+.sitemap-section__meta {
+  color: var(--body-mid);
+  white-space: nowrap;
+}
+
+/* Groups become cards: bordered, filled, radius, no shadow. */
+.sitemap-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sitemap-group {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-sm);
+  background: var(--canvas-card);
+}
+
+.sitemap-list__count {
+  display: inline-block;
+  margin-left: var(--spacing-sm);
+  padding: 1px 8px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-pill);
+  font: 400 12px / 16px var(--font-mono);
+  letter-spacing: 1.2px;
+  color: var(--body-mid);
+  vertical-align: middle;
+}
+
+.sitemap-list__more {
+  margin-top: var(--spacing-sm) !important;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--hairline);
+}
+
+.sitemap-list__ext {
+  margin-left: 5px;
+  color: var(--body-mid);
+  font-size: 12px;
+}
+
+
 
 /* ==========================================================================
    25  Footer partners
+
+   .footer-card is a three column grid (brand | link columns | widget). The
+   partners row needs to span all three, and auto-placement cannot plan
+   around a 1 / -1 item: the widget was being pushed onto a row of its own
+   while row one kept a hole in it. Placement is therefore explicit, and
+   reset again wherever the card collapses to a single column.
    ========================================================================== */
+
+.footer-card__brand,
+.footer-card__cols,
+.footer-widget {
+  grid-row: 1;
+}
+
+.footer-card__brand {
+  grid-column: 1;
+}
+
+.footer-card__cols {
+  grid-column: 2;
+}
+
+.footer-widget {
+  grid-column: 3;
+}
 
 .footer-partners {
   grid-column: 1 / -1;
+  grid-row: 2;
   padding-top: var(--spacing-xl);
   border-top: 1px solid var(--hairline);
 }
@@ -2756,19 +2846,28 @@ hr {
 .footer-partners__list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-md) var(--spacing-xl);
+  gap: var(--spacing-sm);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+/* Outline pills, the same interactive vocabulary as every button on the
+   site, so seven external links read as a deliberate group rather than a
+   line of stray hrefs. */
 .footer-partners__list a {
+  display: inline-block;
+  padding: 5px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-pill);
   color: var(--body);
-  font: 400 14px / 22px var(--font-sans);
-  transition: color var(--dur) var(--ease);
+  font: 400 14px / 20px var(--font-sans);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 
-.footer-partners__list a:hover {
+.footer-partners__list a:hover,
+.footer-partners__list a:focus-visible {
+  border-color: var(--hairline-strong);
   color: var(--ink);
 }
 
@@ -2858,6 +2957,28 @@ hr {
   .sitemap-list--columns {
     columns: 2;
   }
+
+  .sitemap-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--spacing-xl);
+  }
+
+  .sitemap-stat__n {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  /* The footer card is one column from here down, so the explicit desktop
+     placement above would stack brand, links and widget on top of each
+     other in row one. `.footer-partners` is reset too; leaving its locked
+     `grid-row: 2` in place floated it above the link columns in the stack. */
+  .footer-card__brand,
+  .footer-card__cols,
+  .footer-widget,
+  .footer-partners {
+    grid-row: auto;
+    grid-column: auto;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2869,6 +2990,21 @@ hr {
   .sitemap-list--columns {
     columns: 1;
   }
+
+  .sitemap-section__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .sitemap-section__meta {
+    white-space: normal;
+  }
+
+  .sitemap-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
 
   .nav-bar__github {
     width: 44px;

@@ -113,7 +113,7 @@ description: >-
         <div class="tool-card__head">
           <span class="tool-card__logo" aria-hidden="true">
             {{ tool.name | slice: 0 }}
-            {%- if tool.logo %}
+            {%- if tool.logo and tool.logo != '' %}
             <img src="{{ tool.logo }}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">
             {%- endif -%}
           </span>
