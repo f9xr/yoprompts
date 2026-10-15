@@ -4,9 +4,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Google Discover requires a large image preview. Emitting this explicitly
+       guarantees og:image (1200x630, set in defaults) is eligible for the
+       large card rather than the thumbnail. -->
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#0a0a0a">
+
   <!-- Begin SEO -->
   {%- seo -%}
   <!-- End SEO -->
+
+  <!-- Agent / crawler discovery. These <link> relations mirror the
+       Link response headers in _headers (RFC 8288). GitHub Pages cannot emit
+       custom HTTP headers, so the HTML form is what is actually served here;
+       the header form activates automatically on a CDN that reads _headers. -->
+  <link rel="author" href="https://f9xr.org">
+  <link rel="me" href="https://github.com/f9xr">
+  <link rel="sitemap" type="application/xml" href="{{ '/sitemap.xml' | relative_url }}">
+  <link rel="service-doc" href="{{ '/resources/' | relative_url }}">
+  <link rel="api-catalog" type="application/linkset+json" href="{{ '/.well-known/api-catalog' | relative_url }}">
+  <link rel="license" href="{{ '/terms/' | relative_url }}">
 
   <!-- Google Consent Mode v2. Denied by default, before any analytics code is
        ever requested. main.js calls gtag('consent','update', …) only if the

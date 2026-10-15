@@ -1,0 +1,9 @@
+{
+  "resource": "https://f9xr.org/yoprompts/",
+  "resource_name": "YoPrompts prompt library",
+  "resource_documentation": "https://f9xr.org/yoprompts/auth.md",
+  "scopes_supported": [],
+  "bearer_methods_supported": [],
+  "authorization_servers": [],
+  "tls_client_certificate_bound_access_tokens": false
+}

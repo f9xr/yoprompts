@@ -1,0 +1,55 @@
+# YoPrompts
+
+> Ready-made AI prompts by F9XR Team. Copy a prompt, paste it into ChatGPT,
+> Claude, Gemini, or any tool that follows them, and get a better result than
+> writing the request from scratch. Public, free to use, no login.
+
+YoPrompts is a library of tested, ready-to-copy prompts. Each prompt page
+documents the full prompt text, the category it belongs to, the AI models it
+was checked against, a difficulty level, how to use it, tips for better
+results, an example of the output shape, and an FAQ.
+
+## Core
+
+- [All prompts](https://f9xr.org/yoprompts/prompts/): searchable and filterable index of the whole library.
+- [Categories](https://f9xr.org/yoprompts/categories/): browse by the job a prompt does.
+- [Guides](https://f9xr.org/yoprompts/blog/): short write-ups on prompting technique.
+- [Prompting basics](https://f9xr.org/yoprompts/resources/#prompting-basics): the five techniques that fix most bad output.
+
+## Prompts
+
+- [Turn meeting notes into an action plan](https://f9xr.org/yoprompts/prompts/meeting-to-action-plan/)
+- [Turn an idea into an image model brief](https://f9xr.org/yoprompts/prompts/image-brief-builder/)
+- [Research any topic systematically](https://f9xr.org/yoprompts/prompts/deep-research-synthesis/)
+- [Audit a codebase like a staff engineer](https://f9xr.org/yoprompts/prompts/code-review-audit/)
+- [Write LinkedIn posts people finish reading](https://f9xr.org/yoprompts/prompts/linkedin-post-writer/)
+- [Build a complete SEO content strategy](https://f9xr.org/yoprompts/prompts/seo-content-strategy/)
+- [Make a ChatGPT image that stops the scroll](https://f9xr.org/yoprompts/prompts/scroll-stopping-image/)
+- [Keep the same character in every image](https://f9xr.org/yoprompts/prompts/consistent-character-series/)
+- [Turn your photo into a collectible figure in its box](https://f9xr.org/yoprompts/prompts/collectible-figure-photo/)
+- [Reboot a photo into any decade](https://f9xr.org/yoprompts/prompts/decade-reboot-selfie/)
+- [Turn one photo into a believable movie poster](https://f9xr.org/yoprompts/prompts/cinematic-movie-poster/)
+- [Write a faceless short video script that holds](https://f9xr.org/yoprompts/prompts/faceless-short-script/)
+- [Design and build a complete blog site from one brief](https://f9xr.org/yoprompts/prompts/blog-site-design-system/)
+- [Write a UGC ad people watch to the end](https://f9xr.org/yoprompts/prompts/ugc-product-ad/)
+- [Design a thumbnail people cannot scroll past](https://f9xr.org/yoprompts/prompts/youtube-thumbnail-brief/)
+- [Turn a phone photo into a studio product shot](https://f9xr.org/yoprompts/prompts/studio-product-photo/)
+- [Write a thread that earns the next post](https://f9xr.org/yoprompts/prompts/viral-thread-writer/)
+- [Plan a carousel people save and share](https://f9xr.org/yoprompts/prompts/instagram-carousel-planner/)
+- [Roast my resume, then fix it](https://f9xr.org/yoprompts/prompts/resume-roast/)
+
+## Guides
+
+- [The [NEEDED] convention](https://f9xr.org/yoprompts/blog/2026/10/04/the-needed-convention.html)
+
+## About
+
+- [About YoPrompts](https://f9xr.org/yoprompts/about/)
+- [AI Tools Directory](https://f9xr.org/yoprompts/ai-tools/)
+- [Contact](https://f9xr.org/yoprompts/contact/)
+- [Terms](https://f9xr.org/yoprompts/terms/)
+
+## Optional
+
+- [HTML sitemap](https://f9xr.org/yoprompts/html-sitemap/)
+- [RSS feed](https://f9xr.org/yoprompts/feed.xml)

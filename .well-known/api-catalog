@@ -1,0 +1,22 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://f9xr.org/yoprompts/",
+      "service-doc": [
+        { "href": "https://f9xr.org/yoprompts/resources/", "type": "text/html", "title": "Prompting basics and guides" }
+      ],
+      "service-desc": [
+        { "href": "https://f9xr.org/yoprompts/llms.txt", "type": "text/plain", "title": "Machine-readable index of the library" }
+      ],
+      "status": [
+        { "href": "https://f9xr.org/yoprompts/sitemap.xml", "type": "application/xml", "title": "Sitemap" }
+      ],
+      "author": [
+        { "href": "https://f9xr.org", "title": "F9XR Team" }
+      ],
+      "license": [
+        { "href": "https://f9xr.org/yoprompts/terms/", "type": "text/html" }
+      ]
+    }
+  ]
+}

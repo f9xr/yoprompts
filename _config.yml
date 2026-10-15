@@ -83,6 +83,18 @@ defaults:
       layout: post
       tags: Guide
 
+# Jekyll drops dotfiles and anything under them by default, which would remove
+# /.well-known from the build. Agent and crawler discovery documents
+# (security.txt, api-catalog, oauth metadata) live there, so the directory is
+# explicitly re-included. `_headers` is included for hosts that read it; see
+# AGENT-DISCOVERY.md.
+include:
+  - ".well-known"
+  - ".well-known/security.txt"
+  - ".well-known/api-catalog"
+  - ".well-known/oauth-protected-resource"
+  - "_headers"
+
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -96,6 +108,7 @@ exclude:
   - demo-html-site
   - README.md
   - .kilo
+  - AGENT-DISCOVERY.md
   - validate_yoprompts.py
   - audit_site.py
   - build_specimen.py

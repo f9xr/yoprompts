@@ -16,6 +16,7 @@
      08  Analytics consent
      09  Nav dropdown panels
      10  Footer reveal
+     11  WebMCP tools (agent exposure, opt-in)
     ========================================================================== */
 
 (function () {
@@ -797,6 +798,128 @@
   }
 
 
+  /* 11  WebMCP tools ===================================================== */
+
+  /* WebMCP (https://webmachinelearning.github.io/webmcp/) lets a page expose
+     its actions to a browser-integrated agent. It is entirely opt-in and
+     feature-detected: if the browser has no `document.modelContext`, this
+     module returns immediately and nothing changes for ordinary visitors.
+     Every tool is read-only, so exposing them cannot mutate the site. */
+  function initWebMCP() {
+    var mc = document.modelContext;
+    if (!mc || typeof mc.registerTool !== 'function') {
+      return;
+    }
+
+    var options = null;
+    if (typeof window.AbortController === 'function') {
+      options = { signal: new AbortController().signal };
+    }
+
+    var register = function (tool) {
+      try {
+        mc.registerTool(tool, options);
+      } catch (error) {
+        /* A malformed or unsupported tool must never break the page. */
+      }
+    };
+
+    /* Reads a card's data attributes into a plain record. Built from the DOM
+       rather than from a JSON blob so it works on the homepage archive and on
+       /prompts/ without any shared fetch. */
+    var cardRecord = function (item) {
+      var link = item.querySelector('a[href]');
+      return {
+        title: item.getAttribute('data-title') || '',
+        url: link ? link.href : '',
+        category: item.getAttribute('data-category') || '',
+        tools: item.getAttribute('data-tools') || '',
+        difficulty: item.getAttribute('data-difficulty') || '',
+        search: (item.getAttribute('data-search') || '').toLowerCase()
+      };
+    };
+
+    register({
+      name: 'search_prompts',
+      description:
+        'Search the YoPrompts library and return matching prompts with their titles and URLs.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          query: { type: 'string', description: 'Words to match against the prompt library.' }
+        },
+        required: ['query']
+      },
+      execute: function (input) {
+        var query = input && input.query ? String(input.query).toLowerCase().trim() : '';
+        var items = document.querySelectorAll('[data-filter-item]');
+        var results = [];
+
+        each(items, function (item) {
+          var record = cardRecord(item);
+          var haystack = (record.title + ' ' + record.search + ' ' + record.category + ' ' + record.tools).toLowerCase();
+          if (!query || haystack.indexOf(query) !== -1) {
+            results.push(record);
+          }
+        });
+
+        return Promise.resolve({
+          query: query,
+          count: results.length,
+          results: results.slice(0, 25)
+        });
+      }
+    });
+
+    register({
+      name: 'get_prompt',
+      description:
+        'Return a single prompt by its slug, including its URL and the full copy-ready prompt text when it is present on the current page.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          slug: { type: 'string', description: 'The prompt slug, e.g. "resume-roast".' }
+        },
+        required: ['slug']
+      },
+      execute: function (input) {
+        var slug = input && input.slug ? String(input.slug).trim() : '';
+        if (!slug) {
+          return Promise.resolve({ error: 'A slug is required.' });
+        }
+
+        var anchor = document.querySelector('[data-filter-item] a[href*="/' + slug + '/"]');
+        var text = readPrompt('src-' + slug);
+        var url = anchor ? anchor.href : '/prompts/' + slug + '/';
+
+        return Promise.resolve({ slug: slug, url: url, prompt: text || null, found: !!anchor });
+      }
+    });
+
+    register({
+      name: 'list_prompt_categories',
+      description: 'List the prompt categories currently available on the site.',
+      inputSchema: { type: 'object', properties: {} },
+      execute: function () {
+        var pills = document.querySelectorAll('[data-filter-group="category"] [data-filter-value]');
+        var categories = [];
+
+        each(pills, function (pill) {
+          var value = pill.getAttribute('data-filter-value');
+          if (value && value !== 'all') {
+            categories.push({ slug: value, label: (pill.textContent || '').trim() });
+          }
+        });
+
+        return Promise.resolve({
+          categories: categories,
+          categories_url: '/categories/'
+        });
+      }
+    });
+  }
+
+
   /* Boot ================================================================== */
 
   function boot() {
@@ -809,6 +932,7 @@
     initConsent();
     initNavMenus();
     initFooterReveal();
+    initWebMCP();
   }
 
   if (document.readyState === 'loading') {
