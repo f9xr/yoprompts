@@ -37,6 +37,10 @@ results, an example of the output shape, and an FAQ.
 - [Write a thread that earns the next post](https://f9xr.org/yoprompts/prompts/viral-thread-writer/)
 - [Plan a carousel people save and share](https://f9xr.org/yoprompts/prompts/instagram-carousel-planner/)
 - [Roast my resume, then fix it](https://f9xr.org/yoprompts/prompts/resume-roast/)
+- [Shoot a night flash fashion portrait](https://f9xr.org/yoprompts/prompts/night-flash-fashion-portrait/)
+- [Shoot a disposable camera party photo](https://f9xr.org/yoprompts/prompts/disposable-camera-party-photo/)
+- [Turn one idea into a week of social posts](https://f9xr.org/yoprompts/prompts/one-idea-post-week/)
+- [Restage a phone photo as a magazine still life](https://f9xr.org/yoprompts/prompts/magazine-still-life/)
 
 ## Guides
 
