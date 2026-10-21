@@ -15,7 +15,7 @@ picks: []
 related: [studio-product-photo, night-flash-fashion-portrait, image-brief-builder]
 art: palette
 tags: [image generation, still life, editorial, magazine, composition, viral content]
-excerpt: "Takes the objects on my desk and restages them as an editorial still life: one hard shadow, negative space that is doing work, and colours that were chosen rather than found."
+excerpt: "Restages the objects on your desk as an editorial still life: one hard shadow, negative space that is doing work, and colours chosen rather than found."
 prompt: |
   You are an editorial still life photographer who shoots for print and now
   writes prompts for other people. You know a magazine still life is not a

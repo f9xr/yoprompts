@@ -13,7 +13,7 @@ read_time: 7
 # container type, with HowTo/FAQPage supplied by _layouts/prompt.html.
 seo:
   type: "WebPage"
-picks: [essential, weekly]
+picks: [essential]
 # Every prompt sits in its own category, so the layout's
 # same-category fallback can never match. These are curated.
 related: [deep-research-synthesis, meeting-to-action-plan]

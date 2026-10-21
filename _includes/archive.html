@@ -18,6 +18,17 @@
 {%- assign heading_tag = include.heading_tag | default: 'h2' -%}
 {%- assign heading_id = 'archive-title' -%}
 
+{%- comment -%}
+  Card titles must sit one level below the section headline. On a standalone
+  page the headline is the h1, so the cards need an h2; inside a band on the
+  home page the headline is already an h2, so the cards stay at h3.
+{%- endcomment -%}
+{%- if heading_tag == 'h1' -%}
+  {%- assign card_heading = 'h2' -%}
+{%- else -%}
+  {%- assign card_heading = 'h3' -%}
+{%- endif -%}
+
 {%- if include.limit -%}
   {%- assign archive_items = archive_items | slice: 0, include.limit -%}
 {%- endif -%}
@@ -124,7 +135,7 @@
         {%- endcomment -%}
         {%- assign delay_step = cycle | plus: 1 -%}
         {%- assign delay_class = "reveal--" | append: delay_step -%}
-        {% include prompt-card.html prompt=p art=show_art copy="true" delay=delay_class %}
+        {% include prompt-card.html prompt=p art=show_art copy="true" delay=delay_class heading_tag=card_heading %}
       {%- endfor -%}
     </div>
 

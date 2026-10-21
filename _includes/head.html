@@ -14,6 +14,13 @@
   {%- seo -%}
   <!-- End SEO -->
 
+  <!-- Opt-out hook. A 404 page should never be indexed, and
+       jekyll-seo-tag 2.8.0 has no robots meta of its own, so a page that
+       sets `noindex: true` in front matter gets the tag here. -->
+  {%- if page.noindex %}
+  <meta name="robots" content="noindex, follow">
+  {%- endif -%}
+
   <!-- Agent / crawler discovery. These <link> relations mirror the
        Link response headers in _headers (RFC 8288). GitHub Pages cannot emit
        custom HTTP headers, so the HTML form is what is actually served here;

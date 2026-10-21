@@ -48,7 +48,7 @@ attributes already in the HTML, so they work instantly and work offline.
 | Concern | Choice |
 |---|---|
 | Generator | Jekyll 3.9 (GitHub Pages native) |
-| Layouts / templates | Liquid, custom — **no theme gem** |
+| Layouts / templates | Liquid, custom - **no theme gem** |
 | Styling | One hand-written stylesheet, `assets/css/main.css` |
 | Behaviour | One dependency-free script, `assets/js/main.js` |
 | Content | `_prompts` collection (library) + `_posts` (guides) |
@@ -57,9 +57,9 @@ attributes already in the HTML, so they work instantly and work offline.
 
 Plugins, all supported on GitHub Pages without a `Gemfile`:
 
-- `jekyll-seo-tag` — canonical URLs, Open Graph, Twitter cards, `WebSite` JSON-LD
-- `jekyll-feed` — `/feed.xml`
-- `jekyll-sitemap` — `/sitemap.xml`
+- `jekyll-seo-tag` - canonical URLs, Open Graph, Twitter cards, `WebSite` JSON-LD
+- `jekyll-feed` - `/feed.xml`
+- `jekyll-sitemap` - `/sitemap.xml`
 
 `DESIGN.md` is the authoritative design document. Read it before changing
 anything visual.
@@ -84,7 +84,7 @@ jekyll serve
 needs a compiler on Windows. If that fails, install the MSYS2 devkit
 (`winget install RubyInstallerTeam.RubyWithDevKit.3.2`, then `ridk install 1 2 3`).
 
-The site then runs at <http://127.0.0.1:4000/yoprompts/> — note the `/yoprompts`
+The site then runs at <http://127.0.0.1:4000/yoprompts/> - note the `/yoprompts`
 base path, which comes from `baseurl` in `_config.yml`.
 
 There is no `Gemfile` in this repo, because every plugin used is already on
@@ -111,7 +111,7 @@ reading the template. They are the reason a real `jekyll build` matters.
 ```
 
 Assign first, then pass the value as a **bare variable**. Note the second form
-has no quotes — `delay="{{ reveal_class }}"` reintroduces the bug.
+has no quotes - `delay="{{ reveal_class }}"` reintroduces the bug.
 
 **Never use a compound condition in `where_exp`.** Its parser accepts one
 comparison only; `and` or `or` fails with
@@ -174,7 +174,7 @@ index.html               homepage
 taxonomy. The `slug` in each entry is the value a prompt document uses in
 `category:` and `tools:`. The archive page only renders filters that would
 return at least one prompt, so adding a category here with no prompts yet
-breaks nothing — it just does not appear.
+breaks nothing - it just does not appear.
 
 Adding a tool to `_data/ai_tools.yml` automatically gives it a filter pill and
 an "Open {label}" button on every prompt page that lists it.
@@ -191,7 +191,7 @@ an "Open {label}" button on every prompt page that lists it.
 - **Every interactive element is a pill** (`9999px`). The shape never varies.
 - **No box shadows.** Hairline borders (`#212327`) carry all elevation.
 - **Cards are 8px radius**, 24px interior padding, `#191919` on `#212327`.
-- **Eyebrows are uppercase JetBrains Mono at `+1.4px`** — they read as code
+- **Eyebrows are uppercase JetBrains Mono at `+1.4px`** - they read as code
   comments, which is the point.
 
 `assets/css/main.css` maps these to CSS custom properties in section `01`. Every
@@ -206,7 +206,7 @@ not on Google Fonts). Display sizes carry DESIGN.md's negative tracking:
 ### Deliberate departures from the original brief
 
 The visual brief originally asked for a pastel-lavender, bold-oversized-type,
-rounded-and-shadowed editorial style. `DESIGN.md` — a dark, restrained system —
+rounded-and-shadowed editorial style. `DESIGN.md` - a dark, restrained system -
 was chosen as authoritative instead. The information architecture, card
 geometry, and editorial rhythm survived; the palette, type weights, radii, and
 elevation did not. If the pastel look was the actual goal, that is a re-skin,
@@ -216,7 +216,7 @@ not a bug fix, and it should be decided before more content is added.
 
 ## Adding a prompt
 
-Prompt documents live in `_prompts/`. Name the file `YYYY-MM-DD-your-slug.md` —
+Prompt documents live in `_prompts/`. Name the file `YYYY-MM-DD-your-slug.md` -
 Jekyll takes `date` from the filename.
 
 **Required front matter.** Every field below is read by a layout or an include,
@@ -231,13 +231,13 @@ and a missing one breaks the page or its structured data:
 | `difficulty` | string | `beginner`, `intermediate`, or `advanced`. |
 | `tools` | list | Slugs from `_data/ai_tools.yml`. |
 | `read_time` | int | Minutes. Be honest; 8 is not a default. |
-| `excerpt` | string | One or two sentences. Shown on cards and in meta descriptions. |
+| `excerpt` | string | One or two sentences. Shown on cards and in meta descriptions. Keep it under 160 characters so it is not truncated in the search snippet. |
 | `prompt` | block | **The prompt itself**, as a YAML block scalar. |
 | `workflow` | list | Short strings, one per step. Drives the featured panel. |
 | `art` | string | `workflow`, `terminal`, `chart`, or `palette`. |
-| `how_to_use` | list | Ordered steps. Also becomes `HowTo` schema — must not be empty. |
+| `how_to_use` | list | Ordered steps. Also becomes `HowTo` schema - must not be empty. |
 | `tags` | list | Search keywords. Include terms a user would actually type. |
-| `faq` | list | `q:`/`a:` maps. Also becomes `FAQPage` schema — must not be empty. |
+| `faq` | list | `q:`/`a:` maps. Also becomes `FAQPage` schema - must not be empty. |
 
 **Optional front matter:**
 
@@ -283,8 +283,13 @@ faq:
 
 Writing guidance for the prompt body: give the model a role, state the task in
 order, and end with hard rules. The strongest prompts here all forbid the model
-from inventing things — no fabricated sources, no guessed owners, no
+from inventing things - no fabricated sources, no guessed owners, no
 unrequested metadata. That constraint is what makes the output usable.
+
+**No long dashes.** Use plain hyphens. Do not type an em dash (U+2014), an en
+dash (U+2013), a horizontal bar (U+2015), or the matching HTML entities in any
+prompt document, guide, page, or data file. The site is checked for them
+before every push.
 
 ---
 
@@ -318,7 +323,7 @@ collection, never hardcoded:
 | Essential prompts (4-up) | `picks` contains `essential` |
 | Categories | `_data/categories.yml` |
 | Prompt picks (3-up) | `picks` contains `weekly` |
-| Stories | static — **placeholder quotes, see Known gaps** |
+| Stories | static - **placeholder quotes, see Known gaps** |
 | Brand statement | static |
 | Latest prompts (12) | `_includes/archive.html` with `limit=12` |
 
@@ -327,7 +332,7 @@ collection, never hardcoded:
 difference between the two pages is whether the grid is capped.
 
 To reorder the front page, edit `index.html`. To change what a section pulls,
-change the Liquid at the top of the file — there are four `assign` lines that
+change the Liquid at the top of the file - there are four `assign` lines that
 control all content selection.
 
 ---
@@ -348,23 +353,29 @@ A clean build takes about 0.3s and should print `done in ...` with no
 
 | Script | Purpose |
 |---|---|
-| `validate_yoprompts.py` | Front matter YAML, include and layout resolution, Liquid block balance, HTML tag balance, `site.*` keys, prompt required fields, taxonomy slug integrity, internal link targets, CSS classes used but never defined, compound `where_exp` conditions |
+| `validate_yoprompts.py` | Front matter YAML, include and layout resolution, Liquid block balance, HTML tag balance, `site.*` keys, prompt required fields, taxonomy slug integrity, internal link targets, CSS classes used but never defined, compound `where_exp` conditions, and the long-dash rule |
 | `build_specimen.py` | Regenerates a standalone design-system specimen HTML from the live `main.css` |
-| `audit_site.py` | Walks `_site/` after a build: leftover unrendered Liquid, JSON-LD validity, whether every `data-copy` target resolves, duplicate keys, populated prompt sources, `/yoprompts` baseurl coverage |
+| `seo_audit_yoprompts.py` | Walks `_site/` after a build: one `<h1>` per page, title and meta description length, canonical and Open Graph tags, JSON-LD validity, heading level order, `alt` text, internal link targets, sitemap coverage, `robots.txt`, and long dashes in the rendered output |
 
 ```powershell
 jekyll build
 python "$env:LOCALAPPDATA\Temp\opencode\validate_yoprompts.py"
-python "$env:LOCALAPPDATA\Temp\opencode\audit_site.py"
+python "$env:LOCALAPPDATA\Temp\opencode\seo_audit_yoprompts.py"
 python "$env:LOCALAPPDATA\Temp\opencode\build_specimen.py"
 ```
 
-The validator should report **0 errors**. Warnings mean one of:
+Both site-level scripts should report **0 errors**. Warnings mean one of:
 
 - an internal link points at a page that does not exist yet (expected until the
   remaining pages are built)
 - a CSS class appears in HTML but is not defined in `main.css` or `main.js`
 - a homepage row does not have enough prompts to fill it
+- a title or meta description is shorter or longer than the search snippet
+  budget, which is worth a look but not a failure
+
+The validator's `sitemap.xml` and `robots.txt` link warnings are expected.
+Those two files are generated by `jekyll-sitemap` at build time, so they do
+not exist in the source tree the validator reads.
 
 The specimen page is a way to *see* the design without a server. Open
 `%LOCALAPPDATA%\Temp\opencode\yoprompts-specimen.html` in a browser, and resize
@@ -377,7 +388,7 @@ None of these scripts are committed, deliberately.
 
 ## Deploying
 
-Push to `main`. GitHub Pages builds with Jekyll natively — no CI config, no
+Push to `main`. GitHub Pages builds with Jekyll natively - no CI config, no
 build step, no `Gemfile`.
 
 In the repository settings, set **Pages → Source** to *Deploy from a branch*,
@@ -394,20 +405,12 @@ Honest list of what is not finished.
 
 **Blocking launch:**
 
-- **The four testimonials on the homepage are fabricated placeholders.** They
-  are illustrative, not collected from users. They are marked with a comment in
-  `index.html` and must be replaced with real submissions, or the section
-  replaced with the brand statement that already sits below it.
 - **`url` and `baseurl` are guesses.** See [Before the first deploy](#before-the-first-deploy).
 
 **Not yet built:**
 
-- `/ai-tools/`, `/resources/`, `/about/`, `/contact/`, `/submit-a-prompt/`
-- `/privacy/`, `/terms/`, `/disclaimer/`, `/cookies/`
-- Open Graph image (`assets/img/og-default.png`, 1200×630) — nothing references
-  it yet, so `twitter:card` resolves to `summary` instead of
-  `summary_large_image` and shares fall back to the favicon
-- Guides: the library exists, `_posts/` is empty, so `feed.xml` is empty too
+- Guides: there is one guide in `_posts/`, so `feed.xml` has a single entry.
+  More are needed before the blog carries any weight.
 
 `robots.txt` is **not** hand-written: `jekyll-sitemap` generates it from `url`
 and `baseurl`, and it already points at the right sitemap. Changing the domain in
@@ -417,9 +420,12 @@ and `baseurl`, and it already points at the right sitemap. Changing the domain i
 
 - **`jekyll serve` needs a working C++ toolchain on Windows** (live-reload pulls
   `eventmachine`). `jekyll build` does not, and is the command to rely on.
-- **Every category has exactly one prompt**, so the "Related prompts" section is
-  always empty and its markup is skipped. Adding prompts in Pass 3 fixes this;
-  adding a cross-category fallback would only mislabel unrelated prompts.
+- **Plain-text front matter fields are HTML-escaped when rendered.** `prompt`,
+  `example_output`, `workflow`, `how_to_use`, `tips`, `faq` and `excerpt` are
+  printed as text, so angle brackets in them show up correctly on the page
+  instead of being parsed as markup. The one exception is the hidden
+  `application/x-prompt` script that backs the Copy button, which is raw text
+  by design and must not contain `</script>`.
 - **Client-side search means no server-rendered results.** Filters do not
   produce indexable URLs, so deep-linking to a filtered view is not possible
   beyond `?q=`.

@@ -8,8 +8,10 @@
     include.art      (optional) true to render the artwork variant
     include.copy     (optional) true to include the copy control
     include.delay    (optional) reveal stagger class, e.g. reveal--2
+    include.heading_tag (optional) heading level for the card title, h3 default
 {%- endcomment -%}
 {%- assign p = include.prompt -%}
+{%- assign card_heading = include.heading_tag | default: 'h3' -%}
 {%- assign primary = site.data.ai_tools | where: "slug", p.tools[0] | first -%}
 <article class="prompt-card{% if include.art %} prompt-card--art{% endif %}{% if include.copy %} prompt-card--with-copy{% endif %} reveal {% if include.delay %}{{ include.delay }}{% endif %}"
   data-filter-item
@@ -33,11 +35,11 @@
       {%- endif -%}
     </div>
 
-    <h3 class="prompt-card__title">
-      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
-    </h3>
+    <{{ card_heading }} class="prompt-card__title">
+      <a href="{{ p.url | relative_url }}">{{ p.title | escape }}</a>
+    </{{ card_heading }}>
 
-    <p class="prompt-card__excerpt">{{ p.excerpt }}</p>
+    <p class="prompt-card__excerpt">{{ p.excerpt | escape }}</p>
 
     <div class="prompt-card__foot">
       <span class="meta-mono">{{ p.read_time }} min</span>

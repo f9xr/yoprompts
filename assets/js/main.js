@@ -673,7 +673,7 @@
 
   /* 09  Nav dropdown panels ============================================== */
 
-  /* The panel itself is CSS driven: `.nav-item.has-menu:hover` and
+  /* The panel itself is CSS driven: `.nav-item:hover` and
      `:focus-within` both open it, so the menu works with JavaScript off and
      with a keyboard before this module ever runs. What it cannot do without
      help is close on Escape or keep `aria-expanded` honest, which is all this

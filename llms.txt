@@ -41,6 +41,21 @@ results, an example of the output shape, and an FAQ.
 - [Shoot a disposable camera party photo](https://f9xr.org/yoprompts/prompts/disposable-camera-party-photo/)
 - [Turn one idea into a week of social posts](https://f9xr.org/yoprompts/prompts/one-idea-post-week/)
 - [Restage a phone photo as a magazine still life](https://f9xr.org/yoprompts/prompts/magazine-still-life/)
+- [Replicate any product demo video with your product](https://f9xr.org/yoprompts/prompts/demo-video-replica/)
+- [Audit a website for SEO, AEO, performance and a11y](https://f9xr.org/yoprompts/prompts/website-code-audit/)
+- [Ask your data a question and get an honest answer](https://f9xr.org/yoprompts/prompts/chat-with-your-data/)
+- [Write a cold email that earns a reply](https://f9xr.org/yoprompts/prompts/cold-email-writer/)
+- [Find the real cause of an error](https://f9xr.org/yoprompts/prompts/debug-this-error/)
+- [Turn any document into a deck that lands](https://f9xr.org/yoprompts/prompts/document-to-deck/)
+- [Check a claim before you repeat it](https://f9xr.org/yoprompts/prompts/fact-check-my-claim/)
+- [Make AI writing sound like a person wrote it](https://f9xr.org/yoprompts/prompts/humanize-ai-text/)
+- [Write a landing page that sells](https://f9xr.org/yoprompts/prompts/landing-page-copy/)
+- [Run a mock interview and get it scored](https://f9xr.org/yoprompts/prompts/mock-interview-loop/)
+- [Decide what to charge and who it is for](https://f9xr.org/yoprompts/prompts/pricing-and-positioning/)
+- [Turn a selfie into a professional headshot](https://f9xr.org/yoprompts/prompts/professional-headshot/)
+- [Build a programmatic SEO page system](https://f9xr.org/yoprompts/prompts/programmatic-seo-pages/)
+- [Write 30 hooks and find the one that travels](https://f9xr.org/yoprompts/prompts/viral-hook-generator/)
+- [Close the week and plan the next one](https://f9xr.org/yoprompts/prompts/weekly-review-planner/)
 
 ## Guides
 

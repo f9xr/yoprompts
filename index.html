@@ -142,7 +142,7 @@ seo:
             {%- assign step_index = forloop.index | prepend: '0' | slice: -2, 2 -%}
             <li class="prompt-window__step">
               <span class="prompt-window__step-index">{{ step_index }}</span>
-              <span class="prompt-window__step-text">{{ step }}</span>
+              <span class="prompt-window__step-text">{{ step | escape }}</span>
             </li>
             {%- endfor -%}
           </ol>
@@ -150,7 +150,7 @@ seo:
           {%- if featured.output_preview -%}
           <div class="prompt-window__output">
             <span class="eyebrow-mono-sm prompt-window__output-label">Output shape</span>
-            <p class="prompt-window__output-text">{{ featured.output_preview }}</p>
+            <p class="prompt-window__output-text">{{ featured.output_preview | escape }}</p>
           </div>
           {%- endif -%}
         </div>

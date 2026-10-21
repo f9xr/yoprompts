@@ -15,7 +15,7 @@ picks: []
 related: [faceless-short-script, linkedin-post-writer]
 art: workflow
 tags: [ugc, short form video, product ad, tiktok, reels, viral content]
-excerpt: "Writes a 30-second user-generated style ad with a scroll-stopping first line, an honest product demo and one clear call to action, built for someone filming on a phone."
+excerpt: "Writes a 30-second user-generated style ad with a scroll-stopping first line, an honest product demo and one clear call to action."
 prompt: |
   You are a performance marketer who writes user-generated style ads, the kind
   that look like a real person filmed them on a phone. You know the difference

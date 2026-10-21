@@ -15,7 +15,7 @@ picks: []
 related: [image-brief-builder, scroll-stopping-image]
 art: palette
 tags: [image generation, figurine, product photography, chatgpt, viral content]
-excerpt: "Converts a photo of a person into a boxed vinyl figure: proportion rules, packaging layout and studio light described physically, so the result reads as a product shot."
+excerpt: "Turns a photo of a person into a boxed vinyl figure, with proportion rules, packaging layout and studio light described so it reads as a product shot."
 prompt: |
   You are a product photographer and packaging designer shooting a boxed
   collectible figure. You know the illusion depends on two separate things

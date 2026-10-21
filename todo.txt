@@ -11,7 +11,7 @@ Follow DESIGN.md file
 
 <!-- Google tag (gtag.js)
 
-     DONE — consent-gated. GA4 no longer loads on page load.
+     DONE - consent-gated. GA4 no longer loads on page load.
 
      The snippet below is the old version and is NOT in the site any more. It
      requested gtag.js unconditionally, which set analytics cookies before the
@@ -41,7 +41,7 @@ Follow DESIGN.md file
 
 add this google analtics google tag, also create all types of needed pages (press pages ) and all for better SEO
 
-DONE — pages created, each with its own title, meta description, breadcrumb
+DONE - pages created, each with its own title, meta description, breadcrumb
 and BreadcrumbList structured data:
 
   /about/              who publishes the library and how prompts are tested
@@ -75,8 +75,51 @@ Other SEO work completed in the same pass:
 
 
 
-dont use long dashes (—) in our website.
+DONE - no em dashes or en dashes anywhere in the site source or the docs.
+Every long dash in DESIGN.md, README.md and this file is now a plain hyphen.
+Style rule recorded in README.md so new content stays clean.
+
 	
+DONE - 13 new prompts added, library is now 38 prompts across all 12
+categories. Each one has the full front matter, prompt body, workflow,
+usage steps, tips, example output and FAQ:
+
+  chat-with-your-data      ask a spreadsheet a question and get an answer
+  cold-email-writer        a cold email that earns a reply
+  debug-this-error         find the real cause of an error
+  document-to-deck         turn any document into a deck
+  fact-check-my-claim      check a claim before repeating it
+  humanize-ai-text         make AI writing sound human
+  landing-page-copy        a landing page that sells
+  mock-interview-loop      run a mock interview and get it scored
+  pricing-and-positioning  what to charge and who it is for
+  professional-headshot    a selfie turned into a headshot
+  programmatic-seo-pages    a programmatic page system that avoids thin content
+  viral-hook-generator     30 hooks, ranked
+  weekly-review-planner    close the week and plan the next one
+
+Homepage picks rotated: humanize-ai-text is the featured prompt, and the
+weekly row is now chat-with-your-data, humanize-ai-text and viral-hook-generator.
+
+DONE - SEO audit pass, everything below was found by walking the built site
+and every item is fixed:
+
+  - the website-code-audit prompt body contained a literal link element,
+    which injected a second canonical tag and a 404 script request into
+    every page that shows it. Plain-text front matter fields are now
+    escaped when rendered, so angle brackets print as text
+  - archive.md was an orphan page with no h1, a duplicate meta
+    description, and a canonical that 404ed. Removed
+  - the 404 page had no meta description and was indexable. It now has
+    its own description and a noindex tag
+  - the prompt library jumped from h1 straight to h3. Card titles are now
+    one level below the section headline
+  - 12 meta descriptions were over the 160 character snippet budget and
+    one title was too long. All shortened
+  - 0 broken internal links, 0 duplicate titles, 0 duplicate descriptions,
+    0 long dashes in the built output
+
+all-urls.txt and llms.txt regenerated with all 38 prompts and every page URL.
 
 also add: OpenSource at GitHub linked to https://github.com/f9xr/yoprompts
 add dropdown to top navbar

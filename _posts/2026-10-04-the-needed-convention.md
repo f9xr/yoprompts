@@ -2,9 +2,8 @@
 layout: post
 title: "The [NEEDED] convention"
 description: >-
-  Tell a model to write [NEEDED] instead of guessing, and a fabrication
-  becomes a to-do list. How the convention works, where it breaks, and how to
-  close the loop.
+  Tell a model to write [NEEDED] instead of guessing, and a fabrication becomes
+  a to-do list. How the convention works, where it breaks, and how to fix it.
 tags: [Prompting, Reliability, Guides]
 ---
 

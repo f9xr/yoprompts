@@ -13,13 +13,13 @@ read_time: 8
 # container type, with HowTo/FAQPage supplied by _layouts/prompt.html.
 seo:
   type: "WebPage"
-picks: [weekly]
+picks: []
 # Every prompt sits in its own category, so the layout's
 # same-category fallback can never match. These are curated.
 related: [code-review-audit, image-brief-builder]
 art: palette
 tags: [web design, frontend, ui design, html css, blog, system prompt]
-excerpt: "A reusable system prompt that turns one design brief into a full blog layout - palette, type scale, navigation, hero, archive grid, and footer - as semantic HTML and a single stylesheet."
+excerpt: "Turns one design brief into a full blog layout: palette, type scale, navigation, hero, archive grid and footer, as semantic HTML and one stylesheet."
 prompt: |
   Act as an expert Senior UI/UX Designer and Frontend Engineer. Your task is
   to generate a comprehensive, modern, pixel-perfect blog website named

@@ -15,7 +15,7 @@ picks: []
 related: [scroll-stopping-image, cinematic-movie-poster, image-brief-builder]
 art: palette
 tags: [image generation, fashion, portrait, flash photography, night photography, film grain, viral content]
-excerpt: "Builds a paparazzi-style night portrait prompt around harsh on-camera flash, glossy skin and a bokeh background, so the result reads as a candid caught on the street rather than a studio shot."
+excerpt: "Builds a paparazzi-style night portrait prompt around harsh on-camera flash, glossy skin and bokeh, so it reads as a candid caught on the street."
 prompt: |
   You are a fashion photographer who shoots exclusively with harsh direct
   flash at night, and who writes image prompts for other people. You know the

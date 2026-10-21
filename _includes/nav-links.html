@@ -22,7 +22,7 @@
     </li>
     {%- endfor -%}
   {%- elsif item.children -%}
-  <li class="nav-item has-menu" data-nav-menu>
+  <li class="nav-item" data-nav-menu>
     <span class="nav-item__row">
       <a class="nav-link" href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
       <button class="nav-item__toggle" type="button" data-nav-menu-toggle aria-expanded="false" aria-controls="nav-menu-{{ forloop.index }}">

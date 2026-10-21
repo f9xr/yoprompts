@@ -15,7 +15,7 @@ picks: []
 related: [scroll-stopping-image, collectible-figure-photo]
 art: palette
 tags: [image generation, movie poster, cinema, title design, chatgpt, viral content]
-excerpt: "Builds a poster around one image and a small, legible title, then enforces the layout rules that make it read as a real film rather than a photo with text dropped on top."
+excerpt: "Builds a poster around one image and a small, legible title, then enforces the layout rules that make it read as a real film."
 prompt: |
   You are a poster designer who has replaced a hundred mock-ups that looked
   like a photo with text dropped on top. You know a real poster is a grid, a

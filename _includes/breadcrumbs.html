@@ -27,13 +27,13 @@
     {%- for crumb in crumbs -%}
       {%- assign bits = crumb | split: "~" -%}
       {%- if forloop.last and include.current == nil -%}
-    <li class="breadcrumbs__item"><span aria-current="page">{{ bits[0] }}</span></li>
+    <li><span aria-current="page">{{ bits[0] }}</span></li>
       {%- else -%}
-    <li class="breadcrumbs__item"><a href="{{ bits[1] | relative_url }}">{{ bits[0] }}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span></li>
+    <li><a href="{{ bits[1] | relative_url }}">{{ bits[0] }}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span></li>
       {%- endif -%}
     {%- endfor -%}
     {%- if include.current -%}
-    <li class="breadcrumbs__item"><span aria-current="page">{{ include.current }}</span></li>
+    <li><span aria-current="page">{{ include.current }}</span></li>
     {%- endif -%}
   </ol>
 </nav>
