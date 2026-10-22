@@ -1,6 +1,8 @@
 ---
 title: "Find Skills"
 slug: find-skills
+category: meta
+date: 2026-10-22
 excerpt: "A meta-skill that teaches an agent to search and install other skills with the Skills CLI when a task needs a capability it does not have."
 creator: "Vercel Labs"
 license: "MIT"

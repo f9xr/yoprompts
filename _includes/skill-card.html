@@ -1,0 +1,68 @@
+{%- comment -%}
+  One skill card, shared by every section on /ai-agent-skills/.
+
+  Expects:
+    include.item         the skill document
+    include.heading_tag  h2 or h3 depending on the section
+    include.delay        optional reveal class
+
+  Author and repository are derived from repo_url when explicit fields are
+  not present, so a GitHub owner can always be linked.
+{%- endcomment -%}
+{%- assign skill = include.item -%}
+{%- assign card_heading = include.heading_tag | default: 'h3' -%}
+{%- assign repo = "" -%}
+{%- assign author_url = "" -%}
+{%- if skill.repo_url -%}
+  {%- assign repo_path = skill.repo_url | remove: "https://github.com/" | remove: ".git" -%}
+  {%- assign repo_parts = repo_path | split: "/" -%}
+  {%- assign repo = repo_parts[0] | append: "/" | append: repo_parts[1] -%}
+{%- endif -%}
+{%- if skill.creator_url -%}
+  {%- assign author_url = skill.creator_url -%}
+{%- elsif repo != "" -%}
+  {%- assign repo_owner = repo | split: "/" | first -%}
+  {%- assign author_url = "https://github.com/" | append: repo_owner -%}
+{%- endif -%}
+{%- assign category_label = skill.category -%}
+{%- for category in site.data.skill_categories -%}
+  {%- if category.slug == skill.category -%}{%- assign category_label = category.label -%}{%- endif -%}
+{%- endfor -%}
+<article class="skill-card{% if include.delay %} reveal {{ include.delay }}{% endif %}"
+  data-skill-card
+  data-title="{{ skill.title | downcase | escape }}"
+  data-tags="{{ skill.tags | join: ',' | downcase | escape }}"
+  data-category="{{ skill.category | escape }}"
+  data-slug="{{ skill.slug }}"
+  data-repo="{{ repo }}">
+  <div class="skill-card__head">
+    <span class="tag-mono">Skill</span>
+    {%- if repo != "" -%}
+    <span class="skill-card__stars" data-stars data-repo="{{ repo }}" title="GitHub stars">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M8 1.8l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <span data-stars-value>--</span>
+    </span>
+    {%- endif -%}
+  </div>
+  <{{ card_heading }} class="skill-card__title">
+    <a href="{{ skill.url | relative_url }}">{{ skill.title | escape }}</a>
+  </{{ card_heading }}>
+  <p class="skill-card__excerpt">{{ skill.excerpt | strip_html | escape }}</p>
+  <div class="skill-card__tags">
+    {%- if category_label != "" and category_label != nil -%}<span class="tag-mono tag-mono--accent">{{ category_label }}</span>{%- endif -%}
+    {%- for tag in skill.tags limit: 2 -%}<span class="tag-mono">{{ tag }}</span>{%- endfor -%}
+  </div>
+  <div class="skill-card__foot">
+    <div class="skill-card__byline">
+      {%- if skill.creator -%}
+        {%- if author_url != "" -%}
+        <a class="meta-mono skill-card__author" href="{{ author_url }}" target="_blank" rel="noopener noreferrer">{{ skill.creator }}</a>
+        {%- else -%}
+        <span class="meta-mono skill-card__author">{{ skill.creator }}</span>
+        {%- endif -%}
+      {%- endif -%}
+      {%- if skill.license -%}<span class="meta-mono">{{ skill.license }}</span>{%- endif -%}
+    </div>
+    <button class="button button--sm bookmark-btn" type="button" data-bookmark="{{ skill.slug }}" aria-pressed="false">Bookmark</button>
+  </div>
+</article>

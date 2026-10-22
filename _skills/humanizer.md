@@ -1,12 +1,17 @@
 ---
 title: "Humanizer"
 slug: humanizer
+category: writing
+date: 2026-10-22
+featured: true
 excerpt: "Strips the tells out of AI-generated prose, from tricolons and hedges to the it-is-not-X-it-is-Y cadence, while keeping every supported fact."
 creator: "blader"
 license: "MIT"
 repo_url: "https://github.com/blader/humanizer"
 tags: [writing, editing, prose, ai-isms]
 usage: |
+  /humanizer [paste your text here]
+install: |
   /plugin marketplace add blader/humanizer
   /plugin install humanizer@humanizer
 ---

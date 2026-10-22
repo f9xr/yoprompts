@@ -1,10 +1,14 @@
 ---
 title: "Social Media Skills"
 slug: social-media-skills
+category: social
+date: 2026-10-22
 excerpt: "A 17-skill social content suite built on a reusable voice profile, covering hooks, posts, carousels, reels scripts, newsletters, and profiles."
 creator: "Charlie Hills"
 license: "MIT"
 repo_url: "https://github.com/charlie947/social-media-skills"
+source_file: "README.md"
+file_label: "Bundle README"
 tags: [social media, content, voice, linkedin, newsletter]
 usage: |
   npx skills add charlie947/social-media-skills

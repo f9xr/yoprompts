@@ -173,9 +173,35 @@
     }
 
     var ticking = false;
+    var lastY = window.scrollY;
+    var DELTA = 2;
+
+    /* A panel that is open is a reason to keep the header on screen, even if
+       the page is scrolling underneath it. */
+    function blocked() {
+      var drawer = document.querySelector('[data-drawer]');
+      if (drawer && !drawer.hidden) {
+        return true;
+      }
+
+      var openMenu = document.querySelector('[data-nav-menu].is-open');
+      return !!openMenu;
+    }
 
     function update() {
-      header.classList.toggle('is-scrolled', window.scrollY > 8);
+      var y = window.scrollY;
+
+      header.classList.toggle('is-scrolled', y > 8);
+
+      if (y <= 80 || blocked() || header.contains(document.activeElement)) {
+        header.classList.remove('is-hidden');
+      } else if (y > lastY + DELTA) {
+        header.classList.add('is-hidden');
+      } else if (y < lastY - DELTA) {
+        header.classList.remove('is-hidden');
+      }
+
+      lastY = y;
       ticking = false;
     }
 
@@ -189,8 +215,12 @@
         ticking = true;
         window.requestAnimationFrame(update);
       },
-      false
+      { passive: true }
     );
+
+    on(header, 'focusin', function () {
+      header.classList.remove('is-hidden');
+    });
 
     update();
   }

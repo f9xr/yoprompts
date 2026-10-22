@@ -7,9 +7,9 @@ description: >-
 seo:
   type: CollectionPage
 ---
-
 {%- assign skills = site.skills | sort: "title" -%}
-
+{%- assign featured_skills = site.skills | where: "featured", true -%}
+{%- assign latest_skills = site.skills | sort: "date" | reverse -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,49 +37,396 @@ seo:
       "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
-        { "@type": "ListItem", "position": 2, "name": "AI Agent Skills", "item": {{ '/ai-agent-skills/' | absolute_url | jsonify }} }
+        { "@type": "ListItem", "position": 2, "name": "AI Agent Skills", "item": {{ page.url | absolute_url | jsonify }} }
       ]
     }
   ]
 }
 </script>
 
-<div class="band band--flush-top">
-  <div class="container">
-    {% include breadcrumbs.html trail="Home~/|AI Agent Skills" %}
-  </div>
-</div>
+<div class="band band--flush-top"><div class="container">{% include breadcrumbs.html trail="Home~/|AI Agent Skills" %}</div></div>
 
 <section class="band band--flush-top">
   <div class="container">
-
     <div class="section-head">
       <div class="section-head__text">
         <p class="eyebrow-mono">AI Agent Skills</p>
         <h1 class="display-lg section-head__title" id="ai-agent-skills-heading">AI Agent Skills</h1>
         <p class="body-lg section-head__lede">
-          Discover and use specialized skills to extend AI agents with new capabilities.
+          Ready-made capabilities for Claude Code, Codex, Gemini CLI, Cursor,
+          Copilot, and every agent that reads a SKILL.md file. Copy the install
+          command, or open a skill to read its full definition first.
+        </p>
+      </div>
+      <a class="button" href="#all-skills">Browse all skills</a>
+    </div>
+
+    <div class="skills-stats">
+      <div class="skills-stat"><span class="skills-stat__n">{{ skills | size }}</span><span class="eyebrow-mono eyebrow-mono--muted">Skills</span></div>
+      <div class="skills-stat"><span class="skills-stat__n">{{ site.data.skill_categories | size }}</span><span class="eyebrow-mono eyebrow-mono--muted">Categories</span></div>
+      <div class="skills-stat"><span class="skills-stat__n">4</span><span class="eyebrow-mono eyebrow-mono--muted">Agent targets</span></div>
+      <div class="skills-stat"><span class="skills-stat__n">MIT</span><span class="eyebrow-mono eyebrow-mono--muted">Mostly licensed</span></div>
+    </div>
+  </div>
+</section>
+
+{%- if featured_skills.size > 0 %}
+<section class="band band--tight" id="featured-skills" aria-labelledby="featured-skills-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Featured skills</p>
+        <h2 class="display-md section-head__title" id="featured-skills-title">Start with these</h2>
+        <p class="body-lg section-head__lede">
+          Three skills that cover the most common jobs: auditing search
+          visibility, cleaning up generated prose, and building new skills.
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      {%- for skill in featured_skills limit: 3 -%}
+        {%- assign delay_class = "reveal--" | append: forloop.index -%}
+        {% include skill-card.html item=skill heading_tag="h3" delay=delay_class %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="band band--tight" id="trending-skills" aria-labelledby="trending-skills-title" data-trending>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Ranked by GitHub stars</p>
+        <h2 class="display-md section-head__title" id="trending-skills-title">Trending skills</h2>
+        <p class="body-lg section-head__lede">
+          Star counts are read live from each skill's public GitHub repository
+          and sorted in the browser. No vanity install counts.
+        </p>
+      </div>
+      <span class="eyebrow-mono eyebrow-mono--muted" data-trending-status>Loading stars</span>
+    </div>
+    <div class="grid grid-3" id="trending-grid">
+      {%- for skill in skills -%}
+        {%- assign delay_class = "reveal--" | append: forloop.index -%}
+        {% include skill-card.html item=skill heading_tag="h3" delay=delay_class %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<section class="band band--tight" id="latest-skills" aria-labelledby="latest-skills-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Latest skills</p>
+        <h2 class="display-md section-head__title" id="latest-skills-title">Recently added</h2>
+        <p class="body-lg section-head__lede">
+          The newest additions to the directory. Newest first, so a skill added
+          today sits at the front.
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      {%- for skill in latest_skills limit: 3 -%}
+        {%- assign delay_class = "reveal--" | append: forloop.index -%}
+        {% include skill-card.html item=skill heading_tag="h3" delay=delay_class %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<section class="band band--tight" id="skill-categories" aria-labelledby="skill-categories-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Browse skills by category</p>
+        <h2 class="display-md section-head__title" id="skill-categories-title">What do you need the agent to do?</h2>
+        <p class="body-lg section-head__lede">
+          Pick a job to filter the directory. Every category links to a live
+          filtered view of the catalogue below.
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      {%- for category in site.data.skill_categories -%}
+        {%- assign category_count = site.skills | where: "category", category.slug | size -%}
+        {%- if category_count > 0 -%}
+        <a class="skill-category" href="{{ '/ai-agent-skills/category/' | append: category.slug | append: '/' | relative_url }}">
+          <span class="eyebrow-mono eyebrow-mono--muted">{{ category_count }} {% if category_count == 1 %}skill{% else %}skills{% endif %}</span>
+          <span class="skill-category__title display-xs">{{ category.label }}</span>
+          <span class="body-sm skill-category__blurb">{{ category.blurb }}</span>
+          <span class="skill-category__arrow" aria-hidden="true">
+            <svg viewBox="0 0 14 14" fill="none" focusable="false"><path d="M2.5 11.5L11.5 2.5M11.5 2.5H4.5M11.5 2.5V9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<section class="band band--tight" id="all-skills" aria-labelledby="all-skills-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">All skills</p>
+        <h2 class="display-md section-head__title" id="all-skills-title">Search the directory</h2>
+        <p class="body-lg section-head__lede">
+          Filter by category, tag, or free text. Bookmarks are stored in this
+          browser only, no account required.
         </p>
       </div>
     </div>
 
-    {%- if skills.size > 0 %}
-    <div class="archive__toolbar">
-      <span class="archive__count eyebrow-mono eyebrow-mono--muted">{{ skills | size }} {% if skills.size == 1 %}skill{% else %}skills{% endif %}</span>
+    <div class="archive__toolbar skills-toolbar">
+      <span class="archive__count eyebrow-mono eyebrow-mono--muted" data-skill-count>{{ skills | size }} {% if skills.size == 1 %}skill{% else %}skills{% endif %}</span>
+      <div class="skills-toolbar__controls">
+        <label class="sr-only" for="skill-search">Search skills</label>
+        <input id="skill-search" class="text-input" type="search" placeholder="Search skills..." autocomplete="off">
+        <label class="sr-only" for="skill-category-filter">Filter by category</label>
+        <select id="skill-category-filter" class="text-input">
+          <option value="all">All categories</option>
+          {%- for category in site.data.skill_categories -%}
+            {%- assign category_count = site.skills | where: "category", category.slug | size -%}
+            {%- if category_count > 0 -%}
+          <option value="{{ category.slug }}">{{ category.label }}</option>
+            {%- endif -%}
+          {%- endfor -%}
+        </select>
+        <label class="sr-only" for="skill-tag-filter">Filter by tag</label>
+        <select id="skill-tag-filter" class="text-input"><option value="all">All tags</option></select>
+        <button id="bookmark-toggle" class="button button--sm" type="button" aria-pressed="false">Bookmarks</button>
+      </div>
     </div>
 
-    <div class="grid grid-3">
-      {%- for skill in skills %}
-      {%- assign delay_num = forloop.index | modulo: 4 | plus: 1 -%}
-      {%- assign reveal_class = "reveal--" | append: delay_num -%}
-      {% include resource-card.html item=skill eyebrow="Skill" delay=reveal_class %}
-      {%- endfor %}
+    <div id="all-skills-grid" class="grid grid-3">
+      {%- for skill in skills -%}
+        {%- assign delay_class = "reveal--" | append: forloop.index -%}
+        {% include skill-card.html item=skill heading_tag="h3" delay=delay_class %}
+      {%- endfor -%}
     </div>
-    {%- else %}
-    <div class="prose">
-      <p>Coming soon. Check back for curated AI agent skills.</p>
-    </div>
-    {%- endif %}
-
+    <p id="no-results" class="body-sm archive__empty" style="display:none;">No skills match your filters.</p>
   </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script>
+(function () {
+  var grid = document.getElementById('all-skills-grid');
+  if (!grid) { return; }
+
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-skill-card]'));
+  var search = document.getElementById('skill-search');
+  var categoryFilter = document.getElementById('skill-category-filter');
+  var tagFilter = document.getElementById('skill-tag-filter');
+  var toggle = document.getElementById('bookmark-toggle');
+  var counter = document.querySelector('[data-skill-count]');
+  var noResults = document.getElementById('no-results');
+  var BOOKMARK_KEY = 'yop_skills_bookmarks';
+  var bookmarks = readBookmarks();
+  var showBookmarks = false;
+
+  function readBookmarks() {
+    try { return JSON.parse(window.localStorage.getItem(BOOKMARK_KEY) || '[]'); }
+    catch (error) { return []; }
+  }
+
+  function saveBookmarks() {
+    try { window.localStorage.setItem(BOOKMARK_KEY, JSON.stringify(bookmarks)); }
+    catch (error) {}
+  }
+
+  var tags = {};
+  cards.forEach(function (card) {
+    (card.getAttribute('data-tags') || '').split(',').forEach(function (tag) {
+      tag = tag.trim();
+      if (tag) { tags[tag] = true; }
+    });
+  });
+  Object.keys(tags).sort().forEach(function (tag) {
+    var option = document.createElement('option');
+    option.value = tag;
+    option.textContent = tag;
+    tagFilter.appendChild(option);
+  });
+
+  function syncBookmarkButtons() {
+    document.querySelectorAll('.bookmark-btn').forEach(function (button) {
+      var slug = button.getAttribute('data-bookmark');
+      var active = bookmarks.indexOf(slug) !== -1;
+      button.textContent = active ? 'Bookmarked' : 'Bookmark';
+      button.classList.toggle('is-copied', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest ? event.target.closest('.bookmark-btn') : null;
+    if (!button) { return; }
+    event.preventDefault();
+    var slug = button.getAttribute('data-bookmark');
+    var index = bookmarks.indexOf(slug);
+    if (index !== -1) { bookmarks.splice(index, 1); } else { bookmarks.push(slug); }
+    saveBookmarks();
+    syncBookmarkButtons();
+    filter();
+  });
+
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      showBookmarks = !showBookmarks;
+      toggle.textContent = showBookmarks ? 'Show all' : 'Bookmarks';
+      toggle.setAttribute('aria-pressed', showBookmarks ? 'true' : 'false');
+      filter();
+    });
+  }
+
+  var fuse = null;
+  if (typeof window.Fuse === 'function') {
+    fuse = new window.Fuse(cards.map(function (card) {
+      return {
+        el: card,
+        title: card.getAttribute('data-title') || '',
+        tags: card.getAttribute('data-tags') || '',
+        category: card.getAttribute('data-category') || '',
+        slug: card.getAttribute('data-slug') || ''
+      };
+    }), { keys: ['title', 'tags', 'category', 'slug'], threshold: 0.3 });
+  }
+
+  function filter() {
+    var query = (search && search.value || '').toLowerCase().trim();
+    var category = categoryFilter ? categoryFilter.value : 'all';
+    var tag = tagFilter ? tagFilter.value : 'all';
+    var results = cards;
+
+    if (query) {
+      if (fuse) {
+        results = fuse.search(query).map(function (result) { return result.item.el; });
+      } else {
+        results = cards.filter(function (card) {
+          return (card.getAttribute('data-title') || '').indexOf(query) !== -1 ||
+            (card.getAttribute('data-tags') || '').indexOf(query) !== -1;
+        });
+      }
+    }
+
+    cards.forEach(function (card) { card.style.display = 'none'; });
+    var visible = 0;
+
+    results.forEach(function (card) {
+      var cardCategory = card.getAttribute('data-category') || '';
+      var cardTags = (card.getAttribute('data-tags') || '').split(',');
+      if (category !== 'all' && cardCategory !== category) { return; }
+      if (tag !== 'all' && cardTags.indexOf(tag) === -1) { return; }
+      if (showBookmarks && bookmarks.indexOf(card.getAttribute('data-slug')) === -1) { return; }
+      card.style.display = '';
+      visible += 1;
+    });
+
+    if (counter) {
+      counter.textContent = visible === cards.length
+        ? cards.length + (cards.length === 1 ? ' skill' : ' skills')
+        : visible + ' of ' + cards.length + ' skills';
+    }
+    if (noResults) { noResults.style.display = visible ? 'none' : 'block'; }
+  }
+
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('category') && categoryFilter) {
+    categoryFilter.value = params.get('category');
+  }
+  if (params.get('tag') && tagFilter) {
+    tagFilter.value = params.get('tag');
+  }
+  if (params.get('q') && search) {
+    search.value = params.get('q');
+  }
+
+  if (search) { search.addEventListener('input', filter); }
+  if (categoryFilter) { categoryFilter.addEventListener('change', filter); }
+  if (tagFilter) { tagFilter.addEventListener('change', filter); }
+  syncBookmarkButtons();
+  filter();
+})();
+
+(function () {
+  var CACHE_KEY = 'yop_skill_stars_v1';
+  var MAX_AGE = 6 * 60 * 60 * 1000;
+  var grids = Array.prototype.slice.call(document.querySelectorAll('[data-repo]'));
+  if (!grids.length) { return; }
+
+  var status = document.querySelector('[data-trending-status]');
+  var cache = {};
+  try { cache = JSON.parse(window.localStorage.getItem(CACHE_KEY) || '{}'); }
+  catch (error) { cache = {}; }
+
+  var repos = {};
+  grids.forEach(function (node) {
+    var repo = node.getAttribute('data-repo');
+    if (repo) { repos[repo] = true; }
+  });
+
+  function format(count) {
+    if (count >= 1000) { return (count / 1000).toFixed(count >= 10000 ? 0 : 1) + 'k'; }
+    return String(count);
+  }
+
+  function paint(repo, stars) {
+    document.querySelectorAll('[data-stars][data-repo="' + repo + '"] [data-stars-value]').forEach(function (node) {
+      node.textContent = format(stars);
+    });
+  }
+
+  function sortTrending() {
+    var grid = document.getElementById('trending-grid');
+    if (!grid) { return; }
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-skill-card]'));
+    cards.sort(function (a, b) {
+      var aRepo = a.getAttribute('data-repo');
+      var bRepo = b.getAttribute('data-repo');
+      var aStars = aRepo && cache[aRepo] ? cache[aRepo].stars : 0;
+      var bStars = bRepo && cache[bRepo] ? cache[bRepo].stars : 0;
+      return bStars - aStars;
+    });
+    cards.forEach(function (card) { grid.appendChild(card); });
+  }
+
+  var now = Date.now();
+  var pending = Object.keys(repos).filter(function (repo) {
+    return !cache[repo] || now - cache[repo].ts > MAX_AGE;
+  });
+
+  Object.keys(repos).forEach(function (repo) {
+    if (cache[repo]) { paint(repo, cache[repo].stars); }
+  });
+  sortTrending();
+
+  if (!pending.length) {
+    if (status) { status.textContent = 'Stars from cache'; }
+    return;
+  }
+
+  Promise.all(pending.map(function (repo) {
+    return fetch('https://api.github.com/repos/' + repo, {
+      headers: { 'Accept': 'application/vnd.github+json' }
+    }).then(function (response) {
+      return response.ok ? response.json() : null;
+    }).then(function (data) {
+      if (!data || typeof data.stargazers_count !== 'number') { return null; }
+      cache[repo] = { stars: data.stargazers_count, ts: now };
+      paint(repo, data.stargazers_count);
+      return repo;
+    }).catch(function () { return null; });
+  })).then(function (results) {
+    try { window.localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); }
+    catch (error) {}
+    sortTrending();
+    if (status) {
+      var updated = results.filter(Boolean).length;
+      status.textContent = updated ? 'Live from GitHub' : 'Stars unavailable';
+    }
+  });
+})();
+</script>

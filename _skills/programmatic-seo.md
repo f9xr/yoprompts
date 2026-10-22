@@ -1,6 +1,8 @@
 ---
 title: "Programmatic SEO"
 slug: programmatic-seo
+category: seo
+date: 2026-10-22
 excerpt: "Design and ship SEO pages at scale from templates and data feeds, with internal linking, indexation, and thin-content checks built in."
 creator: "Corey Haines"
 license: "MIT"

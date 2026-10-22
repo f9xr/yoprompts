@@ -1,6 +1,8 @@
 ---
 title: "Taste Skill"
 slug: taste-skill
+category: design
+date: 2026-10-22
 excerpt: "A design-direction skill for landing pages and redesigns that deals a researched art direction, then gates the build with real browser measurements."
 creator: "Leonxlnx"
 license: "MIT"

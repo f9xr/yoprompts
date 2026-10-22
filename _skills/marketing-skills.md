@@ -1,10 +1,14 @@
 ---
 title: "Marketing Skills"
 slug: marketing-skills
+category: marketing
+date: 2026-10-22
 excerpt: "A 43-skill marketing bundle covering positioning, copywriting, CRO, SEO, analytics, paid ads, lifecycle email, and growth engineering."
 creator: "Corey Haines"
 license: "MIT"
 repo_url: "https://github.com/coreyhaines31/marketingskills"
+source_file: "README.md"
+file_label: "Bundle README"
 tags: [marketing, cro, copywriting, seo, analytics]
 usage: |
   npx skills add coreyhaines31/marketingskills

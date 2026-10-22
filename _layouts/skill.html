@@ -1,6 +1,43 @@
 ---
 layout: default
 ---
+{%- assign repo = "" -%}
+{%- assign repo_owner = "" -%}
+{%- assign repo_name = "" -%}
+{%- if page.repo_url -%}
+  {%- assign repo_path = page.repo_url | remove: "https://github.com/" | remove: ".git" -%}
+  {%- assign repo_parts = repo_path | split: "/" -%}
+  {%- assign repo_owner = repo_parts[0] -%}
+  {%- assign repo_name = repo_parts[1] -%}
+  {%- assign repo = repo_owner | append: "/" | append: repo_name -%}
+{%- endif -%}
+{%- assign author_url = "" -%}
+{%- if page.creator_url -%}
+  {%- assign author_url = page.creator_url -%}
+{%- elsif repo != "" -%}
+  {%- assign author_url = "https://github.com/" | append: repo_owner -%}
+{%- endif -%}
+{%- assign source_url = page.repo_url | default: page.source_url -%}
+{%- assign skill_content = page.skill_file | default: page.raw_skill -%}
+{%- assign source_file = page.source_file | default: "SKILL.md" -%}
+{%- assign source_basename = source_file | split: "/" | last -%}
+{%- assign file_label = page.file_label | default: source_basename -%}
+{%- assign category_label = page.category -%}
+{%- assign category_url = "" -%}
+{%- if page.category -%}
+  {%- assign category_url = "/ai-agent-skills/category/" | append: page.category | append: "/" -%}
+  {%- for category in site.data.skill_categories -%}
+    {%- if category.slug == page.category -%}{%- assign category_label = category.label -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- assign install_command = "" -%}
+{%- if page.install -%}
+  {%- assign install_command = page.install -%}
+{%- elsif page.usage and page.usage contains "npx skills add" -%}
+  {%- assign install_command = page.usage -%}
+{%- elsif repo != "" -%}
+  {%- assign install_command = "npx skills add " | append: repo | append: "@" | append: page.slug -%}
+{%- endif -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -13,18 +50,21 @@ layout: default
       "url": {{ page.url | absolute_url | jsonify }},
       "inLanguage": "en",
       "author": { "@type": "Organization", "name": "F9XR Team", "url": "https://f9xr.org" },
-      "creator": { "name": {{ page.creator | default: "F9XR Team" | jsonify }} },
+      "creator": { "name": {{ page.creator | default: "F9XR Team" | jsonify }}{% if author_url != "" %}, "url": {{ author_url | jsonify }}{% endif %} },
       "isPartOf": { "@type": "WebSite", "name": "YoPrompts", "url": {{ '/' | absolute_url | jsonify }} },
       "keywords": {{ page.tags | join: ", " | jsonify }}{% if page.license %},
-      "license": {{ page.license | jsonify }}{% endif %}
+      "license": {{ page.license | jsonify }}{% endif %}{% if source_url %},
+      "codeRepository": {{ source_url | jsonify }}{% endif %}
     },
     {
       "@type": "BreadcrumbList",
       "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
-        { "@type": "ListItem", "position": 2, "name": "AI Agent Skills", "item": {{ '/ai-agent-skills/' | absolute_url | jsonify }} },
-        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ page.url | absolute_url | jsonify }} }
+        { "@type": "ListItem", "position": 2, "name": "AI Agent Skills", "item": {{ '/ai-agent-skills/' | absolute_url | jsonify }}}{% if category_url != "" %},
+        { "@type": "ListItem", "position": 3, "name": {{ category_label | jsonify }}, "item": {{ category_url | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 4, "name": {{ page.title | jsonify }}, "item": {{ page.url | absolute_url | jsonify }}}{% else %},
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ page.url | absolute_url | jsonify }}}{% endif %}
       ]
     }
   ]
@@ -32,7 +72,6 @@ layout: default
 </script>
 
 <article class="band page-head">
-
   <div class="container">
 
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -40,6 +79,10 @@ layout: default
       <span class="breadcrumbs__sep" aria-hidden="true">/</span>
       <a href="{{ '/ai-agent-skills/' | relative_url }}">AI Agent Skills</a>
       <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+      {%- if category_url != "" %}
+      <a href="{{ category_url | relative_url }}">{{ category_label }}</a>
+      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+      {%- endif %}
       <span aria-current="page">{{ page.title }}</span>
     </nav>
 
@@ -49,9 +92,21 @@ layout: default
       <p class="body-lg page-head__lede">{{ page.excerpt | escape }}</p>
 
       <div class="meta-row">
-        {%- if page.creator %}<span class="meta-mono">{{ page.creator }}</span>{% endif -%}
-        {%- if page.version %}<span class="meta-mono">v{{ page.version }}</span>{% endif -%}
-        {%- if page.license %}<span class="meta-mono">{{ page.license }}</span>{% endif -%}
+        {%- if page.creator -%}
+          {%- if author_url != "" -%}
+          <a class="meta-mono" href="{{ author_url }}" target="_blank" rel="noopener noreferrer">{{ page.creator }}</a>
+          {%- else -%}
+          <span class="meta-mono">{{ page.creator }}</span>
+          {%- endif -%}
+        {%- endif -%}
+        {%- if page.version -%}<span class="meta-mono">v{{ page.version }}</span>{%- endif -%}
+        {%- if page.license -%}<span class="meta-mono">{{ page.license }}</span>{%- endif -%}
+        {%- if repo != "" -%}
+        <span class="meta-mono skill-stars" data-stars data-repo="{{ repo }}" title="GitHub stars">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M8 1.8l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <span data-stars-value>--</span> stars
+        </span>
+        {%- endif -%}
       </div>
     </header>
 
@@ -68,9 +123,143 @@ layout: default
         {%- if page.usage %}
         <section class="detail-section" aria-labelledby="usage-title">
           <h2 class="display-sm detail-section__title" id="usage-title">How to use it</h2>
-          <pre class="prompt-body">{{ page.usage | escape }}</pre>
+          <div class="prompt-body-shell">
+            <div class="prompt-body-shell__bar">
+              <span class="eyebrow-mono">Usage</span>
+              <button class="button button--sm" type="button" data-copy-block="usage-{{ page.slug }}">
+                <svg class="button__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false"><rect x="4.5" y="4.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 2.5H3A1.5 1.5 0 0 0 1.5 4v6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                <span class="button__label">Copy</span>
+              </button>
+            </div>
+            <pre class="prompt-body" id="usage-{{ page.slug }}">{{ page.usage | escape }}</pre>
+          </div>
         </section>
         {%- endif %}
+
+        <section class="detail-section" aria-labelledby="install-title">
+          <h2 class="display-sm detail-section__title" id="install-title">Guide on how to install this skill</h2>
+
+          {%- if install_command != "" %}
+          <p class="body-sm detail-section__copy">
+            {%- if install_command contains "npx skills add" %}
+            Install with the
+            <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener noreferrer">Skills CLI</a>,
+            which copies the skill into the right folder for your agent:
+            {%- else %}
+            Run these commands in your agent to install the skill:
+            {%- endif %}
+          </p>
+          <div class="prompt-body-shell">
+            <div class="prompt-body-shell__bar">
+              <span class="eyebrow-mono">Command</span>
+              <button class="button button--sm" type="button" data-copy-block="install-command">
+                <svg class="button__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false"><rect x="4.5" y="4.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 2.5H3A1.5 1.5 0 0 0 1.5 4v6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                <span class="button__label">Copy command</span>
+              </button>
+            </div>
+            <pre class="prompt-body" id="install-command">{{ install_command | escape }}</pre>
+          </div>
+          {%- if install_command contains "npx skills add" %}
+          <p class="body-sm detail-section__copy">
+            If the repository bundles several skills, append
+            <code>@skill-name</code> to pick one, or follow the repository README.
+          </p>
+          {%- endif %}
+          {%- else %}
+          <p class="body-sm detail-section__copy">
+            This skill is not published in a public GitHub repository. Copy the
+            SKILL.md content below into your agent's skills folder.
+          </p>
+          {%- endif %}
+
+          <h3 class="display-xs detail-section__subhead">Install in different AI agents</h3>
+          <p class="body-sm detail-section__copy">
+            Prefer a manual install? Create the folder for your agent, then save
+            the SKILL.md file inside it. Copy a path with the button beside it.
+          </p>
+
+          <div class="path-table-wrap">
+            <table class="path-table">
+              <thead>
+                <tr>
+                  <th scope="col">Agent</th>
+                  <th scope="col">Project path</th>
+                  <th scope="col">Global path</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Claude Code</th>
+                  <td><code>{project}/.claude/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.claude/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Claude Code project path">Copy</button></td>
+                  <td><code>~/.claude/skills/</code><button class="path-copy" type="button" data-copy-text="~/.claude/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Claude Code global path">Copy</button></td>
+                </tr>
+                <tr>
+                  <th scope="row">GitHub Copilot</th>
+                  <td><code>{project}/.github/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.github/skills/{{ page.slug }}/SKILL.md" aria-label="Copy GitHub Copilot project path">Copy</button></td>
+                  <td><code>~/.copilot/skills/</code><button class="path-copy" type="button" data-copy-text="~/.copilot/skills/{{ page.slug }}/SKILL.md" aria-label="Copy GitHub Copilot global path">Copy</button></td>
+                </tr>
+                <tr>
+                  <th scope="row">OpenAI Codex</th>
+                  <td><code>{project}/.agents/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.agents/skills/{{ page.slug }}/SKILL.md" aria-label="Copy OpenAI Codex project path">Copy</button></td>
+                  <td><code>~/.codex/skills/</code><button class="path-copy" type="button" data-copy-text="~/.codex/skills/{{ page.slug }}/SKILL.md" aria-label="Copy OpenAI Codex global path">Copy</button></td>
+                </tr>
+                <tr>
+                  <th scope="row">Cursor</th>
+                  <td><code>{project}/.cursor/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.cursor/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Cursor project path">Copy</button></td>
+                  <td><span class="body-sm path-table__muted">Not supported</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="detail-section" id="skill-md" aria-labelledby="skill-md-title">
+          <div class="detail-section__header">
+            <h2 class="display-sm detail-section__title" id="skill-md-title">{{ file_label }}</h2>
+            <div class="detail-section__actions">
+              {%- if source_url %}
+              <a class="button button--sm" href="{{ source_url }}" target="_blank" rel="noopener noreferrer" data-skill-file-link>View file on GitHub</a>
+              {%- endif %}
+              <button class="button button--sm" type="button" data-copy-skill disabled>
+                <svg class="button__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false"><rect x="4.5" y="4.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 2.5H3A1.5 1.5 0 0 0 1.5 4v6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                <span class="button__label">Copy {{ source_basename }}</span>
+              </button>
+              <button class="button button--sm" type="button" data-download-skill disabled>
+                <span class="button__label">Download {{ source_basename }}</span>
+              </button>
+            </div>
+          </div>
+          <p class="body-sm detail-section__copy">
+            {%- if source_basename == "README.md" %}
+            This entry bundles several skills, so the repository README is shown
+            here. Open the file on GitHub to browse every skill in the bundle.
+            {%- else %}
+            The complete skill definition, exactly as an agent reads it. Review
+            the instructions and the allowed tools before you install it.
+            {%- endif %}
+          </p>
+
+          {%- if skill_content != nil and skill_content != "" %}
+          <div class="prompt-body-shell">
+            <div class="prompt-body-shell__bar">
+              <span class="eyebrow-mono">{{ source_basename }}</span>
+              <span class="copy-state" data-skill-state></span>
+            </div>
+            <pre class="prompt-body skill-md-body" id="skill-md-content" data-skill-content data-source-file="{{ source_file | escape }}" data-download-name="{{ source_basename | escape }}">{{ skill_content | escape }}</pre>
+          </div>
+          {%- elsif source_url %}
+          <div class="prompt-body-shell">
+            <div class="prompt-body-shell__bar">
+              <span class="eyebrow-mono">{{ source_basename }}</span>
+              <span class="copy-state" data-skill-state>Loading from GitHub</span>
+            </div>
+            <pre class="prompt-body skill-md-body" id="skill-md-content" data-skill-content data-repo-url="{{ page.repo_url | escape }}" data-source-file="{{ source_file | escape }}" data-download-name="{{ source_basename | escape }}">Fetching {{ source_basename }} from GitHub...</pre>
+          </div>
+          <noscript><p class="body-sm detail-section__copy">JavaScript is off, so the file cannot be fetched here. <a href="{{ source_url }}">Open it on GitHub</a> instead.</p></noscript>
+          {%- else %}
+          <p class="body-sm detail-section__copy">No markdown source is attached to this entry yet.</p>
+          {%- endif %}
+        </section>
 
       </div>
 
@@ -79,6 +268,9 @@ layout: default
         <div class="card">
           <p class="eyebrow-mono eyebrow-mono--muted">Skill</p>
           <p class="body-sm card__body">{{ page.slug }}</p>
+          {%- if category_url != "" %}
+          <a class="meta-mono skill-side-category" href="{{ category_url | relative_url }}">{{ category_label }}</a>
+          {%- endif %}
         </div>
 
         {%- if page.tags %}
@@ -92,13 +284,36 @@ layout: default
         </div>
         {%- endif %}
 
-        {%- if page.repo_url or page.source_url %}
-        <a class="button" href="{{ page.repo_url | default: page.source_url }}" target="_blank" rel="noopener noreferrer">
-          View source
-          <svg class="button__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
-            <path d="M4 10L10 4M10 4H5M10 4v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Actions</p>
+          <div class="skill-actions">
+            {%- if source_url %}
+            <a class="button button--block" href="{{ source_url }}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            {%- endif %}
+            {%- if repo != "" %}
+            <a class="button button--block" href="https://github.com/{{ repo }}/archive/refs/heads/main.zip" target="_blank" rel="noopener noreferrer">Download repository</a>
+            {%- endif %}
+            <button class="button button--block" type="button" data-copy-skill disabled>
+              <span class="button__label">Copy {{ source_basename }}</span>
+            </button>
+            <button class="button button--block" type="button" data-download-skill disabled>
+              <span class="button__label">Download {{ source_basename }}</span>
+            </button>
+          </div>
+        </div>
+
+        {%- if repo != "" %}
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Repository</p>
+          <a class="body-sm skill-repo-link" href="https://github.com/{{ repo }}" target="_blank" rel="noopener noreferrer">{{ repo }}</a>
+          <div class="skill-repo-stats" data-repo="{{ repo }}">
+            <span class="meta-mono">Stars</span>
+            <span class="meta-mono skill-stars" data-stars data-repo="{{ repo }}">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M8 1.8l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+              <span data-stars-value>--</span>
+            </span>
+          </div>
+        </div>
         {%- endif %}
 
       </aside>
@@ -110,3 +325,203 @@ layout: default
 
   </div>
 </article>
+
+<script>
+(function () {
+  function copy(text) {
+    if (!text) { return Promise.reject(new Error('empty')); }
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var field = document.createElement('textarea');
+      field.value = text;
+      field.style.position = 'fixed';
+      field.style.top = '-1000px';
+      document.body.appendChild(field);
+      field.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (error) { ok = false; }
+      document.body.removeChild(field);
+      ok ? resolve() : reject(new Error('copy-unavailable'));
+    });
+  }
+
+  function flash(button, label) {
+    var node = button.querySelector('.button__label');
+    if (!node) { return; }
+    var original = node.textContent;
+    node.textContent = label || 'Copied';
+    window.setTimeout(function () { node.textContent = original; }, 1600);
+  }
+
+  document.addEventListener('click', function (event) {
+    var copyBlock = event.target.closest ? event.target.closest('[data-copy-block]') : null;
+    if (copyBlock) {
+      event.preventDefault();
+      var block = document.getElementById(copyBlock.getAttribute('data-copy-block'));
+      copy(block ? block.textContent : '').then(function () { flash(copyBlock); });
+      return;
+    }
+
+    var copyText = event.target.closest ? event.target.closest('[data-copy-text]') : null;
+    if (copyText) {
+      event.preventDefault();
+      copy(copyText.getAttribute('data-copy-text')).then(function () {
+        var original = copyText.textContent;
+        copyText.textContent = 'Copied';
+        window.setTimeout(function () { copyText.textContent = original; }, 1400);
+      });
+    }
+  });
+
+  var content = document.getElementById('skill-md-content');
+  var state = document.querySelector('[data-skill-state]');
+  var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-skill]'));
+  var downloadButtons = Array.prototype.slice.call(document.querySelectorAll('[data-download-skill]'));
+  var fileLink = document.querySelector('[data-skill-file-link]');
+  var sourceFile = content && content.getAttribute('data-source-file') || 'SKILL.md';
+  var downloadName = content && content.getAttribute('data-download-name') || 'SKILL.md';
+
+  function enable() {
+    copyButtons.forEach(function (button) { button.disabled = false; });
+    downloadButtons.forEach(function (button) { button.disabled = false; });
+  }
+
+  function setState(text) {
+    if (state) { state.textContent = text; }
+  }
+
+  function currentText() {
+    return content ? content.textContent : '';
+  }
+
+  copyButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      copy(currentText()).then(function () { flash(button, 'Copied'); });
+    });
+  });
+
+  downloadButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      var text = currentText();
+      if (!text) { return; }
+      var blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = downloadName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      flash(button, 'Downloaded');
+    });
+  });
+
+  function repoParts(repoUrl) {
+    var path = repoUrl.replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '');
+    var parts = path.split('/').filter(Boolean);
+    var owner = parts[0];
+    var repo = parts[1];
+    var branch = 'main';
+    var subpath = '';
+    if (parts[2] === 'tree' && parts[3]) {
+      branch = parts[3];
+      subpath = parts.slice(4).join('/');
+    }
+    return { owner: owner, repo: repo, branch: branch, subpath: subpath };
+  }
+
+  function decodeBase64(value) {
+    var binary = atob(value.replace(/\s/g, ''));
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i += 1) { bytes[i] = binary.charCodeAt(i); }
+    return new TextDecoder('utf-8').decode(bytes);
+  }
+
+  function fetchSkill(location) {
+    var filePath = location.subpath ? location.subpath + '/' + sourceFile : sourceFile;
+    var api = 'https://api.github.com/repos/' + location.owner + '/' + location.repo +
+      '/contents/' + filePath.split('/').map(encodeURIComponent).join('/');
+
+    return fetch(api, { headers: { 'Accept': 'application/vnd.github+json' } })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (data) {
+        if (data && data.content) {
+          if (fileLink && data.html_url) { fileLink.href = data.html_url; }
+          return decodeBase64(data.content);
+        }
+        var raw = 'https://raw.githubusercontent.com/' + location.owner + '/' + location.repo + '/' + location.branch + '/' + filePath;
+        return fetch(raw).then(function (response) {
+          return response.ok ? response.text() : null;
+        });
+      });
+  }
+
+  if (content && content.hasAttribute('data-repo-url')) {
+    var repoUrl = content.getAttribute('data-repo-url');
+    if (repoUrl) {
+      fetchSkill(repoParts(repoUrl)).then(function (text) {
+        if (text) {
+          content.textContent = text;
+          setState('Loaded from GitHub');
+          enable();
+        } else {
+          content.textContent = 'Could not load the file automatically. Use the link to open it on GitHub.';
+          setState('Unavailable');
+        }
+      }).catch(function () {
+        content.textContent = 'Could not load the file automatically. Use the link to open it on GitHub.';
+        setState('Unavailable');
+      });
+    }
+  } else if (content) {
+    setState('Ready');
+    enable();
+  }
+})();
+
+(function () {
+  var CACHE_KEY = 'yop_skill_stars_v1';
+  var MAX_AGE = 6 * 60 * 60 * 1000;
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-stars][data-repo]'));
+  if (!nodes.length) { return; }
+
+  var cache = {};
+  try { cache = JSON.parse(window.localStorage.getItem(CACHE_KEY) || '{}'); }
+  catch (error) { cache = {}; }
+
+  function format(count) {
+    if (count >= 1000) { return (count / 1000).toFixed(count >= 10000 ? 0 : 1) + 'k'; }
+    return String(count);
+  }
+
+  function paint(repo, stars) {
+    document.querySelectorAll('[data-stars][data-repo="' + repo + '"] [data-stars-value]').forEach(function (node) {
+      node.textContent = format(stars);
+    });
+  }
+
+  var now = Date.now();
+  var repos = {};
+  nodes.forEach(function (node) { repos[node.getAttribute('data-repo')] = true; });
+
+  Object.keys(repos).forEach(function (repo) {
+    if (cache[repo] && now - cache[repo].ts <= MAX_AGE) { paint(repo, cache[repo].stars); }
+  });
+
+  Object.keys(repos).forEach(function (repo) {
+    if (cache[repo] && now - cache[repo].ts <= MAX_AGE) { return; }
+    fetch('https://api.github.com/repos/' + repo, { headers: { 'Accept': 'application/vnd.github+json' } })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (data) {
+        if (!data || typeof data.stargazers_count !== 'number') { return; }
+        cache[repo] = { stars: data.stargazers_count, ts: now };
+        try { window.localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch (error) {}
+        paint(repo, data.stargazers_count);
+      })
+      .catch(function () {});
+  });
+})();
+</script>

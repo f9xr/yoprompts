@@ -1,0 +1,24 @@
+# Skill categories. `slug` matches the `category:` value on a skill
+# document and drives the Browse Skills by Category grid and the
+# category filter on /ai-agent-skills/.
+- slug: seo
+  label: SEO
+  blurb: Technical audits, content strategy, schema, and search visibility.
+- slug: writing
+  label: Writing
+  blurb: Editing passes, voice work, and removing the tells of generated prose.
+- slug: marketing
+  label: Marketing
+  blurb: Positioning, campaigns, conversion, lifecycle email, and growth.
+- slug: social
+  label: Social Media
+  blurb: Platform-native posts, hooks, carousels, and repurposing workflows.
+- slug: design
+  label: Design
+  blurb: Art direction and frontend decisions backed by real measurements.
+- slug: engineering
+  label: Engineering
+  blurb: Deployment, React architecture, performance, and production operations.
+- slug: meta
+  label: Skill Building
+  blurb: Finding, writing, testing, and improving agent skills themselves.

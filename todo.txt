@@ -1,36 +1,76 @@
 Name: YoPrompts
 by F9XR Team
-YoPrompts URL: f9xr.org/yoprompts 
-Work: Provide ready made strong prompts for users to copy paste and use with their ai chat bots to get amaizing results
+YoPrompts URL: f9xr.org/yoprompts
+Work: Provide ready made strong prompts for users to copy paste and use with their ai chat bots to get amazing results
 
 F9XR Team (f9xr.org)
 hello@f9xr.org
 
 Follow DESIGN.md file
 
-in footer, add our Partners section with below links:
-https://f9xr.org/articles/
-https://f9xr.org/troolify/
-https://f9xr.org/directories/
-https://f9xr.org/seo-audit-report-skill/
-https://f9xr.org/boredpup/
-https://f9xr.org/dev9b/
-https://f9xr.org/resumio/
-
-
-And, of course, each preceding stage in the hierarchy links to the next stage & vice versa! So, the authority juice flows to all the different pages & all the pages also are indexed by Google!
-
-Compeitiors:
+Competitors:
 https://agenticskills.io
 https://www.skills.sh
 https://skillsmp.com
 https://www.skillsdirectory.com
 https://awesomeskill.ai
 
+Reference implementation:
 https://github.com/vercel-labs/skills.git
 
+REMAINING BACKLOG
 
-Featured Skills
-Latest Skills
-Ranked by GitHub Stars - Trending Skills
-Browse Skills by Category
+Discovery and parsing
+- Progressive disclosure preview: show Level 1 metadata in results with an expandable Level 2 SKILL.md body, without leaving the discovery page.
+- Anatomy tracker: render a visual folder tree showing optional assets, references, scripts, and examples.
+- Trigger and intent indexing: index activation phrases, slash commands, and semantic targets from each skill description.
+
+Compatibility and installation
+- Compatibility checker: badge matrix showing tested agents (Claude Code, Codex CLI, Gemini CLI, Cursor, Copilot, Windsurf) from structured compatibility data.
+- Dynamic installer command builder: interactive form that outputs a custom npx skills add owner/repo@skill command.
+- Dynamic path switcher: turn the static agent path table into tabs that update commands and paths per agent.
+- Skill-to-MCP scaffold exporter: package a skill into a downloadable Node.js or Python MCP template.
+- MCP server pairings: detect and list recommended MCP server configurations beside a skill.
+- One-click README snippet generator: produce a markdown badge or snippet for skill authors.
+
+Security and trust
+- Allowed-tools validation: parse allowed-tools and warn when a skill requests terminal writes, local servers, or broad network access.
+- Upstream repository scoping: show contributor counts, commit frequency, and issue ratios for the specific skill subdirectory.
+- Security risk grading: scan scripts for curl calls, hardcoded credentials, sudo requirements, and other risky patterns.
+- Sensitive keyword scanner: run local regex checks for API keys, tokens, and dangerous commands.
+- Client-side schema linter: enforce name and description limits, front matter formatting, and license checks.
+
+Developer experience
+- Live YAML frontmatter validator: parse pasted SKILL.md in the browser and flag indentation or missing fields.
+- Token footprint counter: show token usage against common context limits.
+- Markdown-to-HTML viewer: render SKILL.md with Marked.js instead of showing raw text.
+- Procedural logic visualizer: turn headings and ordered steps into a Mermaid flowchart.
+- Exportable zip bundle generator: bundle selected skills into a downloadable zip.
+- Custom JSON registry exporter: select skills and export a local configuration file.
+- Custom registry URL generator: encode a selected skill set in a shareable URL hash.
+- Config-to-Markdown builder: form-driven SKILL.md generator.
+- Side-by-side diff viewer: compare a local variant against the directory standard.
+- Automated README extractor: generate a draft SKILL.md from a pasted README.
+- Drag-and-drop local auditor: inspect a dropped .claude or .github folder for outdated skill formats.
+- Local import and export of settings: back up and restore bookmarks and preferences as JSON.
+- Cross-tab synchronizer: sync selections, theme, and clipboard history with Broadcast Channel.
+- Session-based installation history: track clicked install paths in sessionStorage.
+
+Search and intelligence
+- Local semantic search: browser-side embeddings for concept search.
+- In-browser WebLLM playground: test a skill against dummy queries with a local browser model.
+- Client-side command generator: build terminal strings from user inputs.
+- Interactive skill dependency network: node graph of related skills by tag.
+- Context-window impact gauge: visual percentage of common context limits.
+- Cost estimation calculator: estimate prompt token cost by provider and usage.
+- Skill file size breakdown chart: chart bytes across SKILL.md, scripts, and assets.
+
+Auditing, offline, and accessibility
+- GitHub API hydration extension: add open issues and latest commit dates to the existing star counts.
+- Offline PWA support: service worker for browsing, search, and path copying without a network.
+- Dark mode and IDE theme syncing: system preference and editor theme switching. The site is dark-only today.
+- Full-screen focus mode: distraction-free SKILL.md reader.
+- Sound-assisted action cues: optional audio feedback for copy and validation events.
+- Dynamic font scaler: text size controls in the toolbar.
+- Client-side performance profiler: measure and display search filtering speed.
+- Print-to-PDF cheatsheet creator: printable skill reference.

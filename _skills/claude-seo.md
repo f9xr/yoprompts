@@ -1,17 +1,26 @@
 ---
 title: "Claude SEO"
 slug: claude-seo
+category: seo
+date: 2026-10-22
+featured: true
 excerpt: "Open-source SEO plugin for Claude Code that runs 25 sub-skills and 18 specialist agents across technical SEO, content, schema, local search, and AI visibility."
 creator: "AgriciDaniel"
 license: "MIT"
 version: "2.2.0"
 repo_url: "https://github.com/AgriciDaniel/claude-seo"
 homepage: "https://claude-seo.md"
+source_file: "README.md"
+file_label: "Bundle README"
 tags: [seo, technical seo, schema, content, geo]
 usage: |
   /seo audit https://example.com
   /seo page https://example.com/blog/post
   /seo schema https://example.com
+install: |
+  /plugin marketplace add AgriciDaniel/claude-seo
+  /plugin install claude-seo@agricidaniel-claude-seo
+  /seo setup
 ---
 
 Claude SEO is an open-source plugin that turns Claude Code into an SEO analyst with a repeatable workflow. It covers technical SEO, content quality (E-E-A-T), Schema.org markup, sitemaps, Core Web Vitals, local SEO, backlinks, AI search optimization (GEO), ecommerce, hreflang, search experience optimization, topic clustering, and drift monitoring.

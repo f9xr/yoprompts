@@ -1,6 +1,8 @@
 ---
 title: "Avoid AI Writing"
 slug: avoid-ai-writing
+category: writing
+date: 2026-10-22
 excerpt: "Audit and rewrite text to remove machine-written patterns, with a detect-only mode, a voice profile, and an iterate-to-convergence pass."
 creator: "Conor Bronsdon"
 license: "MIT"

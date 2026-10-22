@@ -47,12 +47,12 @@ attributes already in the HTML, so they work instantly and work offline.
 
 | Concern | Choice |
 |---|---|
-| Generator | Jekyll 3.9 (GitHub Pages native) |
+| Generator | Jekyll 3.10.0 (GitHub Pages native) |
 | Layouts / templates | Liquid, custom - **no theme gem** |
 | Styling | One hand-written stylesheet, `assets/css/main.css` |
 | Behaviour | One dependency-free script, `assets/js/main.js` |
-| Content | `_prompts` collection (library) + `_posts` (guides) |
-| Search & filter | Client-side, over `data-*` attributes |
+| Content | `_prompts` collection (library) + `_posts` (guides) + `_skills` (AI Agent Skills directory) |
+| Search & filter | Client-side, over `data-*` attributes (Fuse.js for skills) |
 | Fonts | Inter + JetBrains Mono via Google Fonts |
 
 Plugins, all supported on GitHub Pages without a `Gemfile`:
@@ -151,16 +151,23 @@ _includes/
   nav-links.html         one nav entry per item, shared by both navs
   prompt-art.html        inline SVG card artwork, four variants
   prompt-card.html       the core prompt card unit
-_layouts/
+  skill-card.html       the shared skill card for the directory
+  _layouts/
   default.html           page shell
   post.html              guide/article layout
   prompt.html            prompt detail layout, incl. JSON-LD
+  skill.html             skill detail layout, install guides, SKILL.md viewer
+  skill-category.html    skill category index layout
 _prompts/                the prompt library (collection)
 _posts/                  guides (collection)
+_skills/                 AI Agent Skills collection
+_data/
+  skill_categories.yml   skill taxonomy
+ai-agent-skills/         skills directory, category pages, and per-skill output
 assets/
   css/main.css           the entire design system
   img/favicon.svg
-  js/main.js             copy, filter, carousel, drawer, reveals
+  js/main.js             copy, filter, carousel, drawer, reveals, header auto-hide, skills search/filter/bookmarks
 categories/index.html    category index
 prompts/index.html       full searchable library
 blog/index.html          guides index

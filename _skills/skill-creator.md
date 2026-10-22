@@ -1,6 +1,9 @@
 ---
 title: "Skill Creator"
 slug: skill-creator
+category: meta
+date: 2026-10-22
+featured: true
 excerpt: "An interactive guide for writing, testing, and improving SKILL.md files, including eval runs, benchmark comparison, and description optimization."
 creator: "Anthropic"
 license: "Apache-2.0"
