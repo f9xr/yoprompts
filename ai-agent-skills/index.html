@@ -1,0 +1,49 @@
+---
+layout: default
+title: AI Agent Skills
+body-class: page
+description: >-
+  Discover AI agent skills to extend your agents with specialized capabilities.
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "AI Agent Skills", "item": {{ '/ai-agent-skills/' | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top">
+  <div class="container">
+    {% include breadcrumbs.html trail="Home~/|AI Agent Skills" %}
+  </div>
+</div>
+
+<section class="band band--flush-top">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">AI Agent Skills</p>
+        <h1 class="display-lg section-head__title" id="ai-agent-skills-heading">AI Agent Skills</h1>
+        <p class="body-lg section-head__lede">
+          Discover and use specialized skills to extend AI agents with new capabilities.
+        </p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Coming soon. Check back for curated AI agent skills.</p>
+    </div>
+
+  </div>
+</section>

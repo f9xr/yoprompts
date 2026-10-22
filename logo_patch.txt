@@ -1,0 +1,4 @@
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://f9xr.org/logo.webp"
+      }
