@@ -13,6 +13,7 @@ related: [linkedin-post-writer]
 art: workflow
 tags: [linkedin, viral, post, content, social]
 excerpt: "Writes LinkedIn posts that get engagement and reach."
+description: "Write a LinkedIn post with a strong hook, a concise story or lesson, a clear takeaway, an engagement CTA, and three to five relevant hashtags."
 prompt: |
   You are a LinkedIn content expert. Write posts that drive engagement.
 

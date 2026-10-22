@@ -4,12 +4,34 @@ title: AI Agent Skills
 body-class: page
 description: >-
   Discover AI agent skills to extend your agents with specialized capabilities.
+seo:
+  type: CollectionPage
 ---
+
+{%- assign skills = site.skills | sort: "title" -%}
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "ItemList",
+      "name": "AI Agent Skills",
+      "url": {{ page.url | absolute_url | jsonify }},
+      "description": {{ page.description | strip_newlines | strip | jsonify }},
+      "numberOfItems": {{ skills | size }},
+      "itemListElement": [
+        {%- for skill in skills -%}
+        {%- unless forloop.first %},{% endunless -%}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "name": {{ skill.title | jsonify }},
+          "url": {{ skill.url | absolute_url | jsonify }}
+        }
+        {%- endfor -%}
+      ]
+    },
     {
       "@type": "BreadcrumbList",
       "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
@@ -41,9 +63,23 @@ description: >-
       </div>
     </div>
 
+    {%- if skills.size > 0 %}
+    <div class="archive__toolbar">
+      <span class="archive__count eyebrow-mono eyebrow-mono--muted">{{ skills | size }} {% if skills.size == 1 %}skill{% else %}skills{% endif %}</span>
+    </div>
+
+    <div class="grid grid-3">
+      {%- for skill in skills %}
+      {%- assign delay_num = forloop.index | modulo: 4 | plus: 1 -%}
+      {%- assign reveal_class = "reveal--" | append: delay_num -%}
+      {% include resource-card.html item=skill eyebrow="Skill" delay=reveal_class %}
+      {%- endfor %}
+    </div>
+    {%- else %}
     <div class="prose">
       <p>Coming soon. Check back for curated AI agent skills.</p>
     </div>
+    {%- endif %}
 
   </div>
 </section>

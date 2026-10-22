@@ -12,6 +12,8 @@ results, an example of the output shape, and an FAQ.
 ## Core
 
 - [All prompts](https://f9xr.org/yoprompts/prompts/): searchable and filterable index of the whole library.
+- [AI agent skills](https://f9xr.org/yoprompts/ai-agent-skills/): installable skills that extend what an AI agent can do.
+- [MCP servers](https://f9xr.org/yoprompts/mcp-server-index/): Model Context Protocol servers that connect agents to tools and data.
 - [Categories](https://f9xr.org/yoprompts/categories/): browse by the job a prompt does.
 - [Guides](https://f9xr.org/yoprompts/blog/): short write-ups on prompting technique.
 - [Prompting basics](https://f9xr.org/yoprompts/resources/#prompting-basics): the five techniques that fix most bad output.
@@ -56,6 +58,44 @@ results, an example of the output shape, and an FAQ.
 - [Build a programmatic SEO page system](https://f9xr.org/yoprompts/prompts/programmatic-seo-pages/)
 - [Write 30 hooks and find the one that travels](https://f9xr.org/yoprompts/prompts/viral-hook-generator/)
 - [Close the week and plan the next one](https://f9xr.org/yoprompts/prompts/weekly-review-planner/)
+- [Generate viral AI image prompts](https://f9xr.org/yoprompts/prompts/ai-image-prompt-generator/)
+- [Create SEO blog outlines that rank](https://f9xr.org/yoprompts/prompts/seo-blog-outline-ranker/)
+- [Write viral LinkedIn posts](https://f9xr.org/yoprompts/prompts/viral-linkedin-post/)
+- [Write an X post people quote](https://f9xr.org/yoprompts/prompts/viral-x-post-generator/)
+- [Write email subject lines people open](https://f9xr.org/yoprompts/prompts/viral-email-subject-lines/)
+- [Find the clip that will go viral](https://f9xr.org/yoprompts/prompts/viral-podcast-clip-finder/)
+- [Write a launch post that does not sound like an ad](https://f9xr.org/yoprompts/prompts/viral-product-launch-post/)
+- [Write replies that keep the conversation going](https://f9xr.org/yoprompts/prompts/viral-comment-reply-writer/)
+
+## AI agent skills
+
+- [Avoid AI Writing](https://f9xr.org/yoprompts/ai-agent-skills/avoid-ai-writing/)
+- [Claude SEO](https://f9xr.org/yoprompts/ai-agent-skills/claude-seo/)
+- [Copywriting](https://f9xr.org/yoprompts/ai-agent-skills/copywriting/)
+- [Find Skills](https://f9xr.org/yoprompts/ai-agent-skills/find-skills/)
+- [Humanizer](https://f9xr.org/yoprompts/ai-agent-skills/humanizer/)
+- [Marketing Skills](https://f9xr.org/yoprompts/ai-agent-skills/marketing-skills/)
+- [Programmatic SEO](https://f9xr.org/yoprompts/ai-agent-skills/programmatic-seo/)
+- [SEO Codebase Audit](https://f9xr.org/yoprompts/ai-agent-skills/seo-codebase-audit/)
+- [Skill Creator](https://f9xr.org/yoprompts/ai-agent-skills/skill-creator/)
+- [Social Media Skills](https://f9xr.org/yoprompts/ai-agent-skills/social-media-skills/)
+- [Taste Skill](https://f9xr.org/yoprompts/ai-agent-skills/taste-skill/)
+
+## MCP servers
+
+- [Ahrefs MCP](https://f9xr.org/yoprompts/mcp-server-index/ahrefs/)
+- [Brave Search MCP](https://f9xr.org/yoprompts/mcp-server-index/brave-search/)
+- [Context7 MCP](https://f9xr.org/yoprompts/mcp-server-index/context7/)
+- [Figma MCP](https://f9xr.org/yoprompts/mcp-server-index/figma/)
+- [Filesystem MCP Server](https://f9xr.org/yoprompts/mcp-server-index/filesystem/)
+- [Firecrawl MCP](https://f9xr.org/yoprompts/mcp-server-index/firecrawl/)
+- [GitHub MCP Server](https://f9xr.org/yoprompts/mcp-server-index/github/)
+- [Google Search Console MCP](https://f9xr.org/yoprompts/mcp-server-index/google-search-console/)
+- [Memory MCP](https://f9xr.org/yoprompts/mcp-server-index/memory/)
+- [Notion MCP](https://f9xr.org/yoprompts/mcp-server-index/notion/)
+- [Playwright MCP](https://f9xr.org/yoprompts/mcp-server-index/playwright/)
+- [Sequential Thinking MCP](https://f9xr.org/yoprompts/mcp-server-index/sequential-thinking/)
+- [Tavily MCP](https://f9xr.org/yoprompts/mcp-server-index/tavily/)
 
 ## Guides
 

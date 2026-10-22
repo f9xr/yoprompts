@@ -21,4 +21,16 @@ https://f9xr.org/resumio/
 And, of course, each preceding stage in the hierarchy links to the next stage & vice versa! So, the authority juice flows to all the different pages & all the pages also are indexed by Google!
 
 Compeitiors:
-https://agenticskills.io/
+https://agenticskills.io
+https://www.skills.sh
+https://skillsmp.com
+https://www.skillsdirectory.com
+https://awesomeskill.ai
+
+https://github.com/vercel-labs/skills.git
+
+
+Featured Skills
+Latest Skills
+Ranked by GitHub Stars - Trending Skills
+Browse Skills by Category

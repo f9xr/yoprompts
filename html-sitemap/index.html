@@ -3,8 +3,9 @@ layout: default
 title: HTML Sitemap
 body-class: page
 description: >-
-  Every page on YoPrompts in one place: prompts by category, guides, the AI
-  tools directory, company pages, legal pages and feeds.
+  Every page on YoPrompts in one place: prompts by category, guides, AI agent
+  skills, MCP servers, the AI tools directory, company pages, legal pages and
+  feeds.
 seo:
   type: "CollectionPage"
 ---
@@ -58,6 +59,8 @@ seo:
       <a href="#site">Site</a>
       <a href="#categories">Prompt categories</a>
       <a href="#guides">Guides</a>
+      <a href="#skills">AI agent skills</a>
+      <a href="#mcp">MCP servers</a>
       <a href="#tools">Prompt tools</a>
       <a href="#partners">Partners</a>
       <a href="#feeds">Feeds</a>
@@ -79,6 +82,14 @@ seo:
       <li class="sitemap-stat">
         <span class="sitemap-stat__n">{{ site.data.ai_directory | size }}</span>
         <span class="sitemap-stat__l">AI tools</span>
+      </li>
+      <li class="sitemap-stat">
+        <span class="sitemap-stat__n">{{ site.skills | size }}</span>
+        <span class="sitemap-stat__l">Agent skills</span>
+      </li>
+      <li class="sitemap-stat">
+        <span class="sitemap-stat__n">{{ site.mcp_servers | size }}</span>
+        <span class="sitemap-stat__l">MCP servers</span>
       </li>
     </ul>
 
@@ -170,6 +181,34 @@ seo:
         <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
         {%- else -%}
         <li class="sitemap-list__muted">No guides published yet</li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
+    <section class="sitemap-section" id="skills" aria-labelledby="sitemap-skills">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-skills">AI agent skills</h2>
+        <span class="sitemap-section__meta meta-mono">{{ site.skills | size }} published</span>
+      </div>
+      <ul class="sitemap-list sitemap-list--columns" role="list">
+        {%- for skill in site.skills -%}
+        <li><a href="{{ skill.url | relative_url }}">{{ skill.title }}</a></li>
+        {%- else -%}
+        <li class="sitemap-list__muted">No agent skills published yet</li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
+    <section class="sitemap-section" id="mcp" aria-labelledby="sitemap-mcp">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-mcp">MCP servers</h2>
+        <span class="sitemap-section__meta meta-mono">{{ site.mcp_servers | size }} published</span>
+      </div>
+      <ul class="sitemap-list sitemap-list--columns" role="list">
+        {%- for server in site.mcp_servers -%}
+        <li><a href="{{ server.url | relative_url }}">{{ server.title }}</a></li>
+        {%- else -%}
+        <li class="sitemap-list__muted">No MCP servers published yet</li>
         {%- endfor -%}
       </ul>
     </section>

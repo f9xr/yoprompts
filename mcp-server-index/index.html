@@ -4,12 +4,34 @@ title: MCP Server Index
 body-class: page
 description: >-
   Discover MCP servers to connect AI agents to external tools and data sources.
+seo:
+  type: CollectionPage
 ---
+
+{%- assign servers = site.mcp_servers | sort: "title" -%}
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "ItemList",
+      "name": "MCP Server Index",
+      "url": {{ page.url | absolute_url | jsonify }},
+      "description": {{ page.description | strip_newlines | strip | jsonify }},
+      "numberOfItems": {{ servers | size }},
+      "itemListElement": [
+        {%- for server in servers -%}
+        {%- unless forloop.first %},{% endunless -%}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "name": {{ server.title | jsonify }},
+          "url": {{ server.url | absolute_url | jsonify }}
+        }
+        {%- endfor -%}
+      ]
+    },
     {
       "@type": "BreadcrumbList",
       "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
@@ -41,9 +63,23 @@ description: >-
       </div>
     </div>
 
+    {%- if servers.size > 0 %}
+    <div class="archive__toolbar">
+      <span class="archive__count eyebrow-mono eyebrow-mono--muted">{{ servers | size }} {% if servers.size == 1 %}server{% else %}servers{% endif %}</span>
+    </div>
+
+    <div class="grid grid-3">
+      {%- for server in servers %}
+      {%- assign delay_num = forloop.index | modulo: 4 | plus: 1 -%}
+      {%- assign reveal_class = "reveal--" | append: delay_num -%}
+      {% include resource-card.html item=server eyebrow="MCP" delay=reveal_class meta=server.transport %}
+      {%- endfor %}
+    </div>
+    {%- else %}
     <div class="prose">
       <p>Coming soon. Check back for curated MCP servers.</p>
     </div>
+    {%- endif %}
 
   </div>
 </section>

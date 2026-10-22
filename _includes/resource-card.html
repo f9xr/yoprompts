@@ -1,0 +1,27 @@
+{%- assign r = include.item -%}
+{%- assign card_heading = include.heading_tag | default: 'h2' -%}
+<article class="prompt-card reveal {% if include.delay %}{{ include.delay }}{% endif %}"
+  data-filter-item
+  data-title="{{ r.title | escape }}"
+  data-search="{{ r.tags | join: ' ' }} {{ r.excerpt | escape }}">
+  <div class="prompt-card__body">
+    <div class="prompt-card__tags">
+      <span class="tag-mono tag-mono--accent">{{ include.eyebrow }}</span>
+      {%- for tag in r.tags limit: 2 -%}
+      <span class="tag-mono">{{ tag }}</span>
+      {%- endfor -%}
+    </div>
+
+    <{{ card_heading }} class="prompt-card__title">
+      <a href="{{ r.url | relative_url }}">{{ r.title | escape }}</a>
+    </{{ card_heading }}>
+
+    <p class="prompt-card__excerpt">{{ r.excerpt | strip_html | escape }}</p>
+
+    <div class="prompt-card__foot">
+      {%- if r.creator %}<span class="meta-mono">{{ r.creator }}</span>{% endif -%}
+      {%- if r.license %}<span class="meta-mono">{{ r.license }}</span>{% endif -%}
+      {%- if include.meta %}<span class="meta-mono">{{ include.meta }}</span>{% endif -%}
+    </div>
+  </div>
+</article>

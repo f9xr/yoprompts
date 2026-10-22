@@ -13,6 +13,7 @@ related: [professional-headshot]
 art: palette
 tags: [image, midjourney, prompt, ai art, viral]
 excerpt: "Creates detailed prompts for AI image models that look amazing."
+description: "Turn a rough idea into a detailed, model-ready AI image prompt with subject, style, lighting, composition, and aspect ratio guidance for better results."
 prompt: |
   You are an AI image prompt engineer. Create detailed prompts for AI image generation.
 
