@@ -1,0 +1,221 @@
+---
+layout: default
+title: Prompt Lab
+body-class: page
+description: >-
+  Validate prompts and SKILL.md files, generate install commands, visualize
+  flows, lint for risks, count tokens, simulate skills, and audit dropped
+  folders in your browser.
+seo:
+  type: CollectionPage
+---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "BreadcrumbList", "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }}, "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }}},
+      {"@type": "ListItem", "position": 2, "name": "Prompt Lab", "item": {{ page.url | absolute_url | jsonify }}}
+    ]}
+  ]
+}
+</script>
+
+<div class="band band--flush-top"><div class="container">{% include breadcrumbs.html trail="Home~/|Prompt Lab" %}</div></div>
+
+<section class="band band--flush-top">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Utilities</p>
+        <h1 class="display-lg section-head__title">Prompt Lab</h1>
+        <p class="body-lg section-head__lede">Browser-side tools for prompts, skills and MCP scaffolds. Nothing leaves your device.</p>
+      </div>
+    </div>
+
+    <div class="lab-tabs" role="tablist" aria-label="Lab tools">
+      <button class="lab-tab is-active" type="button" role="tab" aria-selected="true" data-lab-tab="validator">SKILL.md validator</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="generator">Config to SKILL.md</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="cli">Command builder</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="mcp">MCP scaffold</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="diff">Diff viewer</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="readme">README to SKILL.md</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="auditor">Local folder auditor</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="playground">WebLLM playground</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="calculator">Cost estimator</button>
+      <button class="lab-tab" type="button" role="tab" aria-selected="false" data-lab-tab="profiler">Performance profiler</button>
+    </div>
+
+    <!-- Validator -->
+    <section class="lab-panel" data-lab-panel="validator">
+      <div class="lab-grid">
+        <article class="lab-card lab-card--wide">
+          <h2 class="lab-card__title">SKILL.md front matter validator</h2>
+          <p class="lab-card__intro">Paste a SKILL.md file. The checker enforces common fields, name/description limits and basic formatting.</p>
+          <div class="lab-field"><label for="val-input">Paste SKILL.md</label><textarea id="val-input" rows="14" placeholder="---&#10;name: my-skill&#10;description: ...&#10;---"></textarea></div>
+          <div class="lab-actions"><button class="button button--sm" type="button" id="val-run">Validate</button><button class="button button--sm" type="button" id="val-clear">Clear</button></div>
+          <div class="lab-result" id="val-result"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Generator -->
+    <section class="lab-panel" data-lab-panel="generator" hidden>
+      <div class="lab-grid">
+        <article class="lab-card lab-card--wide">
+          <h2 class="lab-card__title">Config to SKILL.md builder</h2>
+          <p class="lab-card__intro">Fill in the form and generate a starter SKILL.md with required front matter.</p>
+          <div class="lab-split">
+            <div class="lab-field"><label for="gen-name">Name (max 64)</label><input id="gen-name" maxlength="64" placeholder="seo-audit-helper"></div>
+            <div class="lab-field"><label for="gen-desc">Description (max 1024)</label><input id="gen-desc" maxlength="1024" placeholder="Audits a page for on-page SEO issues."></div>
+            <div class="lab-field"><label for="gen-license">License</label><input id="gen-license" placeholder="MIT"></div>
+            <div class="lab-field"><label for="gen-tools">Allowed tools (comma separated)</label><input id="gen-tools" placeholder="Read, Grep, Glob"></div>
+          </div>
+          <div class="lab-field"><label for="gen-body">Instructions</label><textarea id="gen-body" rows="10" placeholder="## Goal&#10;..."></textarea></div>
+          <div class="lab-actions"><button class="button button--sm" type="button" id="gen-run">Generate</button><button class="button button--sm" type="button" id="gen-copy">Copy</button><button class="button button--sm" type="button" id="gen-download">Download SKILL.md</button></div>
+          <pre class="lab-result" id="gen-result"></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- CLI -->
+    <section class="lab-panel" data-lab-panel="cli" hidden>
+      <div class="lab-grid">
+        <article class="lab-card">
+          <h2 class="lab-card__title">Install command builder</h2>
+          <p class="lab-card__intro">Build a copy-ready Skills CLI command from owner/repo and a skill name.</p>
+          <div class="lab-field"><label for="cli-repo">Repository (owner/repo)</label><input id="cli-repo" placeholder="vercel-labs/agent-skills"></div>
+          <div class="lab-field"><label for="cli-skill">Skill name (optional)</label><input id="cli-skill" placeholder="react-best-practices"></div>
+          <div class="lab-field"><label for="cli-ref">Ref (branch/tag)</label><input id="cli-ref" placeholder="main"></div>
+          <div class="lab-actions"><button class="button button--sm" type="button" id="cli-build">Build</button></div>
+          <div class="lab-result" id="cli-result"></div>
+        </article>
+        <article class="lab-card">
+          <h2 class="lab-card__title">Session install history</h2>
+          <p class="lab-card__intro">Tracks clicks on "Copy install" and install command actions for this browser tab.</p>
+          <ul class="lab-result" data-install-history></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- MCP -->
+    <section class="lab-panel" data-lab-panel="mcp" hidden>
+      <div class="lab-grid">
+        <article class="lab-card">
+          <h2 class="lab-card__title">MCP scaffold exporter</h2>
+          <p class="lab-card__intro">Download a minimal Node.js or Python MCP server template for a skill.</p>
+          <div class="lab-field"><label for="mcp-slug">Skill slug</label><input id="mcp-slug" placeholder="seo-audit"></div>
+          <div class="lab-field"><label for="mcp-title">Skill title</label><input id="mcp-title" placeholder="SEO Audit"></div>
+          <div class="lab-field"><label for="mcp-repo">Source repo (optional)</label><input id="mcp-repo" placeholder="owner/repo"></div>
+          <div class="lab-actions"><button class="button button--sm" type="button" data-mcp-export="js" data-slug-input="mcp-slug" data-title-input="mcp-title" data-repo-input="mcp-repo">Download Node.js</button><button class="button button--sm" type="button" data-mcp-export="python" data-slug-input="mcp-slug" data-title-input="mcp-title" data-repo-input="mcp-repo">Download Python</button></div>
+        </article>
+        <article class="lab-card">
+          <h2 class="lab-card__title">Zip bundle (planned)</h2>
+          <p class="lab-card__intro">Selecting skills on a listing is the starting point. Exporting a zip from static pages is limited; use the CLI or this scaffold for now.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Diff -->
+    <section class="lab-panel" data-lab-panel="diff" hidden>
+      <div class="lab-grid">
+        <article class="lab-card lab-card--wide">
+          <h2 class="lab-card__title">Side-by-side diff viewer</h2>
+          <p class="lab-card__intro">Compare a local variant against the directory standard. Runs entirely in the browser.</p>
+          <div class="lab-split">
+            <div class="lab-field"><label for="diff-a">Original / standard</label><textarea id="diff-a" rows="12"></textarea></div>
+            <div class="lab-field"><label for="diff-b">Variant</label><textarea id="diff-b" rows="12"></textarea></div>
+          </div>
+          <div class="lab-actions"><button class="button button--sm" type="button" id="diff-run">Compare</button></div>
+          <div class="lab-diff lab-result" id="diff-result"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- README to SKILL -->
+    <section class="lab-panel" data-lab-panel="readme" hidden>
+      <div class="lab-grid">
+        <article class="lab-card lab-card--wide">
+          <h2 class="lab-card__title">Automated README extractor</h2>
+          <p class="lab-card__intro">Paste a README.md to draft a minimal SKILL.md skeleton. Human editing is required.</p>
+          <div class="lab-field"><label for="readme-input">Paste README</label><textarea id="readme-input" rows="12"></textarea></div>
+          <div class="lab-actions"><button class="button button--sm" type="button" id="readme-run">Draft SKILL.md</button><button class="button button--sm" type="button" id="readme-copy">Copy</button></div>
+          <pre class="lab-result" id="readme-result"></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- Auditor -->
+    <section class="lab-panel" data-lab-panel="auditor" hidden>
+      <div class="lab-grid">
+        <article class="lab-card lab-card--wide">
+          <h2 class="lab-card__title">Drag-and-drop local auditor</h2>
+          <p class="lab-card__intro">Drop a .claude/, .github/, or a folder with SKILL.md files. Files stay in your browser.</p>
+          <div class="lab-drop" id="folder-drop" tabindex="0" role="button">Drop files here or click to select</div>
+          <input type="file" id="folder-input" multiple hidden>
+          <div class="lab-result" id="auditor-result"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Playground -->
+    <section class="lab-panel" data-lab-panel="playground" hidden>
+      <div class="lab-grid">
+        <article class="lab-card">
+          <h2 class="lab-card__title">In-browser WebLLM playground</h2>
+          <p class="lab-card__intro">Load a small model with WebLLM and test a skill against a sample query. First load downloads a model; your device must support WebGPU.</p>
+          <div class="lab-field"><label for="play-model">Model</label><select id="play-model"><option value="Llama-3.2-3B-Instruct-q4f16_1-MLC">Llama-3.2-3B (smaller)</option><option value="SmolLM2-3.2B-Instruct-q4f16_1-MLC">SmolLM2-3.2B</option></select></div>
+          <div class="lab-field"><label for="play-skill">SKILL.md content</label><textarea id="play-skill" rows="8"></textarea></div>
+          <div class="lab-field"><label for="play-query">Query</label><input id="play-query" placeholder="Run the skill on this task..."></div>
+          <div class="lab-actions"><button class="button button--sm" type="button" id="play-load">Load model</button><button class="button button--sm" type="button" id="play-run">Run</button><span class="profiler-output" id="play-status"></span></div>
+        </article>
+        <article class="lab-card">
+          <h2 class="lab-card__title">Response</h2>
+          <pre class="lab-result" id="play-result"></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="lab-panel" data-lab-panel="calculator" hidden>
+      <div class="lab-grid">
+        <article class="lab-card">
+          <h2 class="lab-card__title">Cost estimation calculator</h2>
+          <p class="lab-card__intro">Rough estimates. Rates change; treat as order-of-magnitude.</p>
+          <div class="lab-split">
+            <div class="lab-field"><label for="cost-input">Input tokens</label><input id="cost-input" type="number" value="1000"></div>
+            <div class="lab-field"><label for="cost-output">Output tokens</label><input id="cost-output" type="number" value="500"></div>
+            <div class="lab-field"><label for="cost-provider">Provider</label><select id="cost-provider"><option value="openai">OpenAI (example)</option><option value="anthropic">Anthropic (example)</option><option value="google">Google (example)</option></select></div>
+            <div class="lab-field"><label for="cost-model">Model tier</label><select id="cost-model"><option value="cheap">Budget</option><option value="mid">Mid</option><option value="pro">Pro</option></select></div>
+          </div>
+          <div class="lab-actions"><button class="button button--sm" type="button" id="cost-calc">Calculate</button></div>
+          <div class="lab-result" id="cost-result"></div>
+        </article>
+        <article class="lab-card">
+          <h2 class="lab-card__title">Context-window impact gauge</h2>
+          <p class="lab-card__intro">Paste text to see token usage against common limits.</p>
+          <div class="lab-field"><label for="ctx-input">Text</label><textarea id="ctx-input" rows="10"></textarea></div>
+          <div class="gauge"><div class="gauge__meta"><span>Context usage</span><span data-gauge-label>0% of 128k</span></div><div class="gauge__track"><div class="gauge__fill" data-gauge-fill style="width:0"></div></div></div>
+          <div class="metric-grid" style="margin-top:var(--spacing-md);"><div class="metric"><span class="metric__value" data-metric="tokens">0</span><span class="metric__label">Tokens</span></div><div class="metric"><span class="metric__value" data-metric="words">0</span><span class="metric__label">Words</span></div><div class="metric"><span class="metric__value" data-metric="chars">0</span><span class="metric__label">Chars</span></div><div class="metric"><span class="metric__value" data-metric="bytes">0</span><span class="metric__label">Bytes</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Profiler -->
+    <section class="lab-panel" data-lab-panel="profiler" hidden>
+      <div class="lab-grid">
+        <article class="lab-card lab-card--wide">
+          <h2 class="lab-card__title">Client-side performance profiler</h2>
+          <p class="lab-card__intro">Measures filter/search timing and resource counts on this page.</p>
+          <div class="lab-actions"><button class="button button--sm" type="button" id="prof-run">Run profile</button></div>
+          <pre class="lab-result" id="prof-result"></pre>
+        </article>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jsdiff@6.0.0/dist/diff.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.79/lib/index.js"></script>
+<script src="{{ '/assets/js/lab.js' | relative_url }}"></script>

@@ -1,0 +1,46 @@
+<!-- Small, always-available reading controls. Everything here is a
+     progressive enhancement: the page is complete without it. -->
+<div class="view-toolbar" data-view-toolbar aria-label="Reading controls">
+  <button class="view-toolbar__btn" type="button" data-theme-toggle aria-label="Toggle light and dark theme" title="Toggle theme (T)">
+    <svg class="view-toolbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+    </svg>
+  </button>
+  <button class="view-toolbar__btn" type="button" data-font-down aria-label="Decrease text size" title="Smaller text (-)">
+    <span aria-hidden="true">A&minus;</span>
+  </button>
+  <button class="view-toolbar__btn" type="button" data-font-up aria-label="Increase text size" title="Larger text (+)">
+    <span aria-hidden="true">A+</span>
+  </button>
+  <button class="view-toolbar__btn" type="button" data-sound-toggle aria-pressed="false" aria-label="Toggle sound cues" title="Sound cues">
+    <svg class="view-toolbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M11 5 6 9H2v6h4l5 4Z"></path>
+      <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+      <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+    </svg>
+  </button>
+  <button class="view-toolbar__btn" type="button" data-focus-toggle aria-pressed="false" aria-label="Toggle focus mode" title="Focus mode (F)">
+    <svg class="view-toolbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+      <path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+    </svg>
+  </button>
+  <button class="view-toolbar__btn" type="button" data-print-page aria-label="Print or save as PDF" title="Print (P)">
+    <svg class="view-toolbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+      <rect x="6" y="14" width="12" height="8"></rect>
+    </svg>
+  </button>
+  <button class="view-toolbar__btn" type="button" data-shortcuts-open aria-label="Keyboard shortcuts" title="Shortcuts (?)">
+    <svg class="view-toolbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+      <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"></path>
+    </svg>
+  </button>
+</div>
+
+<button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" title="Back to top" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path>
+  </svg>
+</button>

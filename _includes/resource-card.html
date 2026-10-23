@@ -1,6 +1,6 @@
 {%- assign r = include.item -%}
 {%- assign card_heading = include.heading_tag | default: 'h2' -%}
-<article class="prompt-card reveal {% if include.delay %}{{ include.delay }}{% endif %}"
+<article class="prompt-card reveal {% if include.delay %}{{ include.delay }}{% endif %}" data-page-item
   data-filter-item
   data-title="{{ r.title | escape }}"
   data-search="{{ r.tags | join: ' ' }} {{ r.excerpt | escape }}">

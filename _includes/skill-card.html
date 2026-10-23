@@ -28,7 +28,7 @@
 {%- for category in site.data.skill_categories -%}
   {%- if category.slug == skill.category -%}{%- assign category_label = category.label -%}{%- endif -%}
 {%- endfor -%}
-<article class="skill-card{% if include.delay %} reveal {{ include.delay }}{% endif %}"
+<article class="skill-card{% if include.delay %} reveal {{ include.delay }}{% endif %}" data-page-item
   data-skill-card
   data-title="{{ skill.title | downcase | escape }}"
   data-tags="{{ skill.tags | join: ',' | downcase | escape }}"
@@ -49,8 +49,8 @@
   </{{ card_heading }}>
   <p class="skill-card__excerpt">{{ skill.excerpt | strip_html | escape }}</p>
   <div class="skill-card__tags">
-    {%- if category_label != "" and category_label != nil -%}<span class="tag-mono tag-mono--accent">{{ category_label }}</span>{%- endif -%}
-    {%- for tag in skill.tags limit: 2 -%}<span class="tag-mono">{{ tag }}</span>{%- endfor -%}
+    {%- if category_label != "" and category_label != nil -%}<a class="tag-mono tag-mono--accent tag-link" href="{{ '/ai-agent-skills/category/' | append: skill.category | append: '/' | relative_url }}">{{ category_label }}</a>{%- endif -%}
+    {%- for tag in skill.tags limit: 2 -%}<a class="tag-mono tag-link" href="{{ '/ai-agent-skills/?tag=' | append: tag | uri_escape | relative_url }}">{{ tag }}</a>{%- endfor -%}
   </div>
   <div class="skill-card__foot">
     <div class="skill-card__byline">

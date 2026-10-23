@@ -200,12 +200,13 @@ seo:
       </div>
     </div>
 
-    <div id="all-skills-grid" class="grid grid-3">
+    <div id="all-skills-grid" class="grid grid-3" data-paginate>
       {%- for skill in skills -%}
         {%- assign delay_class = "reveal--" | append: forloop.index -%}
         {% include skill-card.html item=skill heading_tag="h3" delay=delay_class %}
       {%- endfor -%}
     </div>
+    <nav class="pagination" data-pagination="all-skills-grid" aria-label="Skills pagination"></nav>
     <p id="no-results" class="body-sm archive__empty" style="display:none;">No skills match your filters.</p>
   </div>
 </section>

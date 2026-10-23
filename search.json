@@ -1,0 +1,26 @@
+---
+layout: null
+permalink: /search.json
+sitemap: false
+---
+[
+{%- assign first = true -%}
+{%- for p in site.prompts -%}
+{%- unless first %},{% endunless -%}{%- assign first = false -%}
+{"type":"Prompt","title":{{ p.title | jsonify }},"url":{{ p.url | relative_url | jsonify }},"description":{{ p.excerpt | strip_html | strip_newlines | jsonify }},"tags":{{ p.tags | join: ", " | jsonify }},"category":{{ p.category_label | default: p.category | jsonify }},"body":{{ p.prompt | default: "" | jsonify }}}
+{%- endfor -%}
+{%- for s in site.skills -%}
+,{"type":"Skill","title":{{ s.title | jsonify }},"url":{{ s.url | relative_url | jsonify }},"description":{{ s.excerpt | strip_html | strip_newlines | jsonify }},"tags":{{ s.tags | join: ", " | jsonify }},"category":{{ s.category | jsonify }},"body":{{ s.raw_skill | default: s.skill_file | default: "" | jsonify }},"repo":{{ s.repo_url | default: "" | jsonify }},"source_file":{{ s.source_file | default: "SKILL.md" | jsonify }}}
+{%- endfor -%}
+{%- for m in site.mcp_servers -%}
+,{"type":"MCP","title":{{ m.title | jsonify }},"url":{{ m.url | relative_url | jsonify }},"description":{{ m.excerpt | strip_html | strip_newlines | jsonify }},"tags":{{ m.tags | join: ", " | jsonify }},"category":"MCP server","body":{{ m.config | default: "" | jsonify }}}
+{%- endfor -%}
+{%- for post in site.posts -%}
+,{"type":"Guide","title":{{ post.title | jsonify }},"url":{{ post.url | relative_url | jsonify }},"description":{{ post.excerpt | strip_html | strip_newlines | jsonify }},"tags":{{ post.tags | join: ", " | jsonify }},"category":"Blog"}
+{%- endfor -%}
+{%- assign pages = site.pages | where_exp: "pg", "pg.title" -%}
+{%- for pg in pages -%}
+{%- if pg.url contains ".json" or pg.url contains "404" -%}{%- continue -%}{%- endif -%}
+,{"type":"Page","title":{{ pg.title | jsonify }},"url":{{ pg.url | relative_url | jsonify }},"description":{{ pg.description | default: pg.excerpt | default: "" | strip_html | strip_newlines | jsonify }},"tags":"","category":"Page"}
+{%- endfor -%}
+]

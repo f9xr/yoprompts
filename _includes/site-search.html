@@ -1,0 +1,39 @@
+<!-- Global search. One dialog for prompts, skills, MCP servers and guides.
+     Results come from /search.json, generated at build time, so adding a
+     collection document makes it discoverable without touching this file. -->
+<dialog class="site-search" id="site-search" data-site-search aria-labelledby="site-search-title">
+  <div class="site-search__panel">
+    <h2 class="sr-only" id="site-search-title">Search YoPrompts</h2>
+
+    <div class="site-search__bar">
+      <svg class="site-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-3.5-3.5"></path>
+      </svg>
+      <label class="sr-only" for="site-search-input">Search prompts, skills and MCP servers</label>
+      <input class="site-search__input" id="site-search-input" type="search" placeholder="Search prompts, skills, MCP servers..." autocomplete="off" data-search-input>
+      <button class="site-search__close" type="button" data-search-close aria-label="Close search">
+        <span class="site-search__kbd">Esc</span>
+      </button>
+    </div>
+
+    <div class="site-search__meta">
+      <span class="eyebrow-mono eyebrow-mono--muted" data-search-status aria-live="polite">Loading index</span>
+      <label class="site-search__toggle">
+        <input type="checkbox" data-search-concepts>
+        <span>Concept search</span>
+      </label>
+    </div>
+
+    <div class="site-search__results" data-search-results></div>
+    <p class="site-search__empty" data-search-empty>
+      Type to search across every prompt, skill, MCP server and guide.
+    </p>
+
+    <div class="site-search__footer">
+      <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> navigate</span>
+      <span><kbd>Enter</kbd> open</span>
+      <span><kbd>?</kbd> shortcuts</span>
+    </div>
+  </div>
+</dialog>

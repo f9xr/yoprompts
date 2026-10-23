@@ -114,6 +114,9 @@ include:
   - ".well-known/api-catalog"
   - ".well-known/oauth-protected-resource"
   - "_headers"
+  - "manifest.webmanifest"
+  - "sw.js"
+  - "search.json"
 
 exclude:
   - Gemfile

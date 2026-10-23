@@ -57,7 +57,26 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400&amp;display=swap">
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/enhancements.css' | relative_url }}">
   <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}">
+  <meta name="yop-base" content="{{ '/' | relative_url }}">
+  <meta name="yop-search-index" content="{{ '/search.json' | relative_url }}">
+  <meta name="yop-sw" content="{{ '/sw.js' | relative_url }}">
+
+  <!-- Set the saved theme before first paint so a light-theme visitor never
+       sees a dark flash. Kept inline and tiny for exactly that reason. -->
+  <script>
+    (function () {
+      try {
+        var theme = window.localStorage.getItem('yop_theme');
+        var scale = window.localStorage.getItem('yop_font_scale');
+        var root = document.documentElement;
+        if (theme === 'light' || theme === 'dark') { root.setAttribute('data-theme', theme); }
+        if (scale) { root.style.setProperty('--font-scale', scale); }
+      } catch (error) {}
+    })();
+  </script>
 
   {%- feed_meta -%}
 </head>

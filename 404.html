@@ -15,18 +15,41 @@ description: >-
     <div class="section-head">
       <div class="section-head__text">
         <p class="eyebrow-mono">Error 404</p>
-        <h1 class="display-lg section-head__title" id="not-found">This prompt does not exist</h1>
+        <h1 class="display-lg section-head__title" id="not-found">Page not found</h1>
         <p class="body-lg section-head__lede">
-          The page you asked for is not here. It may have been renamed, or the
-          link may have been mistyped. The prompt library is the fastest way
-          back.
+          The page you asked for is not here. It may have been renamed, moved,
+          or the link may have been mistyped. Use search or pick one of the
+          paths below to get back on track.
         </p>
       </div>
     </div>
 
-    <div class="card__actions">
-      <a class="button button--primary button--lg" href="{{ '/prompts/' | relative_url }}">Browse all prompts</a>
+    <div class="card__actions" style="flex-wrap:wrap;">
+      <button class="button button--primary button--lg" type="button" data-search-open>Search everything</button>
+      <a class="button button--lg" href="{{ '/prompts/' | relative_url }}">Browse prompts</a>
+      <a class="button button--lg" href="{{ '/ai-agent-skills/' | relative_url }}">AI agent skills</a>
+      <a class="button button--lg" href="{{ '/mcp-server-index/' | relative_url }}">MCP servers</a>
+      <a class="button button--lg" href="{{ '/categories/' | relative_url }}">Categories</a>
+      <a class="button button--lg" href="{{ '/lab/' | relative_url }}">Prompt Lab</a>
       <a class="button button--lg" href="{{ '/' | relative_url }}">Back to home</a>
     </div>
+
+    <section class="detail-section" aria-labelledby="sitemap-quick">
+      <h2 class="display-sm detail-section__title" id="sitemap-quick">Quick sitemap</h2>
+      <div class="cross-links">
+        <div class="cross-link-group">
+          <p class="cross-link-group__title">Library</p>
+          <a class="cross-link" href="{{ '/prompts/' | relative_url }}"><span>All prompts</span><span>Copy and paste</span></a>
+          <a class="cross-link" href="{{ '/categories/' | relative_url }}"><span>Categories</span><span>By job</span></a>
+          <a class="cross-link" href="{{ '/resources/' | relative_url }}"><span>Resources</span><span>Guides</span></a>
+        </div>
+        <div class="cross-link-group">
+          <p class="cross-link-group__title">Extensions</p>
+          <a class="cross-link" href="{{ '/ai-agent-skills/' | relative_url }}"><span>AI Agent Skills</span><span>SKILL.md</span></a>
+          <a class="cross-link" href="{{ '/mcp-server-index/' | relative_url }}"><span>MCP Server Index</span><span>Connect tools</span></a>
+          <a class="cross-link" href="{{ '/ai-tools/' | relative_url }}"><span>AI Tools Directory</span><span>Curated</span></a>
+        </div>
+      </div>
+    </section>
   </div>
 </section>

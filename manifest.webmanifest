@@ -1,0 +1,18 @@
+{
+  "name": "YoPrompts by F9XR Team",
+  "short_name": "YoPrompts",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "description": "Ready-made AI prompts and agent skills for ChatGPT, Claude, Gemini and more.",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+<!-- Keyboard shortcuts. Actions are wired in enhancements.js. The dialog is
+     also reachable from the toolbar button, so the shortcuts are discoverable
+     without knowing to press "?". -->
+<dialog class="shortcuts-dialog" id="shortcuts-dialog" data-shortcuts-dialog aria-labelledby="shortcuts-title">
+  <div class="shortcuts-dialog__panel">
+    <div class="shortcuts-dialog__head">
+      <div>
+        <p class="eyebrow-mono">Keyboard</p>
+        <h2 class="display-sm" id="shortcuts-title">Shortcuts</h2>
+      </div>
+      <button class="icon-button" type="button" data-shortcuts-close aria-label="Close shortcuts">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+          <path d="M4.5 4.5l7 7M11.5 4.5l-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <dl class="shortcuts-list">
+      <div><dt><kbd>/</kbd> or <kbd>Ctrl</kbd> <kbd>K</kbd></dt><dd>Open global search</dd></div>
+      <div><dt><kbd>?</kbd></dt><dd>Show this panel</dd></div>
+      <div><dt><kbd>g</kbd> then <kbd>h</kbd></dt><dd>Go home</dd></div>
+      <div><dt><kbd>g</kbd> then <kbd>p</kbd></dt><dd>Go to prompts</dd></div>
+      <div><dt><kbd>g</kbd> then <kbd>s</kbd></dt><dd>Go to skills</dd></div>
+      <div><dt><kbd>g</kbd> then <kbd>m</kbd></dt><dd>Go to MCP servers</dd></div>
+      <div><dt><kbd>g</kbd> then <kbd>c</kbd></dt><dd>Go to categories</dd></div>
+      <div><dt><kbd>t</kbd></dt><dd>Toggle light and dark theme</dd></div>
+      <div><dt><kbd>+</kbd> / <kbd>-</kbd></dt><dd>Increase or decrease text size</dd></div>
+      <div><dt><kbd>f</kbd></dt><dd>Toggle focus mode on a detail page</dd></div>
+      <div><dt><kbd>p</kbd></dt><dd>Print the current page as a cheatsheet</dd></div>
+      <div><dt><kbd>Esc</kbd></dt><dd>Close a dialog or leave focus mode</dd></div>
+    </dl>
+  </div>
+</dialog>
