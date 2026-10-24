@@ -54,11 +54,11 @@ seo:
     {%- endcomment -%}
     {%- assign used = site.prompts | map: "category" | uniq -%}
 
-    <div class="category-grid">
+    <div class="category-grid" id="category-grid" data-paginate data-page-size="12">
       {%- for category in site.data.categories -%}
         {%- if used contains category.slug -%}
         {%- assign count = site.prompts | where: "category", category.slug | size -%}
-        <article class="category-card reveal reveal--{{ forloop.index }}" id="{{ category.slug }}">
+        <article class="category-card reveal reveal--{{ forloop.index }}" id="{{ category.slug }}" data-page-item>
           <span class="tag-mono tag-mono--accent">{{ count }} {% if count == 1 %}prompt{% else %}prompts{% endif %}</span>
           <h2 class="category-card__name">{{ category.label }}</h2>
           <p class="body-sm text-body">{{ category.blurb }}</p>
@@ -71,6 +71,8 @@ seo:
     <p class="archive__empty{% if used.size == 0 %} is-visible{% endif %}">
       No prompts published yet.
     </p>
+
+    <nav class="pagination" data-pagination="category-grid" aria-label="Category pagination"></nav>
 
   </div>
 </section>

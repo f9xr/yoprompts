@@ -1,7 +1,7 @@
 ---
 title: "Copywriting"
 slug: copywriting
-category: writing
+category: business
 date: 2026-10-23
 excerpt: "Writes and rewrites marketing copy for homepages, landing pages, pricing, features, and about pages without the usual AI tells."
 creator: "Corey Haines"

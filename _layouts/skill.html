@@ -137,79 +137,87 @@ layout: default
         {%- endif %}
 
         <section class="detail-section" aria-labelledby="install-title">
-          <h2 class="display-sm detail-section__title" id="install-title">Guide on how to install this skill</h2>
-
-          {%- if install_command != "" %}
+          <h2 class="display-sm detail-section__title" id="install-title">Install this skill</h2>
           <p class="body-sm detail-section__copy">
-            {%- if install_command contains "npx skills add" %}
-            Install with the
-            <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener noreferrer">Skills CLI</a>,
-            which copies the skill into the right folder for your agent:
-            {%- else %}
-            Run these commands in your agent to install the skill:
-            {%- endif %}
+            Choose either option. The CLI copies the skill into the right folder
+            for you; the manual path works without extra tooling.
           </p>
-          <div class="prompt-body-shell">
-            <div class="prompt-body-shell__bar">
-              <span class="eyebrow-mono">Command</span>
-              <button class="button button--sm" type="button" data-copy-block="install-command">
-                <svg class="button__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false"><rect x="4.5" y="4.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 2.5H3A1.5 1.5 0 0 0 1.5 4v6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                <span class="button__label">Copy command</span>
-              </button>
+
+          <div class="install-option">
+            <h3 class="display-xs detail-section__subhead">Option 1: CLI</h3>
+            {%- if install_command != "" %}
+            <p class="body-sm detail-section__copy">
+              {%- if install_command contains "npx skills add" %}
+              Install with the
+              <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener noreferrer">Skills CLI</a>,
+              which copies the skill into the right folder for your agent:
+              {%- else %}
+              Run these commands in your agent to install the skill:
+              {%- endif %}
+            </p>
+            <div class="prompt-body-shell">
+              <div class="prompt-body-shell__bar">
+                <span class="eyebrow-mono">Command</span>
+                <button class="button button--sm" type="button" data-copy-block="install-command">
+                  <svg class="button__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false"><rect x="4.5" y="4.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 2.5H3A1.5 1.5 0 0 0 1.5 4v6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                  <span class="button__label">Copy command</span>
+                </button>
+              </div>
+              <pre class="prompt-body" id="install-command">{{ install_command | escape }}</pre>
             </div>
-            <pre class="prompt-body" id="install-command">{{ install_command | escape }}</pre>
+            {%- if install_command contains "npx skills add" %}
+            <p class="body-sm detail-section__copy">
+              If the repository bundles several skills, append
+              <code>@skill-name</code> to pick one, or follow the repository README.
+            </p>
+            {%- endif %}
+            {%- else %}
+            <p class="body-sm detail-section__copy">
+              No published CLI command is available for this skill. Use the
+              manual path in Option 2 instead.
+            </p>
+            {%- endif %}
           </div>
-          {%- if install_command contains "npx skills add" %}
-          <p class="body-sm detail-section__copy">
-            If the repository bundles several skills, append
-            <code>@skill-name</code> to pick one, or follow the repository README.
-          </p>
-          {%- endif %}
-          {%- else %}
-          <p class="body-sm detail-section__copy">
-            This skill is not published in a public GitHub repository. Copy the
-            SKILL.md content below into your agent's skills folder.
-          </p>
-          {%- endif %}
 
-          <h3 class="display-xs detail-section__subhead">Install in different AI agents</h3>
-          <p class="body-sm detail-section__copy">
-            Prefer a manual install? Create the folder for your agent, then save
-            the SKILL.md file inside it. Copy a path with the button beside it.
-          </p>
-
-          <div class="path-table-wrap">
-            <table class="path-table">
-              <thead>
-                <tr>
-                  <th scope="col">Agent</th>
-                  <th scope="col">Project path</th>
-                  <th scope="col">Global path</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Claude Code</th>
-                  <td><code>{project}/.claude/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.claude/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Claude Code project path">Copy</button></td>
-                  <td><code>~/.claude/skills/</code><button class="path-copy" type="button" data-copy-text="~/.claude/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Claude Code global path">Copy</button></td>
-                </tr>
-                <tr>
-                  <th scope="row">GitHub Copilot</th>
-                  <td><code>{project}/.github/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.github/skills/{{ page.slug }}/SKILL.md" aria-label="Copy GitHub Copilot project path">Copy</button></td>
-                  <td><code>~/.copilot/skills/</code><button class="path-copy" type="button" data-copy-text="~/.copilot/skills/{{ page.slug }}/SKILL.md" aria-label="Copy GitHub Copilot global path">Copy</button></td>
-                </tr>
-                <tr>
-                  <th scope="row">OpenAI Codex</th>
-                  <td><code>{project}/.agents/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.agents/skills/{{ page.slug }}/SKILL.md" aria-label="Copy OpenAI Codex project path">Copy</button></td>
-                  <td><code>~/.codex/skills/</code><button class="path-copy" type="button" data-copy-text="~/.codex/skills/{{ page.slug }}/SKILL.md" aria-label="Copy OpenAI Codex global path">Copy</button></td>
-                </tr>
-                <tr>
-                  <th scope="row">Cursor</th>
-                  <td><code>{project}/.cursor/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.cursor/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Cursor project path">Copy</button></td>
-                  <td><span class="body-sm path-table__muted">Not supported</span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="install-option">
+            <h3 class="display-xs detail-section__subhead">Option 2: Manual</h3>
+            <p class="body-sm detail-section__copy">
+              Create the folder for your agent, then save the SKILL.md file
+              inside it. Copy a path with the button beside it.
+            </p>
+            <div class="path-table-wrap">
+              <table class="path-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Agent</th>
+                    <th scope="col">Project path</th>
+                    <th scope="col">Global path</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Claude Code</th>
+                    <td><code>{project}/.claude/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.claude/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Claude Code project path">Copy</button></td>
+                    <td><code>~/.claude/skills/</code><button class="path-copy" type="button" data-copy-text="~/.claude/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Claude Code global path">Copy</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">GitHub Copilot</th>
+                    <td><code>{project}/.github/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.github/skills/{{ page.slug }}/SKILL.md" aria-label="Copy GitHub Copilot project path">Copy</button></td>
+                    <td><code>~/.copilot/skills/</code><button class="path-copy" type="button" data-copy-text="~/.copilot/skills/{{ page.slug }}/SKILL.md" aria-label="Copy GitHub Copilot global path">Copy</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">OpenAI Codex</th>
+                    <td><code>{project}/.agents/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.agents/skills/{{ page.slug }}/SKILL.md" aria-label="Copy OpenAI Codex project path">Copy</button></td>
+                    <td><code>~/.codex/skills/</code><button class="path-copy" type="button" data-copy-text="~/.codex/skills/{{ page.slug }}/SKILL.md" aria-label="Copy OpenAI Codex global path">Copy</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Cursor</th>
+                    <td><code>{project}/.cursor/skills/</code><button class="path-copy" type="button" data-copy-text="{project}/.cursor/skills/{{ page.slug }}/SKILL.md" aria-label="Copy Cursor project path">Copy</button></td>
+                    <td><span class="body-sm path-table__muted">Not supported</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 
@@ -318,6 +326,69 @@ layout: default
 
       </aside>
     </div>
+
+    {%- assign related_skills = "" | split: "" -%}
+    {%- if page.related_skills -%}
+      {%- for slug in page.related_skills -%}
+        {%- assign candidate = site.skills | where: "slug", slug | first -%}
+        {%- if candidate and candidate.slug != page.slug -%}
+          {%- assign related_skills = related_skills | push: candidate -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- if related_skills.size == 0 and page.category -%}
+      {%- for candidate in site.skills -%}
+        {%- if candidate.category == page.category and candidate.slug != page.slug -%}
+          {%- assign related_skills = related_skills | push: candidate -%}
+          {%- if related_skills.size >= 3 -%}{% break %}{%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- if related_skills.size > 0 %}
+    <section class="detail-section" aria-labelledby="related-skills-title">
+      <h2 class="display-sm detail-section__title" id="related-skills-title">Related skills</h2>
+      <div class="related-grid">
+        {%- for item in related_skills limit: 3 %}
+        {%- assign reveal_class = "reveal--" | append: forloop.index -%}
+        {% include skill-card.html item=item heading_tag="h3" delay=reveal_class %}
+        {%- endfor %}
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if category_url != "" and page.category %}
+        <section class="detail-section" aria-labelledby="related-category-title">
+      <h2 class="display-sm detail-section__title" id="related-category-title">Related category</h2>
+      <p class="body-sm detail-section__copy">Browse more skills filed under <a class="link-inline" href="{{ category_url | relative_url }}">{{ category_label }}</a>.</p>
+        </section>
+        {%- endif %}
+
+        {%- if page.related_skills and page.related_skills.size > 0 %}
+        <section class="detail-section" aria-labelledby="related-skills-bottom-title">
+          <h2 class="display-sm detail-section__title" id="related-skills-bottom-title">Related Skills</h2>
+          <div class="related-grid">
+            {%- for slug in page.related_skills limit: 3 %}
+              {%- assign item = site.skills | where: "slug", slug | first %}
+              {%- if item and item.slug != page.slug %}
+                {%- assign reveal_class = "reveal--" | append: forloop.index -%}
+                {% include skill-card.html item=item heading_tag="h3" delay=reveal_class %}
+              {%- endif %}
+            {%- endfor %}
+          </div>
+        </section>
+        {%- endif %}
+
+        {%- if category_url != "" and page.category %}
+        <section class="detail-section" aria-labelledby="related-category-bottom-title">
+          <h2 class="display-sm detail-section__title" id="related-category-bottom-title">Related Category</h2>
+          <p class="body-sm detail-section__copy">More from <a class="link-inline" href="{{ category_url | relative_url }}">{{ category_label }}</a>.</p>
+        </section>
+        {%- endif %}
+
+        {%- include detail-extras.html -%}
+
+        {% include author-box.html role="Skill creator" %}
+        {% include share-box.html %}
 
     <div class="archive__footer">
       <a class="button button--lg" href="{{ '/ai-agent-skills/' | relative_url }}">All AI agent skills</a>

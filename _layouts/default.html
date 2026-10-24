@@ -9,6 +9,26 @@
 
   <main id="main" tabindex="-1">
     {{ content }}
+    {%- include faq.html -%}
+
+    <section class="band band--tight comments-section" aria-labelledby="comments-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__text">
+            <p class="eyebrow-mono">Comments</p>
+            <h2 class="display-md section-head__title" id="comments-title">Discussion</h2>
+            <p class="body-sm section-head__lede">Comments are powered by GitHub via Utterances.</p>
+          </div>
+        </div>
+        <script src="https://utteranc.es/client.js"
+                repo="f9xr/yoprompts"
+                issue-term="pathname"
+                theme="dark-blue"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    </section>
   </main>
 
   {%- include footer.html -%}

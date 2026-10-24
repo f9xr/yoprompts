@@ -15,9 +15,6 @@ sitemap: false
 {%- for m in site.mcp_servers -%}
 ,{"type":"MCP","title":{{ m.title | jsonify }},"url":{{ m.url | relative_url | jsonify }},"description":{{ m.excerpt | strip_html | strip_newlines | jsonify }},"tags":{{ m.tags | join: ", " | jsonify }},"category":"MCP server","body":{{ m.config | default: "" | jsonify }}}
 {%- endfor -%}
-{%- for post in site.posts -%}
-,{"type":"Guide","title":{{ post.title | jsonify }},"url":{{ post.url | relative_url | jsonify }},"description":{{ post.excerpt | strip_html | strip_newlines | jsonify }},"tags":{{ post.tags | join: ", " | jsonify }},"category":"Blog"}
-{%- endfor -%}
 {%- assign pages = site.pages | where_exp: "pg", "pg.title" -%}
 {%- for pg in pages -%}
 {%- if pg.url contains ".json" or pg.url contains "404" -%}{%- continue -%}{%- endif -%}

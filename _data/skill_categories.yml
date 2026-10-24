@@ -22,3 +22,21 @@
 - slug: meta
   label: Skill Building
   blurb: Finding, writing, testing, and improving agent skills themselves.
+- slug: productivity
+  label: Productivity
+  blurb: Workflows, automation, focus, and time-saving agent skills.
+- slug: research
+  label: Research
+  blurb: Synthesis, analysis, competitive intel, and fact-gathering workflows.
+- slug: data
+  label: Data & Analytics
+  blurb: Data cleaning, analysis, reporting, and insight generation.
+- slug: content
+  label: Content
+  blurb: Long-form content, ideation, repurposing, and publishing workflows.
+- slug: automation
+  label: Automation
+  blurb: Integrations, scripts, agents, and repeatable task automation.
+- slug: business
+  label: Business
+  blurb: Strategy, pricing, operations, sales, and decision support.

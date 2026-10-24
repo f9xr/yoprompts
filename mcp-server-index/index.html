@@ -68,14 +68,14 @@ seo:
       <span class="archive__count eyebrow-mono eyebrow-mono--muted">{{ servers | size }} {% if servers.size == 1 %}server{% else %}servers{% endif %}</span>
     </div>
 
-    <div class="grid grid-3" data-paginate>
+    <div class="grid grid-3" id="mcp-server-grid" data-paginate data-page-size="12">
       {%- for server in servers %}
       {%- assign delay_num = forloop.index | modulo: 4 | plus: 1 -%}
       {%- assign reveal_class = "reveal--" | append: delay_num -%}
       {% include resource-card.html item=server eyebrow="MCP" delay=reveal_class meta=server.transport %}
       {%- endfor %}
     </div>
-    <nav class="pagination" aria-label="MCP server pagination"></nav>
+    <nav class="pagination" data-pagination="mcp-server-grid" aria-label="MCP server pagination"></nav>
     {%- else %}
     <div class="prose">
       <p>Coming soon. Check back for curated MCP servers.</p>

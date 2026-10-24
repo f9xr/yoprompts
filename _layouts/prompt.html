@@ -213,6 +213,34 @@ layout: default
           {%- endif %}
         </div>
 
+        {%- if page.skills and page.skills.size > 0 %}
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Best with skills</p>
+          <div class="link-list">
+            {%- for skill_slug in page.skills %}
+              {%- assign skill_item = site.skills | where: "slug", skill_slug | first %}
+              {%- if skill_item %}
+                <a class="link-inline body-sm" href="{{ skill_item.url | relative_url }}">{{ skill_item.title }}</a>
+              {%- endif %}
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endif %}
+
+        {%- if page.mcp_servers and page.mcp_servers.size > 0 %}
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Best with MCP servers</p>
+          <div class="link-list">
+            {%- for mcp_slug in page.mcp_servers %}
+              {%- assign mcp_item = site.mcp_servers | where: "slug", mcp_slug | first %}
+              {%- if mcp_item %}
+                <a class="link-inline body-sm" href="{{ mcp_item.url | relative_url }}">{{ mcp_item.title }}</a>
+              {%- endif %}
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endif %}
+
       </aside>
     </div>
 
@@ -227,6 +255,11 @@ layout: default
       </div>
     </section>
     {%- endif %}
+
+    {%- include detail-extras.html -%}
+
+    {% include author-box.html role="Prompt author" %}
+    {% include share-box.html %}
 
     <div class="archive__footer">
       <a class="button button--lg" href="{{ '/prompts/' | relative_url }}">See more prompts</a>

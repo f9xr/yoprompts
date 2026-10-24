@@ -422,5 +422,58 @@ seo:
 </section>
 
 
-<!-- 08  Latest prompts & archive engine ================================ -->
+<!-- 08  AI Agent Skills ================================================ -->
+<section class="band band--tight" aria-labelledby="skills-home-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">AI Agent Skills</p>
+        <h2 class="display-md section-head__title" id="skills-home-title">Extend agents with specialized capabilities</h2>
+        <p class="body-lg section-head__lede">
+          Ready-made SKILL.md files for Claude Code, Codex, Gemini CLI, Cursor, and more. Install with one command.
+        </p>
+      </div>
+      <a class="button" href="{{ '/ai-agent-skills/' | relative_url }}">Browse all skills</a>
+    </div>
+
+    {%- assign featured_skills_home = site.skills | where: "featured", true | sort: "title" -%}
+    {%- if featured_skills_home.size == 0 -%}
+      {%- assign featured_skills_home = site.skills | sort: "title" -%}
+    {%- endif -%}
+
+    <div class="grid grid-3">
+      {%- for skill in featured_skills_home limit: 3 -%}
+        {%- assign delay_class = "reveal--" | append: forloop.index -%}
+        {% include skill-card.html item=skill heading_tag="h3" delay=delay_class %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- 09  MCP Server Index ================================================ -->
+<section class="band band--tight" aria-labelledby="mcp-home-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">MCP Servers</p>
+        <h2 class="display-md section-head__title" id="mcp-home-title">Connect agents to tools and data</h2>
+        <p class="body-lg section-head__lede">
+          Curated Model Context Protocol servers to extend your AI agents with powerful integrations.
+        </p>
+      </div>
+      <a class="button" href="{{ '/mcp-server-index/' | relative_url }}">Browse all MCP servers</a>
+    </div>
+
+    {%- assign mcp_home = site.mcp_servers | sort: "title" -%}
+    <div class="grid grid-3">
+      {%- for server in mcp_home limit: 3 -%}
+        {%- assign delay_num = forloop.index | modulo: 4 | plus: 1 -%}
+        {%- assign reveal_class = "reveal--" | append: delay_num -%}
+        {% include resource-card.html item=server eyebrow="MCP" delay=reveal_class meta=server.transport %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- 10  Latest prompts & archive engine ================================ -->
 {% include archive.html limit=12 more_href="/prompts/" %}

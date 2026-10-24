@@ -111,9 +111,14 @@ layout: default
       </aside>
     </div>
 
-    <div class="archive__footer">
-      <a class="button button--lg" href="{{ '/mcp-server-index/' | relative_url }}">All MCP servers</a>
-    </div>
+        {%- include detail-extras.html -%}
+
+        {% include author-box.html role="Server maintainer" %}
+        {% include share-box.html %}
+
+        <div class="archive__footer">
+          <a class="button button--lg" href="{{ '/mcp-server-index/' | relative_url }}">All MCP servers</a>
+        </div>
 
   </div>
 </article>

@@ -15,7 +15,6 @@ results, an example of the output shape, and an FAQ.
 - [AI agent skills](https://f9xr.org/yoprompts/ai-agent-skills/): installable skills that extend what an AI agent can do.
 - [MCP servers](https://f9xr.org/yoprompts/mcp-server-index/): Model Context Protocol servers that connect agents to tools and data.
 - [Categories](https://f9xr.org/yoprompts/categories/): browse by the job a prompt does.
-- [Guides](https://f9xr.org/yoprompts/blog/): short write-ups on prompting technique.
 - [Prompting basics](https://f9xr.org/yoprompts/resources/#prompting-basics): the five techniques that fix most bad output.
 
 ## Prompts
@@ -97,14 +96,10 @@ results, an example of the output shape, and an FAQ.
 - [Sequential Thinking MCP](https://f9xr.org/yoprompts/mcp-server-index/sequential-thinking/)
 - [Tavily MCP](https://f9xr.org/yoprompts/mcp-server-index/tavily/)
 
-## Guides
-
-- [The [NEEDED] convention](https://f9xr.org/yoprompts/blog/2026/10/04/the-needed-convention.html)
-
 ## About
 
 - [About YoPrompts](https://f9xr.org/yoprompts/about/)
-- [AI Tools Directory](https://f9xr.org/yoprompts/ai-tools/)
+- [AI Tools Directory](https://f9xr.org/directories/ai-tools.html)
 - [Contact](https://f9xr.org/yoprompts/contact/)
 - [Terms](https://f9xr.org/yoprompts/terms/)
 

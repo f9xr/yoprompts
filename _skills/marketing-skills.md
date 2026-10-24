@@ -1,7 +1,7 @@
 ---
 title: "Marketing Skills"
 slug: marketing-skills
-category: marketing
+category: business
 date: 2026-10-22
 excerpt: "A 43-skill marketing bundle covering positioning, copywriting, CRO, SEO, analytics, paid ads, lifecycle email, and growth engineering."
 creator: "Corey Haines"

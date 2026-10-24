@@ -59,11 +59,6 @@ collections:
     output: true
     permalink: /mcp-server-index/:slug/
 
-# Jekyll's default post permalink drops guides at the site root
-# (/:year/:month/:day/:title.html), which put them outside the /blog/ section
-# that the nav, footer, breadcrumb and blog index all point at.
-permalink: /blog/:year/:month/:day/:title.html
-
 defaults:
   # Unscoped so it reaches every page, including collection documents and
   # posts. Any page with its own `image:` in front matter still wins.
@@ -96,13 +91,6 @@ defaults:
       layout: mcp-server
       seo:
         type: WebPage
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: post
-      tags: Guide
-
 # Jekyll drops dotfiles and anything under them by default, which would remove
 # /.well-known from the build. Agent and crawler discovery documents
 # (security.txt, api-catalog, oauth metadata) live there, so the directory is

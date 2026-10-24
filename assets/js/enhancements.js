@@ -513,7 +513,7 @@
       if (pendingG) {
         pendingG = false;
         if (pendingTimer) { window.clearTimeout(pendingTimer); }
-        var routes = { h: '', p: 'prompts/', s: 'ai-agent-skills/', m: 'mcp-server-index/', c: 'categories/', r: 'resources/', l: 'lab/', b: 'blog/' };
+        var routes = { h: '', p: 'prompts/', s: 'ai-agent-skills/', m: 'mcp-server-index/', c: 'categories/', r: 'resources/', l: 'lab/' };
         if (Object.prototype.hasOwnProperty.call(routes, key)) {
           event.preventDefault();
           navigate(routes[key]);
@@ -577,6 +577,19 @@
   }
 
   /* ---------------------------------------------------------------------
+     Share boxes
+     ------------------------------------------------------------------ */
+
+  function initShareBoxes() {
+    on(document, 'click', function (event) {
+      var button = event.target.closest ? event.target.closest('[data-share-copy]') : null;
+      if (!button) { return; }
+      event.preventDefault();
+      copyAndFlash(button, button.getAttribute('data-url') || window.location.href);
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Pagination. Works with anything that hides items using a class or the
      style attribute, including the archive filter and the skills/MCP grids.
      ------------------------------------------------------------------ */
@@ -622,7 +635,11 @@
     }
     nav.hidden = false;
 
-    var markup = '<button class="pagination__btn" type="button" data-page-go="' + (current - 1) + '"' + (current === 1 ? ' disabled' : '') + ' aria-label="Previous page">&larr;</button>';
+    /* Lucide chevron-left / chevron-right (lucide.dev, MIT licence). */
+    var prevIcon = '<svg class="pagination__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>';
+    var nextIcon = '<svg class="pagination__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>';
+
+    var markup = '<button class="pagination__btn" type="button" data-page-go="' + (current - 1) + '"' + (current === 1 ? ' disabled' : '') + ' aria-label="Previous page">' + prevIcon + '</button>';
     for (var page = 1; page <= pages; page += 1) {
       if (pages > 9 && page > 2 && page < pages - 1 && Math.abs(page - current) > 1) {
         if (page === 3 || page === pages - 2) { markup += '<span class="pagination__gap">...</span>'; }
@@ -630,7 +647,7 @@
       }
       markup += '<button class="pagination__btn' + (page === current ? ' is-active' : '') + '" type="button" data-page-go="' + page + '" aria-label="Page ' + page + '"' + (page === current ? ' aria-current="page"' : '') + '>' + page + '</button>';
     }
-    markup += '<button class="pagination__btn" type="button" data-page-go="' + (current + 1) + '"' + (current === pages ? ' disabled' : '') + ' aria-label="Next page">&rarr;</button>';
+    markup += '<button class="pagination__btn" type="button" data-page-go="' + (current + 1) + '"' + (current === pages ? ' disabled' : '') + ' aria-label="Next page">' + nextIcon + '</button>';
     markup += '<span class="pagination__status">Page ' + current + ' of ' + pages + '</span>';
     nav.innerHTML = markup;
   }
@@ -1151,6 +1168,7 @@
     initBackToTop();
     initPagination();
     initRepoMeta();
+    initShareBoxes();
     initDetailInstruments();
     initCopyTracking();
     initPWA();

@@ -1,13 +1,11 @@
 primary:
+  - label: Prompts
+    url: /prompts/
   - label: Categories
     url: /categories/
-  - label: Top Prompts
-    url: /prompts/
-  - label: AI Tools Directory
-    url: /ai-tools/
-  - label: AI Agent Skills
+  - label: Skills
     url: /ai-agent-skills/
-  - label: MCP Server Index
+  - label: MCP Servers
     url: /mcp-server-index/
   - label: Resources
     url: /resources/
@@ -16,14 +14,24 @@ primary:
         url: /resources/#prompting-basics
       - label: Guides
         url: https://f9xr.org/dev9b/tags/ai-tools
-      - label: HTML Sitemap
-        url: /html-sitemap/
-  - label: Company
+      - label: AI Tools Directory
+        url: https://f9xr.org/directories/ai-tools.html
+      - label: AI Tools
+        url: https://f9xr.org/troolify/tools/ai/
+      - label: Prompts
+        url: https://f9xr.org/troolify/tools/prompts/
+      - label: Lab
+        url: /lab/
+  - label: About Us
     url: /about/
     children:
       - label: Contact
         url: /contact/
       - label: Submit a prompt
         url: /submit-a-prompt/
-      - label: Open source
-        url: https://github.com/f9xr/yoprompts
+      - label: Privacy
+        url: /privacy/
+      - label: Terms
+        url: /terms/
+      - label: Disclaimer
+        url: /disclaimer/

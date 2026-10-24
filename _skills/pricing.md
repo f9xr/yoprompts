@@ -1,7 +1,7 @@
 ---
 title: "Pricing Strategy"
 slug: pricing
-category: marketing
+category: business
 date: 2026-10-23
 excerpt: "Helps set pricing, packages, and monetization strategy using value metrics, willingness-to-pay research, and pricing-page audits."
 creator: "Corey Haines"

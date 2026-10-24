@@ -62,5 +62,9 @@ layout: default
     {%- else %}
     <p class="body-sm">No skills in this category yet.</p>
     {%- endif %}
+    {%- include detail-extras.html -%}
+
+    {% include author-box.html role="Category curator" %}
+    {% include share-box.html %}
   </div>
 </section>

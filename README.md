@@ -154,12 +154,10 @@ _includes/
   skill-card.html       the shared skill card for the directory
   _layouts/
   default.html           page shell
-  post.html              guide/article layout
   prompt.html            prompt detail layout, incl. JSON-LD
   skill.html             skill detail layout, install guides, SKILL.md viewer
   skill-category.html    skill category index layout
 _prompts/                the prompt library (collection)
-_posts/                  guides (collection)
 _skills/                 AI Agent Skills collection
 _data/
   skill_categories.yml   skill taxonomy
@@ -170,7 +168,6 @@ assets/
   js/main.js             copy, filter, carousel, drawer, reveals, header auto-hide, skills search/filter/bookmarks
 categories/index.html    category index
 prompts/index.html       full searchable library
-blog/index.html          guides index
 index.html               homepage
 404.html
 ```
@@ -314,7 +311,7 @@ art: workflow
 ---
 ```
 
-`art` is optional and picks the card illustration on `/blog/`.
+`art` is optional and picks the card illustration on the prompt cards.
 
 ---
 
@@ -416,8 +413,7 @@ Honest list of what is not finished.
 
 **Not yet built:**
 
-- Guides: there is one guide in `_posts/`, so `feed.xml` has a single entry.
-  More are needed before the blog carries any weight.
+- Guides now live in the resources section; the standalone blog was removed.
 
 `robots.txt` is **not** hand-written: `jekyll-sitemap` generates it from `url`
 and `baseurl`, and it already points at the right sitemap. Changing the domain in

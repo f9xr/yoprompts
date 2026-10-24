@@ -16,7 +16,7 @@
   When that label is dynamic (a post title), pass `current` instead of
   trailing it onto `trail`, so every entry in `trail` stays a link:
 
-    {% include breadcrumbs.html trail="Home~/|Blog~/blog/" current=page.title %}
+    {% include breadcrumbs.html trail="Home~/|Categories~/categories/" current=page.title %}
 
   Output is wrapped in an ordered list because BreadcrumbList structured data
   describes a list, and screen readers announce position in a list usefully.
