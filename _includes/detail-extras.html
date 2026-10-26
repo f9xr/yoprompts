@@ -1,0 +1,138 @@
+{%- comment -%}
+  Shared detail-page blocks: use cases, key features and repository metadata.
+
+  Front matter can override either list:
+    use_cases: []
+    key_features: []
+
+  Otherwise use cases come from tags and key features are derived from the
+  fields that already exist on the document, so no page needs new front matter
+  to get the section.
+{%- endcomment -%}
+{%- assign use_case_items = page.use_cases -%}
+{%- if use_case_items == nil or use_case_items.size == 0 -%}
+  {%- assign use_case_items = page.tags -%}
+{%- endif -%}
+
+{%- assign feature_items = page.key_features -%}
+{%- if feature_items == nil or feature_items.size == 0 -%}
+  {%- assign feature_items = "" | split: "" -%}
+  {%- if page.collection == "prompts" -%}
+    {%- if page.read_time -%}
+      {%- assign feature_item = page.read_time | append: "-minute read" -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- if page.difficulty -%}
+      {%- assign feature_item = page.difficulty | capitalize | append: " difficulty" -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- if page.tools -%}
+      {%- capture feature_tools -%}
+        {%- for tool_slug in page.tools -%}
+          {%- assign tool = site.data.ai_tools | where: "slug", tool_slug | first -%}
+          {%- if tool -%}{{ tool.label }}{% unless forloop.last %}, {% endunless %}{%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if feature_tools != "" -%}
+        {%- assign feature_item = "Tested with " | append: feature_tools -%}
+        {%- assign feature_items = feature_items | push: feature_item -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if page.how_to_use -%}
+      {%- assign feature_item = page.how_to_use.size | append: " usage steps" -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- if page.faq -%}
+      {%- assign feature_item = page.faq.size | append: " answered questions" -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- assign feature_items = feature_items | push: "Copy-ready prompt text" -%}
+
+  {%- elsif page.collection == "skills" -%}
+    {%- if page.version -%}
+      {%- assign feature_item = "Version " | append: page.version -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- if page.license -%}
+      {%- assign feature_item = page.license | append: " licence" -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- if page.creator -%}
+      {%- assign feature_item = "Maintained by " | append: page.creator -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- assign feature_items = feature_items | push: "CLI and manual install options" -%}
+    {%- assign feature_items = feature_items | push: "Works with Claude Code, GitHub Copilot, OpenAI Codex and Cursor" -%}
+    {%- assign feature_items = feature_items | push: "Full SKILL.md included" -%}
+
+  {%- elsif page.collection == "mcp_servers" -%}
+    {%- assign feature_item = page.transport | default: "local" | capitalize | append: " transport" -%}
+    {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- if page.license -%}
+      {%- assign feature_item = page.license | append: " licence" -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- if page.creator -%}
+      {%- assign feature_item = "Maintained by " | append: page.creator -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- if page.config -%}
+      {%- assign feature_items = feature_items | push: "Copy-ready MCP configuration" -%}
+    {%- endif -%}
+    {%- if page.tags -%}
+      {%- assign feature_item = page.tags.size | append: " tagged capabilities" -%}
+      {%- assign feature_items = feature_items | push: feature_item -%}
+    {%- endif -%}
+    {%- if page.repo_url or page.homepage -%}
+      {%- assign feature_items = feature_items | push: "Source link included" -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- assign detail_kind = "page" -%}
+{%- if page.collection == "prompts" -%}{%- assign detail_kind = "prompt" -%}
+{%- elsif page.collection == "skills" -%}{%- assign detail_kind = "skill" -%}
+{%- elsif page.collection == "mcp_servers" -%}{%- assign detail_kind = "server" -%}
+{%- endif -%}
+{%- if use_case_items and use_case_items.size > 0 %}
+<section class="detail-section" aria-labelledby="use-cases-title">
+  <h2 class="display-sm detail-section__title" id="use-cases-title">Use cases</h2>
+  <p class="body-sm detail-section__copy">Common jobs this {{ detail_kind }} is built for.</p>
+  <div class="tool-list">
+    {%- for item in use_case_items %}
+    <span class="tag-mono tag-mono--accent">{{ item | capitalize }}</span>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if feature_items.size > 0 %}
+<section class="detail-section" aria-labelledby="features-title">
+  <h2 class="display-sm detail-section__title" id="features-title">Key features</h2>
+  <ul class="detail-list">
+    {%- for item in feature_items %}
+    <li>{{ item | escape }}</li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+{%- assign repo = "" -%}
+{%- assign repo_url = page.repo_url | default: page.source_url -%}
+{%- if repo_url and repo_url contains "github.com" -%}
+  {%- assign repo_path = repo_url | remove: "https://github.com/" | remove: "http://github.com/" | remove: ".git" -%}
+  {%- assign repo_parts = repo_path | split: "/" -%}
+  {%- if repo_parts.size >= 2 -%}
+    {%- assign repo = repo_parts[0] | append: "/" | append: repo_parts[1] -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if repo != "" %}
+<section class="detail-section" id="project-meta" aria-labelledby="project-meta-title" data-repo-meta data-repo="{{ repo }}">
+  <h2 class="display-sm detail-section__title" id="project-meta-title">Project</h2>
+  <div class="tool-list">
+    <span class="tag-mono">Contributors <span data-meta-field="contributors">--</span></span>
+    <span class="tag-mono">Last commit <span data-meta-field="lastCommit">--</span></span>
+    <a class="tag-mono tag-mono--accent" href="https://github.com/{{ repo }}" target="_blank" rel="noopener noreferrer">View repository</a>
+  </div>
+</section>
+{%- endif %}
