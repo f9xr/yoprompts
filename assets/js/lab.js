@@ -180,7 +180,7 @@
     auditor.innerHTML = '<span class="profiler-output">Scanning...</span>';
     Promise.all(Array.prototype.slice.call(files).map(scanFile)).then(function (results) {
       auditor.innerHTML = results.map(function (r) {
-        return '<div><strong>' + escapeHtml(r.path) + '</strong> (' + Math.round(r.size/1024) + 'KB)' + (r.issues.length ? ' — <span class="bad">' + r.issues.join(', ') + '</span>' : ' — <span class="ok">ok</span>') + '</div>';
+        return '<div><strong>' + escapeHtml(r.path) + '</strong> (' + Math.round(r.size/1024) + 'KB)' + (r.issues.length ? ' - <span class="bad">' + r.issues.join(', ') + '</span>' : ' - <span class="ok">ok</span>') + '</div>';
       }).join('') || '<span class="profiler-output">No files found.</span>';
     });
   }

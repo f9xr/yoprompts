@@ -1,0 +1,34 @@
+{%- comment -%}
+  Article author box.
+
+  Expects:
+    include.role  short role label, e.g. "Skill creator"
+{%- endcomment -%}
+{%- assign author_name = page.creator | default: site.author.name -%}
+{%- assign author_role = include.role | default: "Author" -%}
+{%- assign author_url = page.creator_url -%}
+{%- assign author_repo = "" -%}
+{%- if page.repo_url and page.repo_url contains "github.com" -%}
+  {%- assign author_repo_path = page.repo_url | remove: "https://github.com/" | remove: ".git" -%}
+  {%- assign author_repo_parts = author_repo_path | split: "/" -%}
+  {%- if author_repo_parts.size >= 1 -%}
+    {%- assign author_repo = author_repo_parts[0] -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if author_url == nil and author_repo != "" -%}
+  {%- assign author_url = "https://github.com/" | append: author_repo -%}
+{%- endif -%}
+{%- assign author_words = author_name | split: " " -%}
+{%- capture author_initials -%}
+  {%- for word in author_words -%}{{ word | slice: 0 }}{%- endfor -%}
+{%- endcapture -%}
+<div class="author-box">
+  <span class="author-box__avatar" aria-hidden="true">{{ author_initials | slice: 0, 2 | upcase }}</span>
+  <div>
+    <p class="author-box__name">{{ author_name }}</p>
+    <p class="author-box__role">{{ author_role }}. Every entry is reviewed by F9XR Team before publication.</p>
+  </div>
+  {%- if author_url %}
+  <a class="button button--sm author-box__link" href="{{ author_url }}" target="_blank" rel="noopener noreferrer">View profile</a>
+  {%- endif %}
+</div>

@@ -1,0 +1,137 @@
+# Page-level FAQs. Keyed by page.url. Pages that do not appear here fall back
+# to page.faq or to the generated detail FAQ in _includes/faq.html.
+"/":
+  - q: "What is YoPrompts?"
+    a: "YoPrompts is a free library of ready-made AI prompts published by F9XR Team. Every prompt is written by hand and tested against real models such as ChatGPT, Claude and Gemini."
+  - q: "Do I need an account to use the prompts?"
+    a: "No. There is no login, no paywall and no setup. Open a prompt, copy the text and paste it into whichever AI tool you already use."
+  - q: "Are the prompts free to use commercially?"
+    a: "Yes. You can copy, modify and use the prompts in paid work without attribution. See the Terms of Use for the full position."
+
+"/prompts/":
+  - q: "How do I search the prompt library?"
+    a: "Use the search field to match a title, use case or model, or narrow the list with the category, AI tool and difficulty filters. Results update as you type."
+  - q: "Can I copy a prompt without an account?"
+    a: "Yes. Every card and prompt page has a copy button that writes the prompt to your clipboard in the browser. No account or sign-in is involved."
+  - q: "How many prompts are in the library?"
+    a: "The library grows as new prompts pass review. The count above the grid reflects every published prompt on the page right now."
+
+"/categories/":
+  - q: "How are prompts grouped into categories?"
+    a: "Each prompt is filed under the job it does, such as productivity, coding, SEO or image generation, rather than the model it was tested on."
+  - q: "What if a category has no prompts yet?"
+    a: "Only categories with at least one published prompt are listed, so every category link leads to real results."
+  - q: "Can one prompt fit more than one category?"
+    a: "The category shows where the prompt was most useful. Some prompts also link to related prompts and AI tools that may suit a different workflow."
+
+"/ai-tools/":
+  - q: "How is the AI tools directory organised?"
+    a: "Tools are grouped by what they do, such as chat, image, video, code, writing and research. Use the search field or category filters to narrow the list."
+  - q: "Are the tools listed here affiliated with YoPrompts?"
+    a: "No. The directory lists tools independently. Each card links to the tool's own site, and inclusion is not an endorsement or a partnership."
+  - q: "How do I find prompts for a specific tool?"
+    a: "Open the tool's card and choose View prompts, or filter the prompt library by the same tool name."
+
+"/ai-agent-skills/":
+  - q: "What is an AI agent skill?"
+    a: "A skill is an installable instruction file, usually SKILL.md, that gives an AI agent a focused capability and a defined workflow."
+  - q: "How do I install a skill?"
+    a: "Open a skill page and use either the CLI command built for your agent or the manual install path. The page lists the folder for Claude Code, GitHub Copilot, OpenAI Codex and Cursor."
+  - q: "Can I use skills without installing anything?"
+    a: "Yes. You can copy the SKILL.md content directly and place it in your agent's skills folder."
+
+"/mcp-server-index/":
+  - q: "What is an MCP server?"
+    a: "A Model Context Protocol server connects an AI agent to external tools and data, such as repositories, search, Figma files or a database."
+  - q: "How do I add an MCP server to my agent?"
+    a: "Copy the configuration block from the server's page into your MCP client's config file, then restart the client. Each page shows its transport and configuration."
+  - q: "Are the MCP servers free?"
+    a: "Licences vary by project. Each server page lists its creator, licence and source link so you can check before you install it."
+
+"/resources/":
+  - q: "What will I learn in the resources section?"
+    a: "The five prompting techniques that fix most disappointing AI output: giving a role, forbidding invention, defining the output shape, ordering constraints and handling thin input."
+  - q: "Do I need any tools to follow along?"
+    a: "No. Every technique works in a normal chat window with ChatGPT, Claude, Gemini or any similar assistant."
+  - q: "Where can I find ready-made examples?"
+    a: "The prompt library applies every technique here in a copy-ready prompt. Browse by category or search for the task you need."
+
+"/about/":
+  - q: "Who publishes YoPrompts?"
+    a: "YoPrompts is built and published by F9XR Team, an independent project. It is not affiliated with any AI provider."
+  - q: "How are prompts tested before publication?"
+    a: "A draft is run against two or more models with real input, revised until the common failure mode is gone, and then documented with usage steps, tips, example output and FAQs."
+  - q: "Does YoPrompts use testimonials or sponsored rankings?"
+    a: "No. The site does not fabricate testimonials or sell placements. Corrections and prompt submissions are reviewed by a human."
+
+"/contact/":
+  - q: "How do I contact F9XR Team?"
+    a: "Email hello@f9xr.org. The same inbox handles YoPrompts questions, corrections and licensing queries."
+  - q: "How long does a reply take?"
+    a: "This is a small independent project, not a support desk. A week is a reasonable expectation, and replies are often sooner."
+  - q: "Can you recover an AI provider account or a lost prompt?"
+    a: "No. YoPrompts has no access to any AI provider account and cannot view, restore or recover your prompts or outputs."
+
+"/submit-a-prompt/":
+  - q: "How do I submit a prompt?"
+    a: "Email hello@f9xr.org with the full prompt text, what it is for, which models you tested it against, one real example, and its limitations."
+  - q: "What kinds of prompts are declined?"
+    a: "Jailbreaks, guardrail bypasses, thin rewrites of existing prompts, promotional submissions and prompts whose only trick is length are declined."
+  - q: "Will I get credit for a published prompt?"
+    a: "Only if you want it. The team asks before publishing, and anonymous is a valid answer."
+
+"/privacy/":
+  - q: "Does YoPrompts require an account or store personal data?"
+    a: "No. There is no login, no user database and no server-side visitor logging. Prompt text stays in your browser unless you copy it yourself."
+  - q: "Does the site use analytics?"
+    a: "Google Analytics 4 is strictly opt-in. No analytics script loads until you accept the consent banner, and declining keeps it off."
+  - q: "How do I ask a privacy question?"
+    a: "Email hello@f9xr.org. The privacy policy is maintained by F9XR Team and lists the data that may be collected when you consent."
+
+"/terms/":
+  - q: "Can I use YoPrompts prompts in commercial work?"
+    a: "Yes. You may copy, modify, publish, resell and use the prompts in paid work without attribution or a licence fee."
+  - q: "Do I have to link back to YoPrompts?"
+    a: "No. Attribution is welcome but never required. No prompt here is copyleft or carries a link-back condition."
+  - q: "Is there a warranty on the prompts?"
+    a: "No. The site and prompts are provided as is, without warranty of any kind. Check the output before relying on it."
+
+"/disclaimer/":
+  - q: "Does a good prompt guarantee accurate output?"
+    a: "No. Prompts improve the form and consistency of a response, not the truth of its content. Models can still invent facts, dates, citations and quotes."
+  - q: "What does prompt testing actually prove?"
+    a: "Testing shows that a prompt reliably produces the intended structure and avoids common failure modes on named models. It does not verify factual claims or future model versions."
+  - q: "Do I still need to fact-check the output?"
+    a: "Yes. Treat every factual claim as unverified until you check it against a reliable source, especially in legal, medical or financial work."
+
+"/cookies/":
+  - q: "Does YoPrompts set cookies by default?"
+    a: "No. If you decline or ignore the consent banner, no analytics code runs and no cookie is set. The library, search and copy buttons still work."
+  - q: "What is stored in my browser?"
+    a: "A localStorage value named yoprompts_consent records whether you granted or denied analytics consent. It contains no identifier and never leaves your browser."
+  - q: "How do I change my cookie choice?"
+    a: "Open Cookie preferences from the footer or the cookie policy. You can accept or reject analytics at any time."
+
+"/cookies/preferences/":
+  - q: "How do I change my analytics choice?"
+    a: "Use the accept or reject controls on this page. The choice is saved on this device and applies to future page views."
+  - q: "What happens if I reject analytics?"
+    a: "No third-party analytics script loads. The prompt library, search, filters and copy buttons work exactly as before."
+  - q: "Does the site work without cookies?"
+    a: "Yes. The site is static and the core features run in your browser. Consent storage only prevents the banner from reappearing."
+
+"/html-sitemap/":
+  - q: "What is the HTML sitemap for?"
+    a: "It lists every page on YoPrompts in one place, grouped by prompts, categories, AI agent skills, MCP servers, company pages and legal pages."
+  - q: "Is there an XML sitemap too?"
+    a: "Yes. jekyll-sitemap generates an XML sitemap for search engines, and robots.txt points to it. The HTML sitemap is for people."
+  - q: "Why can some pages be missing from the sitemap?"
+    a: "Pages marked noindex or excluded from search, such as the 404 page, are intentionally left out of indexing."
+
+"/lab/":
+  - q: "What can I do in the Prompt Lab?"
+    a: "Validate SKILL.md files, generate install commands, inspect MCP scaffolds, compare diffs, count tokens, estimate costs and audit folders, all in the browser."
+  - q: "Does the Prompt Lab send my data anywhere?"
+    a: "No. The tools run client-side. Pasted prompts, skill files and folder contents stay on your device."
+  - q: "Do I need an account to use the lab tools?"
+    a: "No. Open the lab and use any tool without signing in. Some tools require a modern browser with JavaScript enabled."

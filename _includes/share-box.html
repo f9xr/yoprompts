@@ -1,0 +1,16 @@
+{%- assign share_url = page.url | absolute_url -%}
+{%- assign share_title = page.title | url_encode -%}
+<div class="share-box" aria-label="Share this page">
+  <span class="share-box__label">Share</span>
+  <a class="share-link" href="https://twitter.com/intent/tweet?url={{ share_url | url_encode }}&amp;text={{ share_title }}" target="_blank" rel="noopener noreferrer">X</a>
+  <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url | url_encode }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  <a class="share-link" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}" target="_blank" rel="noopener noreferrer">Facebook</a>
+  <a class="share-link" href="mailto:?subject={{ share_title }}&amp;body={{ share_url | url_encode }}">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    Email
+  </a>
+  <button class="share-link" type="button" data-share-copy data-url="{{ share_url }}">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.1 0l2.1-2.1a5 5 0 0 0-7.1-7.1L11 4.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.1 0L4.8 13.1a5 5 0 0 0 7.1 7.1l1.1-1.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    <span class="button__label">Copy link</span>
+  </button>
+</div>

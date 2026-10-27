@@ -1,0 +1,217 @@
+{%- comment -%}
+  Page FAQ.
+
+  Lookup order:
+    1. page.faq in front matter
+    2. site.data.faqs[page.url]
+    3. generated questions for skills, MCP servers and skill categories
+
+  Prompt pages already render their own FAQ and FAQPage graph in
+  _layouts/prompt.html, so they are skipped here to avoid duplicate schema.
+{%- endcomment -%}
+{%- unless page.noindex or page.layout == "prompt" -%}
+{%- assign faq_items = page.faq -%}
+{%- if faq_items == nil or faq_items.size == 0 -%}
+  {%- assign faq_items = site.data.faqs[page.url] -%}
+{%- endif -%}
+{%- assign faq_kind = "" -%}
+{%- if page.collection == "skills" -%}
+  {%- assign faq_kind = "skill" -%}
+{%- elsif page.collection == "mcp_servers" -%}
+  {%- assign faq_kind = "mcp" -%}
+{%- elsif page.layout == "skill-category" -%}
+  {%- assign faq_kind = "skill-category" -%}
+{%- endif -%}
+
+{%- if faq_items and faq_items.size > 0 -%}
+<section class="band band--tight" id="faq" aria-labelledby="page-faq-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">FAQ</p>
+        <h2 class="display-md section-head__title" id="page-faq-title">Frequently asked questions</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      {%- for item in faq_items %}
+      <details>
+        <summary>{{ item.q | escape }}</summary>
+        <p>{{ item.a | escape }}</p>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": {{ page.url | absolute_url | append: '#faq' | jsonify }},
+  "mainEntity": [
+    {%- for item in faq_items -%}
+      {%- unless forloop.first %},{% endunless -%}
+      { "@type": "Question", "name": {{ item.q | strip_newlines | strip | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | strip_newlines | strip | jsonify }} } }
+    {%- endfor -%}
+  ]
+}
+</script>
+
+{%- elsif faq_kind == "skill" -%}
+  {%- assign faq_install = page.install -%}
+  {%- if faq_install == nil and page.usage and page.usage contains "npx skills add" -%}
+    {%- assign faq_install = page.usage -%}
+  {%- endif -%}
+  {%- if faq_install == nil and page.repo_url -%}
+    {%- assign faq_repo = page.repo_url | remove: "https://github.com/" | remove: ".git" -%}
+    {%- assign faq_install = "npx skills add " | append: faq_repo | append: "@" | append: page.slug -%}
+  {%- endif -%}
+<section class="band band--tight" id="faq" aria-labelledby="page-faq-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">FAQ</p>
+        <h2 class="display-md section-head__title" id="page-faq-title">Frequently asked questions</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>What does the {{ page.title | escape }} skill do?</summary>
+        <p>{{ page.excerpt | strip_html | strip_newlines | strip | escape }}</p>
+      </details>
+      <details>
+        <summary>How do I install {{ page.title | escape }}?</summary>
+        <p>
+          {%- if faq_install -%}
+          Run <code>{{ faq_install | escape }}</code> with the Skills CLI, or save the SKILL.md file in the manual path for your agent.
+          {%- else -%}
+          Copy the SKILL.md content from this page into your agent's skills folder.
+          {%- endif -%}
+        </p>
+      </details>
+      <details>
+        <summary>Which AI agents can use this skill?</summary>
+        <p>It follows the SKILL.md format and works with Claude Code, GitHub Copilot, OpenAI Codex and Cursor. The install section lists the folder for each agent.</p>
+      </details>
+      <details>
+        <summary>Is this skill free to use?</summary>
+        <p>
+          {%- if page.license -%}
+          It is published under the {{ page.license | escape }} licence. Check the source repository for the full terms.
+          {%- else -%}
+          It is free to install and use. Check the source repository for the licence and any usage terms.
+          {%- endif -%}
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": {{ page.url | absolute_url | append: '#faq' | jsonify }},
+  "mainEntity": [
+    { "@type": "Question", "name": {{ "What does the " | append: page.title | append: " skill do?" | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ page.excerpt | strip_html | strip_newlines | strip | jsonify }} } },
+    { "@type": "Question", "name": {{ "How do I install " | append: page.title | append: "?" | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {% if faq_install %}{{ "Run " | append: faq_install | append: " with the Skills CLI, or save the SKILL.md file in the manual path for your agent." | jsonify }}{% else %}{{ "Copy the SKILL.md content from this page into your agent's skills folder." | jsonify }}{% endif %} } },
+    { "@type": "Question", "name": "Which AI agents can use this skill?", "acceptedAnswer": { "@type": "Answer", "text": "It follows the SKILL.md format and works with Claude Code, GitHub Copilot, OpenAI Codex and Cursor. The install section lists the folder for each agent." } },
+    { "@type": "Question", "name": "Is this skill free to use?", "acceptedAnswer": { "@type": "Answer", "text": {% if page.license %}{{ "It is published under the " | append: page.license | append: " licence. Check the source repository for the full terms." | jsonify }}{% else %}{{ "It is free to install and use. Check the source repository for the licence and any usage terms." | jsonify }}{% endif %} } }
+  ]
+}
+</script>
+
+{%- elsif faq_kind == "mcp" -%}
+  {%- assign faq_transport = page.transport | default: "local" -%}
+<section class="band band--tight" id="faq" aria-labelledby="page-faq-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">FAQ</p>
+        <h2 class="display-md section-head__title" id="page-faq-title">Frequently asked questions</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>What is {{ page.title | escape }}?</summary>
+        <p>{{ page.excerpt | strip_html | strip_newlines | strip | escape }}</p>
+      </details>
+      <details>
+        <summary>How do I add this MCP server to my agent?</summary>
+        <p>Copy the configuration block from this page into your MCP client's config file, then restart the client. The server uses {{ faq_transport }} transport.</p>
+      </details>
+      <details>
+        <summary>Which transport does this server use?</summary>
+        <p>{{ faq_transport | capitalize }} transport. Check the configuration block for the exact command or URL.</p>
+      </details>
+      <details>
+        <summary>Where is the source code?</summary>
+        <p>
+          {%- if page.repo_url -%}
+          <a href="{{ page.repo_url }}" target="_blank" rel="noopener noreferrer">Open the repository</a> to review the source, licence and issue tracker.
+          {%- elsif page.homepage -%}
+          <a href="{{ page.homepage }}" target="_blank" rel="noopener noreferrer">Open the project site</a> to review the source and licence.
+          {%- else -%}
+          The source link is listed beside the configuration on this page.
+          {%- endif -%}
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": {{ page.url | absolute_url | append: '#faq' | jsonify }},
+  "mainEntity": [
+    { "@type": "Question", "name": {{ "What is " | append: page.title | append: "?" | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ page.excerpt | strip_html | strip_newlines | strip | jsonify }} } },
+    { "@type": "Question", "name": "How do I add this MCP server to my agent?", "acceptedAnswer": { "@type": "Answer", "text": {{ "Copy the configuration block from this page into your MCP client's config file, then restart the client. The server uses " | append: faq_transport | append: " transport." | jsonify }} } },
+    { "@type": "Question", "name": "Which transport does this server use?", "acceptedAnswer": { "@type": "Answer", "text": {{ faq_transport | capitalize | append: " transport. Check the configuration block for the exact command or URL." | jsonify }} } },
+    { "@type": "Question", "name": "Where is the source code?", "acceptedAnswer": { "@type": "Answer", "text": {% if page.repo_url %}{{ page.repo_url | jsonify }}{% elsif page.homepage %}{{ page.homepage | jsonify }}{% else %}The source link is listed beside the configuration on this page.{% endif %} } }
+  ]
+}
+</script>
+
+{%- elsif faq_kind == "skill-category" -%}
+  {%- assign faq_category_skills = site.skills | where: "category", page.skill_category -%}
+  {%- assign faq_category_label = page.title -%}
+  {%- for category in site.data.skill_categories -%}
+    {%- if category.slug == page.skill_category -%}{%- assign faq_category_label = category.label -%}{%- endif -%}
+  {%- endfor -%}
+<section class="band band--tight" id="faq" aria-labelledby="page-faq-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">FAQ</p>
+        <h2 class="display-md section-head__title" id="page-faq-title">Frequently asked questions</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>What are {{ faq_category_label | escape }} skills?</summary>
+        <p>They are installable SKILL.md skills filed under the {{ faq_category_label | escape }} category, each with its own workflow and instructions.</p>
+      </details>
+      <details>
+        <summary>How many skills are in this category?</summary>
+        <p>{{ faq_category_skills.size }} published skill{% if faq_category_skills.size != 1 %}s{% endif %} in {{ faq_category_label | escape }}.</p>
+      </details>
+      <details>
+        <summary>How do I install a skill from this category?</summary>
+        <p>Open any skill page and use the CLI command or the manual install path for Claude Code, GitHub Copilot, OpenAI Codex or Cursor.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": {{ page.url | absolute_url | append: '#faq' | jsonify }},
+  "mainEntity": [
+    { "@type": "Question", "name": {{ "What are " | append: faq_category_label | append: " skills?" | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ "They are installable SKILL.md skills filed under the " | append: faq_category_label | append: " category, each with its own workflow and instructions." | jsonify }} } },
+    { "@type": "Question", "name": "How many skills are in this category?", "acceptedAnswer": { "@type": "Answer", "text": {{ faq_category_skills.size | append: " published skills in " | append: faq_category_label | append: "." | jsonify }} } },
+    { "@type": "Question", "name": "How do I install a skill from this category?", "acceptedAnswer": { "@type": "Answer", "text": "Open any skill page and use the CLI command or the manual install path for Claude Code, GitHub Copilot, OpenAI Codex or Cursor." } }
+  ]
+}
+</script>
+{%- endif -%}
+{%- endunless -%}
