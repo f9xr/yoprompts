@@ -44,6 +44,9 @@
 /* 01  Tokens ============================================================= */
 
 :root {
+  /* Native controls, scrollbars and form widgets follow the dark canvas. */
+  color-scheme: dark;
+
   /* Brand & accent */
   --primary: #ffffff;
   --on-primary: #0a0a0a;
@@ -115,16 +118,21 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
+  scrollbar-color: var(--canvas-mid) var(--canvas);
+  scrollbar-width: thin;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--canvas);
   color: var(--ink);
   font: 400 var(--type-body-md, 16px) / 24px var(--font-sans);
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
 }
 
@@ -133,6 +141,11 @@ svg,
 video {
   display: block;
   max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
 }
 
 h1,
@@ -147,6 +160,20 @@ blockquote,
 ol,
 ul {
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
 }
 
 ol,
@@ -164,10 +191,28 @@ a:hover {
   color: var(--ink-hover);
 }
 
-button {
+button,
+input,
+select,
+textarea {
   font: inherit;
   color: inherit;
   letter-spacing: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled,
+.button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+::placeholder {
+  color: var(--body-mid);
+  opacity: 1;
 }
 
 hr {
@@ -185,6 +230,10 @@ hr {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
   border-radius: var(--rounded-xs, 2px);
+}
+
+:target {
+  scroll-margin-top: 88px;
 }
 
 
@@ -1997,6 +2046,14 @@ hr {
 .reveal-ready .reveal--4 { animation-delay: 240ms; }
 .reveal-ready .reveal--5 { animation-delay: 300ms; }
 
+@media (prefers-contrast: more) {
+  :root {
+    --body-mid: #b8bcc2;
+    --hairline: #3a3e44;
+    --hairline-strong: rgba(255, 255, 255, 0.5);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2149,6 +2206,12 @@ hr {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* Keep the footer links scannable without stacking four long columns. */
+  .footer-card__cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg) var(--spacing-xl);
+  }
+
   .stories__track {
     grid-auto-columns: minmax(280px, 84%);
   }
@@ -2223,6 +2286,10 @@ hr {
 
 @media (max-width: 420px) {
   .top-picks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-card__cols {
     grid-template-columns: minmax(0, 1fr);
   }
 
