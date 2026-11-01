@@ -11,6 +11,12 @@
     {{ content }}
     {%- include faq.html -%}
 
+    {%- comment -%}
+      Comments render on collection detail pages only. Index, category,
+      utility and legal pages do not need a discussion thread, and the
+      Utterances iframe was adding a third-party request to every page.
+    {%- endcomment -%}
+    {%- if page.collection == "prompts" or page.collection == "skills" or page.collection == "mcp_servers" -%}
     <section class="band band--tight comments-section" aria-labelledby="comments-title">
       <div class="container">
         <div class="section-head">
@@ -29,6 +35,7 @@
         </script>
       </div>
     </section>
+    {%- endif -%}
   </main>
 
   {%- include footer.html -%}

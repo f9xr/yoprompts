@@ -7,6 +7,12 @@
     a: "No. There is no login, no paywall and no setup. Open a prompt, copy the text and paste it into whichever AI tool you already use."
   - q: "Are the prompts free to use commercially?"
     a: "Yes. You can copy, modify and use the prompts in paid work without attribution. See the Terms of Use for the full position."
+  - q: "Which AI models work best with these prompts?"
+    a: "Every prompt names the models it was tested against, usually ChatGPT, Claude and Gemini. Most also work in Copilot, Grok and Perplexity, but test the output before relying on it."
+  - q: "How often are new prompts added?"
+    a: "New prompts are published after review, usually several times a month. The homepage and the prompt library always show the latest set, so there is no separate release schedule."
+  - q: "Can I edit a prompt before using it?"
+    a: "Yes. Every prompt is plain text. Replace the bracketed inputs with your own context, delete sections you do not need, and keep the rules that stop the model from inventing details."
 
 "/prompts/":
   - q: "How do I search the prompt library?"
@@ -15,6 +21,10 @@
     a: "Yes. Every card and prompt page has a copy button that writes the prompt to your clipboard in the browser. No account or sign-in is involved."
   - q: "How many prompts are in the library?"
     a: "The library grows as new prompts pass review. The count above the grid reflects every published prompt on the page right now."
+  - q: "How do I filter prompts by AI tool?"
+    a: "Use the tool filter beside the search field. Picking ChatGPT, Claude, Gemini or another tool narrows the list to prompts tested against that model."
+  - q: "Can I bookmark a prompt for later?"
+    a: "Yes. Bookmark the prompt page in your browser. There is no account system, so saved prompts stay on your device and are never uploaded."
 
 "/categories/":
   - q: "How are prompts grouped into categories?"
@@ -23,6 +33,10 @@
     a: "Only categories with at least one published prompt are listed, so every category link leads to real results."
   - q: "Can one prompt fit more than one category?"
     a: "The category shows where the prompt was most useful. Some prompts also link to related prompts and AI tools that may suit a different workflow."
+  - q: "Which category should I start with?"
+    a: "Start with the job you need done, not the model you use. Writing, marketing and productivity cover most everyday requests, while coding, SEO and images are more specialised."
+  - q: "How do category pages stay current?"
+    a: "Category pages are generated from the published prompts themselves. A prompt appears on its category page as soon as it is added and disappears only if it is removed."
 
 "/ai-tools/":
   - q: "How is the AI tools directory organised?"
@@ -39,6 +53,10 @@
     a: "Open a skill page and use either the CLI command built for your agent or the manual install path. The page lists the folder for Claude Code, GitHub Copilot, OpenAI Codex and Cursor."
   - q: "Can I use skills without installing anything?"
     a: "Yes. You can copy the SKILL.md content directly and place it in your agent's skills folder."
+  - q: "Which agents support SKILL.md?"
+    a: "Claude Code, GitHub Copilot, OpenAI Codex and Cursor all read the SKILL.md format. Each skill page lists the exact project and global folder for every agent."
+  - q: "Are the listed skills safe to run?"
+    a: "Every skill page shows its source repository and licence. Review the instructions and any allowed tools before you install a skill from a third party."
 
 "/mcp-server-index/":
   - q: "What is an MCP server?"
@@ -47,6 +65,10 @@
     a: "Copy the configuration block from the server's page into your MCP client's config file, then restart the client. Each page shows its transport and configuration."
   - q: "Are the MCP servers free?"
     a: "Licences vary by project. Each server page lists its creator, licence and source link so you can check before you install it."
+  - q: "What is the difference between a skill and an MCP server?"
+    a: "A skill is an instruction file that tells an agent how to do a task. An MCP server is a running service that gives the agent access to tools and data, such as GitHub, a database or search."
+  - q: "Do I need to code to set up an MCP server?"
+    a: "No. Most servers ship a JSON configuration block. Copy it into your MCP client, add any required API key, and restart the client."
 
 "/resources/":
   - q: "What will I learn in the resources section?"
