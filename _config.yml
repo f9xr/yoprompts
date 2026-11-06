@@ -112,14 +112,12 @@ exclude:
   - vendor
   - node_modules
   - skills
-  - DESIGN.md
-  - todo.txt
-  - backlinks.md
-  - all-urls.txt
+  - docs
   - demo-html-site
   - README.md
+  - todo.txt
+  - all-urls.txt
   - .kilo
-  - AGENT-DISCOVERY.md
   - validate_yoprompts.py
   - audit_site.py
   - build_specimen.py

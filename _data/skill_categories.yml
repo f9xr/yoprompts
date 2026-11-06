@@ -40,3 +40,18 @@
 - slug: business
   label: Business
   blurb: Strategy, pricing, operations, sales, and decision support.
+- slug: security
+  label: Security
+  blurb: Code review, threat modelling, and safer agent permissions.
+- slug: sales
+  label: Sales
+  blurb: Call reviews, outbound sequences, and deal coaching.
+- slug: support
+  label: Support
+  blurb: Help centre articles, macros, and customer reply workflows.
+- slug: legal
+  label: Legal
+  blurb: Contract review, policy drafting, and plain-language risk checks.
+- slug: finance
+  label: Finance
+  blurb: Model reviews, forecasts, unit economics, and reporting checks.

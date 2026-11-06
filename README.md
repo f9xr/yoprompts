@@ -61,7 +61,7 @@ Plugins, all supported on GitHub Pages without a `Gemfile`:
 - `jekyll-feed` - `/feed.xml`
 - `jekyll-sitemap` - `/sitemap.xml`
 
-`DESIGN.md` is the authoritative design document. Read it before changing
+`docs/DESIGN.md` is the authoritative design document. Read it before changing
 anything visual.
 
 ---
@@ -187,7 +187,7 @@ an "Open {label}" button on every prompt page that lists it.
 
 ## Design system
 
-`DESIGN.md` defines the whole system. The rules that actually constrain day-to-day work:
+`docs/DESIGN.md` defines the whole system. The rules that actually constrain day-to-day work:
 
 - **`#0a0a0a` is the only page surface.** There is no light mode. Do not add one.
 - **Weight 400 for all display type.** The brand never bolds. Hierarchy comes
@@ -204,13 +204,13 @@ everywhere.
 
 The only sanctioned fonts are **Inter** (standing in for the proprietary
 `universalSans`) and **JetBrains Mono** (standing in for `Geist Mono`, which is
-not on Google Fonts). Display sizes carry DESIGN.md's negative tracking:
+not on Google Fonts). Display sizes carry docs/DESIGN.md's negative tracking:
 `-2.4px` at 96px, down to `-0.6px` at 32px.
 
 ### Deliberate departures from the original brief
 
 The visual brief originally asked for a pastel-lavender, bold-oversized-type,
-rounded-and-shadowed editorial style. `DESIGN.md` - a dark, restrained system -
+rounded-and-shadowed editorial style. `docs/DESIGN.md` - a dark, restrained system -
 was chosen as authoritative instead. The information architecture, card
 geometry, and editorial rhythm survived; the palette, type weights, radii, and
 elevation did not. If the pastel look was the actual goal, that is a re-skin,

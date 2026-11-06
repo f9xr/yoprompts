@@ -1042,27 +1042,196 @@ html[data-theme="light"] .consent {
 
 .lab-drop.is-over { background: var(--canvas-soft); color: var(--ink); }
 
-/* 11  Focus mode */
-html.focus-mode .nav-bar,
-html.focus-mode .nav-drawer,
-html.focus-mode .footer,
-html.focus-mode .cta-bleed,
-html.focus-mode .cta-bleed__foot,
-html.focus-mode .detail-side,
-html.focus-mode .breadcrumbs,
-html.focus-mode .page-head__header .meta-row,
-html.focus-mode .view-toolbar,
-html.focus-mode .back-to-top,
-html.focus-mode .archive__footer,
-html.focus-mode .enrich-section,
-html.focus-mode .comments-section,
-html.focus-mode .share-box {
-  display: none !important;
+/* 11  Icons and micro-interactions */
+.icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  vertical-align: -2px;
 }
 
-html.focus-mode main { padding-bottom: var(--spacing-4xl); }
-html.focus-mode .band:first-of-type { padding-top: var(--spacing-2xl); }
-html.focus-mode .container { max-width: 900px; }
+.icon--xs { width: 12px; height: 12px; }
+.icon--sm { width: 14px; height: 14px; }
+.icon--lg { width: 20px; height: 20px; }
+
+.meta-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-head__icon,
+.filter-row__icon,
+.card__icon {
+  color: var(--accent-twilight);
+}
+
+.filter-row__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.skill-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.skill-card:hover .skill-card__badge {
+  color: var(--accent-twilight);
+  transform: translateY(-1px);
+}
+
+.skill-category__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-pill);
+  color: var(--accent-twilight);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.skill-category:hover .skill-category__icon {
+  border-color: var(--hairline-strong);
+  transform: rotate(-6deg) scale(1.04);
+}
+
+.skill-category__arrow {
+  transition: transform var(--dur) var(--ease);
+}
+
+.tag-mono--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-mono--icon .icon {
+  flex: none;
+}
+
+.category-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-pill);
+  color: var(--accent-twilight);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.category-card:hover .category-card__icon {
+  border-color: var(--hairline-strong);
+  transform: rotate(-6deg) scale(1.04);
+}
+.skill-category:hover .skill-category__arrow {
+  transform: translate(3px, -3px);
+}
+
+.icon-theme-light { display: none; }
+[data-theme="light"] .icon-theme-dark { display: none; }
+[data-theme="light"] .icon-theme-light { display: inline-flex; }
+
+.view-toolbar {
+  animation: yp-toolbar-in 420ms var(--ease) both;
+}
+
+@keyframes yp-toolbar-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.button {
+  transition: border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.button:active { transform: scale(0.97); }
+
+.button__icon {
+  transition: opacity 160ms var(--ease), transform 160ms var(--ease);
+}
+
+.button__icon--check { display: none; }
+
+.button.is-copied {
+  animation: yp-button-pop 260ms var(--ease);
+}
+
+.button.is-copied .button__icon--copy { display: none; }
+
+.button.is-copied .button__icon--check {
+  display: inline-flex;
+  animation: yp-icon-pop 300ms var(--ease) both;
+}
+
+@keyframes yp-button-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes yp-icon-pop {
+  0% { opacity: 0; transform: scale(0.4) rotate(-12deg); }
+  65% { opacity: 1; transform: scale(1.18) rotate(4deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.bookmark-btn.is-copied { animation: yp-button-pop 260ms var(--ease); }
+
+/* Copy toast. One stack, appended on first use, polite live region. */
+.yop-toast-stack {
+  position: fixed;
+  left: 50%;
+  bottom: 76px;
+  z-index: 220;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.yop-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100vw - 32px);
+  padding: 9px 16px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--rounded-pill);
+  background: color-mix(in srgb, var(--canvas-card) 94%, transparent);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  font: 400 13px / 1.4 var(--font-sans);
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  transition: opacity 220ms var(--ease), transform 220ms var(--ease);
+}
+
+.yop-toast.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.yop-toast__icon {
+  width: 15px;
+  height: 15px;
+  color: #7ee787;
+  flex: none;
+}
+
+.yop-toast--error .yop-toast__icon { color: var(--accent-sunset); }
 
 /* 12  Print cheatsheet */
 @media print {
@@ -1126,7 +1295,19 @@ html.focus-mode .container { max-width: 900px; }
 
 @media (prefers-reduced-motion: reduce) {
   .back-to-top,
-  .gauge__fill { transition: none; }
+  .gauge__fill,
+  .button,
+  .button__icon,
+  .skill-category__icon,
+  .category-card__icon,
+  .skill-category__arrow,
+  .skill-card__badge,
+  .yop-toast { transition: none; }
+
+  .view-toolbar,
+  .button.is-copied,
+  .bookmark-btn.is-copied,
+  .button.is-copied .button__icon--check { animation: none; }
 }
 
 /* 16  Detail sections */

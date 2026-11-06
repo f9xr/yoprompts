@@ -28,10 +28,11 @@
   {%- endif -%}
 
   <div class="prompt-card__body">
+    {%- assign cat_icon = site.data.category_icons[p.category] | default: 'sparkles' -%}
     <div class="prompt-card__tags">
-      <a class="tag-mono tag-link" href="{{ '/prompts/?category=' | append: p.category | uri_escape | relative_url }}">{{ p.category_label }}</a>
+      <a class="tag-mono tag-mono--icon tag-link" href="{{ '/prompts/?category=' | append: p.category | uri_escape | relative_url }}">{% include icon.html name=cat_icon class='icon--xs' %}{{ p.category_label }}</a>
       {%- if primary %}
-      <a class="tag-mono tag-mono--accent tag-link" href="{{ '/prompts/?tool=' | append: primary.slug | uri_escape | relative_url }}">{{ primary.label }}</a>
+      <a class="tag-mono tag-mono--accent tag-mono--icon tag-link" href="{{ '/prompts/?tool=' | append: primary.slug | uri_escape | relative_url }}">{% include icon.html name='cpu' class='icon--xs' %}{{ primary.label }}</a>
       {%- endif -%}
     </div>
 

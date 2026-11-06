@@ -57,7 +57,9 @@ seo:
       {%- for category in site.data.categories -%}
         {%- if used contains category.slug -%}
         {%- assign count = site.prompts | where: "category", category.slug | size -%}
+        {%- assign category_icon = site.data.category_icons[category.slug] | default: 'sparkles' -%}
         <article class="category-card reveal reveal--{{ forloop.index }}" id="{{ category.slug }}" data-page-item>
+          <span class="category-card__icon" aria-hidden="true">{% include icon.html name=category_icon class='icon--lg' %}</span>
           <span class="tag-mono tag-mono--accent">{{ count }} {% if count == 1 %}prompt{% else %}prompts{% endif %}</span>
           <h2 class="category-card__name">{{ category.label }}</h2>
           <p class="body-sm text-body">{{ category.blurb }}</p>

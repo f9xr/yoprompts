@@ -12,6 +12,7 @@ usage: |
   Use writing-guidelines to review [file or page].
 install: |
   npx skills add vercel-labs/agent-skills@writing-guidelines
+related_skills: [human-article-writer, copy-editing, humanizer]
 ---
 
 Writing Guidelines checks documentation and prose against the rules in Vercel's writing handbook. It starts with content type and purpose, then reviews voice, headings, lists, code samples, and sentence-level clarity.

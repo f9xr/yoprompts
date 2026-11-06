@@ -107,9 +107,9 @@ layout: default
       <p class="body-lg page-head__lede">{{ page.excerpt | escape }}</p>
 
       <div class="meta-row">
-        <span class="meta-mono">{{ page.read_time }} min read</span>
-        <span class="meta-mono">{{ page.difficulty }}</span>
-        <span class="meta-mono">Updated {{ page.date | date: "%b %-d, %Y" }}</span>
+        <span class="meta-mono meta-inline">{% include icon.html name='clock' class='icon--xs' %}{{ page.read_time }} min read</span>
+        <span class="meta-mono meta-inline">{% include icon.html name='gauge' class='icon--xs' %}{{ page.difficulty }}</span>
+        <span class="meta-mono meta-inline">{% include icon.html name='calendar' class='icon--xs' %}Updated {{ page.date | date: "%b %-d, %Y" }}</span>
       </div>
     </header>
 
@@ -122,13 +122,14 @@ layout: default
       <pre class="prompt-body" id="prompt-body">{{ page.prompt | escape }}</pre>
     </div>
 
+    {%- assign encoded_prompt = page.prompt | url_encode -%}
     <div class="prompt-actions">
       {%- for tool in tools %}
-      <a class="button" href="{{ tool.url }}" target="_blank" rel="noopener noreferrer">
+      {%- assign tool_href = tool.url -%}
+      {%- if tool.prompt_url -%}{%- assign tool_href = tool.prompt_url | append: encoded_prompt -%}{%- endif -%}
+      <a class="button" href="{{ tool_href }}" target="_blank" rel="noopener noreferrer">
         Open {{ tool.label }}
-        <svg class="button__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
-          <path d="M4 10L10 4M10 4H5M10 4v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        {% include icon.html name='external-link' class='button__icon' %}
       </a>
       {%- endfor %}
     </div>
@@ -198,7 +199,7 @@ layout: default
           <p class="eyebrow-mono eyebrow-mono--muted">Works with</p>
           <div class="tool-list">
             {%- for tool in tools %}
-            <span class="tag-mono tag-mono--accent">{{ tool.label }}</span>
+            <span class="tag-mono tag-mono--accent tag-mono--icon">{% include icon.html name='cpu' class='icon--xs' %}{{ tool.label }}</span>
             {%- endfor %}
           </div>
         </div>

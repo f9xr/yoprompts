@@ -17,8 +17,6 @@
 
   var STORE = {
     theme: 'yop_theme',
-    font: 'yop_font_scale',
-    sound: 'yop_sound',
     installs: 'yop_install_history'
   };
 
@@ -60,6 +58,30 @@
     });
   }
 
+  function toast(message, kind) {
+    var stack = document.querySelector('[data-toast-stack]');
+    if (!stack) {
+      stack = document.createElement('div');
+      stack.className = 'yop-toast-stack';
+      stack.setAttribute('data-toast-stack', '');
+      stack.setAttribute('aria-live', 'polite');
+      stack.setAttribute('aria-atomic', 'true');
+      document.body.appendChild(stack);
+    }
+
+    var note = document.createElement('div');
+    note.className = 'yop-toast yop-toast--' + (kind || 'success');
+    note.innerHTML = '<svg class="yop-toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span class="yop-toast__text"></span>';
+    note.querySelector('.yop-toast__text').textContent = message || 'Copied to clipboard';
+    stack.appendChild(note);
+
+    window.requestAnimationFrame(function () { note.classList.add('is-visible'); });
+    window.setTimeout(function () {
+      note.classList.remove('is-visible');
+      window.setTimeout(function () { note.remove(); }, 260);
+    }, 2200);
+  }
+
   function copyAndFlash(button, text) {
     copyText(text).then(function () {
       var label = button.querySelector('.button__label');
@@ -67,8 +89,8 @@
       button.setAttribute('data-original-label', original);
       if (label) { label.textContent = 'Copied'; } else { button.textContent = 'Copied'; }
       button.classList.add('is-copied');
-      beep('copy');
       testClipboard(text);
+      toast('Copied to clipboard');
       setTimeout(function () {
         if (label) { label.textContent = original; } else { button.textContent = original; }
         button.classList.remove('is-copied');
@@ -76,32 +98,9 @@
     }).catch(function () {});
   }
 
-  /* ---------------------------------------------------------------------
-     Sound cues. One short oscillator burst, created only on the first cue so
-     no AudioContext exists until the visitor asks for one.
-     ------------------------------------------------------------------ */
-
-  var audioContext = null;
-  function beep(kind) {
-    if (read(STORE.sound, 'off') !== 'on') { return; }
-    try {
-      var AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) { return; }
-      audioContext = audioContext || new AudioCtx();
-      var osc = audioContext.createOscillator();
-      var gain = audioContext.createGain();
-      var now = audioContext.currentTime;
-      var frequencies = { copy: 660, success: 784, error: 260 };
-      osc.frequency.value = frequencies[kind] || 620;
-      osc.type = 'sine';
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.06, now + 0.01);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
-      osc.connect(gain).connect(audioContext.destination);
-      osc.start(now);
-      osc.stop(now + 0.18);
-    } catch (error) {}
-  }
+  /* Sound cues were removed from the interface. The stub keeps any older
+     call site harmless without creating an AudioContext. */
+  function beep() {}
 
   /* Cross-tab clipboard/settings. Best effort: not every browser exposes
      BroadcastChannel, and a failed post must never break an action. */
@@ -126,19 +125,18 @@
   }
 
   /* ---------------------------------------------------------------------
-     Theme, text size and sound
+     Theme
      ------------------------------------------------------------------ */
 
   var themeMeta = document.querySelector('meta[name="theme-color"]');
 
-  function applyTheme(theme, announce) {
+  function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
     if (themeMeta) { themeMeta.setAttribute('content', theme === 'light' ? '#f6f5f2' : '#0a0a0a'); }
     each(document.querySelectorAll('[data-theme-toggle]'), function (button) {
       button.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
       button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
     });
-    if (announce) { beep('success'); }
   }
 
   function setTheme(theme) {
@@ -151,31 +149,6 @@
     setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   }
 
-  function applyFontScale(scale) {
-    var value = Math.min(1.3, Math.max(0.85, Number(scale) || 1));
-    root.style.setProperty('--font-scale', String(value));
-    write(STORE.font, String(value));
-    each(document.querySelectorAll('[data-font-value]'), function (node) {
-      node.textContent = Math.round(value * 100) + '%';
-    });
-    return value;
-  }
-
-  function nudgeFont(direction) {
-    var current = Number(read(STORE.font, root.style.getPropertyValue('--font-scale') || 1)) || 1;
-    var scale = applyFontScale(Math.round((current + direction * 0.05) * 100) / 100);
-    broadcast({ type: 'font', value: scale });
-    beep('success');
-  }
-
-  function applySound(enabled) {
-    write(STORE.sound, enabled ? 'on' : 'off');
-    each(document.querySelectorAll('[data-sound-toggle]'), function (button) {
-      button.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-    });
-    if (enabled) { beep('copy'); }
-  }
-
   function initSettings() {
     var storedTheme = read(STORE.theme, '');
     if (storedTheme === 'light' || storedTheme === 'dark') {
@@ -186,22 +159,8 @@
       applyTheme('dark');
     }
 
-    applyFontScale(read(STORE.font, 1));
-    applySound(read(STORE.sound, 'off') === 'on');
-
     each(document.querySelectorAll('[data-theme-toggle]'), function (button) {
       on(button, 'click', toggleTheme);
-    });
-    each(document.querySelectorAll('[data-font-up]'), function (button) {
-      on(button, 'click', function () { nudgeFont(1); });
-    });
-    each(document.querySelectorAll('[data-font-down]'), function (button) {
-      on(button, 'click', function () { nudgeFont(-1); });
-    });
-    each(document.querySelectorAll('[data-sound-toggle]'), function (button) {
-      on(button, 'click', function () {
-        applySound(read(STORE.sound, 'off') !== 'on');
-      });
     });
 
     if ('BroadcastChannel' in window) {
@@ -210,7 +169,6 @@
         channel.addEventListener('message', function (event) {
           var data = event.data || {};
           if (data.type === 'theme') { applyTheme(data.value); }
-          if (data.type === 'font') { applyFontScale(data.value); }
         });
       } catch (error) { channel = null; }
     }
@@ -455,15 +413,6 @@
     return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || node.isContentEditable;
   }
 
-  function toggleFocus() {
-    root.classList.toggle('focus-mode');
-    var active = root.classList.contains('focus-mode');
-    each(document.querySelectorAll('[data-focus-toggle]'), function (button) {
-      button.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    beep(active ? 'success' : 'copy');
-  }
-
   function navigate(path) {
     window.location.href = new URL(path, window.location.origin + base).href;
   }
@@ -484,13 +433,6 @@
       });
     });
 
-    each(document.querySelectorAll('[data-focus-toggle]'), function (button) {
-      on(button, 'click', toggleFocus);
-    });
-    each(document.querySelectorAll('[data-print-page]'), function (button) {
-      on(button, 'click', function () { window.print(); });
-    });
-
     on(document, 'keydown', function (event) {
       var key = event.key;
 
@@ -504,7 +446,6 @@
         var searchDialog = document.querySelector('[data-site-search]');
         if (searchDialog && searchDialog.open) { closeSearch(); return; }
         closeShortcuts();
-        if (root.classList.contains('focus-mode')) { toggleFocus(); }
         return;
       }
 
@@ -532,17 +473,6 @@
         pendingTimer = window.setTimeout(function () { pendingG = false; }, 1200);
       } else if (key === 't') {
         toggleTheme();
-      } else if (key === '+' || key === '=') {
-        event.preventDefault();
-        nudgeFont(1);
-      } else if (key === '-' || key === '_') {
-        event.preventDefault();
-        nudgeFont(-1);
-      } else if (key === 'f') {
-        toggleFocus();
-      } else if (key === 'p') {
-        event.preventDefault();
-        window.print();
       }
     });
   }
@@ -1185,6 +1115,7 @@
   window.YOP = window.YOP || {};
   window.YOP.copy = copyText;
   window.YOP.copyAndFlash = copyAndFlash;
+  window.YOP.toast = toast;
   window.YOP.escapeHtml = escapeHtml;
   window.YOP.download = downloadFile;
   window.YOP.beep = beep;

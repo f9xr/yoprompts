@@ -109,6 +109,10 @@
     button.setAttribute('aria-live', 'polite');
     button.classList.add('is-copied');
 
+    if (window.YOP && window.YOP.toast) {
+      window.YOP.toast('Copied to clipboard');
+    }
+
     window.setTimeout(function () {
       if (label) {
         label.textContent = original;

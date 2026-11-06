@@ -12,6 +12,7 @@ usage: |
   /copy-editing [paste the copy]
 install: |
   npx skills add coreyhaines31/marketingskills@copy-editing
+related_skills: [human-article-writer, humanizer, writing-guidelines]
 ---
 
 Copy Editing works on copy that already exists. It runs structured sweeps for clarity, voice, proof, risk, and conversion instead of rewriting the whole page from scratch.

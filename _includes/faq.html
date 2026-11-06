@@ -62,7 +62,8 @@
     {%- assign faq_install = page.usage -%}
   {%- endif -%}
   {%- if faq_install == nil and page.repo_url -%}
-    {%- assign faq_repo = page.repo_url | remove: "https://github.com/" | remove: ".git" -%}
+    {%- assign faq_repo_path = page.repo_url | remove: "https://github.com/" | remove: ".git" | split: "/" -%}
+    {%- assign faq_repo = faq_repo_path[0] | append: "/" | append: faq_repo_path[1] -%}
     {%- assign faq_install = "npx skills add " | append: faq_repo | append: "@" | append: page.slug -%}
   {%- endif -%}
 <section class="band band--tight" id="faq" aria-labelledby="page-faq-title">

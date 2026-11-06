@@ -3,6 +3,7 @@ layout: default
 ---
 {%- assign category = site.data.skill_categories | where: "slug", page.skill_category | first -%}
 {%- assign category_label = category.label | default: page.title -%}
+{%- assign category_icon = site.data.category_icons[page.skill_category] | default: 'sparkles' -%}
 {%- assign category_skills = site.skills | where: "category", page.skill_category | sort: "title" -%}
 <script type="application/ld+json">
 {
@@ -45,7 +46,7 @@ layout: default
   <div class="container">
     <div class="section-head">
       <div class="section-head__text">
-        <p class="eyebrow-mono">{{ category_label }}</p>
+        <p class="eyebrow-mono meta-inline">{% include icon.html name=category_icon class='icon--xs' %}{{ category_label }}</p>
         <h1 class="display-lg section-head__title">{{ page.title }}</h1>
         <p class="body-lg section-head__lede">{{ category.blurb | default: page.description }}</p>
       </div>

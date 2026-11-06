@@ -1,0 +1,27 @@
+# Icon slugs for prompt and skill categories. Keys match category slugs in
+# categories.yml and skill_categories.yml. Used by card badges and category
+# tiles so the catalogue stays scannable instead of text-only.
+writing: pen-line
+marketing: megaphone
+seo: search
+business: briefcase
+coding: code
+research: flask
+productivity: list-checks
+social: share-2
+images: image
+career: target
+data: database
+presentations: presentation
+engineering: code
+design: pen-line
+meta: sparkles
+automation: zap
+content: file-text
+security: shield-check
+sales: trending-up
+support: message-square
+legal: scale
+finance: bar-chart
+education: book-open
+operations: settings

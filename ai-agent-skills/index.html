@@ -70,6 +70,33 @@ seo:
   </div>
 </section>
 
+{%- assign spotlight_skill = site.skills | where: "spotlight", true | first -%}
+{%- if spotlight_skill %}
+<section class="band band--tight" id="skill-spotlight" aria-labelledby="skill-spotlight-title">
+  <div class="container">
+    <div class="card card--soft">
+      <div class="grid grid-2">
+        <div>
+          <p class="eyebrow-mono">New skill</p>
+          <h2 class="display-md" id="skill-spotlight-title"><a class="link-inline" href="{{ spotlight_skill.url | relative_url }}">{{ spotlight_skill.title }}</a></h2>
+          <p class="body-lg">{{ spotlight_skill.excerpt | escape }}</p>
+        </div>
+        <div>
+          <p class="eyebrow-mono eyebrow-mono--muted">Inside the skill</p>
+          <p class="body-sm">Research, an uneven outline, a sourced draft, a linter pass, and a de-template pass. The full reference notes travel with the skill file, so the agent gets the AI tell list and the structure rules in one read.</p>
+          <div class="tool-list">
+            {%- for tag in spotlight_skill.tags -%}<span class="tag-mono">{{ tag }}</span>{%- endfor -%}
+          </div>
+          <div class="card__actions">
+            <a class="button" href="{{ spotlight_skill.url | relative_url }}">Open the skill</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
 {%- if featured_skills.size > 0 %}
 <section class="band band--tight" id="featured-skills" aria-labelledby="featured-skills-title">
   <div class="container">
@@ -152,7 +179,9 @@ seo:
       {%- for category in site.data.skill_categories -%}
         {%- assign category_count = site.skills | where: "category", category.slug | size -%}
         {%- if category_count > 0 -%}
+        {%- assign category_icon = site.data.category_icons[category.slug] | default: 'sparkles' -%}
         <a class="skill-category" href="{{ '/ai-agent-skills/category/' | append: category.slug | append: '/' | relative_url }}">
+          <span class="skill-category__icon" aria-hidden="true">{% include icon.html name=category_icon %}</span>
           <span class="eyebrow-mono eyebrow-mono--muted">{{ category_count }} {% if category_count == 1 %}skill{% else %}skills{% endif %}</span>
           <span class="skill-category__title display-xs">{{ category.label }}</span>
           <span class="body-sm skill-category__blurb">{{ category.blurb }}</span>

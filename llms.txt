@@ -11,133 +11,220 @@ results, an example of the output shape, and an FAQ.
 
 ## Core
 
-- [All prompts](https://f9xr.org/yoprompts/prompts/): searchable and filterable index of the whole library.
-- [AI agent skills](https://f9xr.org/yoprompts/ai-agent-skills/): installable skills that extend what an AI agent can do.
-- [MCP servers](https://f9xr.org/yoprompts/mcp-server-index/): Model Context Protocol servers that connect agents to tools and data.
-- [Categories](https://f9xr.org/yoprompts/categories/): browse by the job a prompt does.
-- [Prompting basics](https://f9xr.org/yoprompts/resources/#prompting-basics): the five techniques that fix most bad output.
+- [All prompts](
+https://f9xr.org/yoprompts
+/prompts/): searchable and filterable index of the whole library.
+- [AI agent skills](
+https://f9xr.org/yoprompts
+/ai-agent-skills/): installable skills that extend what an AI agent can do.
+- [MCP servers](
+https://f9xr.org/yoprompts
+/mcp-server-index/): Model Context Protocol servers that connect agents to tools and data.
+- [Categories](
+https://f9xr.org/yoprompts
+/categories/): browse by the job a prompt does.
+- [Prompting basics](
+https://f9xr.org/yoprompts
+/resources/#prompting-basics): the five techniques that fix most bad output.
 
 ## Prompts
 
-- [Turn meeting notes into an action plan](https://f9xr.org/yoprompts/prompts/meeting-to-action-plan/)
-- [Turn an idea into an image model brief](https://f9xr.org/yoprompts/prompts/image-brief-builder/)
-- [Research any topic systematically](https://f9xr.org/yoprompts/prompts/deep-research-synthesis/)
-- [Audit a codebase like a staff engineer](https://f9xr.org/yoprompts/prompts/code-review-audit/)
-- [Write LinkedIn posts people finish reading](https://f9xr.org/yoprompts/prompts/linkedin-post-writer/)
-- [Build a complete SEO content strategy](https://f9xr.org/yoprompts/prompts/seo-content-strategy/)
-- [Make a ChatGPT image that stops the scroll](https://f9xr.org/yoprompts/prompts/scroll-stopping-image/)
-- [Keep the same character in every image](https://f9xr.org/yoprompts/prompts/consistent-character-series/)
-- [Turn your photo into a collectible figure in its box](https://f9xr.org/yoprompts/prompts/collectible-figure-photo/)
-- [Reboot a photo into any decade](https://f9xr.org/yoprompts/prompts/decade-reboot-selfie/)
-- [Turn one photo into a believable movie poster](https://f9xr.org/yoprompts/prompts/cinematic-movie-poster/)
-- [Write a faceless short video script that holds](https://f9xr.org/yoprompts/prompts/faceless-short-script/)
-- [Design and build a complete blog site from one brief](https://f9xr.org/yoprompts/prompts/blog-site-design-system/)
-- [Write a UGC ad people watch to the end](https://f9xr.org/yoprompts/prompts/ugc-product-ad/)
-- [Design a thumbnail people cannot scroll past](https://f9xr.org/yoprompts/prompts/youtube-thumbnail-brief/)
-- [Turn a phone photo into a studio product shot](https://f9xr.org/yoprompts/prompts/studio-product-photo/)
-- [Write a thread that earns the next post](https://f9xr.org/yoprompts/prompts/viral-thread-writer/)
-- [Plan a carousel people save and share](https://f9xr.org/yoprompts/prompts/instagram-carousel-planner/)
-- [Roast my resume, then fix it](https://f9xr.org/yoprompts/prompts/resume-roast/)
-- [Shoot a night flash fashion portrait](https://f9xr.org/yoprompts/prompts/night-flash-fashion-portrait/)
-- [Shoot a disposable camera party photo](https://f9xr.org/yoprompts/prompts/disposable-camera-party-photo/)
-- [Turn one idea into a week of social posts](https://f9xr.org/yoprompts/prompts/one-idea-post-week/)
-- [Restage a phone photo as a magazine still life](https://f9xr.org/yoprompts/prompts/magazine-still-life/)
-- [Replicate any product demo video with your product](https://f9xr.org/yoprompts/prompts/demo-video-replica/)
-- [Audit a website for SEO, AEO, performance and a11y](https://f9xr.org/yoprompts/prompts/website-code-audit/)
-- [Ask your data a question and get an honest answer](https://f9xr.org/yoprompts/prompts/chat-with-your-data/)
-- [Write a cold email that earns a reply](https://f9xr.org/yoprompts/prompts/cold-email-writer/)
-- [Find the real cause of an error](https://f9xr.org/yoprompts/prompts/debug-this-error/)
-- [Turn any document into a deck that lands](https://f9xr.org/yoprompts/prompts/document-to-deck/)
-- [Check a claim before you repeat it](https://f9xr.org/yoprompts/prompts/fact-check-my-claim/)
-- [Make AI writing sound like a person wrote it](https://f9xr.org/yoprompts/prompts/humanize-ai-text/)
-- [Write a landing page that sells](https://f9xr.org/yoprompts/prompts/landing-page-copy/)
-- [Run a mock interview and get it scored](https://f9xr.org/yoprompts/prompts/mock-interview-loop/)
-- [Decide what to charge and who it is for](https://f9xr.org/yoprompts/prompts/pricing-and-positioning/)
-- [Turn a selfie into a professional headshot](https://f9xr.org/yoprompts/prompts/professional-headshot/)
-- [Build a programmatic SEO page system](https://f9xr.org/yoprompts/prompts/programmatic-seo-pages/)
-- [Write 30 hooks and find the one that travels](https://f9xr.org/yoprompts/prompts/viral-hook-generator/)
-- [Close the week and plan the next one](https://f9xr.org/yoprompts/prompts/weekly-review-planner/)
-- [Generate viral AI image prompts](https://f9xr.org/yoprompts/prompts/ai-image-prompt-generator/)
-- [Create SEO blog outlines that rank](https://f9xr.org/yoprompts/prompts/seo-blog-outline-ranker/)
-- [Write viral LinkedIn posts](https://f9xr.org/yoprompts/prompts/viral-linkedin-post/)
-- [Write an X post people quote](https://f9xr.org/yoprompts/prompts/viral-x-post-generator/)
-- [Write email subject lines people open](https://f9xr.org/yoprompts/prompts/viral-email-subject-lines/)
-- [Find the clip that will go viral](https://f9xr.org/yoprompts/prompts/viral-podcast-clip-finder/)
-- [Write a launch post that does not sound like an ad](https://f9xr.org/yoprompts/prompts/viral-product-launch-post/)
-- [Write replies that keep the conversation going](https://f9xr.org/yoprompts/prompts/viral-comment-reply-writer/)
-- [Write a Reddit post people actually upvote](https://f9xr.org/yoprompts/prompts/viral-reddit-post/)
-- [Tear down a newsletter issue that loses readers](https://f9xr.org/yoprompts/prompts/viral-newsletter-teardown/)
-- [Build an ad angle matrix before writing hooks](https://f9xr.org/yoprompts/prompts/viral-ad-angle-matrix/)
-- [Write a personal brand story that is true](https://f9xr.org/yoprompts/prompts/viral-personal-brand-story/)
-- [Turn a dataset into a chart with a point](https://f9xr.org/yoprompts/prompts/viral-data-story-chart/)
-- [Write comparison pages that survive scrutiny](https://f9xr.org/yoprompts/prompts/viral-comparison-page/)
-- [Package a YouTube video people click](https://f9xr.org/yoprompts/prompts/viral-youtube-video-package/)
-- [Write a welcome email sequence that sells](https://f9xr.org/yoprompts/prompts/viral-welcome-email-sequence/)
-- [Write a pricing page that answers objections](https://f9xr.org/yoprompts/prompts/viral-pricing-page-copy/)
-- [Write an app store listing people install](https://f9xr.org/yoprompts/prompts/viral-app-store-listing/)
-- [Pitch a conference talk that gets picked](https://f9xr.org/yoprompts/prompts/viral-conference-talk-pitch/)
-- [Write a case study with real proof](https://f9xr.org/yoprompts/prompts/viral-case-study/)
+- [Analyse competitor pricing without guessing](https://f9xr.org/yoprompts/prompts/competitor-pricing-analysis/): Builds a sourced competitor pricing map, normalises the plans, and shows where the market leaves room for a different model.
+- [Answer the objection behind the objection](https://f9xr.org/yoprompts/prompts/viral-objection-handler/): Turns the objections you hear into a proof-backed response matrix, one-line replies, and follow-up emails without pressure tactics.
+- [Ask your data a question and get an honest answer](https://f9xr.org/yoprompts/prompts/chat-with-your-data/): Paste a table, ask one question, and get an answer with its arithmetic shown, its assumptions named, and the rows that disagree with it left in.
+- [Audit a codebase like a staff engineer](https://f9xr.org/yoprompts/prompts/code-review-audit/): Paste a diff and get a severity-ranked review that leads with what will actually break in production, plus the refactor you should do while you are in there.
+- [Audit a financial model before the board sees it](https://f9xr.org/yoprompts/prompts/financial-model-audit/): Checks a forecast for broken structure, hidden hardcodes, unit errors, and assumptions that fail under a downside case.
+- [Audit a page for WCAG 2.2 issues](https://f9xr.org/yoprompts/prompts/accessibility-audit-prompt/): Audits a page or component against WCAG 2.2, separates blockers from polish, and returns fixes with the selector and success criterion.
+- [Audit a website for SEO, AEO, performance and a11y](https://f9xr.org/yoprompts/prompts/website-code-audit/): Audits a website line by line like a senior full-stack engineer and technical SEO architect, covering SEO, AEO, Core Web Vitals, WCAG and security.
+- [Build a complete SEO content strategy](https://f9xr.org/yoprompts/prompts/seo-content-strategy/): Turn a business and its existing site into scored topic clusters, a ranked 90-day publishing plan, an internal linking map, and a measurement dashboard.
+- [Build a lead magnet people finish](https://f9xr.org/yoprompts/prompts/viral-lead-magnet-builder/): Designs a small, finishable lead magnet with a promise, outline, landing page, and delivery email that match the paid offer.
+- [Build a production-ready Homestay website for India (Next.js + Razorpay + Stripe)](https://f9xr.org/yoprompts/prompts/homestay-india-website-builder/): Generate a secure, working Next.js App Router site for an India-based Homestay with INR pricing, dual payment gateways (Razorpay + Stripe), verified webhooks, idempotent order handling, and email flows.
+- [Build a programmatic SEO page system](https://f9xr.org/yoprompts/prompts/programmatic-seo-pages/): Designs a programmatic page system around a data source: a page template, a unique value per page, and the thin-content guard against doorway pages.
+- [Build an ad angle matrix before writing hooks](https://f9xr.org/yoprompts/prompts/viral-ad-angle-matrix/): Maps audiences against real buying motives, then produces ad concepts with proof, objections, and a kill list instead of a pile of hooks.
+- [Check a claim before you repeat it](https://f9xr.org/yoprompts/prompts/fact-check-my-claim/): Takes one claim, finds the strongest evidence for and against it, and returns a verdict of solid, shaky, overstated or unsupported.
+- [Close the week and plan the next one](https://f9xr.org/yoprompts/prompts/weekly-review-planner/): Runs a 20 minute weekly review that produces an honest scorecard and a next-week plan with three priorities, instead of a to-do list nobody reads.
+- [Create a photorealistic exploded view product diagram poster](https://f9xr.org/yoprompts/prompts/gpt-image-exploded-view-product-poster/): Generate a high-tech exploded view diagram poster with labeled components, callouts, and promotional text for VR/headsets or electronics.
+- [Create an illustrated city food map](https://f9xr.org/yoprompts/prompts/gpt-image-illustrated-city-food-map/): Generate a hand-drawn watercolor-style city food map with numbered food spots, landmarks, legend, and cute mascot.
+- [Create SEO blog outlines that rank](https://f9xr.org/yoprompts/prompts/seo-blog-outline-ranker/): Builds blog outlines designed to rank in search results.
+- [Decide what to charge and who it is for](https://f9xr.org/yoprompts/prompts/pricing-and-positioning/): Finds the price from the value delivered and the cost to deliver it, then tests three tiers and a value metric against the objections each one raises.
+- [Design a thumbnail people cannot scroll past](https://f9xr.org/yoprompts/prompts/youtube-thumbnail-brief/): Turns a video into five thumbnail concepts built for a phone screen, ranks them, and writes the paste-ready image prompt for the winner.
+- [Design and build a complete blog site from one brief](https://f9xr.org/yoprompts/prompts/blog-site-design-system/): Turns one design brief into a full blog layout: palette, type scale, navigation, hero, archive grid and footer, as semantic HTML and one stylesheet.
+- [Find the clip that will go viral](https://f9xr.org/yoprompts/prompts/viral-podcast-clip-finder/): Finds the 10 most clippable moments in a transcript, scores each for hook, emotion and payoff, then writes captions for the top three.
+- [Find the real cause of an error](https://f9xr.org/yoprompts/prompts/debug-this-error/): Works from the actual error output, separates the symptom from the cause, and gives ranked hypotheses with the check that tells each one apart.
+- [Fix a prompt that keeps giving vague answers](https://f9xr.org/yoprompts/prompts/prompt-optimizer/): Diagnoses why a prompt produces inconsistent output, then returns a smaller rewrite with the missing context, constraints, and output format.
+- [Generate a brutal facial beauty report](https://f9xr.org/yoprompts/prompts/facial-beauty-report/): Builds a luxury black-on-white facial analysis report with measured ratios, honest scores, an SVG contour drawing, and oily-skin recommendations.
+- [Generate viral AI image prompts](https://f9xr.org/yoprompts/prompts/ai-image-prompt-generator/): Creates detailed prompts for AI image models that look amazing.
+- [Keep the same character in every image](https://f9xr.org/yoprompts/prompts/consistent-character-series/): Builds a reusable character sheet with fixed facts, then generates scene prompts that repeat those facts verbatim, so a series never drifts.
+- [Make a ChatGPT image that stops the scroll](https://f9xr.org/yoprompts/prompts/scroll-stopping-image/): Designs an image for the size it will actually be seen at: one idea, one subject, and a composition that survives being shrunk to a stamp.
+- [Make a slow SQL query fast without changing the answer](https://f9xr.org/yoprompts/prompts/sql-performance-tuning/): Reads a slow query and its execution plan, finds the real bottleneck, and returns a safer rewrite with the index and the tradeoff named.
+- [Make AI writing sound like a person wrote it](https://f9xr.org/yoprompts/prompts/humanize-ai-text/): Rewrites machine-sounding prose into something a specific person wrote, by naming the tells, removing them, and showing every change it made.
+- [Mine real customer words for proof](https://f9xr.org/yoprompts/prompts/viral-testimonial-miner/): Turns customer calls and messages into exact quotes, proof blocks, and ad angles without inventing a single result.
+- [Package a YouTube video people click](https://f9xr.org/yoprompts/prompts/viral-youtube-video-package/): Builds the whole YouTube package around one promise: ten titles, three thumbnail concepts, the first 30 seconds, description, chapters, and a pinned comment.
+- [Pitch a conference talk that gets picked](https://f9xr.org/yoprompts/prompts/viral-conference-talk-pitch/): Turns a real lesson into a conference proposal with a clear promise, a 150-word abstract, a timed outline, and an opening that earns the room.
+- [Plan a carousel people save and share](https://f9xr.org/yoprompts/prompts/instagram-carousel-planner/): Turns one idea into an eight-slide carousel with a cover worth tapping, one idea per slide and a final slide worth saving.
+- [Plan a launch week without the noise](https://f9xr.org/yoprompts/prompts/viral-launch-day-plan/): Turns a launch into a seven-day plan with one message, native assets per channel, a single metric, and a clear stop rule.
+- [Rate a face photo without the flattery](https://f9xr.org/yoprompts/prompts/face-rater/): Scores a face photo on the things a person can actually change, with a clear rubric, honest notes, and a retake plan instead of vague flattery.
+- [Rate a female face photo without the flattery](https://f9xr.org/yoprompts/prompts/face-rater-female/): Scores a female face photo on the things a person can actually change, with a clear rubric, styling notes, and a retake plan instead of vague flattery.
+- [Rate a male face photo without the flattery](https://f9xr.org/yoprompts/prompts/face-rater-male/): Scores a male face photo on the things a person can actually change, with a clear rubric, grooming notes, and a retake plan instead of vague flattery.
+- [Reboot a photo into any decade](https://f9xr.org/yoprompts/prompts/decade-reboot-selfie/): Rewrites a modern photo into another year by changing materials, light and format, so it reads as a real photograph of that time instead of a filter.
+- [Replicate any product demo video with your product](https://f9xr.org/yoprompts/prompts/demo-video-replica/): Feeds a demo video to an AI model and gets back a shot-by-shot brief: cyclorama, lighting plan, camera moves and colour grade, product left as a slot.
+- [Research any topic systematically](https://f9xr.org/yoprompts/prompts/deep-research-synthesis/): A research prompt that separates what is known, what is claimed and what nobody has established, and shows its own uncertainty.
+- [Restage a phone photo as a magazine still life](https://f9xr.org/yoprompts/prompts/magazine-still-life/): Restages the objects on your desk as an editorial still life: one hard shadow, negative space that is doing work, and colours chosen rather than found.
+- [Review a contract before you sign it](https://f9xr.org/yoprompts/prompts/contract-review-brief/): Reads a commercial contract and returns the deal summary, the clauses that create exposure, and the language to negotiate.
+- [Roast my resume, then fix it](https://f9xr.org/yoprompts/prompts/resume-roast/): Reads a resume the way a recruiter does in six seconds, roasts the weakest lines honestly, then rewrites them around what actually changed.
+- [Run a mock interview and get it scored](https://f9xr.org/yoprompts/prompts/mock-interview-loop/): Runs a real back-and-forth interview, asks one question at a time, scores every answer against a rubric, and names the answer that cost you the role.
+- [Run a quality-first backlink outreach system](https://f9xr.org/yoprompts/prompts/backlink-outreach-system/): Turns a site profile into qualified guest-post prospects, verified pitches, outlines, and link-ready articles with hard quality gates at every step.
+- [Shoot a disposable camera party photo](https://f9xr.org/yoprompts/prompts/disposable-camera-party-photo/): Rebuilds a scene as a late-90s disposable camera snap: blown-out flash, red-eye, motion blur at the edges and colours that came out wrong in the best way.
+- [Shoot a night flash fashion portrait](https://f9xr.org/yoprompts/prompts/night-flash-fashion-portrait/): Builds a paparazzi-style night portrait prompt around harsh on-camera flash, glossy skin and bokeh, so it reads as a candid caught on the street.
+- [Tear down a newsletter issue that loses readers](https://f9xr.org/yoprompts/prompts/viral-newsletter-teardown/): Audits one newsletter issue for subject, opening, structure, and call to action, then rewrites the weakest part without flattening the voice.
+- [Turn a dataset into a chart with a point](https://f9xr.org/yoprompts/prompts/viral-data-story-chart/): Chooses the chart from the question, writes the title and annotation, and names the ways the same data could mislead.
+- [Turn a phone photo into a studio product shot](https://f9xr.org/yoprompts/prompts/studio-product-photo/): Rebuilds a rough product photo as a clean studio shot by fixing light, background and shadow, while keeping the product itself exactly as it is.
+- [Turn a podcast episode into show notes people use](https://f9xr.org/yoprompts/prompts/podcast-show-notes/): Turns a transcript into a summary, timestamp chapters, quotable lines, and a resource list without inventing a single detail.
+- [Turn a selfie into a professional headshot](https://f9xr.org/yoprompts/prompts/professional-headshot/): Builds a studio headshot prompt from your actual face and setting, so the result looks like a photograph of you on a good day rather than a different person.
+- [Turn an idea into an image model brief](https://f9xr.org/yoprompts/prompts/image-brief-builder/): Turns a vague idea into a structured image brief: subject, composition, lighting, lens, palette and negative constraints.
+- [Turn any document into a deck that lands](https://f9xr.org/yoprompts/prompts/document-to-deck/): Turns a report, brief or doc into a slide structure with one message per slide, speaker notes that add something new, and a hard slide limit you set.
+- [Turn meeting notes into an action plan](https://f9xr.org/yoprompts/prompts/meeting-to-action-plan/): Converts raw notes into decisions, actions with owners and dates, and open questions, and refuses to invent an owner or a deadline that nobody agreed to.
+- [Turn one asset into a week of native posts](https://f9xr.org/yoprompts/prompts/viral-content-repurposer/): Keeps one core idea, then writes native versions for X, LinkedIn, a newsletter, and a short video instead of copy-pasting the same caption.
+- [Turn one idea into a week of social posts](https://f9xr.org/yoprompts/prompts/one-idea-post-week/): Takes a single idea and cuts it into seven platform-native posts, each with its own angle, so a week of content comes from one thing you actually believe.
+- [Turn one photo into a believable movie poster](https://f9xr.org/yoprompts/prompts/cinematic-movie-poster/): Builds a poster around one image and a small, legible title, then enforces the layout rules that make it read as a real film.
+- [Turn your photo into a collectible figure in its box](https://f9xr.org/yoprompts/prompts/collectible-figure-photo/): Turns a photo of a person into a boxed vinyl figure, with proportion rules, packaging layout and studio light described so it reads as a product shot.
+- [Write 30 hooks and find the one that travels](https://f9xr.org/yoprompts/prompts/viral-hook-generator/): Generates 30 hooks across five proven shapes, then ranks them by what they promise, so you ship the one that earns the watch.
+- [Write a blameless incident postmortem](https://f9xr.org/yoprompts/prompts/incident-postmortem-prompt/): Turns an incident timeline and logs into a blameless postmortem with a causal chain, contributing factors, and owned action items.
+- [Write a case study with real proof](https://f9xr.org/yoprompts/prompts/viral-case-study/): Turns a customer result into a credible case study with the before state, the turning point, the proof table, and the limits of the claim.
+- [Write a cold email that earns a reply](https://f9xr.org/yoprompts/prompts/cold-email-writer/): Writes a short outreach email around one specific observation about the recipient, with a reply path that does not ask for a meeting on line one.
+- [Write a faceless short video script that holds](https://f9xr.org/yoprompts/prompts/faceless-short-script/): Writes a 30-to-45-second faceless script with a first-line hook, a reason to stay, a phone-shootable shot list and a loop back to the start.
+- [Write a landing page that sells](https://f9xr.org/yoprompts/prompts/landing-page-copy/): Writes a landing page from the visitor objection, not the feature list, with one promise per section and a CTA that matches the stage of the visitor.
+- [Write a launch post that does not sound like an ad](https://f9xr.org/yoprompts/prompts/viral-product-launch-post/): Turns a product launch into a post that leads with the change, proves it with specifics, and asks for one clear action without ad-speak.
+- [Write a personal brand story that is true](https://f9xr.org/yoprompts/prompts/viral-personal-brand-story/): Finds the real narrative in a career timeline, then writes a bio, intro, and LinkedIn story without inventing a transformation.
+- [Write a pricing page that answers objections](https://f9xr.org/yoprompts/prompts/viral-pricing-page-copy/): Turns plans and prices into a page that explains who each plan is for, answers the real objections, and makes the next step obvious.
+- [Write a Reddit post people actually upvote](https://f9xr.org/yoprompts/prompts/viral-reddit-post/): Turns one real experience into Reddit posts that fit the subreddit, survive its rules, and invite discussion instead of a removal.
+- [Write a thread that earns the next post](https://f9xr.org/yoprompts/prompts/viral-thread-writer/): Turns one idea into a short thread where every post earns the next, with a hook that stands on its own and a payoff that does not repeat it.
+- [Write a UGC ad people watch to the end](https://f9xr.org/yoprompts/prompts/ugc-product-ad/): Writes a 30-second user-generated style ad with a scroll-stopping first line, an honest product demo and one clear call to action.
+- [Write a viral TikTok caption that drives saves](https://f9xr.org/yoprompts/prompts/viral-tiktok-caption/): Crafts TikTok captions that get saves, shares, and comments without sounding forced.
+- [Write a welcome email sequence that sells](https://f9xr.org/yoprompts/prompts/viral-welcome-email-sequence/): Builds a five-email welcome sequence that delivers the signup promise, earns trust with proof, answers the real objection, and asks once.
+- [Write an app store listing people install](https://f9xr.org/yoprompts/prompts/viral-app-store-listing/): Writes an app store listing around the job the app does, with a subtitle, short description, long description, screenshot captions, and a keyword field.
+- [Write an onboarding email sequence that gets one thing done](https://f9xr.org/yoprompts/prompts/onboarding-email-sequence/): Builds a short activation sequence where every email drives one action, names the next step, and stops when the user is already active.
+- [Write an X post people quote](https://f9xr.org/yoprompts/prompts/viral-x-post-generator/): Writes 12 X posts across proven shapes, scores them for clarity and quotability, and picks the one most likely to travel without engagement bait.
+- [Write API reference docs a developer can use](https://f9xr.org/yoprompts/prompts/api-docs-writer/): Turns an endpoint, schema, or OpenAPI operation into reference docs with real examples, every error case, and the field details developers search for.
+- [Write comparison pages that survive scrutiny](https://f9xr.org/yoprompts/prompts/viral-comparison-page/): Builds an honest comparison page from verified criteria, including who should not buy, so the page earns trust and citations.
+- [Write email subject lines people open](https://f9xr.org/yoprompts/prompts/viral-email-subject-lines/): Generates 25 subject lines across five proven angles, scores them for clarity and honesty, and pairs the best with preview text that earns the open.
+- [Write LinkedIn posts people finish reading](https://f9xr.org/yoprompts/prompts/linkedin-post-writer/): A post generator with a banned-phrase list, five hook structures and a self-check pass, so it reads like a person wrote it.
+- [Write replies that keep the conversation going](https://f9xr.org/yoprompts/prompts/viral-comment-reply-writer/): Writes replies that add substance, ask a better question, and handle criticism without defensiveness, so a comment thread turns into reach.
+- [Write the FAQ page buyers actually search for](https://f9xr.org/yoprompts/prompts/viral-faq-page-builder/): Builds a search-ready FAQ from real buyer questions, with direct answers, schema-ready markup, and no invented claims.
+- [Write viral LinkedIn posts](https://f9xr.org/yoprompts/prompts/viral-linkedin-post/): Writes LinkedIn posts that get engagement and reach.
 
 ## AI agent skills
 
-- [Algorithmic Art](https://f9xr.org/yoprompts/ai-agent-skills/algorithmic-art/)
-- [Avoid AI Writing](https://f9xr.org/yoprompts/ai-agent-skills/avoid-ai-writing/)
-- [Brand Guidelines](https://f9xr.org/yoprompts/ai-agent-skills/brand-guidelines/)
-- [Claude SEO](https://f9xr.org/yoprompts/ai-agent-skills/claude-seo/)
-- [Copywriting](https://f9xr.org/yoprompts/ai-agent-skills/copywriting/)
-- [Doc Coauthoring](https://f9xr.org/yoprompts/ai-agent-skills/doc-coauthoring/)
-- [DOCX](https://f9xr.org/yoprompts/ai-agent-skills/docx/)
-- [Find Skills](https://f9xr.org/yoprompts/ai-agent-skills/find-skills/)
-- [Humanizer](https://f9xr.org/yoprompts/ai-agent-skills/humanizer/)
-- [Internal Comms](https://f9xr.org/yoprompts/ai-agent-skills/internal-comms/)
-- [Marketing Skills](https://f9xr.org/yoprompts/ai-agent-skills/marketing-skills/)
-- [PDF](https://f9xr.org/yoprompts/ai-agent-skills/pdf/)
-- [PPTX](https://f9xr.org/yoprompts/ai-agent-skills/pptx/)
-- [Programmatic SEO](https://f9xr.org/yoprompts/ai-agent-skills/programmatic-seo/)
-- [SEO Codebase Audit](https://f9xr.org/yoprompts/ai-agent-skills/seo-codebase-audit/)
-- [Skill Creator](https://f9xr.org/yoprompts/ai-agent-skills/skill-creator/)
-- [Slack GIF Creator](https://f9xr.org/yoprompts/ai-agent-skills/slack-gif-creator/)
-- [Social Media Skills](https://f9xr.org/yoprompts/ai-agent-skills/social-media-skills/)
-- [Taste Skill](https://f9xr.org/yoprompts/ai-agent-skills/taste-skill/)
-- [Theme Factory](https://f9xr.org/yoprompts/ai-agent-skills/theme-factory/)
-- [Web Artifacts Builder](https://f9xr.org/yoprompts/ai-agent-skills/web-artifacts-builder/)
-- [Webapp Testing](https://f9xr.org/yoprompts/ai-agent-skills/webapp-testing/)
-- [XLSX](https://f9xr.org/yoprompts/ai-agent-skills/xlsx/)
+- [Accessibility Audit](https://f9xr.org/yoprompts/ai-agent-skills/accessibility-audit/): Audits a page or component against WCAG 2.2, separates blockers from polish, and returns fixes with the affected selector and success criterion.
+- [Agent Memory Architect](https://f9xr.org/yoprompts/ai-agent-skills/agent-memory-architect/): Designs what an agent should remember, where each memory lives, when it expires, and how it is retrieved without flooding the context window.
+- [AI Search Optimization](https://f9xr.org/yoprompts/ai-agent-skills/seo-geo/): Improves how a page is cited by AI Overviews, ChatGPT, Perplexity, and Gemini through entity clarity, passage structure, crawler access, and brand signals.
+- [AI Slop Scan](https://f9xr.org/yoprompts/ai-agent-skills/ai-slop-scan/): Scores a draft for AI slop across vocabulary, rhythm, structure, evidence, and formatting, then returns exact line fixes instead of vague advice.
+- [Algorithmic Art](https://f9xr.org/yoprompts/ai-agent-skills/algorithmic-art/): Creates generative art with p5.js, using seeded randomness, interactive parameters, and reproducible output.
+- [API Docs Writer](https://f9xr.org/yoprompts/ai-agent-skills/api-docs-writer/): Turns an endpoint, schema, or OpenAPI file into reference docs with real request examples, error cases, and the details developers actually search for.
+- [Avoid AI Writing](https://f9xr.org/yoprompts/ai-agent-skills/avoid-ai-writing/): Audit and rewrite text to remove machine-written patterns, with a detect-only mode, a voice profile, and an iterate-to-convergence pass.
+- [Brand Guidelines](https://f9xr.org/yoprompts/ai-agent-skills/brand-guidelines/): Applies Anthropic's official colors and typography to artifacts, with the rules for when each style belongs.
+- [Bug Triage](https://f9xr.org/yoprompts/ai-agent-skills/bug-triage/): Turns a vague bug report into a reproducible case with a severity, a suspected layer, and the one detail a developer needs next.
+- [Canvas Design](https://f9xr.org/yoprompts/ai-agent-skills/canvas-design/): Creates original posters, art, and static visuals as PNG or PDF by defining a visual philosophy before generating the canvas.
+- [Claude SEO](https://f9xr.org/yoprompts/ai-agent-skills/claude-seo/): Open-source SEO plugin for Claude Code that runs 25 sub-skills and 18 specialist agents across technical SEO, content, schema, local search, and AI visibility.
+- [Cold Email](https://f9xr.org/yoprompts/ai-agent-skills/cold-email/): Writes B2B cold email and follow-up sequences, plus LinkedIn and multichannel cadences, with deliverability and reply handling built in.
+- [Competitor Teardown](https://f9xr.org/yoprompts/ai-agent-skills/competitor-teardown/): Compares competitors on positioning, pricing, proof, and gaps using public pages only, and separates observed facts from inference.
+- [Content Matrix](https://f9xr.org/yoprompts/ai-agent-skills/content-matrix/): Pairs three to five content pillars with eight proven formats to produce 24 to 40 LinkedIn post ideas in one table.
+- [Content Repurposing](https://f9xr.org/yoprompts/ai-agent-skills/content-repurposing/): Turns one strong asset into platform-native posts, emails, and scripts without copying the same caption to every channel.
+- [Contract Review](https://f9xr.org/yoprompts/ai-agent-skills/contract-review/): Reads a commercial contract and flags risky clauses in plain language, ranked by exposure, with the exact language to negotiate.
+- [Conversion Rate Optimization](https://f9xr.org/yoprompts/ai-agent-skills/cro/): Diagnoses why a marketing page or form is not converting, then returns prioritized fixes, copy alternatives, and experiment ideas.
+- [Copy Editing](https://f9xr.org/yoprompts/ai-agent-skills/copy-editing/): Edits existing marketing copy in focused sweeps, removing AI tells, weak openings, buried calls to action, and unsupported claims.
+- [Copywriting](https://f9xr.org/yoprompts/ai-agent-skills/copywriting/): Writes and rewrites marketing copy for homepages, landing pages, pricing, features, and about pages without the usual AI tells.
+- [Customer Interview Synthesis](https://f9xr.org/yoprompts/ai-agent-skills/customer-interview-synthesis/): Turns raw customer interviews into a weighted insight map with verbatim evidence, contradictions kept visible, and a short list of decisions the team can make.
+- [Data Story Builder](https://f9xr.org/yoprompts/ai-agent-skills/data-story/): Turns a table or metric into a short narrative with the right chart, an honest caveat, and a decision the reader can act on.
+- [Deploy to Vercel](https://f9xr.org/yoprompts/ai-agent-skills/deploy-to-vercel/): Deploys an app or site to Vercel, choosing between git push, CLI linking, or a claimable upload based on the project state.
+- [Doc Coauthoring](https://f9xr.org/yoprompts/ai-agent-skills/doc-coauthoring/): A structured collaboration workflow for drafting a document with an agent: context, decisions, review, and reader testing.
+- [DOCX](https://f9xr.org/yoprompts/ai-agent-skills/docx/): Create and edit Word documents with real styles, tracked changes, comments, tables, and page-level formatting.
+- [Experiment Design](https://f9xr.org/yoprompts/ai-agent-skills/experiment-design/): Turns a product question into a testable experiment with a primary metric, guardrails, sample size, and a decision rule written before launch.
+- [Figma Designer](https://f9xr.org/yoprompts/ai-agent-skills/figma-designer/): Designs inside Figma with real variables, text styles, auto layout, and component states instead of loose layers and hardcoded values.
+- [Financial Model Review](https://f9xr.org/yoprompts/ai-agent-skills/financial-model-review/): Audits a spreadsheet model for broken formulas, hidden hardcodes, unit mismatches, and assumptions that do not survive a sensitivity check.
+- [Find Skills](https://f9xr.org/yoprompts/ai-agent-skills/find-skills/): A meta-skill that teaches an agent to search and install other skills with the Skills CLI when a task needs a capability it does not have.
+- [Frontend Design](https://f9xr.org/yoprompts/ai-agent-skills/frontend-design/): Guides deliberate visual design for new interfaces and redesigns, covering aesthetic direction, typography, layout, and avoiding templated defaults.
+- [Hook Generator](https://f9xr.org/yoprompts/ai-agent-skills/hook-generator/): Generates six two-line LinkedIn hook variations for any topic, built from supplied facts and genuine first-person experience.
+- [Human Article Writer](https://f9xr.org/yoprompts/ai-agent-skills/human-article-writer/): Writes sourced SEO articles with an uneven human structure, then audits them for AI tells, template cadence, and unsupported claims.
+- [Humanizer](https://f9xr.org/yoprompts/ai-agent-skills/humanizer/): Strips the tells out of AI-generated prose, from tricolons and hedges to the it-is-not-X-it-is-Y cadence, while keeping every supported fact.
+- [Incident Postmortem](https://f9xr.org/yoprompts/ai-agent-skills/incident-postmortem/): Turns an incident timeline, logs, and chat history into a blameless postmortem with a causal chain, contributing factors, and owned action items.
+- [Internal Comms](https://f9xr.org/yoprompts/ai-agent-skills/internal-comms/): Writes internal updates, leadership notes, FAQs, and status reports in a company's own voice and format.
+- [Knowledge Base Builder](https://f9xr.org/yoprompts/ai-agent-skills/knowledge-base-builder/): Turns support tickets, macros, and product docs into a structured help centre with task-based articles, clear titles, and internal links.
+- [Landing Page Design](https://f9xr.org/yoprompts/ai-agent-skills/landing-page-design/): Builds a landing page from one offer and one audience, with an intake, section order, conversion copy, and a strict token-based visual system.
+- [LinkedIn Post Writer](https://f9xr.org/yoprompts/ai-agent-skills/post-writer/): Drafts LinkedIn posts in a saved voice profile, turning rough notes, transcripts, or a topic into a publish-ready post.
+- [Local SEO](https://f9xr.org/yoprompts/ai-agent-skills/seo-local/): Audits Google Business Profile, NAP consistency, citations, reviews, local schema, location pages, and multi-location structure for local search visibility.
+- [Localization Review](https://f9xr.org/yoprompts/ai-agent-skills/localization-review/): Reviews translated copy for meaning, tone, and register, then flags hardcoded terms, broken variables, and strings that will not fit the interface.
+- [Marketing Skills](https://f9xr.org/yoprompts/ai-agent-skills/marketing-skills/): A 43-skill marketing bundle covering positioning, copywriting, CRO, SEO, analytics, paid ads, lifecycle email, and growth engineering.
+- [MCP Builder](https://f9xr.org/yoprompts/ai-agent-skills/mcp-builder/): Builds production-quality MCP servers in Python or TypeScript, from tool design and schema to evaluations and documentation.
+- [Meeting to Action](https://f9xr.org/yoprompts/ai-agent-skills/meeting-to-action/): Converts notes or a transcript into decisions, owned actions, dates, and open questions without inventing anything that was not said.
+- [Newsletter Growth](https://f9xr.org/yoprompts/ai-agent-skills/newsletter-growth/): Builds a weekly newsletter growth plan from one offer, one audience, and one measurable test, instead of a list of generic growth hacks.
+- [PDF](https://f9xr.org/yoprompts/ai-agent-skills/pdf/): Extract text and tables from PDFs, fill forms, merge and split files, and generate new PDFs with layout control.
+- [Podcast Show Notes](https://f9xr.org/yoprompts/ai-agent-skills/podcast-show-notes/): Turns a podcast transcript into publish-ready show notes with a hook, chapter timestamps, key quotes, and a search-friendly summary.
+- [PPTX](https://f9xr.org/yoprompts/ai-agent-skills/pptx/): Build and edit PowerPoint decks with real layouts, speaker notes, charts, and consistent visual structure.
+- [PRD Writer](https://f9xr.org/yoprompts/ai-agent-skills/prd-writer/): Writes a product requirements document that states the problem, the evidence, the non-goals, and the decisions, without pretending the open questions are settled.
+- [Pricing Strategy](https://f9xr.org/yoprompts/ai-agent-skills/pricing/): Helps set pricing, packages, and monetization strategy using value metrics, willingness-to-pay research, and pricing-page audits.
+- [Programmatic SEO](https://f9xr.org/yoprompts/ai-agent-skills/programmatic-seo/): Design and ship SEO pages at scale from templates and data feeds, with internal linking, indexation, and thin-content checks built in.
+- [Prompt Optimizer](https://f9xr.org/yoprompts/ai-agent-skills/prompt-optimizer/): Diagnoses a weak prompt, removes the ambiguity, adds the missing constraints, and returns a tested rewrite with a reason for each change.
+- [React Best Practices](https://f9xr.org/yoprompts/ai-agent-skills/react-best-practices/): Vercel Engineering's React and Next.js performance rules, prioritized across waterfalls, bundle size, server work, data fetching, and rendering.
+- [React Composition Patterns](https://f9xr.org/yoprompts/ai-agent-skills/composition-patterns/): React composition patterns for scalable component APIs, covering compound components, state lifting, render props, and React 19 changes.
+- [React Native Skills](https://f9xr.org/yoprompts/ai-agent-skills/react-native-skills/): React Native and Expo best practices for list performance, animation, navigation, state, rendering, and monorepo configuration.
+- [React View Transitions](https://f9xr.org/yoprompts/ai-agent-skills/react-view-transitions/): Implements native-feeling page, route, and shared element animations with React's View Transition API and Next.js integration.
+- [Research Synthesis](https://f9xr.org/yoprompts/ai-agent-skills/research-synthesis/): Turns a stack of sources into a decision brief with claims, evidence, confidence levels, contradictions, and open questions.
+- [Sales Call Coach](https://f9xr.org/yoprompts/ai-agent-skills/sales-call-coach/): Reviews a sales call transcript against the deal stage, finds the moment the call turned, and returns two changes for the next conversation.
+- [Sales Proposal Writer](https://f9xr.org/yoprompts/ai-agent-skills/sales-proposal-writer/): Builds a client-ready proposal from discovery notes: problem, scope, success measures, timeline, price, and the assumptions that protect the deal.
+- [Schema Markup](https://f9xr.org/yoprompts/ai-agent-skills/seo-schema/): Detects, validates, and generates Schema.org JSON-LD for pages and entities, with guidance on active rich-result types and deprecated markup.
+- [Security Review](https://f9xr.org/yoprompts/ai-agent-skills/security-review/): Reviews a change for the security bugs that actually ship: auth gaps, injection, secret handling, unsafe defaults, and missing tenant checks.
+- [SEO Audit](https://f9xr.org/yoprompts/ai-agent-skills/seo-audit/): Runs a scored, prioritized full-site SEO audit across technical health, content, on-page markup, schema, performance, images, and AI search readiness.
+- [SEO Codebase Audit](https://f9xr.org/yoprompts/ai-agent-skills/seo-codebase-audit/): Evidence-driven audit of a static repository across 24 SEO pillars, producing a prioritized remediation report and a CSV export.
+- [Skill Creator](https://f9xr.org/yoprompts/ai-agent-skills/skill-creator/): An interactive guide for writing, testing, and improving SKILL.md files, including eval runs, benchmark comparison, and description optimization.
+- [Slack GIF Creator](https://f9xr.org/yoprompts/ai-agent-skills/slack-gif-creator/): Builds small animated GIFs sized and paced for Slack emoji and message reactions.
+- [Social Media Skills](https://f9xr.org/yoprompts/ai-agent-skills/social-media-skills/): A 17-skill social content suite built on a reusable voice profile, covering hooks, posts, carousels, reels scripts, newsletters, and profiles.
+- [SQL Optimizer](https://f9xr.org/yoprompts/ai-agent-skills/sql-optimizer/): Reads a slow query and its plan, finds the real bottleneck, and returns a safer rewrite with the index and the tradeoff named.
+- [Support Macro Writer](https://f9xr.org/yoprompts/ai-agent-skills/support-macro-writer/): Writes help-centre articles and reply macros that solve the problem in the first screen, with the escalation path built in.
+- [Taste Skill](https://f9xr.org/yoprompts/ai-agent-skills/taste-skill/): A design-direction skill for landing pages and redesigns that deals a researched art direction, then gates the build with real browser measurements.
+- [Theme Factory](https://f9xr.org/yoprompts/ai-agent-skills/theme-factory/): Applies a coherent set of colors, fonts, and spacing to slides, documents, reports, and HTML artifacts.
+- [Unit Test Writer](https://f9xr.org/yoprompts/ai-agent-skills/unit-test-writer/): Reads a function and its callers, then writes focused tests for behaviour, edge cases, and failure paths without testing the implementation.
+- [Vercel CLI with Tokens](https://f9xr.org/yoprompts/ai-agent-skills/vercel-cli-with-tokens/): Deploys and manages Vercel projects with token-based CLI authentication instead of interactive login, including env vars and teams.
+- [Vercel Optimize](https://f9xr.org/yoprompts/ai-agent-skills/vercel-optimize/): Audits deployed Vercel projects for cost and performance, using metrics, usage data, config, and code scans to rank recommendations.
+- [Web Artifacts Builder](https://f9xr.org/yoprompts/ai-agent-skills/web-artifacts-builder/): Builds complex single-file HTML artifacts with React, Tailwind, and shadcn/ui, then verifies the bundle before delivery.
+- [Web Design Guidelines](https://f9xr.org/yoprompts/ai-agent-skills/web-design-guidelines/): Reviews UI code against more than 100 web interface rules for accessibility, focus, forms, animation, typography, images, and performance.
+- [Webapp Testing](https://f9xr.org/yoprompts/ai-agent-skills/webapp-testing/): Drive a local web app with Playwright to verify flows, capture screenshots, and read console and network errors.
+- [Workflow Automator](https://f9xr.org/yoprompts/ai-agent-skills/workflow-automator/): Maps a recurring manual task into a trigger, ordered steps, tool calls, failure handling, and a test plan before any code is written.
+- [Writing Guidelines](https://f9xr.org/yoprompts/ai-agent-skills/writing-guidelines/): Reviews docs and prose against Vercel's writing handbook, covering voice, structure, lists, code samples, typography, and AI workflow.
+- [XLSX](https://f9xr.org/yoprompts/ai-agent-skills/xlsx/): Create and edit Excel workbooks with formulas, formatting, charts, pivot tables, and analysis that stays auditable.
 
 ## MCP servers
 
-- [Ahrefs MCP](https://f9xr.org/yoprompts/mcp-server-index/ahrefs/)
-- [Atlassian Rovo MCP](https://f9xr.org/yoprompts/mcp-server-index/atlassian/)
-- [Brave Search MCP](https://f9xr.org/yoprompts/mcp-server-index/brave-search/)
-- [Chrome DevTools MCP](https://f9xr.org/yoprompts/mcp-server-index/chrome-devtools/)
-- [Cloudflare MCP](https://f9xr.org/yoprompts/mcp-server-index/cloudflare/)
-- [Context7 MCP](https://f9xr.org/yoprompts/mcp-server-index/context7/)
-- [Exa MCP](https://f9xr.org/yoprompts/mcp-server-index/exa/)
-- [Figma MCP](https://f9xr.org/yoprompts/mcp-server-index/figma/)
-- [Filesystem MCP Server](https://f9xr.org/yoprompts/mcp-server-index/filesystem/)
-- [Firecrawl MCP](https://f9xr.org/yoprompts/mcp-server-index/firecrawl/)
-- [GitHub MCP Server](https://f9xr.org/yoprompts/mcp-server-index/github/)
-- [Google Search Console MCP](https://f9xr.org/yoprompts/mcp-server-index/google-search-console/)
-- [Linear MCP](https://f9xr.org/yoprompts/mcp-server-index/linear/)
-- [Memory MCP](https://f9xr.org/yoprompts/mcp-server-index/memory/)
-- [Neon MCP](https://f9xr.org/yoprompts/mcp-server-index/neon/)
-- [Notion MCP](https://f9xr.org/yoprompts/mcp-server-index/notion/)
-- [Playwright MCP](https://f9xr.org/yoprompts/mcp-server-index/playwright/)
-- [Sentry MCP](https://f9xr.org/yoprompts/mcp-server-index/sentry/)
-- [Sequential Thinking MCP](https://f9xr.org/yoprompts/mcp-server-index/sequential-thinking/)
-- [Stripe MCP](https://f9xr.org/yoprompts/mcp-server-index/stripe/)
-- [Supabase MCP](https://f9xr.org/yoprompts/mcp-server-index/supabase/)
-- [Tavily MCP](https://f9xr.org/yoprompts/mcp-server-index/tavily/)
-- [Vercel MCP](https://f9xr.org/yoprompts/mcp-server-index/vercel/)
-
-## About
-
-- [About YoPrompts](https://f9xr.org/yoprompts/about/)
-- [AI Tools Directory](https://f9xr.org/directories/ai-tools.html)
-- [Contact](https://f9xr.org/yoprompts/contact/)
-- [Terms](https://f9xr.org/yoprompts/terms/)
-
-## Optional
-
-- [HTML sitemap](https://f9xr.org/yoprompts/html-sitemap/)
-- [RSS feed](https://f9xr.org/yoprompts/feed.xml)
+- [Ahrefs MCP](https://f9xr.org/yoprompts/mcp-server-index/ahrefs/): Ahrefs' official remote server for keyword research, backlink profiles, competitor analysis, and rank tracking on paid plans.
+- [Airtable MCP Server](https://f9xr.org/yoprompts/mcp-server-index/airtable/): Connect an agent to Airtable bases and tables for record search, filtering, and updates through a personal access token.
+- [Atlassian Rovo MCP](https://f9xr.org/yoprompts/mcp-server-index/atlassian/): Connect an agent to Jira, Confluence, Jira Service Management, Bitbucket, and Loom through Atlassian's Rovo MCP server.
+- [Brave Search MCP](https://f9xr.org/yoprompts/mcp-server-index/brave-search/): Brave's privacy-focused Search API exposed as an MCP server for web and local search results.
+- [Chrome DevTools MCP](https://f9xr.org/yoprompts/mcp-server-index/chrome-devtools/): Let an agent drive a real Chrome instance: inspect the DOM, read console and network activity, and record performance traces.
+- [Cloudflare MCP](https://f9xr.org/yoprompts/mcp-server-index/cloudflare/): Cloudflare's hosted MCP servers for docs, Workers, observability, bindings, and account-level platform operations.
+- [Context7 MCP](https://f9xr.org/yoprompts/mcp-server-index/context7/): Upstash's Context7 injects current, version-specific library documentation into an agent's context so APIs are not guessed.
+- [Docker MCP Server](https://f9xr.org/yoprompts/mcp-server-index/docker/): Let an agent inspect containers, images, logs, and networks on the local Docker daemon so it can debug a stack without shell access.
+- [Exa MCP](https://f9xr.org/yoprompts/mcp-server-index/exa/): Give an agent semantic web search, page contents, and research tools through Exa's hosted MCP endpoint.
+- [Figma MCP](https://f9xr.org/yoprompts/mcp-server-index/figma/): Figma's official server for translating designs to code and extracting variables, components, and design tokens.
+- [Filesystem MCP Server](https://f9xr.org/yoprompts/mcp-server-index/filesystem/): Give an agent scoped read and write access to specific local directories through the reference Filesystem server.
+- [Firecrawl MCP](https://f9xr.org/yoprompts/mcp-server-index/firecrawl/): Scrape and crawl sites with JavaScript rendering, PDF extraction, and structured data output for agent workflows.
+- [GitHub MCP Server](https://f9xr.org/yoprompts/mcp-server-index/github/): Connect an agent to repositories, issues, pull requests, code search, and Actions through GitHub's official MCP server.
+- [Google Drive MCP Server](https://f9xr.org/yoprompts/mcp-server-index/google-drive/): Give an agent scoped access to Drive files for search, reading, and summarising documents with a service account or OAuth credentials.
+- [Google Search Console MCP](https://f9xr.org/yoprompts/mcp-server-index/google-search-console/): A community Google Search Console server with search analytics, URL inspection, sitemap management, and period-over-period comparisons.
+- [Kubernetes MCP Server](https://f9xr.org/yoprompts/mcp-server-index/kubernetes/): Let an agent inspect pods, deployments, events, and logs in a Kubernetes cluster through the local kubeconfig context.
+- [Linear MCP](https://f9xr.org/yoprompts/mcp-server-index/linear/): Linear's official remote server for issues, projects, cycles, comments, initiatives, and project updates.
+- [Memory MCP](https://f9xr.org/yoprompts/mcp-server-index/memory/): A knowledge-graph memory server that lets an agent persist entities, relations, and observations across sessions.
+- [MongoDB MCP Server](https://f9xr.org/yoprompts/mcp-server-index/mongodb/): Connect an agent to MongoDB for collection inspection, document queries, and schema discovery through MongoDB's official MCP server.
+- [Neon MCP](https://f9xr.org/yoprompts/mcp-server-index/neon/): Manage Neon Postgres projects, branches, databases, and SQL from an agent through Neon's hosted MCP endpoint.
+- [Notion MCP](https://f9xr.org/yoprompts/mcp-server-index/notion/): Official hosted Notion server for creating pages, querying databases, managing comments, and searching a workspace over OAuth.
+- [Obsidian MCP Server](https://f9xr.org/yoprompts/mcp-server-index/obsidian/): Give an agent access to an Obsidian vault for note search, reading, and creation through the local REST API plugin.
+- [Playwright MCP](https://f9xr.org/yoprompts/mcp-server-index/playwright/): Give an agent a real browser: navigate pages, click, type, and read the accessibility tree through Playwright.
+- [PostgreSQL MCP Server](https://f9xr.org/yoprompts/mcp-server-index/postgres/): Connect an agent to a PostgreSQL database for schema inspection, read queries, and controlled data exploration.
+- [Redis MCP Server](https://f9xr.org/yoprompts/mcp-server-index/redis/): Connect an agent to Redis for key inspection, cache debugging, and data structure exploration through Redis's official MCP server.
+- [Sentry MCP](https://f9xr.org/yoprompts/mcp-server-index/sentry/): Query Sentry issues, events, traces, and release health from an agent through Sentry's hosted MCP endpoint.
+- [Sequential Thinking MCP](https://f9xr.org/yoprompts/mcp-server-index/sequential-thinking/): Structured, revisable thought sequences that give an agent a scratchpad for multi-step reasoning.
+- [Slack MCP Server](https://f9xr.org/yoprompts/mcp-server-index/slack/): Connect an agent to Slack to read channel history, search messages, and post updates with a bot token scoped to one workspace.
+- [SQLite MCP Server](https://f9xr.org/yoprompts/mcp-server-index/sqlite/): Give an agent read and write access to a local SQLite database file for schema inspection, queries, and lightweight analysis.
+- [Stripe MCP](https://f9xr.org/yoprompts/mcp-server-index/stripe/): Stripe's hosted server for inspecting customers, payments, invoices, and products, with documentation search built in.
+- [Supabase MCP](https://f9xr.org/yoprompts/mcp-server-index/supabase/): Connect an agent to a Supabase project for schema inspection, SQL queries, migrations, edge functions, and logs.
+- [Tavily MCP](https://f9xr.org/yoprompts/mcp-server-index/tavily/): AI-powered real-time web search and content extraction, available as a hosted MCP endpoint with OAuth or an API key.
+- [Vercel MCP](https://f9xr.org/yoprompts/mcp-server-index/vercel/): Vercel's hosted MCP server for project and deployment management, logs, analytics, and documentation search.

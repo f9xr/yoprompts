@@ -5,10 +5,12 @@
   label: ChatGPT
   short: GPT
   url: https://chatgpt.com/
+  prompt_url: https://chatgpt.com/?q=
 - slug: claude
   label: Claude
   short: Claude
   url: https://claude.ai/new
+  prompt_url: https://claude.ai/new?q=
 - slug: gemini
   label: Gemini
   short: Gemini
@@ -17,11 +19,14 @@
   label: Perplexity
   short: Perplexity
   url: https://www.perplexity.ai/
+  prompt_url: https://www.perplexity.ai/?q=
 - slug: grok
   label: Grok
   short: Grok
   url: https://grok.com/
+  prompt_url: https://grok.com/?q=
 - slug: copilot
   label: Copilot
   short: Copilot
   url: https://copilot.microsoft.com/
+  prompt_url: https://copilot.microsoft.com/?q=

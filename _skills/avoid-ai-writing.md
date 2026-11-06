@@ -12,6 +12,7 @@ usage: |
   Remove the AI-isms from this draft. Keep every number, name, and quote.
 
   Then list the patterns you found and what you changed.
+related_skills: [human-article-writer, humanizer, copy-editing]
 ---
 
 This skill treats AI writing as a set of specific, nameable patterns rather than a vague feeling. It can audit a draft without changing it, edit a file in place, or iterate until the tell-tale constructions are gone.

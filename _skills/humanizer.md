@@ -14,6 +14,7 @@ usage: |
 install: |
   /plugin marketplace add blader/humanizer
   /plugin install humanizer@humanizer
+related_skills: [human-article-writer, avoid-ai-writing, copy-editing]
 ---
 
 Humanizer names the specific patterns that make text read as machine-written and rewrites them rather than replacing flagged phrases one at a time. The list covers staging tricks, forced triads, inflated significance, borrowed authority, decorative formatting, and chatbot leftovers.
