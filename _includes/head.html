@@ -1,13 +1,14 @@
 <!-- Site build date: {{ "now" | date: "%FT%T%z" }} -->
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Google Discover requires a large image preview. Emitting this explicitly
        guarantees og:image (1200x630, set in defaults) is eligible for the
        large card rather than the thumbnail. -->
+  {%- unless page.noindex %}
   <meta name="robots" content="max-image-preview:large">
+  {%- endunless -%}
   <meta name="theme-color" content="#0a0a0a">
 
   <!-- Begin SEO -->
@@ -18,7 +19,7 @@
        jekyll-seo-tag 2.8.0 has no robots meta of its own, so a page that
        sets `noindex: true` in front matter gets the tag here. -->
   {%- if page.noindex %}
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="noindex, follow, max-image-preview:large">
   {%- endif -%}
 
   <!-- Agent / crawler discovery. These <link> relations mirror the

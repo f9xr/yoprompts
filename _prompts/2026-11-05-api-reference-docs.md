@@ -1,6 +1,6 @@
 ---
 title: "Write API reference docs a developer can use"
-slug: api-docs-writer
+slug: api-reference-docs
 category: coding
 category_label: Coding
 difficulty: intermediate

@@ -59,6 +59,60 @@
     return nodes.length ? nodes[0].textContent : '';
   }
 
+  /* Listing cards no longer embed their prompt body, which had /prompts/
+     carrying every prompt twice. The first copy of a card prompt reads the
+     build-time search index instead, once per page view. */
+  var copyIndex = null;
+
+  function loadCopyIndex() {
+    if (copyIndex) {
+      return copyIndex;
+    }
+
+    var meta = document.querySelector('meta[name="yop-search-index"]');
+    var url = meta ? meta.getAttribute('content') : '/search.json';
+
+    copyIndex = fetch(url, { headers: { Accept: 'application/json' } })
+      .then(function (response) {
+        return response.ok ? response.json() : [];
+      })
+      .then(function (list) {
+        var map = {};
+
+        each(list, function (item) {
+          if (item && item.type === 'Prompt' && item.url) {
+            var match = /\/prompts\/([^/]+)\/?$/.exec(item.url);
+            if (match) {
+              map[match[1]] = item.body || '';
+            }
+          }
+        });
+
+        return map;
+      })
+      .catch(function () {
+        return {};
+      });
+
+    return copyIndex;
+  }
+
+  function readPromptText(key) {
+    var inline = readPrompt(key);
+
+    if (inline) {
+      return Promise.resolve(inline);
+    }
+
+    if (key.indexOf('src-') !== 0) {
+      return Promise.resolve('');
+    }
+
+    return loadCopyIndex().then(function (map) {
+      return map[key.slice(4)] || '';
+    });
+  }
+
   function normalise(text) {
     return String(text || '').replace(/\r\n/g, '\n').replace(/[ \t]+$/gm, '').trim();
   }
@@ -66,60 +120,11 @@
 
   /* 02  Copy to clipboard ================================================ */
 
-  function legacyCopy(text) {
-    return new Promise(function (resolve, reject) {
-      var field = document.createElement('textarea');
-      field.value = text;
-      field.setAttribute('readonly', '');
-      field.style.position = 'fixed';
-      field.style.top = '-1000px';
-      field.style.opacity = '0';
-      document.body.appendChild(field);
-      field.select();
-
-      var ok = false;
-      try {
-        ok = document.execCommand('copy');
-      } catch (error) {
-        ok = false;
-      }
-
-      document.body.removeChild(field);
-      ok ? resolve() : reject(new Error('copy-unavailable'));
-    });
-  }
-
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
-    }
-    return legacyCopy(text);
-  }
-
-  var COPY_RESET_MS = 2000;
-
-  function flashCopied(button) {
-    var label = button.querySelector('.button__label');
-    var original = button.getAttribute('data-label') || (label ? label.textContent : '');
-
-    button.setAttribute('data-label', original);
-    if (label) {
-      label.textContent = 'Copied';
-    }
-    button.setAttribute('aria-live', 'polite');
-    button.classList.add('is-copied');
-
-    if (window.YOP && window.YOP.toast) {
-      window.YOP.toast('Copied to clipboard');
-    }
-
-    window.setTimeout(function () {
-      if (label) {
-        label.textContent = original;
-      }
-      button.classList.remove('is-copied');
-      button.removeAttribute('aria-live');
-    }, COPY_RESET_MS);
+  /* Clipboard behaviour lives in clipboard.js, which every page loads first,
+     so copy, flash and download have one implementation rather than one per
+     script. */
+  function clipboard() {
+    return window.YOPClipboard || {};
   }
 
   function initCopy() {
@@ -131,21 +136,26 @@
 
       event.preventDefault();
 
-      var text = normalise(readPrompt(button.getAttribute('data-copy')));
-      if (!text) {
-        return;
-      }
+      var key = button.getAttribute('data-copy');
 
-      copyText(text).then(
-        function () {
-          flashCopied(button);
-        },
-        function () {
-          // Clipboard blocked (insecure context, denied permission). Select
-          // the source instead so the user can copy it by hand.
-          selectFallback(button.getAttribute('data-copy'));
+      readPromptText(key).then(function (raw) {
+        var text = normalise(raw);
+
+        if (!text) {
+          return;
         }
-      );
+
+        return clipboard().copy(text).then(
+          function () {
+            clipboard().flash(button);
+          },
+          function () {
+            // Clipboard blocked (insecure context, denied permission). Select
+            // the source instead so the user can copy it by hand.
+            selectFallback(key);
+          }
+        );
+      });
     });
   }
 
@@ -155,16 +165,11 @@
     }
 
     var shell = document.getElementById('prompt-body');
-    if (!shell) {
+    if (!shell || !clipboard().select) {
       return;
     }
 
-    var range = document.createRange();
-    range.selectNodeContents(shell);
-    var selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    shell.scrollIntoView({ block: 'nearest' });
+    clipboard().select(shell);
   }
 
 
@@ -495,18 +500,125 @@
         return true;
       };
 
-      // Picks up ?q= so the WebSite SearchAction in the page's structured data
-      // describes something the page actually does.
+      /* Selects one pill in a filter group, moving the pressed state with it
+         and recording the value in `state`. Returns false when the group has
+         no such pill, which is how an unknown query value is ignored: the
+         groups only render pills that would return at least one prompt. */
+      var select = function (group, value) {
+        if (value === null || value === undefined || value === '') {
+          return false;
+        }
+
+        var pills = group.querySelectorAll('[data-filter-value]');
+        var target = null;
+
+        each(pills, function (pill) {
+          if (pill.getAttribute('data-filter-value') === value) {
+            target = pill;
+          }
+        });
+
+        if (!target) {
+          return false;
+        }
+
+        state[group.getAttribute('data-filter-group')] = value;
+
+        each(pills, function (pill) {
+          pill.setAttribute('aria-pressed', pill === target ? 'true' : 'false');
+        });
+
+        return true;
+      };
+
+      /* Clears every axis back to its default, so a query string applied on
+         top of it - from a link, a reload or the back button - starts from a
+         known state instead of the leftovers of the previous one. */
+      var resetState = function () {
+        state.search = '';
+
+        if (search) {
+          search.value = '';
+        }
+
+        each(groups, function (group) {
+          select(group, 'all');
+        });
+      };
+
+      /* Picks up ?q= so the WebSite SearchAction in the page's structured data
+         describes something the page actually does, plus the ?category=,
+         ?tool= and ?difficulty= values that prompt cards and the categories
+         page link with. Without this, every tag link landed on the whole
+         library because only ?q= was read. */
       var fromQuery = function () {
-        if (!window.URLSearchParams || !search) {
+        if (!window.URLSearchParams) {
           return;
         }
-        var q = new URLSearchParams(window.location.search).get('q');
+
+        resetState();
+
+        var params = new URLSearchParams(window.location.search);
+        var q = params.get('q');
+
         if (q) {
-          search.value = q;
+          if (search) {
+            search.value = q;
+          }
           state.search = q.trim().toLowerCase();
         }
+
+        each(groups, function (group) {
+          select(group, params.get(group.getAttribute('data-filter-group')));
+        });
       };
+
+      /* Mirrors the current filter state into the query string, so a filtered
+         view can be bookmarked, shared or reloaded. replaceState, not
+         pushState: typing in the search field would otherwise bury the back
+         button in one history entry per keystroke. The write is debounced for
+         the same reason and skipped where history is restricted. */
+      var syncUrl = (function () {
+        var timer = null;
+
+        return function () {
+          if (!window.URLSearchParams || !window.history || !window.history.replaceState) {
+            return;
+          }
+
+          window.clearTimeout(timer);
+          timer = window.setTimeout(function () {
+            var params = new URLSearchParams();
+            var term = search ? search.value.trim() : state.search;
+
+            if (term) {
+              params.set('q', term);
+            }
+
+            each(groups, function (group) {
+              var name = group.getAttribute('data-filter-group');
+              var value = state[name];
+
+              if (value && value !== 'all') {
+                params.set(name, value);
+              }
+            });
+
+            var query = params.toString();
+            var url =
+              window.location.pathname +
+              (query ? '?' + query : '') +
+              window.location.hash;
+
+            try {
+              window.history.replaceState(null, '', url);
+            } catch (error) {
+              /* Restricted history (sandboxed frame, file://): the filters
+                 still work, the URL just stays put. */
+            }
+          }, 180);
+        };
+      })();
 
       var apply = function () {
         var shown = 0;
@@ -533,6 +645,8 @@
         if (clear) {
           clear.classList.toggle('is-visible', state.search.length > 0);
         }
+
+        syncUrl();
       };
 
       on(search, 'input', function () {
@@ -548,22 +662,24 @@
       });
 
       each(groups, function (group) {
-        var name = group.getAttribute('data-filter-group');
-
         on(group, 'click', function (event) {
           var pill = event.target.closest('[data-filter-value]');
           if (!pill || !group.contains(pill)) {
             return;
           }
 
-          state[name] = pill.getAttribute('data-filter-value');
-
-          each(group.querySelectorAll('[data-filter-value]'), function (sibling) {
-            sibling.setAttribute('aria-pressed', sibling === pill ? 'true' : 'false');
-          });
+          select(group, pill.getAttribute('data-filter-value'));
 
           apply();
         });
+      });
+
+      /* Back and forward re-read the query string, so returning to a filtered
+         view restores what the URL says rather than the state the page
+         happened to be left in. */
+      on(window, 'popstate', function () {
+        fromQuery();
+        apply();
       });
 
       fromQuery();
@@ -695,12 +811,10 @@
     if (banner && !stored && !doNotTrack()) {
       banner.hidden = false;
 
-      /* Non-modal, so focus is moved to the region rather than trapped. A
-         keyboard visitor should not be left unaware that the prompt is there. */
-      var firstButton = banner.querySelector('[data-consent-accept]');
-      if (firstButton) {
-        firstButton.focus();
-      }
+      /* Non-modal, so focus is moved to the region rather than trapped. The
+         banner itself takes focus, not Accept: landing a keyboard visitor
+         straight on the affirmative action would bias the choice. */
+      banner.focus();
     }
   }
 

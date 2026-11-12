@@ -373,28 +373,6 @@ layout: default
         </section>
         {%- endif %}
 
-        {%- if page.related_skills and page.related_skills.size > 0 %}
-        <section class="detail-section" aria-labelledby="related-skills-bottom-title">
-          <h2 class="display-sm detail-section__title" id="related-skills-bottom-title">Related Skills</h2>
-          <div class="related-grid">
-            {%- for slug in page.related_skills limit: 3 %}
-              {%- assign item = site.skills | where: "slug", slug | first %}
-              {%- if item and item.slug != page.slug %}
-                {%- assign reveal_class = "reveal--" | append: forloop.index -%}
-                {% include skill-card.html item=item heading_tag="h3" delay=reveal_class %}
-              {%- endif %}
-            {%- endfor %}
-          </div>
-        </section>
-        {%- endif %}
-
-        {%- if category_url != "" and page.category %}
-        <section class="detail-section" aria-labelledby="related-category-bottom-title">
-          <h2 class="display-sm detail-section__title" id="related-category-bottom-title">Related Category</h2>
-          <p class="body-sm detail-section__copy">More from <a class="link-inline" href="{{ category_url | relative_url }}">{{ category_label }}</a>.</p>
-        </section>
-        {%- endif %}
-
         {%- include detail-extras.html -%}
 
         {% include author-box.html role="Skill creator" %}
@@ -409,71 +387,14 @@ layout: default
 
 <script>
 (function () {
-  function copy(text) {
-    if (!text) { return Promise.reject(new Error('empty')); }
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
-    }
-    return new Promise(function (resolve, reject) {
-      var field = document.createElement('textarea');
-      field.value = text;
-      field.style.position = 'fixed';
-      field.style.top = '-1000px';
-      document.body.appendChild(field);
-      field.select();
-      var ok = false;
-      try { ok = document.execCommand('copy'); } catch (error) { ok = false; }
-      document.body.removeChild(field);
-      ok ? resolve() : reject(new Error('copy-unavailable'));
-    });
-  }
-
-  function flash(button, label) {
-    var node = button.querySelector('.button__label');
-    if (!node) { return; }
-    var original = node.textContent;
-    var text = label || 'Copied';
-    node.textContent = text;
-    button.classList.add('is-copied');
-    if (window.YOP && window.YOP.toast) {
-      window.YOP.toast(text === 'Downloaded' ? 'Download started' : 'Copied to clipboard');
-    }
-    window.setTimeout(function () {
-      node.textContent = original;
-      button.classList.remove('is-copied');
-    }, 1600);
-  }
-
-  document.addEventListener('click', function (event) {
-    var copyBlock = event.target.closest ? event.target.closest('[data-copy-block]') : null;
-    if (copyBlock) {
-      event.preventDefault();
-      var block = document.getElementById(copyBlock.getAttribute('data-copy-block'));
-      copy(block ? block.textContent : '').then(function () { flash(copyBlock); });
-      return;
-    }
-
-    var copyText = event.target.closest ? event.target.closest('[data-copy-text]') : null;
-    if (copyText) {
-      event.preventDefault();
-      copy(copyText.getAttribute('data-copy-text')).then(function () {
-        var original = copyText.textContent;
-        copyText.textContent = 'Copied';
-        if (window.YOP && window.YOP.toast) {
-          window.YOP.toast('Path copied to clipboard');
-        }
-        window.setTimeout(function () { copyText.textContent = original; }, 1400);
-      });
-    }
-  });
-
+  /* Copy and download are handled by clipboard.js on every page; this script
+     only loads the skill file and enables the controls once it is available. */
   var content = document.getElementById('skill-md-content');
   var state = document.querySelector('[data-skill-state]');
   var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-skill]'));
   var downloadButtons = Array.prototype.slice.call(document.querySelectorAll('[data-download-skill]'));
   var fileLink = document.querySelector('[data-skill-file-link]');
   var sourceFile = content && content.getAttribute('data-source-file') || 'SKILL.md';
-  var downloadName = content && content.getAttribute('data-download-name') || 'SKILL.md';
 
   function enable() {
     copyButtons.forEach(function (button) { button.disabled = false; });
@@ -483,33 +404,6 @@ layout: default
   function setState(text) {
     if (state) { state.textContent = text; }
   }
-
-  function currentText() {
-    return content ? content.textContent : '';
-  }
-
-  copyButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      copy(currentText()).then(function () { flash(button, 'Copied'); });
-    });
-  });
-
-  downloadButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      var text = currentText();
-      if (!text) { return; }
-      var blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
-      var url = URL.createObjectURL(blob);
-      var link = document.createElement('a');
-      link.href = url;
-      link.download = downloadName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      flash(button, 'Downloaded');
-    });
-  });
 
   function repoParts(repoUrl) {
     var path = repoUrl.replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '');
@@ -572,48 +466,5 @@ layout: default
     setState('Ready');
     enable();
   }
-})();
-
-(function () {
-  var CACHE_KEY = 'yop_skill_stars_v1';
-  var MAX_AGE = 6 * 60 * 60 * 1000;
-  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-stars][data-repo]'));
-  if (!nodes.length) { return; }
-
-  var cache = {};
-  try { cache = JSON.parse(window.localStorage.getItem(CACHE_KEY) || '{}'); }
-  catch (error) { cache = {}; }
-
-  function format(count) {
-    if (count >= 1000) { return (count / 1000).toFixed(count >= 10000 ? 0 : 1) + 'k'; }
-    return String(count);
-  }
-
-  function paint(repo, stars) {
-    document.querySelectorAll('[data-stars][data-repo="' + repo + '"] [data-stars-value]').forEach(function (node) {
-      node.textContent = format(stars);
-    });
-  }
-
-  var now = Date.now();
-  var repos = {};
-  nodes.forEach(function (node) { repos[node.getAttribute('data-repo')] = true; });
-
-  Object.keys(repos).forEach(function (repo) {
-    if (cache[repo] && now - cache[repo].ts <= MAX_AGE) { paint(repo, cache[repo].stars); }
-  });
-
-  Object.keys(repos).forEach(function (repo) {
-    if (cache[repo] && now - cache[repo].ts <= MAX_AGE) { return; }
-    fetch('https://api.github.com/repos/' + repo, { headers: { 'Accept': 'application/vnd.github+json' } })
-      .then(function (response) { return response.ok ? response.json() : null; })
-      .then(function (data) {
-        if (!data || typeof data.stargazers_count !== 'number') { return; }
-        cache[repo] = { stars: data.stargazers_count, ts: now };
-        try { window.localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch (error) {}
-        paint(repo, data.stargazers_count);
-      })
-      .catch(function () {});
-  });
 })();
 </script>

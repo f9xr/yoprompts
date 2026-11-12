@@ -7,7 +7,7 @@
      Not a modal dialog: it does not block the page or trap focus, so it is
      marked up as a labelled region rather than role="dialog". -->
 
-<div class="consent" id="consent-banner" data-consent-banner hidden>
+<div class="consent" id="consent-banner" data-consent-banner tabindex="-1" hidden>
   <div class="container consent__inner">
     <div class="consent__text">
       <h2 class="consent__title" id="consent-banner-title">Analytics, optionally</h2>
@@ -20,6 +20,8 @@
         <a class="link-inline" href="{{ '/cookies/' | relative_url }}">Cookie policy</a>
       </p>
     </div>
+
+    <p class="consent__status body-sm" data-consent-status aria-live="polite"></p>
 
     <div class="consent__actions">
       <button class="button button--sm" type="button" data-consent-reject>

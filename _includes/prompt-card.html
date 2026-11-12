@@ -53,8 +53,8 @@
   </div>
 
   {%- comment -%}
-    The full prompt text travels with the card so Copy works without a request.
-    display:none keeps it out of layout, so it costs no visual weight.
+    The prompt body is deliberately not embedded here. 94 cards meant 94 copies
+    of the full prompt on /prompts/, which made that page 556 KB. Copy now
+    reads the body from /search.json once per page view; see main.js.
   {%- endcomment -%}
-  <script class="prompt-source" type="application/x-prompt" data-key="src-{{ p.slug }}">{{ p.prompt }}</script>
 </article>

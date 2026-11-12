@@ -1,6 +1,6 @@
 ---
 title: "Turn a podcast episode into show notes people use"
-slug: podcast-show-notes
+slug: podcast-episode-notes
 category: writing
 category_label: AI Writing
 difficulty: beginner

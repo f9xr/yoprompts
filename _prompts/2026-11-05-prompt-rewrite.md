@@ -1,6 +1,6 @@
 ---
 title: "Fix a prompt that keeps giving vague answers"
-slug: prompt-optimizer
+slug: prompt-rewrite
 category: productivity
 category_label: Productivity
 difficulty: beginner

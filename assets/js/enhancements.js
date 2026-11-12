@@ -37,25 +37,11 @@
     try { window.localStorage.setItem(key, value); } catch (error) {}
   }
 
+  /* The clipboard itself lives in clipboard.js. Everything here goes through
+     that single implementation so a copy behaves identically everywhere. */
   function copyText(text) {
-    var value = String(text || '');
-    if (!value) { return Promise.reject(new Error('empty')); }
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(value);
-    }
-    return new Promise(function (resolve, reject) {
-      var field = document.createElement('textarea');
-      field.value = value;
-      field.setAttribute('readonly', '');
-      field.style.position = 'fixed';
-      field.style.top = '-1000px';
-      document.body.appendChild(field);
-      field.select();
-      var ok = false;
-      try { ok = document.execCommand('copy'); } catch (error) { ok = false; }
-      document.body.removeChild(field);
-      ok ? resolve() : reject(new Error('copy-unavailable'));
-    });
+    if (window.YOPClipboard) { return window.YOPClipboard.copy(text); }
+    return Promise.reject(new Error('clipboard-unavailable'));
   }
 
   function toast(message, kind) {
@@ -83,19 +69,9 @@
   }
 
   function copyAndFlash(button, text) {
-    copyText(text).then(function () {
-      var label = button.querySelector('.button__label');
-      var original = button.getAttribute('data-original-label') || (label ? label.textContent : button.textContent);
-      button.setAttribute('data-original-label', original);
-      if (label) { label.textContent = 'Copied'; } else { button.textContent = 'Copied'; }
-      button.classList.add('is-copied');
-      testClipboard(text);
-      toast('Copied to clipboard');
-      setTimeout(function () {
-        if (label) { label.textContent = original; } else { button.textContent = original; }
-        button.classList.remove('is-copied');
-      }, 1600);
-    }).catch(function () {});
+    if (!window.YOPClipboard) { return; }
+    testClipboard(text);
+    window.YOPClipboard.copyAndFlash(button, text);
   }
 
   /* Sound cues were removed from the interface. The stub keeps any older
@@ -116,10 +92,6 @@
 
   function testClipboard(text) {
     try {
-      var dict = { text: text };
-      if (navigator.clipboard && navigator.clipboard.write && window.ClipboardItem) {
-        navigator.clipboard.write([new window.ClipboardItem({ 'text/plain': new Blob([text], { type: 'text/plain' }) })]);
-      }
       broadcast({ type: 'clipboard', text: String(text).slice(0, 280), at: Date.now() });
     } catch (error) {}
   }
@@ -202,16 +174,33 @@
     return extra;
   }
 
-  function searchScore(item, query, concepts) {
+  /* Fields are lowercased once, at load, instead of once per item per
+     keystroke: body is the full prompt or SKILL.md text, so re-lowering every
+     body on every input event was the expensive part of search. */
+  function prepareIndex(list) {
+    return list.map(function (item) {
+      return {
+        item: item,
+        title: (item.title || '').toLowerCase(),
+        tags: (item.tags || '').toLowerCase(),
+        category: (item.category || '').toLowerCase(),
+        description: (item.description || '').toLowerCase(),
+        body: (item.body || '').toLowerCase(),
+        type: (item.type || '').toLowerCase()
+      };
+    });
+  }
+
+  function searchScore(entry, query, concepts) {
     var tokens = query.split(/\s+/).filter(Boolean);
     if (!tokens.length) { return 0; }
 
-    var title = (item.title || '').toLowerCase();
-    var tags = (item.tags || '').toLowerCase();
-    var category = (item.category || '').toLowerCase();
-    var description = (item.description || '').toLowerCase();
-    var body = (item.body || '').toLowerCase();
-    var type = (item.type || '').toLowerCase();
+    var title = entry.title;
+    var tags = entry.tags;
+    var category = entry.category;
+    var description = entry.description;
+    var body = entry.body;
+    var type = entry.type;
     var haystack = [title, tags, category, description, body, type].join(' ');
     var score = 0;
 
@@ -237,6 +226,7 @@
   }
 
   var searchIndex = null;
+  var searchPrepared = [];
   var searchPromise = null;
   var searchActive = -1;
 
@@ -248,6 +238,7 @@
       .then(function (response) { return response.ok ? response.json() : []; })
       .then(function (data) {
         searchIndex = Array.isArray(data) ? data : [];
+        searchPrepared = prepareIndex(searchIndex);
         var status = document.querySelector('[data-search-status]');
         if (status) { status.textContent = searchIndex.length + ' items indexed'; }
         return searchIndex;
@@ -262,7 +253,7 @@
 
   function resultMarkup(item) {
     var tags = (item.tags || '').split(',').map(function (tag) { return tag.trim(); }).filter(Boolean).slice(0, 3);
-    return '<a class="site-search__result" href="' + item.url + '" data-search-result>' +
+    return '<a class="site-search__result" href="' + escapeHtml(item.url) + '" data-search-result>' +
       '<span class="site-search__type">' + (item.type || 'Item') + '</span>' +
       '<span class="site-search__result-main">' +
         '<span class="site-search__result-title">' + escapeHtml(item.title || '') + '</span>' +
@@ -296,8 +287,8 @@
       return;
     }
 
-    var matches = (searchIndex || [])
-      .map(function (item) { return { item: item, score: searchScore(item, term.toLowerCase(), concepts && concepts.checked) }; })
+    var matches = (searchPrepared || [])
+      .map(function (entry) { return { item: entry.item, score: searchScore(entry, term.toLowerCase(), concepts && concepts.checked) }; })
       .filter(function (entry) { return entry.score > 0; })
       .sort(function (a, b) { return b.score - a.score; })
       .slice(0, 20);
@@ -345,8 +336,12 @@
       on(button, 'click', closeSearch);
     });
 
+    var searchTimer = null;
     on(input, 'input', function () {
-      loadSearchIndex().then(function () { renderSearch(input.value); });
+      window.clearTimeout(searchTimer);
+      searchTimer = window.setTimeout(function () {
+        loadSearchIndex().then(function () { renderSearch(input.value); });
+      }, 120);
     });
 
     on(dialog, 'click', function (event) {
@@ -1037,21 +1032,12 @@
 
   function initCopyTracking() {
     on(document, 'click', function (event) {
-      var install = event.target.closest ? event.target.closest('[data-copy-text]') : null;
-      if (install) {
-        trackInstall(install);
-        copyAndFlash(install, install.getAttribute('data-copy-text'));
-        event.preventDefault();
-        return;
-      }
+      /* clipboard.js performs the copy; this only records the install. */
+      var install = event.target.closest
+        ? event.target.closest('[data-copy-text], [data-copy-install]')
+        : null;
 
-      var installBlock = event.target.closest ? event.target.closest('[data-copy-install]') : null;
-      if (installBlock) {
-        var command = installBlock.getAttribute('data-copy-install');
-        trackInstall(installBlock);
-        copyAndFlash(installBlock, command);
-        event.preventDefault();
-      }
+      if (install) { trackInstall(install); }
     });
   }
 
@@ -1089,6 +1075,149 @@
     window.YOP.renderHistory = render;
   }
 
+  /* ---------------------------------------------------------------------
+     GitHub star counts. One loader for the whole site so every card agrees,
+     requests are capped at three at a time, and a rate-limited reply stops
+     the queue instead of hammering a 403 wall.
+     ------------------------------------------------------------------ */
+
+  function initStars() {
+    var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-stars][data-repo]'));
+    if (!nodes.length) { return; }
+
+    var CACHE_KEY = 'yop_skill_stars_v1';
+    var MAX_AGE = 6 * 60 * 60 * 1000;
+    var LIMIT = 3;
+    var cache = {};
+    var now = Date.now();
+    var pending = [];
+    var busy = 0;
+    var stopped = false;
+    var status = document.querySelector('[data-trending-status]');
+
+    try { cache = JSON.parse(window.localStorage.getItem(CACHE_KEY) || '{}'); }
+    catch (error) { cache = {}; }
+
+    function format(count) {
+      if (count >= 1000) { return (count / 1000).toFixed(count >= 10000 ? 0 : 1) + 'k'; }
+      return String(count);
+    }
+
+    function paint(repo, stars) {
+      each(document.querySelectorAll('[data-stars][data-repo="' + repo + '"] [data-stars-value]'), function (node) {
+        node.textContent = format(stars);
+      });
+    }
+
+    function sortTrending() {
+      var grid = document.getElementById('trending-grid');
+      if (!grid) { return; }
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-skill-card]'));
+      cards.sort(function (a, b) {
+        var aRepo = a.getAttribute('data-repo');
+        var bRepo = b.getAttribute('data-repo');
+        var aStars = aRepo && cache[aRepo] ? cache[aRepo].stars : 0;
+        var bStars = bRepo && cache[bRepo] ? cache[bRepo].stars : 0;
+        return bStars - aStars;
+      });
+      cards.forEach(function (card) { grid.appendChild(card); });
+    }
+
+    var repos = {};
+    nodes.forEach(function (node) { repos[node.getAttribute('data-repo')] = true; });
+    Object.keys(repos).forEach(function (repo) {
+      if (cache[repo]) { paint(repo, cache[repo].stars); }
+    });
+    sortTrending();
+
+    function next() {
+      if (stopped) { return; }
+      if (!pending.length) {
+        if (!busy && status) { status.textContent = 'Live from GitHub'; }
+        return;
+      }
+
+      var repo = pending.shift();
+      busy += 1;
+
+      fetch('https://api.github.com/repos/' + repo, { headers: { Accept: 'application/vnd.github+json' } })
+        .then(function (response) {
+          if (response.status === 403 || response.status === 429) {
+            stopped = true;
+            if (status) { status.textContent = 'GitHub rate limit reached'; }
+            return null;
+          }
+          return response.ok ? response.json() : null;
+        })
+        .then(function (data) {
+          if (data && typeof data.stargazers_count === 'number') {
+            cache[repo] = { stars: data.stargazers_count, ts: now };
+            paint(repo, data.stargazers_count);
+            try { window.localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch (error) {}
+            sortTrending();
+          }
+        })
+        .catch(function () {})
+        .then(function () {
+          busy -= 1;
+          next();
+        });
+
+      if (busy < LIMIT) { next(); }
+    }
+
+    Object.keys(repos).forEach(function (repo) {
+      if (!cache[repo] || now - cache[repo].ts > MAX_AGE) { pending.push(repo); }
+    });
+
+    if (!pending.length) {
+      if (status) { status.textContent = 'Stars from cache'; }
+      return;
+    }
+
+    if (status) { status.textContent = 'Loading stars'; }
+    next();
+  }
+
+  /* ---------------------------------------------------------------------
+     Bookmarks. The skills directory runs its own filter-aware version; every
+     other page only has cards, where this keeps the control honest instead
+     of leaving a button that does nothing.
+     ------------------------------------------------------------------ */
+
+  function initBookmarks() {
+    if (document.getElementById('all-skills-grid')) { return; }
+    if (!document.querySelector('[data-bookmark]')) { return; }
+
+    var KEY = 'yop_skills_bookmarks';
+    var list = [];
+
+    try { list = JSON.parse(window.localStorage.getItem(KEY) || '[]'); }
+    catch (error) { list = []; }
+
+    function sync() {
+      each(document.querySelectorAll('[data-bookmark]'), function (button) {
+        var active = list.indexOf(button.getAttribute('data-bookmark')) !== -1;
+        button.textContent = active ? 'Bookmarked' : 'Bookmark';
+        button.classList.toggle('is-copied', active);
+        button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    }
+
+    on(document, 'click', function (event) {
+      var button = event.target.closest ? event.target.closest('[data-bookmark]') : null;
+      if (!button) { return; }
+      event.preventDefault();
+      var slug = button.getAttribute('data-bookmark');
+      var index = list.indexOf(slug);
+      if (index === -1) { list.push(slug); } else { list.splice(index, 1); }
+      try { window.localStorage.setItem(KEY, JSON.stringify(list)); } catch (error) {}
+      sync();
+    });
+
+    sync();
+  }
+
   /* Boot ----------------------------------------------------------------- */
 
   function boot() {
@@ -1097,6 +1226,8 @@
     initShortcuts();
     initBackToTop();
     initPagination();
+    initStars();
+    initBookmarks();
     initRepoMeta();
     initShareBoxes();
     initDetailInstruments();
@@ -1113,11 +1244,11 @@
   }
 
   window.YOP = window.YOP || {};
-  window.YOP.copy = copyText;
+  window.YOP.copy = window.YOPClipboard ? window.YOPClipboard.copy : copyText;
   window.YOP.copyAndFlash = copyAndFlash;
   window.YOP.toast = toast;
   window.YOP.escapeHtml = escapeHtml;
-  window.YOP.download = downloadFile;
+  window.YOP.download = window.YOPClipboard ? window.YOPClipboard.download : downloadFile;
   window.YOP.beep = beep;
   window.YOP.base = base;
 })();

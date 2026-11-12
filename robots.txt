@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://f9xr.org/yoprompts/sitemap.xml

@@ -240,7 +240,7 @@ seo:
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" integrity="sha384-PCSoOZTpbkikBEtd/+uV3WNdc676i9KUf01KOA8CnJotvlx8rRrETbDuwdjqTYvt" crossorigin="anonymous"></script>
 <script>
 (function () {
   var grid = document.getElementById('all-skills-grid');
@@ -379,84 +379,5 @@ seo:
   if (tagFilter) { tagFilter.addEventListener('change', filter); }
   syncBookmarkButtons();
   filter();
-})();
-
-(function () {
-  var CACHE_KEY = 'yop_skill_stars_v1';
-  var MAX_AGE = 6 * 60 * 60 * 1000;
-  var grids = Array.prototype.slice.call(document.querySelectorAll('[data-repo]'));
-  if (!grids.length) { return; }
-
-  var status = document.querySelector('[data-trending-status]');
-  var cache = {};
-  try { cache = JSON.parse(window.localStorage.getItem(CACHE_KEY) || '{}'); }
-  catch (error) { cache = {}; }
-
-  var repos = {};
-  grids.forEach(function (node) {
-    var repo = node.getAttribute('data-repo');
-    if (repo) { repos[repo] = true; }
-  });
-
-  function format(count) {
-    if (count >= 1000) { return (count / 1000).toFixed(count >= 10000 ? 0 : 1) + 'k'; }
-    return String(count);
-  }
-
-  function paint(repo, stars) {
-    document.querySelectorAll('[data-stars][data-repo="' + repo + '"] [data-stars-value]').forEach(function (node) {
-      node.textContent = format(stars);
-    });
-  }
-
-  function sortTrending() {
-    var grid = document.getElementById('trending-grid');
-    if (!grid) { return; }
-    var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-skill-card]'));
-    cards.sort(function (a, b) {
-      var aRepo = a.getAttribute('data-repo');
-      var bRepo = b.getAttribute('data-repo');
-      var aStars = aRepo && cache[aRepo] ? cache[aRepo].stars : 0;
-      var bStars = bRepo && cache[bRepo] ? cache[bRepo].stars : 0;
-      return bStars - aStars;
-    });
-    cards.forEach(function (card) { grid.appendChild(card); });
-  }
-
-  var now = Date.now();
-  var pending = Object.keys(repos).filter(function (repo) {
-    return !cache[repo] || now - cache[repo].ts > MAX_AGE;
-  });
-
-  Object.keys(repos).forEach(function (repo) {
-    if (cache[repo]) { paint(repo, cache[repo].stars); }
-  });
-  sortTrending();
-
-  if (!pending.length) {
-    if (status) { status.textContent = 'Stars from cache'; }
-    return;
-  }
-
-  Promise.all(pending.map(function (repo) {
-    return fetch('https://api.github.com/repos/' + repo, {
-      headers: { 'Accept': 'application/vnd.github+json' }
-    }).then(function (response) {
-      return response.ok ? response.json() : null;
-    }).then(function (data) {
-      if (!data || typeof data.stargazers_count !== 'number') { return null; }
-      cache[repo] = { stars: data.stargazers_count, ts: now };
-      paint(repo, data.stargazers_count);
-      return repo;
-    }).catch(function () { return null; });
-  })).then(function (results) {
-    try { window.localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); }
-    catch (error) {}
-    sortTrending();
-    if (status) {
-      var updated = results.filter(Boolean).length;
-      status.textContent = updated ? 'Live from GitHub' : 'Stars unavailable';
-    }
-  });
 })();
 </script>

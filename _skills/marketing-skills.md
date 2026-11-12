@@ -1,5 +1,5 @@
 ---
-title: "Marketing Skills"
+title: "Marketing Skills Toolkit"
 slug: marketing-skills
 category: business
 date: 2026-10-22

@@ -63,7 +63,7 @@ seo:
           <span class="tag-mono tag-mono--accent">{{ count }} {% if count == 1 %}prompt{% else %}prompts{% endif %}</span>
           <h2 class="category-card__name">{{ category.label }}</h2>
           <p class="body-sm text-body">{{ category.blurb }}</p>
-          <a class="link-inline body-sm" href="{{ '/prompts/' | relative_url }}#library-search">Browse {{ category.label }}</a>
+          <a class="link-inline body-sm" href="{{ '/prompts/?category=' | append: category.slug | relative_url }}">Browse {{ category.label }}</a>
         </article>
         {%- endif -%}
       {%- endfor -%}

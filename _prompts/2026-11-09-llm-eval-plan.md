@@ -9,7 +9,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [prompt-optimizer, code-review-audit, chat-with-your-data]
+related: [prompt-rewrite, code-review-audit, chat-with-your-data]
 skills: [eval-harness-writer, prompt-optimizer]
 art: terminal
 tags: [evaluation, llm, testing, prompts, quality, regression, ai]

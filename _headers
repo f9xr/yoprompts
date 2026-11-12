@@ -1,0 +1,19 @@
+# Response headers for hosts that read _headers (Netlify, Cloudflare Pages).
+# GitHub Pages ignores this file: _includes/head.html carries the equivalent
+# <link> discovery relations, but security headers cannot be set there.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  X-Frame-Options: SAMEORIGIN
+  Cache-Control: public, max-age=600
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/sw.js
+  Cache-Control: no-cache
+
+/search.json
+  Cache-Control: public, max-age=600

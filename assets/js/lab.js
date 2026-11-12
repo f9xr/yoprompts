@@ -14,16 +14,54 @@
   }
 
   /* Tabs */
-  each(document.querySelectorAll('[data-lab-tab]'), function (button) {
-    on(button, 'click', function () {
-      var target = button.getAttribute('data-lab-tab');
-      each(document.querySelectorAll('[data-lab-tab]'), function (b) {
-        b.classList.toggle('is-active', b === button);
-        b.setAttribute('aria-selected', b === button ? 'true' : 'false');
-      });
-      each(document.querySelectorAll('[data-lab-panel]'), function (panel) {
-        panel.hidden = panel.getAttribute('data-lab-panel') !== target;
-      });
+  var labTabs = Array.prototype.slice.call(document.querySelectorAll('[data-lab-tab]'));
+  var labPanels = Array.prototype.slice.call(document.querySelectorAll('[data-lab-panel]'));
+
+  function activateLabTab(tab, moveFocus) {
+    var name = tab.getAttribute('data-lab-tab');
+
+    labTabs.forEach(function (other) {
+      var active = other === tab;
+      other.classList.toggle('is-active', active);
+      other.setAttribute('aria-selected', active ? 'true' : 'false');
+      other.setAttribute('tabindex', active ? '0' : '-1');
+    });
+
+    labPanels.forEach(function (panel) {
+      panel.hidden = panel.getAttribute('data-lab-panel') !== name;
+    });
+
+    if (moveFocus) { tab.focus(); }
+  }
+
+  labTabs.forEach(function (tab, index) {
+    var name = tab.getAttribute('data-lab-tab');
+    var panel = document.querySelector('[data-lab-panel="' + name + '"]');
+
+    if (!tab.id) { tab.id = 'lab-tab-' + name; }
+    tab.setAttribute('tabindex', tab.classList.contains('is-active') ? '0' : '-1');
+
+    if (panel) {
+      if (!panel.id) { panel.id = 'lab-panel-' + name; }
+      tab.setAttribute('aria-controls', panel.id);
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', tab.id);
+    }
+
+    on(tab, 'click', function () { activateLabTab(tab, false); });
+
+    on(tab, 'keydown', function (event) {
+      var next = null;
+
+      if (event.key === 'ArrowRight') { next = labTabs[(index + 1) % labTabs.length]; }
+      else if (event.key === 'ArrowLeft') { next = labTabs[(index - 1 + labTabs.length) % labTabs.length]; }
+      else if (event.key === 'Home') { next = labTabs[0]; }
+      else if (event.key === 'End') { next = labTabs[labTabs.length - 1]; }
+
+      if (next) {
+        event.preventDefault();
+        activateLabTab(next, true);
+      }
     });
   });
 
@@ -243,13 +281,41 @@
     result.textContent = 'DOM query time: ' + elapsed + 'ms\nFilterable items: ' + items + '\nImages: ' + images + '\nScripts: ' + scripts + '\nStylesheets: ' + styles + (nav ? '\nDOMContentLoaded: ' + Math.round(nav.domContentLoadedEventEnd) + 'ms\nLoad: ' + Math.round(nav.loadEventEnd) + 'ms' : '');
   });
 
-  /* WebLLM playground (best effort) */
+  /* WebLLM playground (best effort). The library is megabytes, so it is
+     fetched the first time a model is requested rather than on page load. */
+  var webllmPromise = null;
+
+  function loadWebLLM() {
+    if (window.webllm) { return Promise.resolve(window.webllm); }
+    if (webllmPromise) { return webllmPromise; }
+
+    webllmPromise = new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.79/lib/index.js';
+      script.integrity = 'sha384-Q87isGB7ZT92VY/3jVjbljfb+jCqppV/NzJNhkw8CZ6Z5xLc00P13EpAfPpco3Cv';
+      script.crossOrigin = 'anonymous';
+      script.onload = function () { resolve(window.webllm); };
+      script.onerror = function () { reject(new Error('webllm-unavailable')); };
+      document.head.appendChild(script);
+    });
+
+    return webllmPromise;
+  }
   var playLoad = document.getElementById('play-load');
   var playRun = document.getElementById('play-run');
   var playStatus = document.getElementById('play-status');
   var playResult = document.getElementById('play-result');
   var engine = null;
   on(playLoad, 'click', async function () {
+    if (playStatus) { playStatus.textContent = 'Loading WebLLM...'; }
+
+    try {
+      await loadWebLLM();
+    } catch (error) {
+      if (playStatus) { playStatus.textContent = 'WebLLM could not be loaded. Check your network.'; }
+      return;
+    }
+
     if (typeof window.webllm === 'undefined') {
       if (playStatus) { playStatus.textContent = 'WebLLM not loaded or WebGPU unavailable.'; }
       return;

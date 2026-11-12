@@ -1,5 +1,5 @@
 ---
-title: "Social Media Skills"
+title: "Social Media Skills Toolkit"
 slug: social-media-skills
 category: social
 date: 2026-10-22

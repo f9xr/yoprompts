@@ -35,9 +35,7 @@ email: "hello@f9xr.org"
 #    with no username, while the card type itself is read from
 #    `page.twitter.card`. Setting the card per-page gets summary_large_image
 #    without inventing a handle.
-logo: "https://f9xr.org/logo.webp"
-
-rss: rss
+logo: "https://f9xr.org/yoprompts/assets/img/logo.webp"
 
 markdown: kramdown
 kramdown:
@@ -118,6 +116,5 @@ exclude:
   - todo.txt
   - all-urls.txt
   - .kilo
-  - validate_yoprompts.py
-  - audit_site.py
-  - build_specimen.py
+  - .github
+  - scripts
