@@ -120,6 +120,7 @@ https://f9xr.org/yoprompts/ai-agent-skills/web-performance-audit/
 https://f9xr.org/yoprompts/ai-agent-skills/workflow-automator/
 https://f9xr.org/yoprompts/ai-agent-skills/writing-guidelines/
 https://f9xr.org/yoprompts/ai-agent-skills/xlsx/
+https://f9xr.org/yoprompts/auth.html
 https://f9xr.org/yoprompts/categories/
 https://f9xr.org/yoprompts/contact/
 https://f9xr.org/yoprompts/cookies/
