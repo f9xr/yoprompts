@@ -16,7 +16,7 @@ usage: |
 
   Idea and context:
   [paste notes]
-related_skills: [customer-interview-synthesis, meeting-to-action, pricing-strategy]
+related_skills: [customer-interview-synthesis, meeting-to-action, pricing]
 skill_file: |
   ---
   name: prd-writer

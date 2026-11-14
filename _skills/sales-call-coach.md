@@ -16,7 +16,7 @@ usage: |
 
   Call and deal stage:
   [paste transcript]
-related_skills: [cold-email, customer-interview-synthesis, pricing-strategy]
+related_skills: [cold-email, customer-interview-synthesis, pricing]
 skill_file: |
   ---
   name: sales-call-coach

@@ -54,12 +54,13 @@ layout: default
     </div>
 
     {%- if category_skills.size > 0 %}
-    <div class="grid grid-3">
+    <div class="grid grid-3" id="skill-category-grid" data-paginate data-page-size="12">
       {%- for skill in category_skills -%}
         {%- assign delay_class = "reveal--" | append: forloop.index -%}
         {% include skill-card.html item=skill heading_tag="h2" delay=delay_class %}
       {%- endfor -%}
     </div>
+    <nav class="pagination" data-pagination="skill-category-grid" aria-label="Skill pagination"></nav>
     {%- else %}
     <p class="body-sm">No skills in this category yet.</p>
     {%- endif %}

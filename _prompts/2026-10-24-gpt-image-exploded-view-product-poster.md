@@ -9,7 +9,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [image-brief-builder, product-photo-prompt]
+related: [image-brief-builder, studio-product-photo]
 art: workflow
 tags: [gpt-image, exploded-view, product-diagram, poster, 3d-render]
 excerpt: "Generate a high-tech exploded view diagram poster with labeled components, callouts, and promotional text for VR/headsets or electronics."

@@ -9,7 +9,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [seo-content-strategy, seo-brief-writer]
+related: [seo-content-strategy, programmatic-seo-pages]
 art: workflow
 tags: [seo, blog, outline, content, ranking]
 excerpt: "Builds blog outlines designed to rank in search results."

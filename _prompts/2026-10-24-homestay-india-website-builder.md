@@ -12,7 +12,7 @@ read_time: 12
 seo:
   type: "WebPage"
 picks: [essential]
-related: [website-code-audit, fullstack-api-builder, seo-brief-writer]
+related: [website-code-audit, technical-spec, seo-content-strategy]
 art: terminal
 tags: [nextjs, typescript, tailwind, shadcn-ui, zod, supabase, razorpay, stripe, resend, payments, webhooks, india, inr, ecommerce, security, accessibility]
 excerpt: "Generate a secure, working Next.js App Router site for an India-based Homestay with INR pricing, dual payment gateways (Razorpay + Stripe), verified webhooks, idempotent order handling, and email flows."

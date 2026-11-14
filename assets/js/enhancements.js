@@ -525,29 +525,26 @@
     if (!items.length) { return; }
 
     var current = parseInt(container.getAttribute('data-page'), 10) || 1;
-    var visible = items.filter(function (item) {
-      return !item.classList.contains('is-filtered-out') &&
-        item.style.display !== 'none' &&
-        !item.classList.contains('is-page-hidden');
+
+    /* Count everything the filters left in play. Items hidden by a previous
+       page still belong to the total: counting only the cards currently on
+       screen makes `pages` collapse to 1 on the second pass, at which point
+       the nav is emptied and every card reappears. */
+    var matched = items.filter(function (item) {
+      return !item.classList.contains('is-filtered-out') && item.style.display !== 'none';
     });
 
-    var pages = Math.max(1, Math.ceil(visible.length / size));
+    var pages = Math.max(1, Math.ceil(matched.length / size));
     if (current > pages) { current = pages; }
     container.setAttribute('data-page', String(current));
 
-    items.forEach(function (item) {
-      item.classList.remove('is-page-hidden');
-      if (item.style.display === 'none' || item.classList.contains('is-filtered-out')) { return; }
-    });
+    items.forEach(function (item) { item.classList.remove('is-page-hidden'); });
 
     var start = (current - 1) * size;
-    var shown = 0;
-    items.forEach(function (item) {
-      if (item.style.display === 'none' || item.classList.contains('is-filtered-out')) { return; }
-      if (shown < start || shown >= start + size) {
+    matched.forEach(function (item, index) {
+      if (index < start || index >= start + size) {
         item.classList.add('is-page-hidden');
       }
-      shown += 1;
     });
 
     var nav = document.querySelector('[data-pagination="' + container.id + '"]');

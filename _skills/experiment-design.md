@@ -16,7 +16,7 @@ usage: |
 
   Question and context:
   [describe change, audience, and baseline]
-related_skills: [data-story, product-analytics, competitor-teardown]
+related_skills: [data-story, analytics-tracking-plan, competitor-teardown]
 skill_file: |
   ---
   name: experiment-design

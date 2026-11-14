@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Stub for a URL that moved. Kept out of the index: the canonical points at
+       the live page, and the redirect is a courtesy for old inbound links. -->
+  <title>{{ page.title | append: " | " | append: site.title }}</title>
+  <meta name="description" content="{{ page.description | escape }}">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="{{ site.url }}{{ page.redirect_to | relative_url }}">
+
+  <!-- Works without JavaScript, and without depending on GitHub Pages doing
+       anything clever: a static file at the old path that forwards itself. -->
+  <meta http-equiv="refresh" content="0; url={{ page.redirect_to | relative_url }}">
+  <script>location.replace({{ page.redirect_to | relative_url | jsonify }});</script>
+</head>
+<body>
+  <h1>{{ page.title }}</h1>
+  <p>
+    This page moved. If you are not redirected,
+    <a href="{{ page.redirect_to | relative_url }}">continue to the new page</a>.
+  </p>
+</body>
+</html>

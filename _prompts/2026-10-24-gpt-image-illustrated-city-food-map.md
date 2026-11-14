@@ -9,7 +9,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [gpt-image-exploded-view-product-poster, infographic-prompt-builder]
+related: [gpt-image-exploded-view-product-poster, viral-data-story-chart]
 art: workflow
 tags: [gpt-image, map, food, illustration, infographic, travel]
 excerpt: "Generate a hand-drawn watercolor-style city food map with numbered food spots, landmarks, legend, and cute mascot."
