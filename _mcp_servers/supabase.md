@@ -1,5 +1,6 @@
 ---
 title: "Supabase MCP"
+title_tag: "Supabase MCP server: setup, config and tools"
 slug: supabase
 excerpt: "Connect an agent to a Supabase project for schema inspection, SQL queries, migrations, edge functions, and logs."
 creator: "Supabase"

@@ -1,5 +1,6 @@
 ---
 title: "Keep the same character in every image"
+title_tag: "Keep the same character in every image — AI prompt"
 slug: consistent-character-series
 category: images
 category_label: Image Generation

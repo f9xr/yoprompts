@@ -1,5 +1,6 @@
 ---
 title: "Conversion Rate Optimization"
+title_tag: "Conversion Rate Optimization — AI agent skill for Marketing"
 slug: cro
 category: marketing
 date: 2026-10-23

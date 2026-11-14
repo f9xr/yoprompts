@@ -1,5 +1,6 @@
 ---
 title: "Write a case study with real proof"
+title_tag: "Write a case study with real proof — Marketing AI prompt"
 slug: viral-case-study
 category: marketing
 category_label: Marketing

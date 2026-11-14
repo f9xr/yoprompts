@@ -1,5 +1,6 @@
 ---
 title: "Local SEO"
+title_tag: "Local SEO — AI agent skill for SEO"
 slug: seo-local
 category: seo
 date: 2026-10-23

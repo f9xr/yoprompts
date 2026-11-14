@@ -1,5 +1,6 @@
 ---
 title: "Experiment Design"
+title_tag: "Experiment Design — AI agent skill for Data & Analytics"
 slug: experiment-design
 category: data
 date: 2026-11-05

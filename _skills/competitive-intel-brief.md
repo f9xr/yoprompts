@@ -1,5 +1,6 @@
 ---
 title: "Competitive Intel Brief"
+title_tag: "Competitive Intel Brief — AI agent skill for Research"
 slug: competitive-intel-brief
 category: research
 date: 2026-11-12

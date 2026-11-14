@@ -1,5 +1,6 @@
 ---
 title: "ClickHouse MCP Server"
+title_tag: "ClickHouse MCP server: setup, config and tools"
 slug: clickhouse
 excerpt: "Runs read-only SQL against ClickHouse, lists databases and tables, and keeps writes behind explicit opt-in flags."
 creator: "ClickHouse"

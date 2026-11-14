@@ -1,5 +1,6 @@
 ---
 title: "Write a faceless short video script that holds"
+title_tag: "Write a faceless short video script that holds — AI prompt"
 slug: faceless-short-script
 category: social
 category_label: Social Media

@@ -1,5 +1,6 @@
 ---
 title: "Datadog MCP Server"
+title_tag: "Datadog MCP server: setup, config and tools"
 slug: datadog
 excerpt: "Datadog's managed MCP server for logs, metrics, traces, monitors, dashboards, incidents, and security signals from an agent."
 creator: "Datadog"

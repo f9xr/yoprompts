@@ -1,5 +1,6 @@
 ---
 title: "Write an SLO your on-call engineer can act on"
+title_tag: "Write an SLO your on-call engineer can act on — AI prompt"
 slug: slo-and-error-budget
 category: coding
 category_label: Coding

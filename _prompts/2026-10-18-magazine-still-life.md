@@ -1,5 +1,6 @@
 ---
 title: "Restage a phone photo as a magazine still life"
+title_tag: "Restage a phone photo as a magazine still life — AI prompt"
 slug: magazine-still-life
 category: images
 category_label: Image Generation

@@ -1,5 +1,6 @@
 ---
 title: "API Docs Writer"
+title_tag: "API Docs Writer — AI agent skill for Content"
 slug: api-docs-writer
 category: content
 date: 2026-11-04

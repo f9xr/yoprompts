@@ -1,5 +1,6 @@
 ---
 title: "Figma MCP"
+title_tag: "Figma MCP server: setup, config and tools"
 slug: figma
 excerpt: "Figma's official server for translating designs to code and extracting variables, components, and design tokens."
 creator: "Figma"

@@ -1,5 +1,6 @@
 ---
 title: "Write release notes people actually read"
+title_tag: "Write release notes people actually read — AI prompt"
 slug: release-notes
 category: writing
 category_label: AI Writing

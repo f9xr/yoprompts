@@ -1,5 +1,6 @@
 ---
 title: "DPA Review"
+title_tag: "DPA Review — AI agent skill for Legal"
 slug: dpa-review
 category: legal
 date: 2026-11-12

@@ -1,5 +1,6 @@
 ---
 title: "Account Plan Writer"
+title_tag: "Account Plan Writer — AI agent skill for Sales"
 slug: account-plan-writer
 category: sales
 date: 2026-11-12

@@ -1,5 +1,6 @@
 ---
 title: "Write email subject lines people open"
+title_tag: "Write email subject lines people open — AI prompt"
 slug: viral-email-subject-lines
 category: marketing
 category_label: Marketing

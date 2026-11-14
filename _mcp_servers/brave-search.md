@@ -1,5 +1,6 @@
 ---
 title: "Brave Search MCP"
+title_tag: "Brave Search MCP server: setup, config and tools"
 slug: brave-search
 excerpt: "Brave's privacy-focused Search API exposed as an MCP server for web and local search results."
 creator: "Brave"

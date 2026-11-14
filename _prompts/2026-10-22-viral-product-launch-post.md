@@ -1,5 +1,6 @@
 ---
 title: "Write a launch post that does not sound like an ad"
+title_tag: "Write a launch post that does not sound like an ad"
 slug: viral-product-launch-post
 category: marketing
 category_label: Marketing

@@ -1,5 +1,6 @@
 ---
 title: "React Composition Patterns"
+title_tag: "React Composition Patterns — AI agent skill for Design"
 slug: composition-patterns
 category: engineering
 date: 2026-10-23

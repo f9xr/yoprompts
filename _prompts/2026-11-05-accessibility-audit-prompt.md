@@ -1,5 +1,6 @@
 ---
 title: "Audit a page for WCAG 2.2 issues"
+title_tag: "Audit a page for WCAG 2.2 issues — Coding AI prompt"
 slug: accessibility-audit-prompt
 category: coding
 category_label: Coding

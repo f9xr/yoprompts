@@ -1,5 +1,6 @@
 ---
 title: "Build a complete SEO content strategy"
+title_tag: "Build a complete SEO content strategy — SEO AI prompt"
 slug: seo-content-strategy
 category: seo
 category_label: SEO

@@ -1,5 +1,6 @@
 ---
 title: "Localization Review"
+title_tag: "Localization Review — AI agent skill for Content"
 slug: localization-review
 category: content
 date: 2026-11-05

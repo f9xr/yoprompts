@@ -1,5 +1,6 @@
 ---
 title: "Generate viral AI image prompts"
+title_tag: "Generate viral AI image prompts — AI prompt"
 slug: ai-image-prompt-generator
 category: images
 category_label: Image Generation

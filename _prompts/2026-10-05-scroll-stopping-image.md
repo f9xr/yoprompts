@@ -1,5 +1,6 @@
 ---
 title: "Make a ChatGPT image that stops the scroll"
+title_tag: "Make a ChatGPT image that stops the scroll — AI prompt"
 slug: scroll-stopping-image
 category: images
 category_label: Image Generation

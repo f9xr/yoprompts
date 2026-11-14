@@ -1,5 +1,6 @@
 ---
 title: "Unit Test Writer"
+title_tag: "Unit Test Writer — AI agent skill for Engineering"
 slug: unit-test-writer
 category: engineering
 date: 2026-11-05

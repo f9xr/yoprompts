@@ -1,5 +1,6 @@
 ---
 title: "Run a mock interview and get it scored"
+title_tag: "Run a mock interview and get it scored — Career AI prompt"
 slug: mock-interview-loop
 category: career
 category_label: Career

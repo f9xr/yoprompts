@@ -1,5 +1,6 @@
 ---
 title: "Decide what to charge and who it is for"
+title_tag: "Decide what to charge and who it is for — AI prompt"
 slug: pricing-and-positioning
 category: business
 category_label: Business

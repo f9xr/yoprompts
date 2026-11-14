@@ -1,5 +1,6 @@
 ---
 title: "Kubernetes MCP Server"
+title_tag: "Kubernetes MCP server: setup, config and tools"
 slug: kubernetes
 excerpt: "Let an agent inspect pods, deployments, events, and logs in a Kubernetes cluster through the local kubeconfig context."
 creator: "Flux159"

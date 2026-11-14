@@ -1,5 +1,6 @@
 ---
 title: "Web Artifacts Builder"
+title_tag: "Web Artifacts Builder — AI agent skill for Engineering"
 slug: web-artifacts-builder
 category: engineering
 date: 2026-10-28

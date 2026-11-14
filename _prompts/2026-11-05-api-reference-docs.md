@@ -1,5 +1,6 @@
 ---
 title: "Write API reference docs a developer can use"
+title_tag: "Write API reference docs a developer can use — AI prompt"
 slug: api-reference-docs
 category: coding
 category_label: Coding

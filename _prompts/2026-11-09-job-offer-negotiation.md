@@ -1,5 +1,6 @@
 ---
 title: "Negotiate a job offer without guessing"
+title_tag: "Negotiate a job offer without guessing — Career AI prompt"
 slug: job-offer-negotiation
 category: career
 category_label: Career

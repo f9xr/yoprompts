@@ -1,5 +1,6 @@
 ---
 title: "Snowflake MCP Server"
+title_tag: "Snowflake MCP server: setup, config and tools"
 slug: snowflake
 excerpt: "Snowflake's managed MCP server, created as a Snowflake object, exposing semantic views, Cortex Search, and SQL tools over an account-scoped URL."
 creator: "Snowflake"

@@ -1,5 +1,6 @@
 ---
 title: "Budget Forecast"
+title_tag: "Budget Forecast — AI agent skill for Finance"
 slug: budget-forecast
 category: finance
 date: 2026-11-12

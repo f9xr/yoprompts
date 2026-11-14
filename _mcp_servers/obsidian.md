@@ -1,5 +1,6 @@
 ---
 title: "Obsidian MCP Server"
+title_tag: "Obsidian MCP server: setup, config and tools"
 slug: obsidian
 excerpt: "Give an agent access to an Obsidian vault for note search, reading, and creation through the local REST API plugin."
 creator: "MarkusPfundstein"

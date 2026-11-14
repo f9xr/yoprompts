@@ -1,5 +1,6 @@
 ---
 title: "Frontend Design"
+title_tag: "Frontend Design — AI agent skill for Design"
 slug: frontend-design
 category: design
 date: 2026-10-23

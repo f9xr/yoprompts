@@ -1,5 +1,6 @@
 ---
 title: "Neo4j Cypher MCP"
+title_tag: "Neo4j Cypher MCP server: setup, config and tools"
 slug: neo4j
 excerpt: "Turns natural language into Cypher queries and runs them against a Neo4j graph, with schema inspection built in."
 creator: "Neo4j Labs"

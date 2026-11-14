@@ -1,5 +1,6 @@
 ---
 title: "Plan a launch week without the noise"
+title_tag: "Plan a launch week without the noise — Marketing AI prompt"
 slug: viral-launch-day-plan
 category: marketing
 category_label: Marketing

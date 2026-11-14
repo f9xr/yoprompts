@@ -1,5 +1,6 @@
 ---
 title: "Replicate any product demo video with your product"
+title_tag: "Replicate any product demo video with your product"
 slug: demo-video-replica
 category: images
 category_label: Image Generation

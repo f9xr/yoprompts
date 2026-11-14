@@ -1,5 +1,6 @@
 ---
 title: "SaaS Spend Audit"
+title_tag: "SaaS Spend Audit — AI agent skill for Finance"
 slug: saas-spend-audit
 category: finance
 date: 2026-11-12

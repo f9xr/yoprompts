@@ -1,5 +1,6 @@
 ---
 title: "Canvas Design"
+title_tag: "Canvas Design — AI agent skill for Design"
 slug: canvas-design
 category: design
 date: 2026-10-23

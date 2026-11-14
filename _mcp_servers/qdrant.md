@@ -1,5 +1,6 @@
 ---
 title: "Qdrant MCP Server"
+title_tag: "Qdrant MCP server: setup, config and tools"
 slug: qdrant
 excerpt: "Adds semantic memory to an agent by storing and retrieving notes in a Qdrant vector collection."
 creator: "Qdrant"

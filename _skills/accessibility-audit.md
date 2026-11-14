@@ -1,5 +1,6 @@
 ---
 title: "Accessibility Audit"
+title_tag: "Accessibility Audit — AI agent skill for Design"
 slug: accessibility-audit
 category: design
 date: 2026-11-04

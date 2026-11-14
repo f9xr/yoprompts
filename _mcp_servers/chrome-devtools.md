@@ -1,5 +1,6 @@
 ---
 title: "Chrome DevTools MCP"
+title_tag: "Chrome DevTools MCP server: setup, config and tools"
 slug: chrome-devtools
 excerpt: "Let an agent drive a real Chrome instance: inspect the DOM, read console and network activity, and record performance traces."
 creator: "Chrome DevTools"

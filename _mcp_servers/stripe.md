@@ -1,5 +1,6 @@
 ---
 title: "Stripe MCP"
+title_tag: "Stripe MCP server: setup, config and tools"
 slug: stripe
 excerpt: "Stripe's hosted server for inspecting customers, payments, invoices, and products, with documentation search built in."
 creator: "Stripe"

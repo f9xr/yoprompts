@@ -1,5 +1,6 @@
 ---
 title: "Vercel CLI with Tokens"
+title_tag: "Vercel CLI with Tokens — AI agent skill for Engineering"
 slug: vercel-cli-with-tokens
 category: engineering
 date: 2026-10-23

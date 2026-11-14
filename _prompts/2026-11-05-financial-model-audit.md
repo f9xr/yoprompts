@@ -1,5 +1,6 @@
 ---
 title: "Audit a financial model before the board sees it"
+title_tag: "Audit a financial model before the board sees it"
 slug: financial-model-audit
 category: business
 category_label: Business

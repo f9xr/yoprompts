@@ -1,5 +1,6 @@
 ---
 title: "Reboot a photo into any decade"
+title_tag: "Reboot a photo into any decade — AI prompt"
 slug: decade-reboot-selfie
 category: images
 category_label: Image Generation

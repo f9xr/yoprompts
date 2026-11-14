@@ -1,5 +1,6 @@
 ---
 title: "LinkedIn Post Writer"
+title_tag: "LinkedIn Post Writer — AI agent skill for Social Media"
 slug: post-writer
 category: social
 date: 2026-10-23

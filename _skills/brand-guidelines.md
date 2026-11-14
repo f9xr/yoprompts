@@ -1,5 +1,6 @@
 ---
 title: "Brand Guidelines"
+title_tag: "Brand Guidelines — AI agent skill for Design"
 slug: brand-guidelines
 category: design
 date: 2026-10-28

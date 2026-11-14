@@ -1,5 +1,6 @@
 ---
 title: "Analytics Tracking Plan"
+title_tag: "Analytics Tracking Plan — AI agent skill"
 slug: analytics-tracking-plan
 category: data
 date: 2026-11-09

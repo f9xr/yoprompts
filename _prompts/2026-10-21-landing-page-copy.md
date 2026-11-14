@@ -1,5 +1,6 @@
 ---
 title: "Write a landing page that sells"
+title_tag: "Write a landing page that sells — Marketing AI prompt"
 slug: landing-page-copy
 category: marketing
 category_label: Marketing

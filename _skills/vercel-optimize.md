@@ -1,5 +1,6 @@
 ---
 title: "Vercel Optimize"
+title_tag: "Vercel Optimize — AI agent skill for Engineering"
 slug: vercel-optimize
 category: engineering
 date: 2026-10-23

@@ -1,5 +1,6 @@
 ---
 title: "Shoot a disposable camera party photo"
+title_tag: "Shoot a disposable camera party photo — AI prompt"
 slug: disposable-camera-party-photo
 category: images
 category_label: Image Generation

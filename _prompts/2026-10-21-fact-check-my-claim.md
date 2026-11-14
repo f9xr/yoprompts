@@ -1,5 +1,6 @@
 ---
 title: "Check a claim before you repeat it"
+title_tag: "Check a claim before you repeat it — Research AI prompt"
 slug: fact-check-my-claim
 category: research
 category_label: Research

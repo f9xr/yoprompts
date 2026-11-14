@@ -1,5 +1,6 @@
 ---
 title: "Contract Review"
+title_tag: "Contract Review — AI agent skill for Legal"
 slug: contract-review
 category: legal
 date: 2026-11-05

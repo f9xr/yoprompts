@@ -1,5 +1,6 @@
 ---
 title: "AI Search Optimization"
+title_tag: "AI Search Optimization — AI agent skill for SEO"
 slug: seo-geo
 category: seo
 date: 2026-10-23

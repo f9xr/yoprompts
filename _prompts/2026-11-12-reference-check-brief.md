@@ -1,5 +1,6 @@
 ---
 title: "Write a reference-check brief in ten minutes"
+title_tag: "Write a reference-check brief in ten minutes — AI prompt"
 slug: reference-check-brief
 category: career
 category_label: Career

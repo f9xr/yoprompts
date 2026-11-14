@@ -1,5 +1,6 @@
 ---
 title: "Package a YouTube video people click"
+title_tag: "Package a YouTube video people click — AI prompt"
 slug: viral-youtube-video-package
 category: social
 category_label: Social Media

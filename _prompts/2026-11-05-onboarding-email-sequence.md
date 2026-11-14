@@ -1,5 +1,6 @@
 ---
 title: "Write an onboarding email sequence that gets one thing done"
+title_tag: "Write an onboarding email sequence that gets one thing done"
 slug: onboarding-email-sequence
 category: marketing
 category_label: Marketing

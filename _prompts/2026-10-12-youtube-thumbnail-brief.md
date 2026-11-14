@@ -1,5 +1,6 @@
 ---
 title: "Design a thumbnail people cannot scroll past"
+title_tag: "Design a thumbnail people cannot scroll past — AI prompt"
 slug: youtube-thumbnail-brief
 category: images
 category_label: Image Generation

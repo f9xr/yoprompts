@@ -1,5 +1,6 @@
 ---
 title: "Research Synthesis"
+title_tag: "Research Synthesis — AI agent skill for Research"
 slug: research-synthesis
 category: research
 date: 2026-11-01

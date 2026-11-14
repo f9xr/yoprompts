@@ -1,5 +1,6 @@
 ---
 title: "Shopify Dev MCP"
+title_tag: "Shopify Dev MCP server: setup, config and tools"
 slug: shopify
 excerpt: "Lets an agent search Shopify developer documentation, introspect the Admin GraphQL schema, and validate Liquid and extension code."
 creator: "Shopify"

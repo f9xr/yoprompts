@@ -1,5 +1,6 @@
 ---
 title: "Make AI writing sound like a person wrote it"
+title_tag: "Make AI writing sound like a person wrote it — AI prompt"
 slug: humanize-ai-text
 category: writing
 category_label: AI Writing

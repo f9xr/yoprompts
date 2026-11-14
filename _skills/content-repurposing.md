@@ -1,5 +1,6 @@
 ---
 title: "Content Repurposing"
+title_tag: "Content Repurposing — AI agent skill for Content"
 slug: content-repurposing
 category: content
 date: 2026-11-01

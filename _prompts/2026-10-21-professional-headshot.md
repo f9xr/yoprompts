@@ -1,5 +1,6 @@
 ---
 title: "Turn a selfie into a professional headshot"
+title_tag: "Turn a selfie into a professional headshot — AI prompt"
 slug: professional-headshot
 category: images
 category_label: Image Generation

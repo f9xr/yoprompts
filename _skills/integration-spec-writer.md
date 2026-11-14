@@ -1,5 +1,6 @@
 ---
 title: "Integration Spec Writer"
+title_tag: "Integration Spec Writer — AI agent skill for Automation"
 slug: integration-spec-writer
 category: automation
 date: 2026-11-12

@@ -1,5 +1,6 @@
 ---
 title: "SEO Codebase Audit"
+title_tag: "SEO Codebase Audit — AI agent skill for SEO"
 slug: seo-codebase-audit
 category: seo
 date: 2026-10-22

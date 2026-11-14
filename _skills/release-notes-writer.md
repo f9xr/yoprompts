@@ -1,5 +1,6 @@
 ---
 title: "Release Notes Writer"
+title_tag: "Release Notes Writer — AI agent skill for Engineering"
 slug: release-notes-writer
 category: engineering
 date: 2026-11-09

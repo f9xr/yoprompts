@@ -1,5 +1,6 @@
 ---
 title: "Social Media Skills Toolkit"
+title_tag: "Social Media Skills Toolkit — AI agent skill"
 slug: social-media-skills
 category: social
 date: 2026-10-22

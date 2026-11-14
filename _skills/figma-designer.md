@@ -1,5 +1,6 @@
 ---
 title: "Figma Designer"
+title_tag: "Figma Designer — AI agent skill for Design"
 slug: figma-designer
 category: design
 date: 2026-11-04

@@ -1,5 +1,6 @@
 ---
 title: "Review a contract before you sign it"
+title_tag: "Review a contract before you sign it — Business AI prompt"
 slug: contract-review-brief
 category: business
 category_label: Business

@@ -1,5 +1,6 @@
 ---
 title: "Awwwards MCP Server"
+title_tag: "Awwwards MCP server: setup, config and tools"
 slug: awwwards
 excerpt: "Free MIT MCP server that gives coding agents design inspiration from award-winning sites: screenshots, design DNA, motion capture, and build briefs."
 creator: "INSANE0777"

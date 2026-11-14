@@ -1,5 +1,6 @@
 ---
 title: "Human Article Writer"
+title_tag: "Human Article Writer — AI agent skill for Writing"
 slug: human-article-writer
 category: writing
 date: 2026-11-02

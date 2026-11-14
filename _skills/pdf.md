@@ -1,5 +1,6 @@
 ---
 title: "PDF"
+title_tag: "PDF — AI agent skill for Productivity"
 slug: pdf
 category: productivity
 date: 2026-10-28

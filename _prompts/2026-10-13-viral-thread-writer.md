@@ -1,5 +1,6 @@
 ---
 title: "Write a thread that earns the next post"
+title_tag: "Write a thread that earns the next post — AI prompt"
 slug: viral-thread-writer
 category: writing
 category_label: AI Writing

@@ -1,5 +1,6 @@
 ---
 title: "Pitch a conference talk that gets picked"
+title_tag: "Pitch a conference talk that gets picked — AI prompt"
 slug: viral-conference-talk-pitch
 category: career
 category_label: Career

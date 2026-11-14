@@ -1,5 +1,6 @@
 ---
 title: "Fix a prompt that keeps giving vague answers"
+title_tag: "Fix a prompt that keeps giving vague answers — AI prompt"
 slug: prompt-rewrite
 category: productivity
 category_label: Productivity

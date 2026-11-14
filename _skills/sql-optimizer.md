@@ -1,5 +1,6 @@
 ---
 title: "SQL Optimizer"
+title_tag: "SQL Optimizer — AI agent skill for Data & Analytics"
 slug: sql-optimizer
 category: data
 date: 2026-11-04

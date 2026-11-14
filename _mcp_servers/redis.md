@@ -1,5 +1,6 @@
 ---
 title: "Redis MCP Server"
+title_tag: "Redis MCP server: setup, config and tools"
 slug: redis
 excerpt: "Connect an agent to Redis for key inspection, cache debugging, and data structure exploration through Redis's official MCP server."
 creator: "Redis"

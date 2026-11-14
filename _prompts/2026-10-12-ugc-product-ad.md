@@ -1,5 +1,6 @@
 ---
 title: "Write a UGC ad people watch to the end"
+title_tag: "Write a UGC ad people watch to the end — AI prompt"
 slug: ugc-product-ad
 category: social
 category_label: Social Media

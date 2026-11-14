@@ -1,5 +1,6 @@
 ---
 title: "Claude SEO"
+title_tag: "Claude SEO — AI agent skill for SEO"
 slug: claude-seo
 category: seo
 date: 2026-10-22

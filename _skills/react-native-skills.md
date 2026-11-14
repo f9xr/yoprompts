@@ -1,5 +1,6 @@
 ---
 title: "React Native Skills"
+title_tag: "React Native Skills — AI agent skill for Engineering"
 slug: react-native-skills
 category: engineering
 date: 2026-10-23

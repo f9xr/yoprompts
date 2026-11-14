@@ -1,5 +1,6 @@
 ---
 title: "Vercel MCP"
+title_tag: "Vercel MCP server: setup, config and tools"
 slug: vercel
 excerpt: "Vercel's hosted MCP server for project and deployment management, logs, analytics, and documentation search."
 creator: "Vercel"

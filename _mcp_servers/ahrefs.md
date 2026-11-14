@@ -1,5 +1,6 @@
 ---
 title: "Ahrefs MCP"
+title_tag: "Ahrefs MCP server: setup, config and tools"
 slug: ahrefs
 excerpt: "Ahrefs' official remote server for keyword research, backlink profiles, competitor analysis, and rank tracking on paid plans."
 creator: "Ahrefs"

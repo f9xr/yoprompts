@@ -1,5 +1,6 @@
 ---
 title: "Create an illustrated city food map"
+title_tag: "Create an illustrated city food map — AI prompt"
 slug: gpt-image-illustrated-city-food-map
 category: images
 category_label: Image Generation

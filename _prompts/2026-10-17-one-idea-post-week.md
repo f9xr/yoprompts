@@ -1,5 +1,6 @@
 ---
 title: "Turn one idea into a week of social posts"
+title_tag: "Turn one idea into a week of social posts — AI prompt"
 slug: one-idea-post-week
 category: social
 category_label: Social Media

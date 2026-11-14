@@ -1,5 +1,6 @@
 ---
 title: "Google Search Console MCP"
+title_tag: "Google Search Console MCP server: setup, config and tools"
 slug: google-search-console
 excerpt: "A community Google Search Console server with search analytics, URL inspection, sitemap management, and period-over-period comparisons."
 creator: "Amin Forou"

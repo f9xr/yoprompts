@@ -1,5 +1,6 @@
 ---
 title: "Skill Creator"
+title_tag: "Skill Creator — AI agent skill for Skill Building"
 slug: skill-creator
 category: meta
 date: 2026-10-22

@@ -1,5 +1,6 @@
 ---
 title: "Financial Model Review"
+title_tag: "Financial Model Review — AI agent skill for Finance"
 slug: financial-model-review
 category: finance
 date: 2026-11-05

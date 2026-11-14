@@ -1,5 +1,6 @@
 ---
 title: "AWS MCP Server"
+title_tag: "AWS MCP server: setup, config and tools"
 slug: aws
 excerpt: "AWS's managed remote MCP server for API calls, documentation search, and official guidance, with IAM permissions and CloudTrail audit logging."
 creator: "AWS"

@@ -1,5 +1,6 @@
 ---
 title: "PPTX"
+title_tag: "PPTX — AI agent skill for Productivity"
 slug: pptx
 category: productivity
 date: 2026-10-28

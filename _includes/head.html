@@ -12,7 +12,32 @@
   <meta name="theme-color" content="#0a0a0a">
 
   <!-- Begin SEO -->
-  {%- seo -%}
+  {%- comment -%}
+    The visible H1 is `title`, which is written for a reader: "PDF",
+    "Security Review", "Roast my resume, then fix it". That is the right
+    heading and the wrong title tag, because nobody searches for "PDF".
+
+    `title_tag` in front matter is the query-shaped alternative: it carries
+    the page type and the category, so collection pages get tags like
+    "PDF — AI agent skill for Productivity" and "AWS MCP server: setup,
+    config and tools". The collection documents all declare one; any page
+    without it falls back to `title`, which is what every non-collection page
+    (and the homepage) already relied on.
+
+    jekyll-seo-tag 2.8.0 has no title override, so it is invoked with
+    `title=false` and the tag is rendered here instead. Everything else the
+    plugin emits (canonical, description, og:*, twitter:*, JSON-LD) is
+    unchanged, and og:title deliberately keeps the human title because it is
+    read by people in a share card, not by a search engine.
+  {%- endcomment -%}
+  {%- seo title=false -%}
+  {%- if page.title_tag -%}
+  <title>{{ page.title_tag | escape }} | {{ site.title }}</title>
+  {%- elsif page.url == "/" or page.title == nil or page.title == site.title -%}
+  <title>{{ site.title }} | {{ site.tagline }}</title>
+  {%- else -%}
+  <title>{{ page.title | escape }} | {{ site.title }}</title>
+  {%- endif -%}
   <!-- End SEO -->
 
   <!-- Opt-out hook. A 404 page should never be indexed, and

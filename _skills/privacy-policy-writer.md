@@ -1,5 +1,6 @@
 ---
 title: "Privacy Policy Writer"
+title_tag: "Privacy Policy Writer — AI agent skill for Legal"
 slug: privacy-policy-writer
 category: legal
 date: 2026-11-09

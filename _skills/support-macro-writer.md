@@ -1,5 +1,6 @@
 ---
 title: "Support Macro Writer"
+title_tag: "Support Macro Writer — AI agent skill for Support"
 slug: support-macro-writer
 category: support
 date: 2026-11-04

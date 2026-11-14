@@ -1,5 +1,6 @@
 ---
 title: "Sequential Thinking MCP"
+title_tag: "Sequential Thinking MCP server: setup, config and tools"
 slug: sequential-thinking
 excerpt: "Structured, revisable thought sequences that give an agent a scratchpad for multi-step reasoning."
 creator: "Anthropic"

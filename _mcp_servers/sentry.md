@@ -1,5 +1,6 @@
 ---
 title: "Sentry MCP"
+title_tag: "Sentry MCP server: setup, config and tools"
 slug: sentry
 excerpt: "Query Sentry issues, events, traces, and release health from an agent through Sentry's hosted MCP endpoint."
 creator: "Sentry"

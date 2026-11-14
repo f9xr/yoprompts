@@ -1,5 +1,6 @@
 ---
 title: "Ask your data a question and get an honest answer"
+title_tag: "Ask your data a question and get an honest answer"
 slug: chat-with-your-data
 category: data
 category_label: Data Analysis

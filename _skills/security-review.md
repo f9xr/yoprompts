@@ -1,5 +1,6 @@
 ---
 title: "Security Review"
+title_tag: "Security Review — AI agent skill for Security"
 slug: security-review
 category: security
 date: 2026-11-04

@@ -1,5 +1,6 @@
 ---
 title: "Roast my resume, then fix it"
+title_tag: "Roast my resume, then fix it — Career AI prompt"
 slug: resume-roast
 category: career
 category_label: Career

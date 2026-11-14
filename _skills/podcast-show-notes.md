@@ -1,5 +1,6 @@
 ---
 title: "Podcast Show Notes"
+title_tag: "Podcast Show Notes — AI agent skill for Content"
 slug: podcast-show-notes
 category: content
 date: 2026-11-05

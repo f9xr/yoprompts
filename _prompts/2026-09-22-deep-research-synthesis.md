@@ -1,5 +1,6 @@
 ---
 title: "Research any topic systematically"
+title_tag: "Research any topic systematically — Research AI prompt"
 slug: deep-research-synthesis
 category: research
 category_label: Research

@@ -1,5 +1,6 @@
 ---
 title: "Plan a carousel people save and share"
+title_tag: "Plan a carousel people save and share — AI prompt"
 slug: instagram-carousel-planner
 category: social
 category_label: Social Media

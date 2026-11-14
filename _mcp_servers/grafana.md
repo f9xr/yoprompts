@@ -1,5 +1,6 @@
 ---
 title: "Grafana MCP Server"
+title_tag: "Grafana MCP server: setup, config and tools"
 slug: grafana
 excerpt: "Lets an agent search dashboards, query Prometheus and Loki, inspect alerts, and read incidents in a Grafana instance."
 creator: "Grafana Labs"

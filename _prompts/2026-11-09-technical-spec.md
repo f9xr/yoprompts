@@ -1,5 +1,6 @@
 ---
 title: "Write a technical spec that prevents rework"
+title_tag: "Write a technical spec that prevents rework — AI prompt"
 slug: technical-spec
 category: coding
 category_label: Coding

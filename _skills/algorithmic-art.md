@@ -1,5 +1,6 @@
 ---
 title: "Algorithmic Art"
+title_tag: "Algorithmic Art — AI agent skill for Design"
 slug: algorithmic-art
 category: design
 date: 2026-10-28

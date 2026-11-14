@@ -1,5 +1,6 @@
 ---
 title: "Run a quality-first backlink outreach system"
+title_tag: "Run a quality-first backlink outreach system — AI prompt"
 slug: backlink-outreach-system
 category: seo
 category_label: SEO

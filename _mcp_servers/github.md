@@ -1,5 +1,6 @@
 ---
 title: "GitHub MCP Server"
+title_tag: "GitHub MCP server: setup, config and tools"
 slug: github
 excerpt: "Connect an agent to repositories, issues, pull requests, code search, and Actions through GitHub's official MCP server."
 creator: "GitHub"

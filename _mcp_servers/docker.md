@@ -1,5 +1,6 @@
 ---
 title: "Docker MCP Server"
+title_tag: "Docker MCP server: setup, config and tools"
 slug: docker
 excerpt: "Let an agent inspect containers, images, logs, and networks on the local Docker daemon so it can debug a stack without shell access."
 creator: "ckreiling"

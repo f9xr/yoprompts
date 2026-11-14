@@ -1,5 +1,6 @@
 ---
 title: "Competitor Teardown"
+title_tag: "Competitor Teardown — AI agent skill for Business"
 slug: competitor-teardown
 category: business
 date: 2026-11-01

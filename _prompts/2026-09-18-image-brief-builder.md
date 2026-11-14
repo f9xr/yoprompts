@@ -1,5 +1,6 @@
 ---
 title: "Turn an idea into an image model brief"
+title_tag: "Turn an idea into an image model brief — AI prompt"
 slug: image-brief-builder
 category: images
 category_label: Image Generation

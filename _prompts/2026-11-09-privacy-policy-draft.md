@@ -1,5 +1,6 @@
 ---
 title: "Draft a privacy policy that matches the product"
+title_tag: "Draft a privacy policy that matches the product"
 slug: privacy-policy-draft
 category: business
 category_label: Business

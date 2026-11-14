@@ -1,5 +1,6 @@
 ---
 title: "Write 30 hooks and find the one that travels"
+title_tag: "Write 30 hooks and find the one that travels — AI prompt"
 slug: viral-hook-generator
 category: social
 category_label: Social Media

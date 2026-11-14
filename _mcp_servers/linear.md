@@ -1,5 +1,6 @@
 ---
 title: "Linear MCP"
+title_tag: "Linear MCP server: setup, config and tools"
 slug: linear
 excerpt: "Linear's official remote server for issues, projects, cycles, comments, initiatives, and project updates."
 creator: "Linear"

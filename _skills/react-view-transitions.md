@@ -1,5 +1,6 @@
 ---
 title: "React View Transitions"
+title_tag: "React View Transitions — AI agent skill for Engineering"
 slug: react-view-transitions
 category: engineering
 date: 2026-10-23

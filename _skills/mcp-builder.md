@@ -1,5 +1,6 @@
 ---
 title: "MCP Builder"
+title_tag: "MCP Builder — AI agent skill for Skill Building"
 slug: mcp-builder
 category: meta
 date: 2026-10-23

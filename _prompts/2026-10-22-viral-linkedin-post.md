@@ -1,5 +1,6 @@
 ---
 title: "Write viral LinkedIn posts"
+title_tag: "Write viral LinkedIn posts — Social Media AI prompt"
 slug: viral-linkedin-post
 category: social
 category_label: Social Media

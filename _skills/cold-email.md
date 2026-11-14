@@ -1,5 +1,6 @@
 ---
 title: "Cold Email"
+title_tag: "Cold Email — AI agent skill for Marketing"
 slug: cold-email
 category: marketing
 date: 2026-10-23

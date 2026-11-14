@@ -1,5 +1,6 @@
 ---
 title: "Generate a brutal facial beauty report"
+title_tag: "Generate a brutal facial beauty report — AI prompt"
 slug: facial-beauty-report
 category: images
 category_label: Image Generation

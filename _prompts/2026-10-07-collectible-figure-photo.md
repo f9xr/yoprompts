@@ -1,5 +1,6 @@
 ---
 title: "Turn your photo into a collectible figure in its box"
+title_tag: "Turn your photo into a collectible figure in its box"
 slug: collectible-figure-photo
 category: images
 category_label: Image Generation

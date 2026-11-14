@@ -1,5 +1,6 @@
 ---
 title: "Make a slow SQL query fast without changing the answer"
+title_tag: "Make a slow SQL query fast without changing the answer"
 slug: sql-performance-tuning
 category: data
 category_label: Data Analysis

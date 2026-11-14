@@ -1,5 +1,6 @@
 ---
 title: "Marketing Skills Toolkit"
+title_tag: "Marketing Skills Toolkit — AI agent skill for Business"
 slug: marketing-skills
 category: business
 date: 2026-10-22

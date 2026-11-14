@@ -1,5 +1,6 @@
 ---
 title: "Tavily MCP"
+title_tag: "Tavily MCP server: setup, config and tools"
 slug: tavily
 excerpt: "AI-powered real-time web search and content extraction, available as a hosted MCP endpoint with OAuth or an API key."
 creator: "Tavily"

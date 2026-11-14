@@ -1,5 +1,6 @@
 ---
 title: "Firecrawl MCP"
+title_tag: "Firecrawl MCP server: setup, config and tools"
 slug: firecrawl
 excerpt: "Scrape and crawl sites with JavaScript rendering, PDF extraction, and structured data output for agent workflows."
 creator: "Firecrawl"

@@ -1,5 +1,6 @@
 ---
 title: "Customer Interview Synthesis"
+title_tag: "Customer Interview Synthesis — AI agent skill for Research"
 slug: customer-interview-synthesis
 category: research
 date: 2026-11-04

@@ -1,5 +1,6 @@
 ---
 title: "Slack GIF Creator"
+title_tag: "Slack GIF Creator — AI agent skill for Social Media"
 slug: slack-gif-creator
 category: social
 date: 2026-10-28

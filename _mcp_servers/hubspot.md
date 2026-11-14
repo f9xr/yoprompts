@@ -1,5 +1,6 @@
 ---
 title: "HubSpot MCP Server"
+title_tag: "HubSpot MCP server: setup, config and tools"
 slug: hubspot
 excerpt: "HubSpot's remote MCP server for reading and updating CRM records, activities, and marketing content over OAuth."
 creator: "HubSpot"

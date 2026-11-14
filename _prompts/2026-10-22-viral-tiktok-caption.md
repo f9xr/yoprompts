@@ -1,5 +1,6 @@
 ---
 title: "Write a viral TikTok caption that drives saves"
+title_tag: "Write a viral TikTok caption that drives saves — AI prompt"
 slug: viral-tiktok-caption
 category: social
 category_label: Social Media

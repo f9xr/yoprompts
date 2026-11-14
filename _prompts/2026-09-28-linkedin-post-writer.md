@@ -1,5 +1,6 @@
 ---
 title: "Write LinkedIn posts people finish reading"
+title_tag: "Write LinkedIn posts people finish reading — AI prompt"
 slug: linkedin-post-writer
 category: social
 category_label: Social Media

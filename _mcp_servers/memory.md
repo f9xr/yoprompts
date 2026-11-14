@@ -1,5 +1,6 @@
 ---
 title: "Memory MCP"
+title_tag: "Memory MCP server: setup, config and tools"
 slug: memory
 excerpt: "A knowledge-graph memory server that lets an agent persist entities, relations, and observations across sessions."
 creator: "Anthropic"

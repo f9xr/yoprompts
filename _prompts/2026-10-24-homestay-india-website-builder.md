@@ -1,5 +1,6 @@
 ---
 title: "Build a production-ready Homestay website for India (Next.js + Razorpay + Stripe)"
+title_tag: "Next.js homestay site with Razorpay and Stripe"
 slug: homestay-india-website-builder
 category: coding
 category_label: Coding

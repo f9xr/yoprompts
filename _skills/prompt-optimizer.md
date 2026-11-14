@@ -1,5 +1,6 @@
 ---
 title: "Prompt Optimizer"
+title_tag: "Prompt Optimizer — AI agent skill for Skill Building"
 slug: prompt-optimizer
 category: meta
 date: 2026-11-05

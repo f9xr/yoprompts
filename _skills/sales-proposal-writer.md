@@ -1,5 +1,6 @@
 ---
 title: "Sales Proposal Writer"
+title_tag: "Sales Proposal Writer — AI agent skill for Sales"
 slug: sales-proposal-writer
 category: sales
 date: 2026-11-05

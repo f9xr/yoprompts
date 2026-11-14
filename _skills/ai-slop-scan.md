@@ -1,5 +1,6 @@
 ---
 title: "AI Slop Scan"
+title_tag: "AI Slop Scan — AI agent skill for Writing"
 slug: ai-slop-scan
 category: writing
 date: 2026-11-04

@@ -1,5 +1,6 @@
 ---
 title: "Design and build a complete blog site from one brief"
+title_tag: "Design and build a complete blog site from one brief"
 slug: blog-site-design-system
 category: coding
 category_label: Coding

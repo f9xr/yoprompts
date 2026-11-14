@@ -1,5 +1,6 @@
 ---
 title: "Find the clip that will go viral"
+title_tag: "Find the clip that will go viral — Social Media AI prompt"
 slug: viral-podcast-clip-finder
 category: social
 category_label: Social Media

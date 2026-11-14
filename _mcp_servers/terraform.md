@@ -1,5 +1,6 @@
 ---
 title: "Terraform MCP Server"
+title_tag: "Terraform MCP server: setup, config and tools"
 slug: terraform
 excerpt: "Connects an agent to the Terraform Registry and HCP Terraform for provider docs, module discovery, and workspace operations."
 creator: "HashiCorp"

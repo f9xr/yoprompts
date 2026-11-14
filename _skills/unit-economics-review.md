@@ -1,5 +1,6 @@
 ---
 title: "Unit Economics Review"
+title_tag: "Unit Economics Review — AI agent skill for Finance"
 slug: unit-economics-review
 category: finance
 date: 2026-11-12

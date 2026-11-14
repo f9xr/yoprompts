@@ -1,5 +1,6 @@
 ---
 title: "Taste Skill"
+title_tag: "Taste Skill — AI agent skill for Design"
 slug: taste-skill
 category: design
 date: 2026-10-22

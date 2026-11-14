@@ -1,5 +1,6 @@
 ---
 title: "Build a lead magnet people finish"
+title_tag: "Build a lead magnet people finish — Marketing AI prompt"
 slug: viral-lead-magnet-builder
 category: marketing
 category_label: Marketing

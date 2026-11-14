@@ -1,5 +1,6 @@
 ---
 title: "Close the week and plan the next one"
+title_tag: "Close the week and plan the next one — AI prompt"
 slug: weekly-review-planner
 category: productivity
 category_label: Productivity

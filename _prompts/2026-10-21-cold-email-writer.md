@@ -1,5 +1,6 @@
 ---
 title: "Write a cold email that earns a reply"
+title_tag: "Write a cold email that earns a reply — AI prompt"
 slug: cold-email-writer
 category: marketing
 category_label: Marketing

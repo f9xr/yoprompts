@@ -1,5 +1,6 @@
 ---
 title: "Agent Memory Architect"
+title_tag: "Agent Memory Architect — AI agent skill for Skill Building"
 slug: agent-memory-architect
 category: meta
 date: 2026-11-04

@@ -1,5 +1,6 @@
 ---
 title: "Workflow Automator"
+title_tag: "Workflow Automator — AI agent skill for Automation"
 slug: workflow-automator
 category: automation
 date: 2026-11-01

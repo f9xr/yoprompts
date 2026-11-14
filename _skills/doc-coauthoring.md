@@ -1,5 +1,6 @@
 ---
 title: "Doc Coauthoring"
+title_tag: "Doc Coauthoring — AI agent skill for Writing"
 slug: doc-coauthoring
 category: writing
 date: 2026-10-28

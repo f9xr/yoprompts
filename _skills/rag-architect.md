@@ -1,5 +1,6 @@
 ---
 title: "RAG Architect"
+title_tag: "RAG Architect — AI agent skill for Engineering"
 slug: rag-architect
 category: engineering
 date: 2026-11-09

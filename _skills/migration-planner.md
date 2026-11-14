@@ -1,5 +1,6 @@
 ---
 title: "Migration Planner"
+title_tag: "Migration Planner — AI agent skill for Engineering"
 slug: migration-planner
 category: engineering
 date: 2026-11-12

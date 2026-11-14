@@ -1,5 +1,6 @@
 ---
 title: "Copy Editing"
+title_tag: "Copy Editing — AI agent skill for Writing"
 slug: copy-editing
 category: writing
 date: 2026-10-23

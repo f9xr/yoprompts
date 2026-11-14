@@ -1,5 +1,6 @@
 ---
 title: "Turn meeting notes into an action plan"
+title_tag: "Turn meeting notes into an action plan — AI prompt"
 slug: meeting-to-action-plan
 category: productivity
 category_label: Productivity

@@ -1,5 +1,6 @@
 ---
 title: "Schema Markup"
+title_tag: "Schema Markup — AI agent skill for SEO"
 slug: seo-schema
 category: seo
 date: 2026-10-23

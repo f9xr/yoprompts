@@ -1,5 +1,6 @@
 ---
 title: "DOCX"
+title_tag: "DOCX — AI agent skill for Productivity"
 slug: docx
 category: productivity
 date: 2026-10-28

@@ -1,5 +1,6 @@
 ---
 title: "Internal Comms"
+title_tag: "Internal Comms — AI agent skill for Writing"
 slug: internal-comms
 category: writing
 date: 2026-10-28

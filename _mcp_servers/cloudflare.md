@@ -1,5 +1,6 @@
 ---
 title: "Cloudflare MCP"
+title_tag: "Cloudflare MCP server: setup, config and tools"
 slug: cloudflare
 excerpt: "Cloudflare's hosted MCP servers for docs, Workers, observability, bindings, and account-level platform operations."
 creator: "Cloudflare"

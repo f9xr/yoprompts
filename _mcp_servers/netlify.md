@@ -1,5 +1,6 @@
 ---
 title: "Netlify MCP Server"
+title_tag: "Netlify MCP server: setup, config and tools"
 slug: netlify
 excerpt: "Connects an agent to Netlify so it can create projects, deploy builds, and manage sites through the API and CLI."
 creator: "Netlify"

@@ -1,5 +1,6 @@
 ---
 title: "OKR Writer"
+title_tag: "OKR Writer — AI agent skill for Business"
 slug: okr-writer
 category: business
 date: 2026-11-09

@@ -1,5 +1,6 @@
 ---
 title: "Tear down a newsletter issue that loses readers"
+title_tag: "Tear down a newsletter issue that loses readers"
 slug: viral-newsletter-teardown
 category: marketing
 category_label: Marketing

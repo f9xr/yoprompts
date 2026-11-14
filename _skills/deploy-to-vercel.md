@@ -1,5 +1,6 @@
 ---
 title: "Deploy to Vercel"
+title_tag: "Deploy to Vercel — AI agent skill for Engineering"
 slug: deploy-to-vercel
 category: engineering
 date: 2026-10-23

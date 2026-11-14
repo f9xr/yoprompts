@@ -1,5 +1,6 @@
 ---
 title: "GitLab MCP Server"
+title_tag: "GitLab MCP server: setup, config and tools"
 slug: gitlab
 excerpt: "Connect an agent to GitLab projects, issues, merge requests, pipelines, and code search through GitLab's built-in MCP endpoint."
 creator: "GitLab"

@@ -1,5 +1,6 @@
 ---
 title: "Turn any document into a deck that lands"
+title_tag: "Turn any document into a deck that lands — AI prompt"
 slug: document-to-deck
 category: presentations
 category_label: Presentations

@@ -1,5 +1,6 @@
 ---
 title: "Write an X post people quote"
+title_tag: "Write an X post people quote — Social Media AI prompt"
 slug: viral-x-post-generator
 category: social
 category_label: Social Media

@@ -1,5 +1,6 @@
 ---
 title: "Slack MCP Server"
+title_tag: "Slack MCP server: setup, config and tools"
 slug: slack
 excerpt: "Connect an agent to Slack to read channel history, search messages, and post updates with a bot token scoped to one workspace."
 creator: "Model Context Protocol"

@@ -1,5 +1,6 @@
 ---
 title: "Humanizer"
+title_tag: "Humanizer — AI agent skill for Writing"
 slug: humanizer
 category: writing
 date: 2026-10-22

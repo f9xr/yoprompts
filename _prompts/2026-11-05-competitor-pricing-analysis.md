@@ -1,5 +1,6 @@
 ---
 title: "Analyse competitor pricing without guessing"
+title_tag: "Analyse competitor pricing without guessing — AI prompt"
 slug: competitor-pricing-analysis
 category: business
 category_label: Business

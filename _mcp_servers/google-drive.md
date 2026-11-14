@@ -1,5 +1,6 @@
 ---
 title: "Google Drive MCP Server"
+title_tag: "Google Drive MCP server: setup, config and tools"
 slug: google-drive
 excerpt: "Give an agent scoped access to Drive files for search, reading, and summarising documents with a service account or OAuth credentials."
 creator: "Model Context Protocol"

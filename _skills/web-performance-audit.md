@@ -1,5 +1,6 @@
 ---
 title: "Web Performance Audit"
+title_tag: "Web Performance Audit — AI agent skill for Engineering"
 slug: web-performance-audit
 category: engineering
 date: 2026-11-09

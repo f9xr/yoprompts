@@ -1,5 +1,6 @@
 ---
 title: "Avoid AI Writing"
+title_tag: "Avoid AI Writing — AI agent skill for Writing"
 slug: avoid-ai-writing
 category: writing
 date: 2026-10-22

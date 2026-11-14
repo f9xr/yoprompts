@@ -1,5 +1,6 @@
 ---
 title: "Shoot a night flash fashion portrait"
+title_tag: "Shoot a night flash fashion portrait — AI prompt"
 slug: night-flash-fashion-portrait
 category: images
 category_label: Image Generation

@@ -1,5 +1,6 @@
 ---
 title: "PostHog MCP"
+title_tag: "PostHog MCP server: setup, config and tools"
 slug: posthog
 excerpt: "PostHog's hosted MCP server for product analytics, feature flags, error tracking, session replays, and HogQL queries."
 creator: "PostHog"

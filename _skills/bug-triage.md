@@ -1,5 +1,6 @@
 ---
 title: "Bug Triage"
+title_tag: "Bug Triage — AI agent skill for Engineering"
 slug: bug-triage
 category: engineering
 date: 2026-11-04

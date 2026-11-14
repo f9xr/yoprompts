@@ -1,5 +1,6 @@
 ---
 title: "Build an eval that can actually fail"
+title_tag: "Build an eval that can actually fail — Coding AI prompt"
 slug: llm-eval-plan
 category: coding
 category_label: Coding

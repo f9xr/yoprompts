@@ -1,5 +1,6 @@
 ---
 title: "Create a photorealistic exploded view product diagram poster"
+title_tag: "Create a photorealistic exploded view product diagram poster"
 slug: gpt-image-exploded-view-product-poster
 category: images
 category_label: Image Generation

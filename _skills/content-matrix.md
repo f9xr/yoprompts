@@ -1,5 +1,6 @@
 ---
 title: "Content Matrix"
+title_tag: "Content Matrix — AI agent skill for Social Media"
 slug: content-matrix
 category: social
 date: 2026-10-23

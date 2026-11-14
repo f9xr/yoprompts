@@ -1,5 +1,6 @@
 ---
 title: "Data Story Builder"
+title_tag: "Data Story Builder — AI agent skill for Data & Analytics"
 slug: data-story
 category: data
 date: 2026-11-01

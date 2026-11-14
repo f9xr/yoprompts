@@ -1,5 +1,6 @@
 ---
 title: "Pricing Strategy"
+title_tag: "Pricing Strategy — AI agent skill for Business"
 slug: pricing
 category: business
 date: 2026-10-23

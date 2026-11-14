@@ -1,5 +1,6 @@
 ---
 title: "Write replies that keep the conversation going"
+title_tag: "Write replies that keep the conversation going — AI prompt"
 slug: viral-comment-reply-writer
 category: social
 category_label: Social Media

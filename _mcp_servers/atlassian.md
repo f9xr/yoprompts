@@ -1,5 +1,6 @@
 ---
 title: "Atlassian Rovo MCP"
+title_tag: "Atlassian Rovo MCP server: setup, config and tools"
 slug: atlassian
 excerpt: "Connect an agent to Jira, Confluence, Jira Service Management, Bitbucket, and Loom through Atlassian's Rovo MCP server."
 creator: "Atlassian"

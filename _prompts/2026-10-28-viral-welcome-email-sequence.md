@@ -1,5 +1,6 @@
 ---
 title: "Write a welcome email sequence that sells"
+title_tag: "Write a welcome email sequence that sells — AI prompt"
 slug: viral-welcome-email-sequence
 category: marketing
 category_label: Marketing

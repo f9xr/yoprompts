@@ -1,5 +1,6 @@
 ---
 title: "Create SEO blog outlines that rank"
+title_tag: "Create SEO blog outlines that rank — SEO AI prompt"
 slug: seo-blog-outline-ranker
 category: seo
 category_label: SEO

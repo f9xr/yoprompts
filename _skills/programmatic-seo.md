@@ -1,5 +1,6 @@
 ---
 title: "Programmatic SEO"
+title_tag: "Programmatic SEO — AI agent skill for SEO"
 slug: programmatic-seo
 category: seo
 date: 2026-10-22

@@ -1,5 +1,6 @@
 ---
 title: "Context7 MCP"
+title_tag: "Context7 MCP server: setup, config and tools"
 slug: context7
 excerpt: "Upstash's Context7 injects current, version-specific library documentation into an agent's context so APIs are not guessed."
 creator: "Upstash"

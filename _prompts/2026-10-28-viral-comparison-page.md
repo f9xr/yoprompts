@@ -1,5 +1,6 @@
 ---
 title: "Write comparison pages that survive scrutiny"
+title_tag: "Write comparison pages that survive scrutiny — AI prompt"
 slug: viral-comparison-page
 category: seo
 category_label: SEO

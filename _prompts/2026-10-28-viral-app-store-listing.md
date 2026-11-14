@@ -1,5 +1,6 @@
 ---
 title: "Write an app store listing people install"
+title_tag: "Write an app store listing people install — AI prompt"
 slug: viral-app-store-listing
 category: marketing
 category_label: Marketing

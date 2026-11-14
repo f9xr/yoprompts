@@ -1,5 +1,6 @@
 ---
 title: "Landing Page Design"
+title_tag: "Landing Page Design — AI agent skill for Design"
 slug: landing-page-design
 category: design
 date: 2026-11-04

@@ -1,5 +1,6 @@
 ---
 title: "Newsletter Growth"
+title_tag: "Newsletter Growth — AI agent skill for Marketing"
 slug: newsletter-growth
 category: marketing
 date: 2026-11-04

@@ -1,5 +1,6 @@
 ---
 title: "Chroma MCP Server"
+title_tag: "Chroma MCP server: setup, config and tools"
 slug: chroma
 excerpt: "Gives an agent collection and document operations over Chroma, with semantic search, metadata filters, and full-text search."
 creator: "Chroma"

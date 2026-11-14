@@ -1,5 +1,6 @@
 ---
 title: "SQLite MCP Server"
+title_tag: "SQLite MCP server: setup, config and tools"
 slug: sqlite
 excerpt: "Give an agent read and write access to a local SQLite database file for schema inspection, queries, and lightweight analysis."
 creator: "Model Context Protocol"

@@ -1,5 +1,6 @@
 ---
 title: "Write a pricing page that answers objections"
+title_tag: "Write a pricing page that answers objections — AI prompt"
 slug: viral-pricing-page-copy
 category: business
 category_label: Business

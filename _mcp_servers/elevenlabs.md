@@ -1,5 +1,6 @@
 ---
 title: "ElevenLabs MCP"
+title_tag: "ElevenLabs MCP server: setup, config and tools"
 slug: elevenlabs
 excerpt: "Generates speech, clones voices, transcribes audio, and creates sound effects through ElevenLabs' hosted MCP endpoint."
 creator: "ElevenLabs"

@@ -1,5 +1,6 @@
 ---
 title: "PostgreSQL MCP Server"
+title_tag: "PostgreSQL MCP server: setup, config and tools"
 slug: postgres
 excerpt: "Connect an agent to a PostgreSQL database for schema inspection, read queries, and controlled data exploration."
 creator: "Model Context Protocol"

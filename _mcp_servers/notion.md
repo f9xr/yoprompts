@@ -1,5 +1,6 @@
 ---
 title: "Notion MCP"
+title_tag: "Notion MCP server: setup, config and tools"
 slug: notion
 excerpt: "Official hosted Notion server for creating pages, querying databases, managing comments, and searching a workspace over OAuth."
 creator: "Notion"

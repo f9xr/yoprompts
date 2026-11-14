@@ -1,5 +1,6 @@
 ---
 title: "Copywriting"
+title_tag: "Copywriting — AI agent skill for Business"
 slug: copywriting
 category: business
 date: 2026-10-23

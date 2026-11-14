@@ -1,5 +1,6 @@
 ---
 title: "Meeting to Action"
+title_tag: "Meeting to Action — AI agent skill for Productivity"
 slug: meeting-to-action
 category: productivity
 date: 2026-11-01

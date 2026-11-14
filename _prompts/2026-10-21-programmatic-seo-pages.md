@@ -1,5 +1,6 @@
 ---
 title: "Build a programmatic SEO page system"
+title_tag: "Build a programmatic SEO page system — SEO AI prompt"
 slug: programmatic-seo-pages
 category: seo
 category_label: SEO

@@ -1,5 +1,6 @@
 ---
 title: "SLO Designer"
+title_tag: "SLO Designer — AI agent skill for Engineering"
 slug: slo-designer
 category: engineering
 date: 2026-11-09

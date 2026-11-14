@@ -1,5 +1,6 @@
 ---
 title: "Support KB Article"
+title_tag: "Support KB Article — AI agent skill for Support"
 slug: support-kb-article
 category: support
 date: 2026-11-12

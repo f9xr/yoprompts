@@ -1,5 +1,6 @@
 ---
 title: "Audit a codebase like a staff engineer"
+title_tag: "Audit a codebase like a staff engineer — Coding AI prompt"
 slug: code-review-audit
 category: coding
 category_label: Coding

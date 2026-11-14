@@ -1,5 +1,6 @@
 ---
 title: "Knowledge Base Builder"
+title_tag: "Knowledge Base Builder — AI agent skill for Support"
 slug: knowledge-base-builder
 category: support
 date: 2026-11-05

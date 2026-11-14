@@ -1,5 +1,6 @@
 ---
 title: "Source Credibility Check"
+title_tag: "Source Credibility Check — AI agent skill for Research"
 slug: source-credibility-check
 category: research
 date: 2026-11-12

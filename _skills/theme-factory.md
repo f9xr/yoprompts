@@ -1,5 +1,6 @@
 ---
 title: "Theme Factory"
+title_tag: "Theme Factory — AI agent skill for Design"
 slug: theme-factory
 category: design
 date: 2026-10-28

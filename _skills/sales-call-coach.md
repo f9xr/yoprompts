@@ -1,5 +1,6 @@
 ---
 title: "Sales Call Coach"
+title_tag: "Sales Call Coach — AI agent skill for Sales"
 slug: sales-call-coach
 category: sales
 date: 2026-11-04

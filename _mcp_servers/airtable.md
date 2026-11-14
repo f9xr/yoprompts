@@ -1,5 +1,6 @@
 ---
 title: "Airtable MCP Server"
+title_tag: "Airtable MCP server: setup, config and tools"
 slug: airtable
 excerpt: "Connect an agent to Airtable bases and tables for record search, filtering, and updates through a personal access token."
 creator: "domdomegg"

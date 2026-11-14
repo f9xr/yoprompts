@@ -1,5 +1,6 @@
 ---
 title: "Find Skills"
+title_tag: "Find Skills — AI agent skill for Skill Building"
 slug: find-skills
 category: meta
 date: 2026-10-22

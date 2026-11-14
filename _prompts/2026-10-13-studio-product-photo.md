@@ -1,5 +1,6 @@
 ---
 title: "Turn a phone photo into a studio product shot"
+title_tag: "Turn a phone photo into a studio product shot — AI prompt"
 slug: studio-product-photo
 category: images
 category_label: Image Generation

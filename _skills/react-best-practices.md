@@ -1,5 +1,6 @@
 ---
 title: "React Best Practices"
+title_tag: "React Best Practices — AI agent skill for Engineering"
 slug: react-best-practices
 category: engineering
 date: 2026-10-23

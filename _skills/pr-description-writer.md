@@ -1,5 +1,6 @@
 ---
 title: "PR Description Writer"
+title_tag: "PR Description Writer — AI agent skill for Engineering"
 slug: pr-description-writer
 category: engineering
 date: 2026-11-09

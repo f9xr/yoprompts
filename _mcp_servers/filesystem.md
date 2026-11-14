@@ -1,5 +1,6 @@
 ---
 title: "Filesystem MCP Server"
+title_tag: "Filesystem MCP server: setup, config and tools"
 slug: filesystem
 excerpt: "Give an agent scoped read and write access to specific local directories through the reference Filesystem server."
 creator: "Model Context Protocol"

@@ -1,5 +1,6 @@
 ---
 title: "Audit Core Web Vitals without guessing"
+title_tag: "Audit Core Web Vitals without guessing — Coding AI prompt"
 slug: core-web-vitals-audit
 category: coding
 category_label: Coding

@@ -1,5 +1,6 @@
 ---
 title: "Mine real customer words for proof"
+title_tag: "Mine real customer words for proof — Marketing AI prompt"
 slug: viral-testimonial-miner
 category: marketing
 category_label: Marketing

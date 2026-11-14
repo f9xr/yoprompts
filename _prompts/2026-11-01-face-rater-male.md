@@ -1,5 +1,6 @@
 ---
 title: "Rate a male face photo without the flattery"
+title_tag: "Rate a male face photo without the flattery — AI prompt"
 slug: face-rater-male
 category: images
 category_label: Image Generation

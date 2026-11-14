@@ -1,5 +1,6 @@
 ---
 title: "Open Source License Review"
+title_tag: "Open Source License Review — AI agent skill for Legal"
 slug: open-source-license-review
 category: legal
 date: 2026-11-12

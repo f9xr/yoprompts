@@ -1,5 +1,6 @@
 ---
 title: "Turn one photo into a believable movie poster"
+title_tag: "Turn one photo into a believable movie poster — AI prompt"
 slug: cinematic-movie-poster
 category: images
 category_label: Image Generation

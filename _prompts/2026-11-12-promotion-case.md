@@ -1,5 +1,6 @@
 ---
 title: "Build a promotion case your manager can defend"
+title_tag: "Build a promotion case your manager can defend — AI prompt"
 slug: promotion-case
 category: career
 category_label: Career

@@ -1,5 +1,6 @@
 ---
 title: "Turn a dataset into a chart with a point"
+title_tag: "Turn a dataset into a chart with a point — AI prompt"
 slug: viral-data-story-chart
 category: data
 category_label: Data Analysis

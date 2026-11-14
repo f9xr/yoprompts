@@ -1,5 +1,6 @@
 ---
 title: "Write a Reddit post people actually upvote"
+title_tag: "Write a Reddit post people actually upvote — AI prompt"
 slug: viral-reddit-post
 category: social
 category_label: Social Media

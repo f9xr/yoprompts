@@ -1,5 +1,6 @@
 ---
 title: "Build an ad angle matrix before writing hooks"
+title_tag: "Build an ad angle matrix before writing hooks — AI prompt"
 slug: viral-ad-angle-matrix
 category: marketing
 category_label: Marketing

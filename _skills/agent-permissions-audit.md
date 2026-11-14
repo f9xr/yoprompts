@@ -1,5 +1,6 @@
 ---
 title: "Agent Permissions Audit"
+title_tag: "Agent Permissions Audit — AI agent skill for Security"
 slug: agent-permissions-audit
 category: security
 date: 2026-11-12

@@ -1,5 +1,6 @@
 ---
 title: "PRD Writer"
+title_tag: "PRD Writer — AI agent skill for Business"
 slug: prd-writer
 category: business
 date: 2026-11-04

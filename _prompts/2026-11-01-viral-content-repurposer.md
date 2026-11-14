@@ -1,5 +1,6 @@
 ---
 title: "Turn one asset into a week of native posts"
+title_tag: "Turn one asset into a week of native posts — AI prompt"
 slug: viral-content-repurposer
 category: social
 category_label: Social Media

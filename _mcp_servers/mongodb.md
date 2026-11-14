@@ -1,5 +1,6 @@
 ---
 title: "MongoDB MCP Server"
+title_tag: "MongoDB MCP server: setup, config and tools"
 slug: mongodb
 excerpt: "Connect an agent to MongoDB for collection inspection, document queries, and schema discovery through MongoDB's official MCP server."
 creator: "MongoDB"

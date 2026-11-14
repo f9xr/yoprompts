@@ -1,5 +1,6 @@
 ---
 title: "Writing Guidelines"
+title_tag: "Writing Guidelines — AI agent skill for Writing"
 slug: writing-guidelines
 category: writing
 date: 2026-10-23

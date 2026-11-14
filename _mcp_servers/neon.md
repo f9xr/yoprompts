@@ -1,5 +1,6 @@
 ---
 title: "Neon MCP"
+title_tag: "Neon MCP server: setup, config and tools"
 slug: neon
 excerpt: "Manage Neon Postgres projects, branches, databases, and SQL from an agent through Neon's hosted MCP endpoint."
 creator: "Neon"

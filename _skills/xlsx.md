@@ -1,5 +1,6 @@
 ---
 title: "XLSX"
+title_tag: "XLSX — AI agent skill for Data & Analytics"
 slug: xlsx
 category: data
 date: 2026-10-28

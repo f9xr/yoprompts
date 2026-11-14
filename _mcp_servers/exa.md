@@ -1,5 +1,6 @@
 ---
 title: "Exa MCP"
+title_tag: "Exa MCP server: setup, config and tools"
 slug: exa
 excerpt: "Give an agent semantic web search, page contents, and research tools through Exa's hosted MCP endpoint."
 creator: "Exa"

@@ -1,5 +1,6 @@
 ---
 title: "Web Design Guidelines"
+title_tag: "Web Design Guidelines — AI agent skill for Design"
 slug: web-design-guidelines
 category: design
 date: 2026-10-23

@@ -1,5 +1,6 @@
 ---
 title: "SEO Audit"
+title_tag: "SEO Audit — AI agent skill for SEO"
 slug: seo-audit
 category: seo
 date: 2026-10-23

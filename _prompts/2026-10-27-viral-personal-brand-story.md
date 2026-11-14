@@ -1,5 +1,6 @@
 ---
 title: "Write a personal brand story that is true"
+title_tag: "Write a personal brand story that is true — AI prompt"
 slug: viral-personal-brand-story
 category: career
 category_label: Career

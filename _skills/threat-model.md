@@ -1,5 +1,6 @@
 ---
 title: "Threat Model"
+title_tag: "Threat Model — AI agent skill for Security"
 slug: threat-model
 category: security
 date: 2026-11-12

@@ -1,5 +1,6 @@
 ---
 title: "Playwright MCP"
+title_tag: "Playwright MCP server: setup, config and tools"
 slug: playwright
 excerpt: "Give an agent a real browser: navigate pages, click, type, and read the accessibility tree through Playwright."
 creator: "Microsoft"

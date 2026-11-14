@@ -1,5 +1,6 @@
 ---
 title: "Hook Generator"
+title_tag: "Hook Generator — AI agent skill for Social Media"
 slug: hook-generator
 category: social
 date: 2026-10-23

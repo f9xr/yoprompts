@@ -1,5 +1,6 @@
 ---
 title: "Write the FAQ page buyers actually search for"
+title_tag: "Write the FAQ page buyers actually search for — AI prompt"
 slug: viral-faq-page-builder
 category: seo
 category_label: SEO

@@ -1,5 +1,6 @@
 ---
 title: "Eval Harness Writer"
+title_tag: "Eval Harness Writer — AI agent skill for Skill Building"
 slug: eval-harness-writer
 category: meta
 date: 2026-11-09
