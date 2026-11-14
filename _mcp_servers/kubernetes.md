@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/Flux159/mcp-server-kubernetes"
 tags: [kubernetes, devops, containers, cluster, logs]
+related: [docker, terraform, grafana]
 config: |
   {
     "mcpServers": {

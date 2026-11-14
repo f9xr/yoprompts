@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/ckreiling/mcp-server-docker"
 tags: [docker, containers, devops, logs, local]
+related: [kubernetes, terraform, filesystem]
 config: |
   {
     "mcpServers": {

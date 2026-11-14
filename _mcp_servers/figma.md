@@ -7,6 +7,7 @@ creator: "Figma"
 transport: "local + remote"
 homepage: "https://help.figma.com/hc/en-us/articles/32132100833559"
 tags: [design, figma, design-to-code, components]
+related: [inspo, awwwards, playwright]
 ---
 
 Figma's official MCP server bridges a design file and a codebase. An agent can read a frame, extract variables and components, and generate markup that matches the design instead of approximating it from a screenshot.

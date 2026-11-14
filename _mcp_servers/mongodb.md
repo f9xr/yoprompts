@@ -8,6 +8,7 @@ license: "Apache-2.0"
 transport: "local"
 repo_url: "https://github.com/mongodb-js/mongodb-mcp-server"
 tags: [mongodb, database, nosql, data]
+related: [redis, clickhouse, neo4j]
 config: |
   {
     "mcpServers": {

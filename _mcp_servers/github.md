@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/github/github-mcp-server"
 tags: [github, code, issues, pull requests]
+related: [gitlab, linear, vercel]
 config: |
   {
     "mcpServers": {

@@ -7,6 +7,7 @@ creator: "Snowflake"
 transport: "remote"
 homepage: "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp"
 tags: [snowflake, data warehouse, sql, semantic view, cortex, analytics]
+related: [clickhouse, postgres, grafana]
 config: |
   {
     "mcpServers": {

@@ -9,6 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/supabase-community/supabase-mcp"
 homepage: "https://supabase.com/docs/guides/getting-started/mcp"
 tags: [database, postgres, backend, sql, supabase]
+related: [postgres, neon, vercel]
 config: |
   {
     "mcpServers": {

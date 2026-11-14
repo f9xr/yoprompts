@@ -8,6 +8,7 @@ license: "Apache-2.0"
 transport: "local"
 repo_url: "https://github.com/qdrant/mcp-server-qdrant"
 tags: [vector database, semantic search, memory, embeddings, retrieval]
+related: [chroma, neo4j, memory]
 config: |
   {
     "mcpServers": {

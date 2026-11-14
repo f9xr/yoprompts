@@ -113,6 +113,28 @@ layout: default
       </aside>
     </div>
 
+    {%- assign related_mcp = "" | split: "" -%}
+    {%- if page.related -%}
+      {%- for slug in page.related -%}
+        {%- assign candidate = site.mcp_servers | where: "slug", slug | first -%}
+        {%- if candidate and candidate.slug != page.slug -%}
+          {%- assign related_mcp = related_mcp | push: candidate -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- if related_mcp.size > 0 %}
+    <section class="detail-section" aria-labelledby="related-mcp-title">
+      <h2 class="display-sm detail-section__title" id="related-mcp-title">Related MCP servers</h2>
+      <p class="body-sm detail-section__copy">Servers that pair with this one.</p>
+      <div class="related-grid">
+        {%- for item in related_mcp limit: 3 %}
+        {%- assign reveal_class = "reveal--" | append: forloop.index -%}
+        {% include resource-card.html item=item eyebrow="MCP" delay=reveal_class meta=item.transport heading_tag="h3" %}
+        {%- endfor %}
+      </div>
+    </section>
+    {%- endif %}
+
         {%- include detail-extras.html -%}
 
         {% include author-box.html role="Server maintainer" %}

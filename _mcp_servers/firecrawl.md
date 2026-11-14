@@ -8,6 +8,7 @@ transport: "remote"
 repo_url: "https://github.com/firecrawl/firecrawl-mcp-server"
 homepage: "https://firecrawl.dev"
 tags: [scraping, crawling, extraction, pdf]
+related: [exa, tavily, playwright]
 config: |
   {
     "mcpServers": {

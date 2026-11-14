@@ -8,6 +8,7 @@ license: "Other"
 transport: "local"
 repo_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/memory"
 tags: [memory, knowledge graph, persistence, context]
+related: [qdrant, chroma, sequential-thinking]
 config: |
   {
     "mcpServers": {

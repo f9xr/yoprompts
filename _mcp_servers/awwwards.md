@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/INSANE0777/Awwwards-mcp"
 tags: [design, inspiration, web design, screenshots, motion, playwright, awwwards]
+related: [inspo, figma, playwright]
 config: |
   {
     "mcpServers": {

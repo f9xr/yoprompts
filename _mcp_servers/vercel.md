@@ -7,6 +7,7 @@ creator: "Vercel"
 transport: "remote"
 homepage: "https://vercel.com/docs/agent-resources/vercel-mcp"
 tags: [vercel, deployments, hosting, logs, analytics]
+related: [netlify, cloudflare, neon]
 config: |
   {
     "mcpServers": {

@@ -8,6 +8,7 @@ transport: "remote"
 repo_url: "https://github.com/neondatabase/mcp-server-neon"
 homepage: "https://neon.com/docs/ai/neon-mcp-server"
 tags: [postgres, database, branching, sql, neon]
+related: [postgres, supabase, vercel]
 config: |
   {
     "mcpServers": {

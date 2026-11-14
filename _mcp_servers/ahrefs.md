@@ -7,6 +7,7 @@ creator: "Ahrefs"
 transport: "remote"
 homepage: "https://docs.ahrefs.com/docs/mcp/reference/introduction"
 tags: [seo, backlinks, keywords, rank tracking]
+related: [google-search-console, firecrawl, exa]
 ---
 
 Ahrefs runs an official remote MCP server at `api.ahrefs.com/mcp/mcp`. It returns live SEO data: keyword research, competitor analysis, backlink profiles, top-ranking pages, AI Overview and brand sentiment, dashboards, and exports.

@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/slack"
 tags: [slack, chat, notifications, collaboration]
+related: [notion, linear, hubspot]
 config: |
   {
     "mcpServers": {

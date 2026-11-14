@@ -7,6 +7,7 @@ creator: "Brave"
 transport: "local"
 repo_url: "https://github.com/brave/brave-search-mcp-server"
 tags: [search, web, privacy, local search]
+related: [tavily, exa, firecrawl]
 config: |
   {
     "mcpServers": {

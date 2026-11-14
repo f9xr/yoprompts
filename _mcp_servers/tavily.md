@@ -8,6 +8,7 @@ transport: "remote"
 repo_url: "https://github.com/tavily-ai/tavily-mcp"
 homepage: "https://tavily.com"
 tags: [search, ai, real-time, extraction]
+related: [exa, brave-search, firecrawl]
 config: |
   claude mcp add --transport http tavily https://mcp.tavily.com/mcp
 ---

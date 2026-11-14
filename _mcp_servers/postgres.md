@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres"
 tags: [postgres, database, sql, data]
+related: [neon, supabase, sqlite]
 config: |
   {
     "mcpServers": {

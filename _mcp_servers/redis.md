@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/redis/mcp-redis"
 tags: [redis, cache, database, key-value]
+related: [mongodb, clickhouse, supabase]
 config: |
   {
     "mcpServers": {

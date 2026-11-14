@@ -8,6 +8,7 @@ license: "ISC"
 transport: "local"
 repo_url: "https://github.com/Shopify/dev-mcp"
 tags: [shopify, ecommerce, graphql, liquid, documentation]
+related: [stripe, hubspot, vercel]
 config: |
   {
     "mcpServers": {

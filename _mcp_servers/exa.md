@@ -9,6 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/exa-labs/exa-mcp-server"
 homepage: "https://docs.exa.ai/reference/exa-mcp"
 tags: [search, research, web, semantic search, exa]
+related: [tavily, brave-search, firecrawl]
 config: |
   {
     "mcpServers": {

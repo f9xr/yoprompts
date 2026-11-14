@@ -8,6 +8,7 @@ license: "Apache-2.0"
 transport: "local"
 repo_url: "https://github.com/ClickHouse/mcp-clickhouse"
 tags: [clickhouse, sql, analytics, database, olap]
+related: [snowflake, postgres, grafana]
 config: |
   {
     "mcpServers": {

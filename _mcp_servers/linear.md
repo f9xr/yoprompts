@@ -7,6 +7,7 @@ creator: "Linear"
 transport: "remote"
 homepage: "https://linear.app/docs/mcp"
 tags: [issues, project management, tickets, planning, linear]
+related: [atlassian, github, slack]
 config: |
   {
     "mcpServers": {

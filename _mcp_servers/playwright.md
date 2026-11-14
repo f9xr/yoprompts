@@ -8,6 +8,7 @@ license: "Apache-2.0"
 transport: "local"
 repo_url: "https://github.com/microsoft/playwright-mcp"
 tags: [browser, automation, testing]
+related: [chrome-devtools, firecrawl, figma]
 config: |
   {
     "mcpServers": {

@@ -8,6 +8,7 @@ license: "Other"
 transport: "local"
 repo_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking"
 tags: [reasoning, problem solving, thinking, structured]
+related: [memory, context7, exa]
 config: |
   {
     "mcpServers": {

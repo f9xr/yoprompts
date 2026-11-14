@@ -9,6 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/netlify/netlify-mcp"
 homepage: "https://docs.netlify.com/build/build-with-ai/netlify-mcp-server/"
 tags: [deployment, hosting, netlify, sites, ci]
+related: [vercel, cloudflare, github]
 config: |
   {
     "mcpServers": {

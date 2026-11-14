@@ -8,6 +8,7 @@ transport: "remote"
 repo_url: "https://github.com/getsentry/sentry-mcp"
 homepage: "https://docs.sentry.io/product/sentry-mcp/"
 tags: [errors, monitoring, traces, debugging, observability]
+related: [datadog, posthog, grafana]
 config: |
   {
     "mcpServers": {

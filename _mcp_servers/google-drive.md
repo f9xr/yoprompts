@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive"
 tags: [google drive, files, documents, search]
+related: [notion, airtable, filesystem]
 config: |
   {
     "mcpServers": {

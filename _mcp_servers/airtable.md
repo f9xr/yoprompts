@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/domdomegg/airtable-mcp-server"
 tags: [airtable, database, records, no-code]
+related: [notion, google-drive, hubspot]
 config: |
   {
     "mcpServers": {

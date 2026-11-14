@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite"
 tags: [sqlite, database, sql, local]
+related: [postgres, filesystem, neon]
 config: |
   {
     "mcpServers": {

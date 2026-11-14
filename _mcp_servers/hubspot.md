@@ -7,6 +7,7 @@ creator: "HubSpot"
 transport: "remote"
 homepage: "https://developers.hubspot.com/docs/build-with-ai/remote-mcp-server"
 tags: [crm, hubspot, sales, marketing, contacts, deals]
+related: [stripe, shopify, slack]
 config: |
   {
     "mcpServers": {

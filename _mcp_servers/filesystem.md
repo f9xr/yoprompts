@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
 tags: [files, filesystem, local]
+related: [obsidian, google-drive, sqlite]
 config: |
   {
     "mcpServers": {

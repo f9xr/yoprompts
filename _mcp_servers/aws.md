@@ -7,6 +7,7 @@ creator: "AWS"
 transport: "remote"
 homepage: "https://docs.aws.amazon.com/agent-toolkit/latest/userguide/getting-started-aws-mcp-server.html"
 tags: [aws, cloud, infrastructure, api, iam, documentation]
+related: [terraform, cloudflare, kubernetes]
 config: |
   {
     "mcpServers": {

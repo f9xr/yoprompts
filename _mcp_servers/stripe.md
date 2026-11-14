@@ -9,6 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/stripe/agent-toolkit"
 homepage: "https://docs.stripe.com/mcp"
 tags: [payments, billing, customers, invoices, stripe]
+related: [shopify, hubspot, vercel]
 config: |
   {
     "mcpServers": {

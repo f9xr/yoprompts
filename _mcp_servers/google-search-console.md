@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/AminForou/mcp-gsc"
 tags: [seo, search console, google, indexing]
+related: [ahrefs, firecrawl, exa]
 config: |
   {
     "mcpServers": {

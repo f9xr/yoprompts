@@ -9,6 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/cloudflare/mcp-server-cloudflare"
 homepage: "https://developers.cloudflare.com/agents/model-context-protocol/"
 tags: [cloudflare, workers, edge, observability, infrastructure]
+related: [vercel, aws, netlify]
 config: |
   {
     "mcpServers": {

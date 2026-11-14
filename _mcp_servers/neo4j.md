@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/neo4j-contrib/mcp-neo4j"
 tags: [neo4j, graph database, cypher, knowledge graph, retrieval]
+related: [qdrant, chroma, memory]
 config: |
   {
     "mcpServers": {

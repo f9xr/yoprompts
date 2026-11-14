@@ -7,6 +7,7 @@ creator: "Atlassian"
 transport: "remote"
 homepage: "https://developer.atlassian.com/cloud/rovo-mcp/guides/getting-started/"
 tags: [jira, confluence, bitbucket, project management, documentation]
+related: [linear, gitlab, notion]
 config: |
   {
     "mcpServers": {

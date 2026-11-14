@@ -9,6 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/Nutlope/inspo"
 homepage: "https://inspomcp.dev/mcp"
 tags: [design, inspiration, web design, screenshots, components, design systems, together-ai]
+related: [awwwards, figma, playwright]
 config: |
   {
     "mcpServers": {

@@ -9,6 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/datadog-labs/mcp-server"
 homepage: "https://docs.datadoghq.com/mcp_server/setup"
 tags: [observability, logs, metrics, traces, incidents, datadog]
+related: [grafana, sentry, posthog]
 config: |
   {
     "mcpServers": {

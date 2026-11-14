@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/upstash/context7"
 tags: [documentation, context, libraries, frameworks]
+related: [sequential-thinking, github, notion]
 config: |
   npx ctx7 setup
 ---

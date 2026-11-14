@@ -8,6 +8,7 @@ license: "Apache-2.0"
 transport: "local"
 repo_url: "https://github.com/grafana/mcp-grafana"
 tags: [observability, dashboards, prometheus, loki, alerts, monitoring]
+related: [datadog, sentry, clickhouse]
 config: |
   {
     "mcpServers": {

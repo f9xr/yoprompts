@@ -8,6 +8,7 @@ license: "MIT"
 transport: "local"
 repo_url: "https://github.com/MarkusPfundstein/mcp-obsidian"
 tags: [obsidian, notes, knowledge base, markdown]
+related: [notion, memory, filesystem]
 config: |
   {
     "mcpServers": {

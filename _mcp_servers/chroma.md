@@ -8,6 +8,7 @@ license: "Apache-2.0"
 transport: "local"
 repo_url: "https://github.com/chroma-core/chroma-mcp"
 tags: [vector database, embeddings, retrieval, rag, semantic search]
+related: [qdrant, neo4j, memory]
 config: |
   {
     "mcpServers": {

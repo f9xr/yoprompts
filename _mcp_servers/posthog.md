@@ -9,6 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/PostHog/mcp"
 homepage: "https://posthog.com/docs/model-context-protocol"
 tags: [analytics, product, feature flags, errors, experiments, posthog]
+related: [sentry, datadog, vercel]
 config: |
   {
     "mcpServers": {

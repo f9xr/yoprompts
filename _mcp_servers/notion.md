@@ -7,6 +7,7 @@ creator: "Notion"
 transport: "remote"
 homepage: "https://developers.notion.com/docs/get-started-with-mcp"
 tags: [notes, databases, workspace, collaboration]
+related: [obsidian, google-drive, airtable]
 ---
 
 Notion's official MCP server exposes a workspace through a hosted Streamable HTTP endpoint. An agent can create and edit pages, query databases, manage comments, and search across everything the connected account can see.

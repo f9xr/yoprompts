@@ -7,6 +7,7 @@ creator: "GitLab"
 transport: "remote"
 homepage: "https://docs.gitlab.com/user/model_context_protocol/mcp_server/"
 tags: [gitlab, code, merge requests, issues, ci, devops]
+related: [github, atlassian, linear]
 config: |
   {
     "mcpServers": {

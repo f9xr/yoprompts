@@ -8,6 +8,7 @@ license: "MPL-2.0"
 transport: "local"
 repo_url: "https://github.com/hashicorp/terraform-mcp-server"
 tags: [terraform, infrastructure as code, iac, hcp terraform, registry, devops]
+related: [aws, kubernetes, cloudflare]
 config: |
   {
     "mcpServers": {

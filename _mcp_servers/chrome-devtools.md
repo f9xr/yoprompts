@@ -8,6 +8,7 @@ license: "Apache-2.0"
 transport: "local"
 repo_url: "https://github.com/ChromeDevTools/chrome-devtools-mcp"
 tags: [chrome, browser, debugging, performance, devtools]
+related: [playwright, firecrawl, sentry]
 config: |
   {
     "mcpServers": {
