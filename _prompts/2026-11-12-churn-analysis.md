@@ -1,6 +1,6 @@
 ---
 title: "Find the real reason customers churn, not the stated one"
-title_tag: "Find the real reason customers churn, not the stated one"
+title_tag: "Churn analysis prompt: find the real cause"
 slug: churn-analysis
 category: data
 category_label: Data Analysis

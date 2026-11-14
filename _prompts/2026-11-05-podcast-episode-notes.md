@@ -1,6 +1,6 @@
 ---
 title: "Turn a podcast episode into show notes people use"
-title_tag: "Turn a podcast episode into show notes people use"
+title_tag: "Podcast show notes prompt from a transcript"
 slug: podcast-episode-notes
 category: writing
 category_label: AI Writing

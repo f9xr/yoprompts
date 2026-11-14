@@ -1,6 +1,6 @@
 ---
 title: "Write a performance review self-assessment that holds up"
-title_tag: "Write a performance review self-assessment that holds up"
+title_tag: "Self-assessment prompt for performance reviews"
 slug: performance-review-self-assessment
 category: career
 category_label: Career

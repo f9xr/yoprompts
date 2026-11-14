@@ -57,8 +57,9 @@ def front_matter(path):
 def main(root):
     errors = []
 
-    # Collection documents: required fields, unique slugs.
+    # Collection documents: required fields, unique slugs, usable title tags.
     slugs = {}
+    title_tags = {}
     for folder in ('_prompts', '_skills', '_mcp_servers'):
         if not os.path.isdir(folder):
             continue
@@ -78,6 +79,27 @@ def main(root):
                 errors.append('%s: duplicate slug %r (also %s)' % (path, slug, slugs[(folder, slug)]))
             else:
                 slugs[(folder, slug)] = path
+
+            # `title` is the visible H1; `title_tag` is what head.html puts in
+            # <title>. A tag that is only the bare title ("PDF") carries no
+            # page-type keyword and is the exact regression this check exists
+            # to catch, so it fails the build rather than shipping quietly.
+            title = re.search(r'^title:\s*(.+)$', fm, re.M)
+            title = title.group(1).strip().strip('"\'') if title else ''
+            tag = re.search(r'^title_tag:\s*(.+)$', fm, re.M)
+            tag = tag.group(1).strip().strip('"\'') if tag else ''
+            if not tag:
+                errors.append('%s: missing title_tag, so <title> falls back to %r' % (path, title))
+            elif tag == title:
+                errors.append('%s: title_tag is the bare page title %r, with no page-type keyword' % (path, tag))
+            elif len(tag) > 60:
+                errors.append('%s: title_tag is %d characters and will truncate' % (path, len(tag)))
+            if tag:
+                if tag in title_tags:
+                    errors.append('%s: duplicate title_tag %r (also %s)' % (path, tag, title_tags[tag]))
+                else:
+                    title_tags[tag] = path
+
             if folder == '_prompts':
                 for field in REQUIRED_PROMPT_FIELDS:
                     if not re.search(r'^%s:\s*\S' % field, fm, re.M):

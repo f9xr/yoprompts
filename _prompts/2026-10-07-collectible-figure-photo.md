@@ -1,6 +1,6 @@
 ---
 title: "Turn your photo into a collectible figure in its box"
-title_tag: "Turn your photo into a collectible figure in its box"
+title_tag: "Collectible figure photo prompt: boxed toy render"
 slug: collectible-figure-photo
 category: images
 category_label: Image Generation

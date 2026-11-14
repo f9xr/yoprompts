@@ -1,6 +1,6 @@
 ---
 title: "Audit a website for SEO, AEO, performance and a11y"
-title_tag: "Audit a website for SEO, AEO, performance and a11y"
+title_tag: "Website audit prompt: SEO, AEO, speed and a11y"
 slug: website-code-audit
 category: coding
 category_label: Coding

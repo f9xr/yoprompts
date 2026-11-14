@@ -1,6 +1,6 @@
 ---
 title: "Outline a conference talk that survives the first five minutes"
-title_tag: "Outline a conference talk that survives the first five minutes"
+title_tag: "Conference talk outline prompt that opens strong"
 slug: conference-talk-outline
 category: presentations
 category_label: Presentations

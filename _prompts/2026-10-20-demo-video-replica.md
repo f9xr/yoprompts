@@ -1,6 +1,6 @@
 ---
 title: "Replicate any product demo video with your product"
-title_tag: "Replicate any product demo video with your product"
+title_tag: "Product demo video replica prompt for AI video"
 slug: demo-video-replica
 category: images
 category_label: Image Generation

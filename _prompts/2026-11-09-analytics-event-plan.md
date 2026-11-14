@@ -1,6 +1,6 @@
 ---
 title: "Design analytics events that answer real questions"
-title_tag: "Design analytics events that answer real questions"
+title_tag: "Analytics event plan prompt for product teams"
 slug: analytics-event-plan
 category: data
 category_label: Data Analysis

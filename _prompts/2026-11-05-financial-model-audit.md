@@ -1,6 +1,6 @@
 ---
 title: "Audit a financial model before the board sees it"
-title_tag: "Audit a financial model before the board sees it"
+title_tag: "Financial model audit prompt for board review"
 slug: financial-model-audit
 category: business
 category_label: Business

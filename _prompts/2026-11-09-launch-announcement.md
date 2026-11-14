@@ -1,6 +1,6 @@
 ---
 title: "Write a launch announcement that survives contact with users"
-title_tag: "Write a launch announcement that survives contact with users"
+title_tag: "Launch announcement prompt that lands with users"
 slug: launch-announcement
 category: marketing
 category_label: Marketing

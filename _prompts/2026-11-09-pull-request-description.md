@@ -1,6 +1,6 @@
 ---
 title: "Write a pull request a reviewer can actually review"
-title_tag: "Write a pull request a reviewer can actually review"
+title_tag: "Pull request description prompt for reviewers"
 slug: pull-request-description
 category: coding
 category_label: Coding

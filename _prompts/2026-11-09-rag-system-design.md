@@ -1,6 +1,6 @@
 ---
 title: "Design a RAG system around the documents you actually have"
-title_tag: "Design a RAG system around the documents you actually have"
+title_tag: "RAG system design prompt for your own documents"
 slug: rag-system-design
 category: coding
 category_label: Coding
