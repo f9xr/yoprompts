@@ -79,7 +79,7 @@ layout: default
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
         { "@type": "ListItem", "position": 2, "name": "Prompts", "item": {{ '/prompts/' | absolute_url | jsonify }} }{% if cats %},
-        { "@type": "ListItem", "position": 3, "name": {{ cats.label | jsonify }}, "item": {{ '/categories/' | absolute_url | append: '#' | append: cats.slug | jsonify }} }{% endif %},
+        { "@type": "ListItem", "position": 3, "name": {{ cats.label | jsonify }}, "item": {{ '/prompts/category/' | absolute_url | append: cats.slug | append: '/' | jsonify }} }{% endif %},
         { "@type": "ListItem", "position": {% if cats %}4{% else %}3{% endif %}, "name": {{ page.title | jsonify }}, "item": {{ page.url | absolute_url | jsonify }} }
       ]
     }
@@ -97,7 +97,7 @@ layout: default
       <a href="{{ '/prompts/' | relative_url }}">Prompts</a>
       {%- if cats %}
       <span class="breadcrumbs__sep" aria-hidden="true">/</span>
-      <a href="{{ '/categories/' | relative_url }}#{{ cats.slug }}">{{ cats.label }}</a>
+      <a href="{{ '/prompts/category/' | append: cats.slug | append: '/' | relative_url }}">{{ cats.label }}</a>
       {%- endif %}
     </nav>
 
@@ -208,7 +208,7 @@ layout: default
           <p class="eyebrow-mono eyebrow-mono--muted">Filed under</p>
           {%- if cats %}
           <p class="body-sm card__body">
-            <a class="link-inline" href="{{ '/categories/' | relative_url }}#{{ cats.slug }}">{{ cats.label }}</a>
+            <a class="link-inline" href="{{ '/prompts/category/' | append: cats.slug | append: '/' | relative_url }}">{{ cats.label }}</a>
             - {{ cats.blurb }}
           </p>
           {%- endif %}

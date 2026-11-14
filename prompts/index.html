@@ -36,4 +36,46 @@ seo:
   params that begin with a letter, so heading_tag=h1 arrived as nil and the
   page rendered an <h2> with no <h1> at all.
 {%- endcomment -%}
+{%- comment -%}
+  Crawl path to the hub pages. The filter pills in the archive below are
+  interactions, not links; these are real anchor targets to 17 crawlable
+  landing pages, one per category and per AI tool.
+{%- endcomment -%}
+<section class="band band--tight" aria-labelledby="prompt-hubs-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <h2 class="display-md section-head__title" id="prompt-hubs-title">Browse by job or by tool</h2>
+        <p class="body-lg section-head__lede">
+          Each collection has its own page, so you can start from the work you
+          need done rather than from the whole library.
+        </p>
+      </div>
+    </div>
+    <div class="cross-links">
+      <div class="cross-link-group">
+        <p class="cross-link-group__title">By category</p>
+        {%- for category in site.data.categories -%}
+          {%- assign category_count = site.prompts | where: "category", category.slug | size -%}
+          {%- if category_count > 0 -%}
+        <a class="cross-link" href="{{ '/prompts/category/' | append: category.slug | append: '/' | relative_url }}"><span>{{ category.label }}</span><span>{{ category_count }} prompts</span></a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="cross-link-group">
+        <p class="cross-link-group__title">By AI tool</p>
+        {%- for tool in site.data.ai_tools -%}
+          {%- assign tool_count = 0 -%}
+          {%- for p in site.prompts -%}
+            {%- if p.tools contains tool.slug -%}{%- assign tool_count = tool_count | plus: 1 -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if tool_count > 0 -%}
+        <a class="cross-link" href="{{ '/prompts/tool/' | append: tool.slug | append: '/' | relative_url }}"><span>{{ tool.label }}</span><span>{{ tool_count }} prompts</span></a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
 {% include archive.html heading="All prompts" heading_tag="h1" eyebrow="Prompt library" lede="Every prompt we publish, in one place. Copy it, paste it into whichever chat you are already using." %}
