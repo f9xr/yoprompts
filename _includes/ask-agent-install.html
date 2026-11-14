@@ -1,0 +1,76 @@
+{%- comment -%}
+  "Ask your agent" install prompt, shown on every MCP server page.
+
+  The point is that the reader does not go and install anything themselves:
+  they paste one prompt into the agent that is already open, and the agent
+  writes its own MCP config, reloads, and reports the tool list back.
+
+  Everything is built from the document's own front matter, so the prompt can
+  never drift from the configuration block displayed further down the page.
+{%- endcomment -%}
+{%- comment -%}
+  Most titles already end in "MCP Server" ("AWS MCP Server", "Inspo MCP
+  Server"), so the sentence below would read "Add the AWS MCP Server MCP
+  server". Strip the suffix first and add it back once.
+{%- endcomment -%}
+{%- assign server_name = page.title -%}
+{%- assign mcp_suffixes = " MCP Server| MCP server| MCP| Server" | split: "|" -%}
+{%- for suffix in mcp_suffixes -%}
+  {%- if server_name contains suffix -%}
+    {%- assign server_name = server_name | remove: suffix -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- capture agent_prompt -%}
+Add the {{ server_name }} MCP server to this session, then prove it works.
+
+Server: {{ page.title }}
+Transport: {{ page.transport | default: "local" }}
+{%- if page.homepage %}
+Reference: {{ page.homepage }}
+{%- elsif page.repo_url %}
+Reference: {{ page.repo_url }}
+{%- endif %}
+
+Configuration to add:
+{{ page.config | strip }}
+
+Do this, in order:
+
+1. Work out which MCP client you are running in, and where that client keeps its MCP configuration.
+2. Back up that file, then merge the server entry above into it. Leave the servers and credentials already in the file untouched.
+3. If this server needs an API key, an OAuth sign-in, or a value you cannot infer from this prompt, stop and ask me for it before writing anything.
+4. Reload the MCP connection so the new server is actually loaded, rather than just written to a file.
+5. List the tools this server exposes, then make one harmless call as proof that it is connected.
+6. If it fails, show me the exact error and the file you changed, and restore the backup if you cannot fix it in a single attempt.
+
+Keep the change small, and finish by telling me which file you edited and which tools are now available.
+{%- endcapture -%}
+
+<section class="detail-section" aria-labelledby="agent-install-title">
+  <h2 class="display-sm detail-section__title" id="agent-install-title">Ask your agent to install it</h2>
+  <p class="body-sm detail-section__copy">
+    Paste this into the agent you already have open. It wires itself up: adds
+    the server to the right config file, reloads the connection, and comes back
+    with the tool list instead of making you find the file yourself.
+  </p>
+
+  <div class="prompt-body-shell">
+    <div class="prompt-body-shell__bar">
+      <span class="eyebrow-mono">Install prompt</span>
+      <button class="button button--sm" type="button" data-copy-block="agent-install-prompt">
+        {% include icon.html name='copy' class='button__icon button__icon--copy' %}
+        {% include icon.html name='check' class='button__icon button__icon--check' %}
+        <span class="button__label">Copy prompt</span>
+      </button>
+    </div>
+    <pre class="prompt-body" id="agent-install-prompt">{{ agent_prompt | strip | escape }}</pre>
+  </div>
+
+  <p class="body-sm detail-section__copy">
+    Nothing is installed until you paste it, and the prompt tells the agent to
+    back up the config first and to ask you for any credential it does not
+    already have.
+  </p>
+</section>
