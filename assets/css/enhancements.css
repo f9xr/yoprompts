@@ -838,7 +838,7 @@ html[data-theme="light"] .consent {
 }
 
 .risk-badge--low { color: #7ee787; border-color: rgba(126, 231, 135, 0.4); }
-.risk-badge--high { color: var(--accent-sunset); border-color: rgba(255, 122, 23, 0.45); }
+.risk-badge--high { color: var(--signal-risk); border-color: rgba(255, 157, 122, 0.45); }
 
 .risk-note {
   display: block;
@@ -1021,8 +1021,8 @@ html[data-theme="light"] .consent {
 
 .lab-diff { font-family: var(--font-mono); font-size: 12px; line-height: 20px; max-height: 420px; overflow: auto; }
 .lab-diff > div { padding: 1px 6px; white-space: pre-wrap; }
-.lab-diff .diff-add { background: rgba(126, 231, 135, 0.12); color: #9be8a3; }
-.lab-diff .diff-del { background: rgba(255, 122, 23, 0.12); color: #ffb27a; }
+.lab-diff .diff-add { background: rgba(139, 243, 177, 0.12); color: var(--accent-sunset-soft); }
+.lab-diff .diff-del { background: rgba(255, 157, 122, 0.12); color: var(--signal-risk); }
 .lab-diff .diff-same { color: var(--body-mid); }
 
 .history-command { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--body-mid); margin-top: 2px; word-break: break-all; }

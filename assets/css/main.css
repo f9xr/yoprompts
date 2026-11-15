@@ -60,6 +60,11 @@
   --accent-breeze: #b7d9c6;
   --accent-midnight: #0f211b;
 
+  /* The one exception to the three-colour rule. Risk and failure states need
+     a hue that cannot be read as the green accent, and cream cannot carry
+     "this is wrong" on its own. Everything else stays inside the palette. */
+  --signal-risk: #ff9d7a;
+
   /* Surface */
   --canvas: #142721;
   --canvas-soft: #1b3329;

@@ -41,6 +41,8 @@ Every interactive element is a pill (`{rounded.pill}` 9999 px) with 1 px white-t
 ### Semantic
 The brand doesn't surface a separate semantic palette on the marketing site. Validation cues use the cream-on-forest hierarchy; signal green is the only emphasis token and is not used for errors or success states.
 
+One exception exists because a risk state cannot be expressed in cream: **Risk** (`{colors.signal-risk}` - `#ff9d7a`), a soft coral reserved for the high-risk badge and the deleted side of a diff. It is the only hue outside the three-colour palette, and adding a second one means the palette has stopped being one.
+
 ## Typography
 
 ### Font Family
