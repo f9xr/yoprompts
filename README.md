@@ -189,12 +189,12 @@ an "Open {label}" button on every prompt page that lists it.
 
 `docs/DESIGN.md` defines the whole system. The rules that actually constrain day-to-day work:
 
-- **`#0a0a0a` is the only page surface.** There is no light mode. Do not add one.
+- **`#142721` is the only page surface.** There is no light mode. Do not add one.
 - **Weight 400 for all display type.** The brand never bolds. Hierarchy comes
   from size and letter-spacing, never from `font-weight`.
 - **Every interactive element is a pill** (`9999px`). The shape never varies.
-- **No box shadows.** Hairline borders (`#212327`) carry all elevation.
-- **Cards are 8px radius**, 24px interior padding, `#191919` on `#212327`.
+- **No box shadows.** Hairline borders (`#263f33`) carry all elevation.
+- **Cards are 8px radius**, 24px interior padding, `#193027` on `#263f33`.
 - **Eyebrows are uppercase JetBrains Mono at `+1.4px`** - they read as code
   comments, which is the point.
 

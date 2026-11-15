@@ -1341,17 +1341,17 @@ hr {
 }
 
 .tag-mono--accent {
-  border-color: rgba(124, 58, 237, 0.45);
+  border-color: rgba(184, 245, 205, 0.45);
   color: var(--accent-twilight);
 }
 
 .tag-mono--breeze {
-  border-color: rgba(160, 195, 236, 0.4);
+  border-color: rgba(183, 217, 198, 0.4);
   color: var(--accent-breeze);
 }
 
 .tag-mono--sunset {
-  border-color: rgba(255, 122, 23, 0.45);
+  border-color: rgba(139, 243, 177, 0.45);
   color: var(--accent-sunset-soft);
 }
 
@@ -3244,7 +3244,7 @@ a.skill-card__author:hover {
 }
 
 .button.is-copied {
-  border-color: rgba(160, 195, 236, 0.55);
+  border-color: rgba(183, 217, 198, 0.55);
   color: var(--accent-breeze);
 }
 
