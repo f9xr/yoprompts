@@ -1,5 +1,6 @@
 """Validate the built site: front matter integrity, internal links, headings,
-duplicate ids, meta descriptions, JSON-LD and prompt required fields.
+duplicate ids, meta descriptions, JSON-LD, prompt required fields, and the
+MCP related-link graph.
 
 Run after `jekyll build`:
 
@@ -54,12 +55,34 @@ def front_matter(path):
     return match.group(1) if match else None
 
 
+def front_matter_list(fm, key):
+    """Read a front matter list in either inline or block form.
+
+    Both `related: [a, b]` and the indented `- a` form are valid YAML, so the
+    checker accepts either rather than forcing one style on future entries.
+    """
+    inline = re.search(r'^%s:\s*\[(.*?)\]\s*$' % re.escape(key), fm, re.M)
+    if inline:
+        return [value.strip().strip('"\'')
+                for value in inline.group(1).split(',')
+                if value.strip().strip('"\'')]
+
+    block = re.search(r'^%s:\s*\r?\n((?:[ \t]*-[ \t]*\S.*(?:\r?\n|$))+)' % re.escape(key), fm, re.M)
+    if block:
+        return [line.strip().lstrip('-').strip().strip('"\'')
+                for line in block.group(1).splitlines()
+                if line.strip().lstrip('-').strip()]
+
+    return []
+
+
 def main(root):
     errors = []
 
     # Collection documents: required fields, unique slugs, usable title tags.
     slugs = {}
     title_tags = {}
+    mcp_docs = []
     for folder in ('_prompts', '_skills', '_mcp_servers'):
         if not os.path.isdir(folder):
             continue
@@ -104,6 +127,46 @@ def main(root):
                 for field in REQUIRED_PROMPT_FIELDS:
                     if not re.search(r'^%s:\s*\S' % field, fm, re.M):
                         errors.append('%s: missing required field %r' % (path, field))
+
+            if folder == '_mcp_servers' and slug:
+                mcp_docs.append((path, slug, fm))
+
+    # MCP related links are the collection's only internal graph. The prompt
+    # layout already resolves `related` against real slugs; without the same
+    # guard here, an entry can name a slug that does not exist and the section
+    # silently disappears. Self-links, duplicates and a missing pair all read
+    # the same way: a page with nothing linking to it.
+    mcp_paths = {slug: path for path, slug, _ in mcp_docs}
+    mcp_slugs = set(mcp_paths)
+    inbound = {slug: 0 for slug in mcp_slugs}
+
+    for path, slug, fm in mcp_docs:
+        related = front_matter_list(fm, 'related')
+
+        if len(related) < 2:
+            errors.append('%s: %d related MCP entries, at least 2 are required'
+                          % (path, len(related)))
+
+        seen = set()
+        for target in related:
+            if target == slug:
+                errors.append('%s: related entry %r links to itself' % (path, target))
+            elif target not in mcp_slugs:
+                errors.append('%s: related entry %r is not an MCP slug' % (path, target))
+            elif target in seen:
+                errors.append('%s: related entry %r is listed twice' % (path, target))
+            else:
+                seen.add(target)
+                inbound[target] += 1
+
+    # An entry can satisfy the rules above and still be unreachable, which is
+    # what happened to ElevenLabs. Skip the rule on a collection too small for
+    # reciprocal links to be possible.
+    if len(mcp_slugs) >= 3:
+        for target, count in sorted(inbound.items()):
+            if count == 0:
+                errors.append('%s: no other MCP entry links here, so the page has no inbound related link'
+                              % mcp_paths[target])
 
     # Rendered pages.
     titles = {}
