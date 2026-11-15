@@ -9,7 +9,7 @@ transport: "remote"
 repo_url: "https://github.com/elevenlabs/elevenlabs-mcp"
 homepage: "https://elevenlabs.io/docs/agents-platform/operate/hosted-mcp"
 tags: [text to speech, voice, audio, transcription, elevenlabs]
-related: [slack, notion, hubspot]
+related: [deepgram, slack, notion]
 config: |
   {
     "mcpServers": {

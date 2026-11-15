@@ -33,13 +33,21 @@ Reference: {{ page.homepage }}
 Reference: {{ page.repo_url }}
 {%- endif %}
 
+{%- assign config_text = page.config | strip -%}
+{%- if config_text == "" -%}
+There is no config block for this one: add it as a remote MCP server and complete the sign-in when the client prompts.
+{%- elsif config_text contains "mcpServers" -%}
 Configuration to add:
-{{ page.config | strip }}
+{{ config_text }}
+{%- else -%}
+Setup command to run:
+{{ config_text }}
+{%- endif -%}
 
 Do this, in order:
 
 1. Work out which MCP client you are running in, and where that client keeps its MCP configuration.
-2. Back up that file, then merge the server entry above into it. Leave the servers and credentials already in the file untouched.
+2. Apply what is above: back up that file and merge the config entry into it, or run the setup command if that is what you were given. Leave the servers and credentials already in the file untouched.
 3. If this server needs an API key, an OAuth sign-in, or a value you cannot infer from this prompt, stop and ask me for it before writing anything.
 4. Reload the MCP connection so the new server is actually loaded, rather than just written to a file.
 5. List the tools this server exposes, then make one harmless call as proof that it is connected.
