@@ -104,7 +104,7 @@
 
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
-    if (themeMeta) { themeMeta.setAttribute('content', theme === 'light' ? '#f6f5f2' : '#0a0a0a'); }
+    if (themeMeta) { themeMeta.setAttribute('content', theme === 'light' ? '#ffeddd' : '#142721'); }
     each(document.querySelectorAll('[data-theme-toggle]'), function (button) {
       button.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
       button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
@@ -908,7 +908,7 @@
       on(button, 'click', function () {
         var slug = button.getAttribute('data-slug') || '';
         var repo = button.getAttribute('data-repo') || 'owner/repo';
-        var snippet = '[![Install with Skills CLI](https://img.shields.io/badge/skills-' + encodeURIComponent(slug) + '-7c3aed)](https://f9xr.org/yoprompts/ai-agent-skills/' + slug + '/)\n\n```bash\nnpx skills add ' + repo + '@' + slug + '\n```\n';
+        var snippet = '[![Install with Skills CLI](https://img.shields.io/badge/skills-' + encodeURIComponent(slug) + '-30e373)](https://f9xr.org/yoprompts/ai-agent-skills/' + slug + '/)\n\n```bash\nnpx skills add ' + repo + '@' + slug + '\n```\n';
         copyAndFlash(button, snippet);
       });
     }

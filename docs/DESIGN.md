@@ -1,45 +1,45 @@
 ## Overview
 
-xAI is Elon Musk's frontier-AI lab and the website wears that posture with engineered restraint: a near-black canvas `{colors.canvas}` (`#0a0a0a`) edge-to-edge, white outline pills as every interactive element, and a single proprietary geometric sans `Universal Sans` carrying every display headline at weight 400. There is no gradient hero, no atmospheric backdrop, no product screenshot. The brand reads as confidently sparse - a research lab announcing its work rather than a SaaS marketing site.
+xAI is Elon Musk's frontier-AI lab and the website wears that posture with engineered restraint: a near-black canvas `{colors.canvas}` (`#142721`) edge-to-edge, white outline pills as every interactive element, and a single proprietary geometric sans `Universal Sans` carrying every display headline at weight 400. There is no gradient hero, no atmospheric backdrop, no product screenshot. The brand reads as confidently sparse - a research lab announcing its work rather than a SaaS marketing site.
 
 Type is the second decisive voice. `Universal Sans` carries every display at weight 400 (regular) with aggressive negative tracking (`-2.4 px` at 96 px, scaling down through the display ladder). For technical labels, eyebrows, and metric counters, the brand pairs `Geist Mono` (uppercase, 1.4 px positive tracking) - every section eyebrow reads as a code comment more than a marketing label.
 
 Every interactive element is a pill (`{rounded.pill}` 9999 px) with 1 px white-translucent border `rgba(255, 255, 255, 0.25)`. The button shape never varies - the same translucent-white pill carries "Try Grok", "Read announcement", "Custom Voices", "Sign up now", and every "Read" anchor. The pill is the entire shape system.
 
 **Key Characteristics:**
-- A single near-black canvas (`{colors.canvas}` `#0a0a0a`) with white outline pills as the entire interactive vocabulary.
+- A single deep-forest canvas (`{colors.canvas}` `#142721`) with cream outline pills as the entire interactive vocabulary.
 - Universal Sans weight 400 for display, Geist Mono uppercase tracked for labels - the two-face contrast IS the brand voice.
 - Every button is a `{rounded.pill}` outline with translucent-white border. The brand never uses filled CTAs except for one variant (white-filled pill on Sign Up).
-- Cards are tight `{rounded.sm}` 8 px rectangles in a slightly-lighter `{colors.canvas-card}` (`#191919`) fill with hairline border. No shadows.
-- A muted accent palette of sunset-orange / dusk-purple / twilight-violet / breeze-blue lives in the design tokens but appears rarely on the main marketing surface - reserved for product illustrations / icons.
+- Cards are tight `{rounded.sm}` 8 px rectangles in a slightly-lighter `{colors.canvas-card}` (`#193027`) fill with hairline border. No shadows.
+- The palette is three colours from Huemint (`142721-ffeddd-30e373`): forest canvas, cream ink, one signal green. The illustrative accents are tints and shades of those three, so artwork never introduces a fourth hue.
 - Massive negative letter-spacing on display headlines (`-2.4 px` at 96 px) gives the typography a precise, gathered look.
 
 ## Colors
 
 ### Brand & Accent
-- **White** (`{colors.primary}` - `#ffffff`): The brand's primary "color" - used as button outline, button-primary fill, all display text. The brand's signature is white-on-near-black.
-- **Sunset Orange** (`{colors.accent-sunset}` - `#ff7a17`): A warm orange used inside product illustrations and accent moments.
-- **Sunset Soft** (`{colors.accent-sunset-soft}` - `#ffc285`): The lighter variant of the sunset accent.
-- **Dusk Purple** (`{colors.accent-dusk}` - `#7c3aed`): Deep purple used inside product illustrations.
-- **Twilight** (`{colors.accent-twilight}` - `#c4b5fd`): Soft violet - illustrative accent.
-- **Breeze Blue** (`{colors.accent-breeze}` - `#a0c3ec`): Soft blue - illustrative accent.
-- **Midnight** (`{colors.accent-midnight}` - `#0d1726`): Deep blue-black for illustrative backgrounds.
+- **Cream** (`{colors.primary}` - `#ffeddd`): The brand's primary "color" - used as button outline, button-primary fill, all display text. The brand's signature is cream-on-forest.
+- **Signal Green** (`{colors.accent-sunset}` - `#30e373`): The one chromatic accent. Reserved for the single most important mark in a composition: the active step, the highlighted bar, the emphasised line.
+- **Signal Soft** (`{colors.accent-sunset-soft}` - `#8bf3b1`): The lighter variant, for text or strokes that sit over forest.
+- **Deep Green** (`{colors.accent-dusk}` - `#2fb96b`): Mid-tone green used inside product illustrations.
+- **Mint** (`{colors.accent-twilight}` - `#b8f5cd`): Soft illustrative accent with enough luminance to read as a highlight.
+- **Sage** (`{colors.accent-breeze}` - `#b7d9c6`): Muted supporting accent for the second bar, the secondary shape.
+- **Forest Deep** (`{colors.accent-midnight}` - `#0f211b`): Darker than the canvas, for illustrative backgrounds that need separation.
 
 ### Surface
-- **Canvas** (`{colors.canvas}` - `#0a0a0a`): The default near-black page background. The brand's only true surface.
-- **Canvas Soft** (`{colors.canvas-soft}` - `#1a1c20`): A slightly lighter dark fill used for hovered nav items and tooltips.
-- **Canvas Card** (`{colors.canvas-card}` - `#191919`): The charcoal card fill used inside product-feature cards.
-- **Canvas Mid** (`{colors.canvas-mid}` - `#363a3f`): A mid-dark used for nested surfaces and code mockup backgrounds.
-- **Hairline** (`{colors.hairline}` - `#212327`): 1 px solid dividers on dark surfaces.
+- **Canvas** (`{colors.canvas}` - `#142721`): The default forest page background. The brand's only true surface.
+- **Canvas Soft** (`{colors.canvas-soft}` - `#1b3329`): A slightly lighter fill used for hovered nav items and tooltips.
+- **Canvas Card** (`{colors.canvas-card}` - `#193027`): The card fill used inside product-feature cards.
+- **Canvas Mid** (`{colors.canvas-mid}` - `#2c4b3c`): A mid-tone used for nested surfaces and code mockup backgrounds.
+- **Hairline** (`{colors.hairline}` - `#263f33`): 1 px solid dividers on dark surfaces.
 
 ### Text
-- **Ink** (`{colors.ink}` - `#ffffff`): Default text on canvas - pure white.
-- **Ink Hover** (`{colors.ink-hover}` - `#fafaf7`): Slightly off-white used for hover states (filtered out per no-hover policy in component specs).
-- **Body** (`{colors.body}` - `#dadbdf`): Secondary body text - supporting copy in lighter weight.
-- **Body Mid / Mute** (`{colors.body-mid}` - `#7d8187`): Mid-emphasis body and mute text - captions, fine print.
+- **Ink** (`{colors.ink}` - `#ffeddd`): Default text on canvas - warm cream, never pure white.
+- **Ink Hover** (`{colors.ink-hover}` - `#fff6ec`): Slightly brighter cream used for hover states (filtered out per no-hover policy in component specs).
+- **Body** (`{colors.body}` - `#d6c8ba`): Secondary body text - supporting copy in lighter weight.
+- **Body Mid / Mute** (`{colors.body-mid}` - `#93a99c`): Mid-emphasis body and mute text - a desaturated green that recedes without turning grey.
 
 ### Semantic
-The brand doesn't surface a separate semantic palette on the marketing site. Validation cues use the white-on-canvas hierarchy.
+The brand doesn't surface a separate semantic palette on the marketing site. Validation cues use the cream-on-forest hierarchy; signal green is the only emphasis token and is not used for errors or success states.
 
 ## Typography
 
@@ -137,7 +137,7 @@ The brand uses no shadows. Hairline borders carry all elevation cues.
 ### Cards & Containers
 
 **`card-content`** - the default content card.
-- Background `{colors.canvas-card}` (`#191919`), text `{colors.ink}`, 1 px solid `{colors.hairline}` border, padding `{spacing.xl}`, shape `{rounded.sm}` 8 px.
+- Background `{colors.canvas-card}` (`#193027`), text `{colors.ink}`, 1 px solid `{colors.hairline}` border, padding `{spacing.xl}`, shape `{rounded.sm}` 8 px.
 
 **`card-feature-product`** - the product-feature card (Grok / Voice / API).
 - Same chrome as `card-content`. Hosts an SVG illustration + headline + body + outline pill CTA.
@@ -210,7 +210,7 @@ The brand uses no shadows. Hairline borders carry all elevation cues.
 ## Do's and Don'ts
 
 ### Do
-- Reserve `{colors.canvas}` (`#0a0a0a`) as the only page surface. The brand is dark-canvas only.
+- Reserve `{colors.canvas}` (`#142721`) as the only page surface. The brand is dark-canvas only.
 - Set hero headlines in `{typography.display-xl}` Universal Sans weight 400 with `-2.4 px` tracking. The precision IS the voice.
 - Use `{rounded.pill}` 9999 px on every interactive element. The pill is the brand.
 - Pair Universal Sans (sentence-case) with GeistMono UPPERCASE (eyebrows, labels, metric counters).

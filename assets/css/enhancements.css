@@ -16,20 +16,20 @@ body {
 /* 01  Light theme. The brand ships dark-first; this is an accessibility
        escape hatch, not a second identity. Surfaces keep the same hierarchy. */
 html[data-theme="light"] {
-  --primary: #111111;
-  --on-primary: #ffffff;
-  --canvas: #f6f5f2;
-  --canvas-soft: #ecebe6;
-  --canvas-card: #ffffff;
-  --canvas-mid: #d8d5cd;
-  --hairline: #e1ded6;
-  --hairline-strong: rgba(0, 0, 0, 0.18);
-  --ink: #111111;
-  --ink-hover: #2b2b2b;
-  --body: #363636;
-  --body-mid: #6a6a6a;
-  --accent-midnight: #eef1f6;
-  --selection: #c4b5fd;
+  --primary: #142721;
+  --on-primary: #ffeddd;
+  --canvas: #ffeddd;
+  --canvas-soft: #fbe3cc;
+  --canvas-card: #fff7ee;
+  --canvas-mid: #e7d2bd;
+  --hairline: #e4cdb6;
+  --hairline-strong: rgba(20, 39, 33, 0.18);
+  --ink: #142721;
+  --ink-hover: #234034;
+  --body: #3a4f45;
+  --body-mid: #6a7f74;
+  --accent-midnight: #f3e4d3;
+  --selection: #a8f0c2;
 }
 
 html[data-theme="light"] body {
@@ -42,20 +42,20 @@ html[data-theme="light"] .prompt-body,
 html[data-theme="light"] .output-block,
 html[data-theme="light"] .skill-md-body,
 html[data-theme="light"] .install-command {
-  background: #f0eee9;
-  color: #171717;
+  background: #f7e8d8;
+  color: #142721;
   border-color: var(--hairline);
 }
 
 html[data-theme="light"] .text-input,
 html[data-theme="light"] .site-search__input {
-  background: #ffffff;
+  background: #fffaf3;
   color: var(--ink);
 }
 
 html[data-theme="light"] .nav-bar,
 html[data-theme="light"] .nav-drawer {
-  background: rgba(246, 245, 242, 0.92);
+  background: rgba(255, 237, 221, 0.92);
 }
 
 html[data-theme="light"] .button:hover {
