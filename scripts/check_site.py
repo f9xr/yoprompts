@@ -4,9 +4,8 @@ related-link graph for both the MCP and prompt collections.
 
 Run after `jekyll build`:
 
-    python3 scripts/check_site.py _site                 # MCP enforced, prompts advisory
-    python3 scripts/check_site.py _site --report        # full orphan and advisory lists
-    python3 scripts/check_site.py _site --strict-prompts # fail on prompt related errors too
+    python3 scripts/check_site.py _site            # fail on any related-link problem
+    python3 scripts/check_site.py _site --report   # full list of prompts with no inbound link
 """
 
 import json
@@ -78,9 +77,8 @@ def front_matter_list(fm, key):
     return []
 
 
-def main(root, strict_prompt_related=False, report=False):
+def main(root, report=False):
     errors = []
-    advisories = []
 
     # Collection documents: required fields, unique slugs, usable title tags.
     slugs = {}
@@ -143,7 +141,8 @@ def main(root, strict_prompt_related=False, report=False):
     # error at build time — the section simply disappears. Self-links,
     # duplicates and a missing pair all read the same way: a page with nothing
     # linking to it.
-    def audit_related(docs, label, require_inbound):
+    def audit_related(docs, label):
+        """Return the four rule violations, per-slug paths and inbound counts."""
         paths = {slug: path for path, slug, _ in docs}
         inbound = {slug: 0 for slug in paths}
         problems = []
@@ -168,31 +167,24 @@ def main(root, strict_prompt_related=False, report=False):
                     seen.add(target)
                     inbound[target] += 1
 
-        # A page can satisfy the rules above and still be unreachable, which is
-        # what happened to ElevenLabs. Skip on a collection too small for
-        # reciprocal links to be possible.
-        if require_inbound and len(paths) >= 3:
-            for target, count in sorted(inbound.items()):
-                if count == 0:
-                    problems.append('%s: no other %s entry links here, so the page has no inbound related link'
-                                    % (paths[target], label))
+        return problems, paths, inbound
 
-        return problems, inbound, paths
-
-    mcp_problems, _, _ = audit_related(mcp_docs, 'MCP', require_inbound=True)
+    mcp_problems, mcp_paths, mcp_inbound = audit_related(mcp_docs, 'MCP')
+    prompt_problems, _, prompt_inbound = audit_related(prompt_docs, 'prompt')
     errors.extend(mcp_problems)
+    errors.extend(prompt_problems)
 
-    # Prompts are checked identically but reported rather than enforced until
-    # the collection is tidied: pass --strict-prompts to fail on them. The
-    # inbound count is always informational, because linking every page needs a
-    # curation pass, not a build failure.
-    prompt_problems, prompt_inbound, _ = audit_related(prompt_docs, 'prompt', require_inbound=False)
+    # A page can pass the rules and still be unreachable, which is what happened
+    # to ElevenLabs. The MCP collection refuses that outright; prompts only
+    # report it, because a new page legitimately lands with no inbound links
+    # until another page names it. Both skip the check on a collection too small
+    # for reciprocal links to be possible.
+    if len(mcp_paths) >= 3:
+        errors.extend('%s: no other MCP entry links here, so the page has no inbound related link'
+                      % mcp_paths[slug]
+                      for slug, count in sorted(mcp_inbound.items()) if count == 0)
+
     prompt_orphans = sorted(slug for slug, count in prompt_inbound.items() if count == 0)
-
-    if strict_prompt_related:
-        errors.extend(prompt_problems)
-    else:
-        advisories.extend(prompt_problems)
 
     # Rendered pages.
     titles = {}
@@ -229,14 +221,6 @@ def main(root, strict_prompt_related=False, report=False):
         if len(pages) > 1:
             errors.append('duplicate <title> %r on %s' % (title, ', '.join(pages[:3])))
 
-    if advisories:
-        shown = advisories if report else advisories[:5]
-        print('Prompt related links, advisory (not failing the build):')
-        print('\n'.join('  ' + line for line in shown))
-        if len(shown) < len(advisories):
-            print('  ... %d more, run with --report to see them' % (len(advisories) - len(shown)))
-        print('  Enforce with --strict-prompts once these are fixed.\n')
-
     if prompt_orphans:
         shown = prompt_orphans if report else prompt_orphans[:10]
         print('%d prompt(s) have no inbound related link:' % len(prompt_orphans))
@@ -255,6 +239,4 @@ def main(root, strict_prompt_related=False, report=False):
 if __name__ == '__main__':
     flags = {arg for arg in sys.argv[1:] if arg.startswith('--')}
     paths = [arg for arg in sys.argv[1:] if not arg.startswith('--')]
-    sys.exit(main(paths[0] if paths else '_site',
-                  strict_prompt_related='--strict-prompts' in flags,
-                  report='--report' in flags))
+    sys.exit(main(paths[0] if paths else '_site', report='--report' in flags))
