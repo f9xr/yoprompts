@@ -10,7 +10,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [professional-headshot]
+related: [professional-headshot, gpt-image-exploded-view-product-poster]
 art: palette
 tags: [image, midjourney, prompt, ai art, viral]
 excerpt: "Creates detailed prompts for AI image models that look amazing."

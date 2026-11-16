@@ -13,7 +13,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [linkedin-post-writer, meeting-to-action-plan]
+related: [linkedin-post-writer, meeting-to-action-plan, reference-check-brief]
 art: workflow
 tags: [resume, career, job search, ats, hiring, viral content]
 excerpt: "Reads a resume the way a recruiter does in six seconds, roasts the weakest lines honestly, then rewrites them around what actually changed."

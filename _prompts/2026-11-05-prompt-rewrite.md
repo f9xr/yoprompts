@@ -10,7 +10,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [humanize-ai-text, deep-research-synthesis, landing-page-copy]
+related: [humanize-ai-text, deep-research-synthesis, llm-eval-plan]
 art: workflow
 tags: [prompt engineering, prompting, optimization, ai, instructions, productivity]
 excerpt: "Diagnoses why a prompt produces inconsistent output, then returns a smaller rewrite with the missing context, constraints, and output format."

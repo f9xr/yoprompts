@@ -17,7 +17,7 @@ seo:
 picks: [essential]
 # Every prompt sits in its own category, so the layout's
 # same-category fallback can never match. These are curated.
-related: [deep-research-synthesis, meeting-to-action-plan]
+related: [deep-research-synthesis, meeting-to-action-plan, api-reference-docs]
 art: terminal
 tags: [code review, refactoring, debugging, software engineering, quality]
 excerpt: "Paste a diff and get a severity-ranked review that leads with what will actually break in production, plus the refactor you should do while you are in there."

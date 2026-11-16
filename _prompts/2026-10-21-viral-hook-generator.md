@@ -13,7 +13,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: [weekly]
-related: [viral-thread-writer, faceless-short-script, youtube-thumbnail-brief, ugc-product-ad]
+related: [viral-thread-writer, faceless-short-script, youtube-thumbnail-brief]
 art: palette
 tags: [hooks, tiktok, instagram, reels, youtube shorts, viral content, social media, captions, retention]
 excerpt: "Generates 30 hooks across five proven shapes, then ranks them by what they promise, so you ship the one that earns the watch."

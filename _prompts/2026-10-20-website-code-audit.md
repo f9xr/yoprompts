@@ -13,7 +13,7 @@ read_time: 8
 seo:
   type: "WebPage"
 picks: []
-related: [code-review-audit, seo-content-strategy, blog-site-design-system]
+related: [code-review-audit, core-web-vitals-audit, blog-site-design-system]
 art: terminal
 tags: [technical SEO, AEO, site audit, performance, core web vitals, accessibility, security]
 excerpt: "Audits a website line by line like a senior full-stack engineer and technical SEO architect, covering SEO, AEO, Core Web Vitals, WCAG and security."

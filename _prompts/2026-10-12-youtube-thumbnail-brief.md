@@ -13,7 +13,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [scroll-stopping-image, cinematic-movie-poster]
+related: [scroll-stopping-image, cinematic-movie-poster, viral-youtube-video-package]
 art: palette
 tags: [youtube, thumbnail, click through rate, image generation, creator, viral content]
 excerpt: "Turns a video into five thumbnail concepts built for a phone screen, ranks them, and writes the paste-ready image prompt for the winner."

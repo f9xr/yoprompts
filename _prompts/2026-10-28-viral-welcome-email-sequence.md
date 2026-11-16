@@ -10,7 +10,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [viral-email-subject-lines, cold-email-writer, landing-page-copy]
+related: [viral-email-subject-lines, viral-lead-magnet-builder, viral-referral-loop]
 art: workflow
 tags: [email, welcome sequence, onboarding, lifecycle, conversion]
 excerpt: "Builds a five-email welcome sequence that delivers the signup promise, earns trust with proof, answers the real objection, and asks once."

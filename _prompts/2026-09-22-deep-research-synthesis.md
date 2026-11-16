@@ -17,7 +17,7 @@ seo:
 picks: [essential]
 # Every prompt sits in its own category, so the layout's
 # same-category fallback can never match. These are curated.
-related: [code-review-audit, seo-content-strategy]
+related: [code-review-audit, seo-content-strategy, user-interview-guide]
 art: chart
 tags: [research, analysis, due diligence, synthesis, decision making]
 excerpt: "A research prompt that separates what is known, what is claimed and what nobody has established, and shows its own uncertainty."

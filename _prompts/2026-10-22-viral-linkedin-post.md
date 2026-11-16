@@ -10,7 +10,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [linkedin-post-writer]
+related: [linkedin-post-writer, viral-content-repurposer]
 art: workflow
 tags: [linkedin, viral, post, content, social]
 excerpt: "Writes LinkedIn posts that get engagement and reach."

@@ -10,7 +10,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [viral-comparison-page, landing-page-copy, viral-newsletter-teardown]
+related: [viral-comparison-page, landing-page-copy, viral-testimonial-miner]
 art: workflow
 tags: [case study, customer story, proof, b2b, social proof]
 excerpt: "Turns a customer result into a credible case study with the before state, the turning point, the proof table, and the limits of the claim."

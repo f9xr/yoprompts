@@ -10,7 +10,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [face-rater-male, face-rater-female, professional-headshot]
+related: [face-rater-male, face-rater-female, facial-beauty-report]
 art: palette
 tags: [face rating, portrait, photo review, grooming, styling, headshot, image analysis]
 excerpt: "Scores a face photo on the things a person can actually change, with a clear rubric, honest notes, and a retake plan instead of vague flattery."

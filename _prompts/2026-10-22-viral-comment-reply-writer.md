@@ -10,7 +10,7 @@ read_time: 4
 seo:
   type: "WebPage"
 picks: []
-related: [viral-linkedin-post, linkedin-post-writer, viral-x-post-generator]
+related: [viral-linkedin-post, viral-x-post-generator, viral-reddit-post]
 art: palette
 tags: [comments, replies, engagement, community, social media, linkedin, x]
 excerpt: "Writes replies that add substance, ask a better question, and handle criticism without defensiveness, so a comment thread turns into reach."

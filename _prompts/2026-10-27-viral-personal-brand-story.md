@@ -10,7 +10,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [resume-roast, mock-interview-loop, viral-linkedin-post]
+related: [resume-roast, mock-interview-loop, viral-podcast-guest-pitch]
 art: workflow
 tags: [personal brand, career, storytelling, bio, positioning]
 excerpt: "Finds the real narrative in a career timeline, then writes a bio, intro, and LinkedIn story without inventing a transformation."

@@ -10,7 +10,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [pricing-and-positioning, landing-page-copy, viral-comparison-page]
+related: [pricing-and-positioning, landing-page-copy, viral-objection-handler]
 art: chart
 tags: [pricing, pricing page, conversion, positioning, saas]
 excerpt: "Turns plans and prices into a page that explains who each plan is for, answers the real objections, and makes the next step obvious."

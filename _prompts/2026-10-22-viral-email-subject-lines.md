@@ -10,7 +10,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [cold-email-writer, landing-page-copy, viral-product-launch-post]
+related: [cold-email-writer, landing-page-copy, viral-newsletter-teardown]
 art: workflow
 tags: [email, subject lines, open rate, marketing, newsletter, copywriting]
 excerpt: "Generates 25 subject lines across five proven angles, scores them for clarity and honesty, and pairs the best with preview text that earns the open."

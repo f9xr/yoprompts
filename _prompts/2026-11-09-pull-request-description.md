@@ -10,7 +10,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [code-review-audit, debug-this-error, website-code-audit]
+related: [code-review-audit, debug-this-error, release-notes]
 skills: [pr-description-writer, unit-test-writer]
 mcp_servers: [github]
 art: terminal

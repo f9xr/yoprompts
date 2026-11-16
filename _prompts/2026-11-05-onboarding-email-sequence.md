@@ -10,7 +10,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [viral-welcome-email-sequence, landing-page-copy, viral-email-subject-lines]
+related: [viral-welcome-email-sequence, viral-email-subject-lines, viral-sms-campaign]
 art: palette
 tags: [onboarding, email, lifecycle, activation, retention, marketing]
 excerpt: "Builds a short activation sequence where every email drives one action, names the next step, and stops when the user is already active."

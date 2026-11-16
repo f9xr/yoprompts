@@ -13,7 +13,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [landing-page-copy, seo-content-strategy, linkedin-post-writer]
+related: [landing-page-copy, seo-content-strategy, backlink-outreach-system]
 art: workflow
 tags: [cold email, outreach, sales, b2b, lead generation, email, copywriting, reply rate, prospecting]
 excerpt: "Writes a short outreach email around one specific observation about the recipient, with a reply path that does not ask for a meeting on line one."

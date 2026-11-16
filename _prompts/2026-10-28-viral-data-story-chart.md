@@ -10,7 +10,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [chat-with-your-data, document-to-deck, fact-check-my-claim]
+related: [chat-with-your-data, document-to-deck, analytics-event-plan]
 art: chart
 tags: [data visualization, charts, storytelling, analysis, annotation]
 excerpt: "Chooses the chart from the question, writes the title and annotation, and names the ways the same data could mislead."

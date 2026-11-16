@@ -13,7 +13,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [scroll-stopping-image, image-brief-builder]
+related: [scroll-stopping-image, image-brief-builder, magazine-still-life]
 art: palette
 tags: [product photography, ecommerce, image generation, shopify, etsy, viral content]
 excerpt: "Rebuilds a rough product photo as a clean studio shot by fixing light, background and shadow, while keeping the product itself exactly as it is."

@@ -10,7 +10,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [viral-hook-generator, faceless-short-script, youtube-thumbnail-brief]
+related: [viral-hook-generator, faceless-short-script, podcast-episode-notes]
 art: palette
 tags: [podcast, clips, shorts, repurposing, viral, captions, video]
 excerpt: "Finds the 10 most clippable moments in a transcript, scores each for hook, emotion and payoff, then writes captions for the top three."

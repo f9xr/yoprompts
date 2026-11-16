@@ -10,7 +10,7 @@ read_time: 8
 seo:
   type: "WebPage"
 picks: []
-related: [pricing-and-positioning, cold-email-writer, fact-check-my-claim]
+related: [pricing-and-positioning, fact-check-my-claim, privacy-policy-draft]
 art: workflow
 tags: [contract, legal, risk, negotiation, business, agreements]
 excerpt: "Reads a commercial contract and returns the deal summary, the clauses that create exposure, and the language to negotiate."

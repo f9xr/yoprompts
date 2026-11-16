@@ -10,7 +10,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [landing-page-copy, cold-email-writer, pricing-and-positioning, ugc-product-ad]
+related: [landing-page-copy, pricing-and-positioning, ugc-product-ad]
 art: workflow
 tags: [launch, product, marketing, copywriting, social, announcement]
 excerpt: "Turns a product launch into a post that leads with the change, proves it with specifics, and asks for one clear action without ad-speak."

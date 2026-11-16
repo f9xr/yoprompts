@@ -13,7 +13,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [landing-page-copy, deep-research-synthesis, cold-email-writer, weekly-review-planner]
+related: [landing-page-copy, deep-research-synthesis, financial-model-audit]
 art: chart
 tags: [pricing, positioning, business strategy, pricing strategy, value metric, packaging, tiering, monetization]
 excerpt: "Finds the price from the value delivered and the cost to deliver it, then tests three tiers and a value metric against the objections each one raises."

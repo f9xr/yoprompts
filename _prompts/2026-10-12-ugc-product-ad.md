@@ -13,7 +13,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [faceless-short-script, linkedin-post-writer]
+related: [faceless-short-script, linkedin-post-writer, viral-influencer-brief]
 art: workflow
 tags: [ugc, short form video, product ad, tiktok, reels, viral content]
 excerpt: "Writes a 30-second user-generated style ad with a scroll-stopping first line, an honest product demo and one clear call to action."

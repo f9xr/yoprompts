@@ -17,7 +17,7 @@ seo:
 picks: [essential]
 # Every prompt sits in its own category, so the layout's
 # same-category fallback can never match. These are curated.
-related: [scroll-stopping-image, consistent-character-series, linkedin-post-writer]
+related: [scroll-stopping-image, consistent-character-series, gpt-image-illustrated-city-food-map]
 art: palette
 tags: [image generation, midjourney, art direction, visual design]
 excerpt: "Turns a vague idea into a structured image brief: subject, composition, lighting, lens, palette and negative constraints."

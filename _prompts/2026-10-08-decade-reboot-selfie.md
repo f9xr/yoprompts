@@ -13,7 +13,7 @@ read_time: 6
 seo:
   type: "WebPage"
 picks: []
-related: [collectible-figure-photo, scroll-stopping-image]
+related: [collectible-figure-photo, scroll-stopping-image, disposable-camera-party-photo]
 art: palette
 tags: [image generation, vintage photo, decade, selfie, chatgpt, viral content]
 excerpt: "Rewrites a modern photo into another year by changing materials, light and format, so it reads as a real photograph of that time instead of a filter."

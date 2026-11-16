@@ -13,7 +13,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [cold-email-writer, seo-content-strategy, document-to-deck, one-idea-post-week]
+related: [cold-email-writer, seo-content-strategy, viral-app-store-listing]
 art: workflow
 tags: [landing page, copywriting, conversion, saas, headline, offer, cta, signup, marketing, copy]
 excerpt: "Writes a landing page from the visitor objection, not the feature list, with one promise per section and a CTA that matches the stage of the visitor."

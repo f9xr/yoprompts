@@ -17,7 +17,7 @@ seo:
 picks: []
 # Every prompt sits in its own category, so the layout's
 # same-category fallback can never match. These are curated.
-related: [code-review-audit, image-brief-builder]
+related: [seo-content-strategy, code-review-audit, homestay-india-website-builder]
 art: palette
 tags: [web design, frontend, ui design, html css, blog, system prompt]
 excerpt: "Turns one design brief into a full blog layout: palette, type scale, navigation, hero, archive grid and footer, as semantic HTML and one stylesheet."

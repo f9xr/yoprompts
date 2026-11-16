@@ -13,7 +13,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: [weekly]
-related: [deep-research-synthesis, seo-content-strategy, weekly-review-planner]
+related: [deep-research-synthesis, churn-analysis, weekly-review-planner]
 art: chart
 tags: [data analysis, spreadsheet, csv, excel, analytics, chart, metrics, business intelligence, chat with data]
 excerpt: "Paste a table, ask one question, and get an answer with its arithmetic shown, its assumptions named, and the rows that disagree with it left in."

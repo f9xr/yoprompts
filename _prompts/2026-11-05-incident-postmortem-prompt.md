@@ -10,7 +10,7 @@ read_time: 8
 seo:
   type: "WebPage"
 picks: []
-related: [debug-this-error, code-review-audit, website-code-audit]
+related: [debug-this-error, code-review-audit, slo-and-error-budget]
 art: terminal
 tags: [incident, postmortem, reliability, sre, engineering, outage, root cause]
 excerpt: "Turns an incident timeline and logs into a blameless postmortem with a causal chain, contributing factors, and owned action items."

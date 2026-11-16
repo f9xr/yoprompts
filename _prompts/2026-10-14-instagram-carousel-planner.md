@@ -13,7 +13,7 @@ read_time: 5
 seo:
   type: "WebPage"
 picks: []
-related: [linkedin-post-writer, viral-thread-writer]
+related: [linkedin-post-writer, viral-thread-writer, viral-pinterest-pin-system]
 art: workflow
 tags: [instagram, carousel, social media, content planning, saves, viral content]
 excerpt: "Turns one idea into an eight-slide carousel with a cover worth tapping, one idea per slide and a final slide worth saving."

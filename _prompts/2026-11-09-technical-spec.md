@@ -10,7 +10,7 @@ read_time: 7
 seo:
   type: "WebPage"
 picks: []
-related: [website-code-audit, code-review-audit, document-to-deck]
+related: [website-code-audit, code-review-audit, rag-system-design]
 skills: [prd-writer, api-docs-writer]
 art: workflow
 tags: [technical spec, architecture, engineering, planning, design doc, api]
