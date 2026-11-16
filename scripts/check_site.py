@@ -239,4 +239,16 @@ def main(root, report=False):
 if __name__ == '__main__':
     flags = {arg for arg in sys.argv[1:] if arg.startswith('--')}
     paths = [arg for arg in sys.argv[1:] if not arg.startswith('--')]
+
+    # Prompt related rules used to sit behind --strict-prompts. They are now
+    # unconditional, so the flag is tolerated rather than silently ignored: a
+    # caller passing it should not be left believing enforcement is optional.
+    unknown = flags - {'--report', '--strict-prompts'}
+    if unknown:
+        print('unknown flag(s): %s\n'
+              '  --report           list every prompt with no inbound related link\n'
+              '  --strict-prompts   accepted for compatibility; prompt rules always apply'
+              % ', '.join(sorted(unknown)))
+        sys.exit(2)
+
     sys.exit(main(paths[0] if paths else '_site', report='--report' in flags))
