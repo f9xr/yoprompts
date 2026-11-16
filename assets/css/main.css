@@ -446,7 +446,7 @@ hr {
 }
 
 .button:hover {
-  border-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 237, 221, 0.45);
 }
 
 .button[disabled],
@@ -507,7 +507,7 @@ hr {
 }
 
 .icon-button:hover {
-  border-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 237, 221, 0.45);
 }
 
 .icon-button[disabled] {
@@ -545,7 +545,7 @@ hr {
 }
 
 .text-input:focus {
-  border-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 237, 221, 0.45);
   outline: none;
 }
 
@@ -734,7 +734,7 @@ hr {
 }
 
 .nav-bar__search:hover {
-  border-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 237, 221, 0.45);
 }
 
 .nav-bar__search svg {
@@ -1500,7 +1500,7 @@ hr {
   pointer-events: none;
   font: 400 200px / 180px var(--font-sans);
   letter-spacing: -8px;
-  color: rgba(255, 255, 255, 0.055);
+  color: rgba(255, 237, 221, 0.055);
   text-align: center;
   transform: translateX(-4%);
 }
@@ -1609,7 +1609,7 @@ hr {
   color: var(--body-mid);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(255, 255, 255, 0.25);
+  text-decoration-color: rgba(255, 237, 221, 0.25);
   transition: color 160ms var(--ease);
 }
 
@@ -3432,7 +3432,7 @@ a.skill-card__author:hover {
 
 .path-copy:hover {
   color: var(--ink);
-  border-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 237, 221, 0.45);
 }
 
 .path-table__muted {
