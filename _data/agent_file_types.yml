@@ -1,0 +1,8 @@
+# The two context files the collection covers. `slug` matches `file_type:`
+# on an agent-file document and drives the filter on /agent-files/.
+- slug: agents
+  label: AGENTS.md
+  blurb: How to work in this repository — commands, conventions, and the paths to leave alone.
+- slug: design
+  label: DESIGN.md
+  blurb: What this product should look and feel like, as tokens plus the reasoning behind them.

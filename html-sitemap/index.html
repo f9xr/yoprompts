@@ -212,6 +212,20 @@ seo:
       </ul>
     </section>
 
+    <section class="sitemap-section" id="agent-files" aria-labelledby="sitemap-agent-files">
+      <div class="sitemap-section__head">
+        <h2 class="sitemap-section__title" id="sitemap-agent-files">DESIGN.md &amp; AGENTS.md files</h2>
+        <span class="sitemap-section__meta meta-mono">{{ site.agent_files | size }} published</span>
+      </div>
+      <ul class="sitemap-list sitemap-list--columns" role="list">
+        {%- for file in site.agent_files -%}
+        <li><a href="{{ file.url | relative_url }}">{{ file.title }}</a></li>
+        {%- else -%}
+        <li class="sitemap-list__muted">No agent files published yet</li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
     <section class="sitemap-section" id="tools" aria-labelledby="sitemap-tools">
       <div class="sitemap-section__head">
         <h2 class="sitemap-section__title" id="sitemap-tools">Prompt tools on Troolify</h2>

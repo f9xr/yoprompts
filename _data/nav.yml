@@ -7,6 +7,8 @@ primary:
     url: /ai-agent-skills/
   - label: MCP Servers
     url: /mcp-server-index/
+  - label: Agent Files
+    url: /agent-files/
   - label: Resources
     url: /resources/
     children:

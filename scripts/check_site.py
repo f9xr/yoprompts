@@ -13,6 +13,13 @@ import os
 import re
 import sys
 
+# AGENTS.md and DESIGN.md entries are editorial picks, not generated prose, so
+# the fields the card, the meta row and the licence claim depend on are checked.
+REQUIRED_AGENT_FILE_FIELDS = [
+    'title', 'slug', 'file_type', 'date', 'excerpt', 'creator', 'license',
+    'repo_url', 'source_file', 'tags', 'related_files',
+]
+
 REQUIRED_PROMPT_FIELDS = [
     'title', 'slug', 'category', 'category_label', 'difficulty', 'tools',
     'read_time', 'excerpt', 'prompt', 'workflow', 'art', 'how_to_use', 'tags',
@@ -85,7 +92,8 @@ def main(root, report=False):
     title_tags = {}
     mcp_docs = []
     prompt_docs = []
-    for folder in ('_prompts', '_skills', '_mcp_servers'):
+    agent_docs = []
+    for folder in ('_prompts', '_skills', '_mcp_servers', '_agent_files'):
         if not os.path.isdir(folder):
             continue
         for name in os.listdir(folder):
@@ -136,19 +144,26 @@ def main(root, report=False):
             if folder == '_prompts' and slug:
                 prompt_docs.append((path, slug, fm))
 
+            if folder == '_agent_files':
+                for field in REQUIRED_AGENT_FILE_FIELDS:
+                    if not re.search(r'^%s:\s*\S' % field, fm, re.M):
+                        errors.append('%s: missing required field %r' % (path, field))
+                if slug:
+                    agent_docs.append((path, slug, fm))
+
     # `related` is the only internal graph each collection has. Both layouts
     # resolve it with a `where` lookup, so a slug that does not exist does not
     # error at build time — the section simply disappears. Self-links,
     # duplicates and a missing pair all read the same way: a page with nothing
     # linking to it.
-    def audit_related(docs, label):
+    def audit_related(docs, label, key='related'):
         """Return the four rule violations, per-slug paths and inbound counts."""
         paths = {slug: path for path, slug, _ in docs}
         inbound = {slug: 0 for slug in paths}
         problems = []
 
         for path, slug, fm in docs:
-            related = front_matter_list(fm, 'related')
+            related = front_matter_list(fm, key)
 
             if len(related) < 2:
                 problems.append('%s: %d related %s entr%s, at least 2 are required'
@@ -171,8 +186,18 @@ def main(root, report=False):
 
     mcp_problems, mcp_paths, mcp_inbound = audit_related(mcp_docs, 'MCP')
     prompt_problems, _, prompt_inbound = audit_related(prompt_docs, 'prompt')
+    agent_problems, agent_paths, agent_inbound = audit_related(
+        agent_docs, 'agent file', 'related_files')
     errors.extend(mcp_problems)
     errors.extend(prompt_problems)
+    errors.extend(agent_problems)
+
+    # Unlike prompts, every entry here is hand-picked and expected to be part
+    # of the graph from the first commit, so an unreachable page is an error.
+    if len(agent_paths) >= 3:
+        errors.extend('%s: no other agent file links here, so the page has no inbound related link'
+                      % agent_paths[slug]
+                      for slug, count in sorted(agent_inbound.items()) if count == 0)
 
     # A page can pass the rules and still be unreachable, which is what happened
     # to ElevenLabs. The MCP collection refuses that outright; prompts only

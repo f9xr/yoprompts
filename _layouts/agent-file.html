@@ -1,0 +1,313 @@
+---
+layout: default
+---
+{%- assign repo = "" -%}
+{%- assign repo_owner = "" -%}
+{%- assign branch = "main" -%}
+{%- assign subpath = "" -%}
+{%- if page.repo_url and page.repo_url contains "github.com/" -%}
+  {%- assign repo_path = page.repo_url | remove: "https://github.com/" | remove: ".git" -%}
+  {%- assign repo_parts = repo_path | split: "/" -%}
+  {%- assign repo_owner = repo_parts[0] -%}
+  {%- assign repo = repo_owner | append: "/" | append: repo_parts[1] -%}
+  {%- if repo_parts[2] == "tree" -%}
+    {%- assign branch = repo_parts[3] -%}
+    {%- assign subpath = repo_parts | slice: 4, 20 | join: "/" -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign source_file = page.source_file | default: "AGENTS.md" -%}
+{%- assign file_basename = source_file | split: "/" | last -%}
+{%- assign file_label = page.file_label | default: file_basename -%}
+{%- assign type_label = page.file_type -%}
+{%- for type in site.data.agent_file_types -%}
+  {%- if type.slug == page.file_type -%}{%- assign type_label = type.label -%}{%- endif -%}
+{%- endfor -%}
+{%- assign creator_url = page.creator_url -%}
+{%- if creator_url == nil and repo != "" -%}
+  {%- assign creator_url = "https://github.com/" | append: repo_owner -%}
+{%- endif -%}
+{%- assign file_url = "" -%}
+{%- if repo != "" -%}
+  {%- assign file_url = "https://github.com/" | append: repo | append: "/blob/" | append: branch | append: "/" -%}
+  {%- if subpath != "" -%}{%- assign file_url = file_url | append: subpath | append: "/" -%}{%- endif -%}
+  {%- assign file_url = file_url | append: source_file -%}
+{%- endif -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": {{ page.url | absolute_url | jsonify }},
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.excerpt | strip_html | strip_newlines | strip | jsonify }},
+      "url": {{ page.url | absolute_url | jsonify }},
+      "inLanguage": "en",
+      "author": { "@type": "Organization", "name": "F9XR Team", "url": "https://f9xr.org" },
+      "creator": { "name": {{ page.creator | jsonify }}{% if creator_url %}, "url": {{ creator_url | jsonify }}{% endif %} },
+      "isPartOf": { "@type": "WebSite", "name": "YoPrompts", "url": {{ '/' | absolute_url | jsonify }} },
+      "keywords": {{ page.tags | join: ", " | jsonify }}{% if page.license %},
+      "license": {{ page.license | jsonify }}{% endif %}{% if page.repo_url %},
+      "codeRepository": {{ page.repo_url | jsonify }}{% endif %}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Agent Files", "item": {{ '/agent-files/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ page.url | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<article class="band page-head">
+  <div class="container">
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+      <a href="{{ '/agent-files/' | relative_url }}">Agent Files</a>
+      <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+      <span aria-current="page">{{ page.title }}</span>
+    </nav>
+
+    <header class="page-head__header">
+      <p class="eyebrow-mono">{{ type_label }}</p>
+      <h1 class="display-lg page-head__title">{{ page.title }}</h1>
+      <p class="body-lg page-head__lede">{{ page.excerpt | escape }}</p>
+
+      <div class="meta-row">
+        {%- if page.creator -%}
+          {%- if creator_url -%}
+          <a class="meta-mono meta-inline" href="{{ creator_url }}" target="_blank" rel="noopener noreferrer">{% include icon.html name='pen-line' class='icon--xs' %}{{ page.creator }}</a>
+          {%- else -%}
+          <span class="meta-mono meta-inline">{% include icon.html name='pen-line' class='icon--xs' %}{{ page.creator }}</span>
+          {%- endif -%}
+        {%- endif -%}
+        {%- if page.license -%}<span class="meta-mono meta-inline">{% include icon.html name='scale' class='icon--xs' %}{{ page.license }}</span>{%- endif -%}
+        <span class="meta-mono meta-inline">{% include icon.html name='file-text' class='icon--xs' %}{{ file_basename }}</span>
+        {%- if repo != "" -%}
+        <span class="meta-mono skill-stars" data-stars data-repo="{{ repo }}" title="GitHub stars">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M8 1.8l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <span data-stars-value>--</span> stars
+        </span>
+        {%- endif -%}
+      </div>
+    </header>
+
+    <div class="detail-cols">
+      <div>
+
+        {%- if content and content != "" %}
+        <section class="detail-section prose" aria-labelledby="about-title">
+          <h2 class="display-sm detail-section__title" id="about-title">Why this file is worth copying</h2>
+          {{ content }}
+        </section>
+        {%- endif %}
+
+        <section class="detail-section" id="agent-file" aria-labelledby="agent-file-title">
+          <div class="detail-section__header">
+            <h2 class="display-sm detail-section__title" id="agent-file-title">{{ file_label }}</h2>
+            <div class="detail-section__actions">
+              {%- if file_url != "" %}
+              <a class="button button--sm" href="{{ file_url }}" target="_blank" rel="noopener noreferrer" data-skill-file-link>View file on GitHub</a>
+              {%- endif %}
+              <button class="button button--sm" type="button" data-copy-skill disabled>
+                {% include icon.html name='copy' class='button__icon button__icon--copy' %}
+                {% include icon.html name='check' class='button__icon button__icon--check' %}
+                <span class="button__label">Copy {{ file_basename }}</span>
+              </button>
+              <button class="button button--sm" type="button" data-download-skill disabled>
+                <span class="button__label">Download {{ file_basename }}</span>
+              </button>
+            </div>
+          </div>
+          <p class="body-sm detail-section__copy">
+            The file as its publisher maintains it. Read it before you copy it:
+            the conventions in it are the ones an agent will start enforcing in
+            your repository.
+          </p>
+
+          <div class="prompt-body-shell">
+            <div class="prompt-body-shell__bar">
+              <span class="eyebrow-mono">{{ file_basename }}</span>
+              <span class="copy-state" data-skill-state>{% if page.file_content %}Ready{% else %}Loading from GitHub{% endif %}</span>
+            </div>
+            {%- if page.file_content -%}
+            <pre class="prompt-body skill-md-body" id="skill-md-content" data-skill-content data-source-file="{{ source_file | escape }}" data-download-name="{{ file_basename | escape }}">{{ page.file_content | escape }}</pre>
+            {%- else -%}
+            <pre class="prompt-body skill-md-body" id="skill-md-content" data-skill-content data-repo-url="{{ page.repo_url | escape }}" data-source-file="{{ source_file | escape }}" data-download-name="{{ file_basename | escape }}">Fetching {{ file_basename }} from GitHub...</pre>
+            <noscript><p class="body-sm detail-section__copy">JavaScript is off, so the file cannot be fetched here. <a href="{{ file_url }}">Open it on GitHub</a> instead.</p></noscript>
+            {%- endif -%}
+          </div>
+        </section>
+
+        {%- assign related_files = "" | split: "" -%}
+        {%- if page.related_files -%}
+          {%- for slug in page.related_files -%}
+            {%- assign candidate = site.agent_files | where: "slug", slug | first -%}
+            {%- if candidate and candidate.slug != page.slug -%}
+              {%- assign related_files = related_files | push: candidate -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if related_files.size > 0 %}
+        <section class="detail-section" aria-labelledby="related-files-title">
+          <h2 class="display-sm detail-section__title" id="related-files-title">Related files</h2>
+          <div class="related-grid">
+            {%- for item in related_files limit: 3 %}
+            {%- assign reveal_class = "reveal--" | append: forloop.index -%}
+            {% include agent-file-card.html item=item heading_tag="h3" delay=reveal_class %}
+            {%- endfor %}
+          </div>
+        </section>
+        {%- endif %}
+
+        {%- include detail-extras.html -%}
+        {% include share-box.html %}
+
+        <div class="archive__footer">
+          <a class="button button--lg" href="{{ '/agent-files/' | relative_url }}">All agent files</a>
+        </div>
+
+      </div>
+
+      <aside class="detail-side">
+
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">File</p>
+          <p class="body-sm card__body">{{ source_file }}</p>
+          <a class="meta-mono meta-inline" href="{{ '/agent-files/' | relative_url }}">{% include icon.html name='file-text' class='icon--xs' %}{{ type_label }}</a>
+        </div>
+
+        {%- if page.tags %}
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Tags</p>
+          <div class="tool-list">
+            {%- for tag in page.tags %}
+            <span class="tag-mono">{{ tag }}</span>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endif %}
+
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Actions</p>
+          <div class="skill-actions">
+            {%- if file_url != "" %}
+            <a class="button button--block" href="{{ file_url }}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            {%- endif %}
+            <button class="button button--block" type="button" data-copy-skill disabled>
+              <span class="button__label">Copy {{ file_basename }}</span>
+            </button>
+            <button class="button button--block" type="button" data-download-skill disabled>
+              <span class="button__label">Download {{ file_basename }}</span>
+            </button>
+          </div>
+        </div>
+
+        {%- if repo != "" %}
+        <div class="card">
+          <p class="eyebrow-mono eyebrow-mono--muted">Repository</p>
+          <a class="body-sm skill-repo-link" href="https://github.com/{{ repo }}" target="_blank" rel="noopener noreferrer">{{ repo }}</a>
+          <div class="skill-repo-stats" data-repo="{{ repo }}">
+            <span class="meta-mono">Stars</span>
+            <span class="meta-mono skill-stars" data-stars data-repo="{{ repo }}">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M8 1.8l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+              <span data-stars-value>--</span>
+            </span>
+          </div>
+        </div>
+        {%- endif %}
+
+      </aside>
+    </div>
+
+  </div>
+</article>
+
+{%- unless page.file_content %}
+<script>
+(function () {
+  /* Same contract as the skill pages: clipboard.js copies and downloads from
+     #skill-md-content, so this script only loads the file and enables it. */
+  var content = document.getElementById('skill-md-content');
+  var state = document.querySelector('[data-skill-state]');
+  var copyButtons = Array.prototype.slice.call(document.querySelectorAll('[data-copy-skill]'));
+  var downloadButtons = Array.prototype.slice.call(document.querySelectorAll('[data-download-skill]'));
+  var fileLink = document.querySelector('[data-skill-file-link]');
+  var sourceFile = content && content.getAttribute('data-source-file') || 'AGENTS.md';
+
+  function enable() {
+    copyButtons.forEach(function (button) { button.disabled = false; });
+    downloadButtons.forEach(function (button) { button.disabled = false; });
+  }
+
+  function setState(text) {
+    if (state) { state.textContent = text; }
+  }
+
+  function repoParts(repoUrl) {
+    var path = repoUrl.replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '');
+    var parts = path.split('/').filter(Boolean);
+    var owner = parts[0];
+    var repo = parts[1];
+    var branch = 'main';
+    var subpath = '';
+    if (parts[2] === 'tree' && parts[3]) {
+      branch = parts[3];
+      subpath = parts.slice(4).join('/');
+    }
+    return { owner: owner, repo: repo, branch: branch, subpath: subpath };
+  }
+
+  function decodeBase64(value) {
+    var binary = atob(value.replace(/\s/g, ''));
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i += 1) { bytes[i] = binary.charCodeAt(i); }
+    return new TextDecoder('utf-8').decode(bytes);
+  }
+
+  function fetchFile(location) {
+    var filePath = location.subpath ? location.subpath + '/' + sourceFile : sourceFile;
+    var api = 'https://api.github.com/repos/' + location.owner + '/' + location.repo +
+      '/contents/' + filePath.split('/').map(encodeURIComponent).join('/');
+
+    return fetch(api, { headers: { 'Accept': 'application/vnd.github+json' } })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (data) {
+        if (data && data.content) {
+          if (fileLink && data.html_url) { fileLink.href = data.html_url; }
+          return decodeBase64(data.content);
+        }
+        var raw = 'https://raw.githubusercontent.com/' + location.owner + '/' + location.repo + '/' + location.branch + '/' + filePath;
+        return fetch(raw).then(function (response) {
+          return response.ok ? response.text() : null;
+        });
+      });
+  }
+
+  if (content) {
+    var repoUrl = content.getAttribute('data-repo-url');
+    if (repoUrl) {
+      fetchFile(repoParts(repoUrl)).then(function (text) {
+        if (text) {
+          content.textContent = text;
+          setState('Loaded from GitHub');
+          enable();
+        } else {
+          content.textContent = 'Could not load the file automatically. Use the link to open it on GitHub.';
+          setState('Unavailable');
+        }
+      }).catch(function () {
+        content.textContent = 'Could not load the file automatically. Use the link to open it on GitHub.';
+        setState('Unavailable');
+      });
+    }
+  }
+})();
+</script>
+{%- endunless %}

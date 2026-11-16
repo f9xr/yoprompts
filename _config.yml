@@ -56,6 +56,9 @@ collections:
   mcp_servers:
     output: true
     permalink: /mcp-server-index/:slug/
+  agent_files:
+    output: true
+    permalink: /agent-files/:slug/
 
 defaults:
   # Unscoped so it reaches every page, including collection documents and
@@ -87,6 +90,13 @@ defaults:
       type: mcp_servers
     values:
       layout: mcp-server
+      seo:
+        type: WebPage
+  - scope:
+      path: ""
+      type: agent_files
+    values:
+      layout: agent-file
       seo:
         type: WebPage
 # Jekyll drops dotfiles and anything under them by default, which would remove

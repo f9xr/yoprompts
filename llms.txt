@@ -17,9 +17,10 @@ https://f9xr.org/yoprompts
 - [AI agent skills](
 https://f9xr.org/yoprompts
 /ai-agent-skills/): installable skills that extend what an AI agent can do.
-- [MCP servers](
-https://f9xr.org/yoprompts
+- [MCP servers](https://f9xr.org/yoprompts
 /mcp-server-index/): Model Context Protocol servers that connect agents to tools and data.
+- [Agent files](https://f9xr.org/yoprompts
+/agent-files/): DESIGN.md and AGENTS.md files published by real projects, with licences.
 - [Categories](
 https://f9xr.org/yoprompts
 /categories/): browse by the job a prompt does.
@@ -228,3 +229,12 @@ https://f9xr.org/yoprompts
 - [Supabase MCP](https://f9xr.org/yoprompts/mcp-server-index/supabase/): Connect an agent to a Supabase project for schema inspection, SQL queries, migrations, edge functions, and logs.
 - [Tavily MCP](https://f9xr.org/yoprompts/mcp-server-index/tavily/): AI-powered real-time web search and content extraction, available as a hosted MCP endpoint with OAuth or an API key.
 - [Vercel MCP](https://f9xr.org/yoprompts/mcp-server-index/vercel/): Vercel's hosted MCP server for project and deployment management, logs, analytics, and documentation search.
+
+## DESIGN.md & AGENTS.md files
+
+- [AGENTS.md](https://f9xr.org/yoprompts/agent-files/agents-md/): The format's own README, with a sample file covering dev commands, tests and pull request rules.
+- [Ai2 Asta DESIGN.md](https://f9xr.org/yoprompts/agent-files/ai2-asta-design/): A research-assistant design system with a teal and cream palette, true alpha layers, and dark-mode component rules.
+- [Ant Design AGENTS.md](https://f9xr.org/yoprompts/agent-files/ant-design-agents/): A 300-line rulebook for a large React library: style precedence, demo and test conventions, PR and changelog rules.
+- [Ant Design DESIGN.md](https://f9xr.org/yoprompts/agent-files/ant-design-design/): An enterprise design system written for agents, from #1677FF primary through the full type scale to component tokens.
+- [Apache Airflow AGENTS.md](https://f9xr.org/yoprompts/agent-files/airflow-agents/): Airflow's agent rules, including why nothing runs on the host and why every command goes through breeze.
+- [DESIGN.md Format Specification](https://f9xr.org/yoprompts/agent-files/design-md-spec/): Google Labs' open format for describing a visual identity to coding agents, as YAML tokens plus prose.

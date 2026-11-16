@@ -1,0 +1,242 @@
+---
+layout: default
+title: Agent Files
+body-class: page
+description: >-
+  DESIGN.md and AGENTS.md files published by real projects. Copy the file that
+  tells a coding agent how your repository works, or how your product looks.
+seo:
+  type: CollectionPage
+---
+{%- assign files = site.agent_files | sort: "title" -%}
+{%- assign agents_files = site.agent_files | where: "file_type", "agents" -%}
+{%- assign design_files = site.agent_files | where: "file_type", "design" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      "name": "Agent Files",
+      "url": {{ page.url | absolute_url | jsonify }},
+      "description": {{ page.description | strip_newlines | strip | jsonify }},
+      "numberOfItems": {{ files | size }},
+      "itemListElement": [
+        {%- for file in files -%}
+        {%- unless forloop.first %},{% endunless -%}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "name": {{ file.title | jsonify }},
+          "url": {{ file.url | absolute_url | jsonify }}
+        }
+        {%- endfor -%}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page.url | absolute_url | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ '/' | absolute_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": "Agent Files", "item": {{ page.url | absolute_url | jsonify }} }
+      ]
+    }
+  ]
+}
+</script>
+
+<div class="band band--flush-top"><div class="container">{% include breadcrumbs.html trail="Home~/|Agent Files" %}</div></div>
+
+<section class="band band--flush-top">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Agent context files</p>
+        <h1 class="display-lg section-head__title" id="agent-files-heading">DESIGN.md &amp; AGENTS.md</h1>
+        <p class="body-lg section-head__lede">
+          Two files that stop a coding agent from guessing. AGENTS.md says how to
+          work in the repository: the commands, the conventions, the paths to
+          leave alone. DESIGN.md says what the product should look like, as tokens
+          plus the reasoning behind them. Every entry here is published by the
+          project itself, with its licence attached.
+        </p>
+      </div>
+      <a class="button" href="#all-files">Browse all files</a>
+    </div>
+
+    <div class="skills-stats">
+      <div class="skills-stat"><span class="skills-stat__n">{{ files | size }}</span><span class="eyebrow-mono eyebrow-mono--muted">Files</span></div>
+      <div class="skills-stat"><span class="skills-stat__n">{{ agents_files | size }}</span><span class="eyebrow-mono eyebrow-mono--muted">AGENTS.md</span></div>
+      <div class="skills-stat"><span class="skills-stat__n">{{ design_files | size }}</span><span class="eyebrow-mono eyebrow-mono--muted">DESIGN.md</span></div>
+      <div class="skills-stat"><span class="skills-stat__n">2</span><span class="eyebrow-mono eyebrow-mono--muted">Formats</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--tight" id="which-file" aria-labelledby="which-file-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Pick the right file</p>
+        <h2 class="display-md section-head__title" id="which-file-title">One is about the work, the other about the look</h2>
+        <p class="body-lg section-head__lede">
+          The two formats are close enough to get confused and different enough
+          that using the wrong one shows up immediately.
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <p class="eyebrow-mono">AGENTS.md</p>
+        <h3 class="display-sm">How to work here</h3>
+        <p class="body-sm">
+          Install and dev commands, the test runner, lint rules, naming, the
+          directories that are off limits, and how pull requests are shaped.
+          A repository usually keeps one at the root, and it is read at the
+          start of every session, so a wrong command costs tokens on every task.
+        </p>
+        <p class="body-sm">
+          <a class="link-inline" href="{{ '/agent-files/' | relative_url }}?type=agents">Browse AGENTS.md files</a>
+        </p>
+      </div>
+      <div class="card">
+        <p class="eyebrow-mono">DESIGN.md</p>
+        <h3 class="display-sm">What it should look like</h3>
+        <p class="body-sm">
+          Colours, type, spacing, radii, elevation and component rules, as YAML
+          tokens with prose that says what each one is for and what never to do.
+          Google's open spec makes the format portable between agents and tools,
+          which is why a file can be dropped into a different project unchanged.
+        </p>
+        <p class="body-sm">
+          <a class="link-inline" href="{{ '/agent-files/' | relative_url }}?type=design">Browse DESIGN.md files</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--tight" id="all-files" aria-labelledby="all-files-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">All files</p>
+        <h2 class="display-md section-head__title" id="all-files-title">The directory</h2>
+        <p class="body-lg section-head__lede">
+          Filter by format, or search the titles and tags. Each entry shows the
+          file as the project maintains it, with copy and download buttons.
+        </p>
+      </div>
+    </div>
+
+    <div class="archive__toolbar skills-toolbar">
+      <span class="archive__count eyebrow-mono eyebrow-mono--muted" data-file-count>{{ files | size }} {% if files.size == 1 %}file{% else %}files{% endif %}</span>
+      <div class="skills-toolbar__controls">
+        <label class="sr-only" for="file-search">Search files</label>
+        <input id="file-search" class="text-input" type="search" placeholder="Search files..." autocomplete="off">
+        <button class="button button--sm" type="button" data-file-type="all" aria-pressed="true">All</button>
+        {%- for type in site.data.agent_file_types -%}
+          {%- assign type_count = site.agent_files | where: "file_type", type.slug | size -%}
+          {%- if type_count > 0 %}
+        <button class="button button--sm" type="button" data-file-type="{{ type.slug }}" aria-pressed="false">{{ type.label }}</button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div id="all-files-grid" class="grid grid-3">
+      {%- for file in files -%}
+        {%- assign delay_class = "reveal--" | append: forloop.index -%}
+        {% include agent-file-card.html item=file heading_tag="h3" delay=delay_class %}
+      {%- endfor -%}
+    </div>
+    <p id="file-no-results" class="body-sm archive__empty" style="display:none;">No files match your filters.</p>
+  </div>
+</section>
+
+<section class="band band--tight" id="how-to-use" aria-labelledby="how-to-use-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Adopting one</p>
+        <h2 class="display-md section-head__title" id="how-to-use-title">Read it, then make it yours</h2>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <p class="eyebrow-mono eyebrow-mono--muted">Step 1</p>
+        <h3 class="display-xs">Start from a file that fits</h3>
+        <p class="body-sm">Copy the closest one into your repository root. An AGENTS.md written for a large Python monorepo will be wrong for a two-file TypeScript app, but its structure usually travels.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow-mono eyebrow-mono--muted">Step 2</p>
+        <h3 class="display-xs">Delete what does not apply</h3>
+        <p class="body-sm">Every line you leave in is an instruction the agent will follow on every task. Keep the commands, the boundaries and the conventions, and cut the sections that describe a project you do not have.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow-mono eyebrow-mono--muted">Step 3</p>
+        <h3 class="display-xs">Check the licence</h3>
+        <p class="body-sm">The licence is shown on every entry. MIT and Apache-2.0 files can be copied and adapted with attribution; if a project publishes a file without one, link to it instead of copying it wholesale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var grid = document.getElementById('all-files-grid');
+  if (!grid) { return; }
+
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-page-item]'));
+  var search = document.getElementById('file-search');
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-file-type]'));
+  var counter = document.querySelector('[data-file-count]');
+  var noResults = document.getElementById('file-no-results');
+  var activeType = 'all';
+
+  function filter() {
+    var query = (search && search.value || '').toLowerCase().trim();
+    var visible = 0;
+
+    cards.forEach(function (card) {
+      var title = card.getAttribute('data-title') || '';
+      var tags = card.getAttribute('data-tags') || '';
+      var type = card.getAttribute('data-type') || '';
+      var matchQuery = !query || title.indexOf(query) !== -1 || tags.indexOf(query) !== -1;
+      var matchType = activeType === 'all' || type === activeType;
+      card.style.display = matchQuery && matchType ? '' : 'none';
+      if (matchQuery && matchType) { visible += 1; }
+    });
+
+    if (counter) {
+      counter.textContent = visible === cards.length
+        ? cards.length + (cards.length === 1 ? ' file' : ' files')
+        : visible + ' of ' + cards.length + ' files';
+    }
+    if (noResults) { noResults.style.display = visible ? 'none' : 'block'; }
+  }
+
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      activeType = button.getAttribute('data-file-type');
+      buttons.forEach(function (other) {
+        other.setAttribute('aria-pressed', other === button ? 'true' : 'false');
+      });
+      filter();
+    });
+  });
+
+  var params = new URLSearchParams(window.location.search);
+  var requested = params.get('type');
+  if (requested) {
+    var match = buttons.filter(function (button) {
+      return button.getAttribute('data-file-type') === requested;
+    })[0];
+    if (match) { match.click(); }
+  }
+  if (params.get('q') && search) { search.value = params.get('q'); }
+  if (search) { search.addEventListener('input', filter); }
+
+  filter();
+})();
+</script>
