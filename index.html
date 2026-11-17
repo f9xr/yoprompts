@@ -91,6 +91,30 @@ seo:
         <a class="button button--primary button--lg" href="{{ '/prompts/' | relative_url }}">Explore Prompts</a>
         <a class="button button--lg" href="#prompt-of-the-week">Prompt of the week</a>
       </div>
+
+      {%- comment -%}
+        The site is four libraries, not one. The hero said "prompts" and the
+        other three only appeared 3,000 words down the page, so the rail states
+        the whole shape of the site before the first scroll.
+      {%- endcomment -%}
+      <nav class="hero-libraries" aria-label="The four libraries">
+        <a class="hero-library" href="{{ '/prompts/' | relative_url }}">
+          <span class="hero-library__n">{{ site.prompts | size }}</span>
+          <span class="hero-library__label eyebrow-mono eyebrow-mono--muted">Prompts</span>
+        </a>
+        <a class="hero-library" href="{{ '/ai-agent-skills/' | relative_url }}">
+          <span class="hero-library__n">{{ site.skills | size }}</span>
+          <span class="hero-library__label eyebrow-mono eyebrow-mono--muted">Skills</span>
+        </a>
+        <a class="hero-library" href="{{ '/mcp-server-index/' | relative_url }}">
+          <span class="hero-library__n">{{ site.mcp_servers | size }}</span>
+          <span class="hero-library__label eyebrow-mono eyebrow-mono--muted">MCP servers</span>
+        </a>
+        <a class="hero-library" href="{{ '/agent-files/' | relative_url }}">
+          <span class="hero-library__n">{{ site.agent_files | size }}</span>
+          <span class="hero-library__label eyebrow-mono eyebrow-mono--muted">Agent files</span>
+        </a>
+      </nav>
     </div>
 
     <a class="icon-button scroll-cue" href="#prompt-of-the-week" aria-label="Scroll to the prompt of the week">
@@ -427,10 +451,11 @@ seo:
   <div class="container">
     <div class="section-head">
       <div class="section-head__text">
-        <p class="eyebrow-mono">AI Agent Skills</p>
+        <p class="eyebrow-mono">AI Agent Skills · {{ site.skills | size }}</p>
         <h2 class="display-md section-head__title" id="skills-home-title">Extend agents with specialized capabilities</h2>
         <p class="body-lg section-head__lede">
-          Ready-made SKILL.md files for Claude Code, Codex, Gemini CLI, Cursor, and more. Install with one command.
+          SKILL.md files that install with one command and work in Claude Code,
+          Codex, Gemini CLI, and Cursor.
         </p>
       </div>
       <a class="button" href="{{ '/ai-agent-skills/' | relative_url }}">Browse all skills</a>
@@ -455,10 +480,11 @@ seo:
   <div class="container">
     <div class="section-head">
       <div class="section-head__text">
-        <p class="eyebrow-mono">MCP Servers</p>
+        <p class="eyebrow-mono">MCP Servers · {{ site.mcp_servers | size }}</p>
         <h2 class="display-md section-head__title" id="mcp-home-title">Connect agents to tools and data</h2>
         <p class="body-lg section-head__lede">
-          Curated Model Context Protocol servers to extend your AI agents with powerful integrations.
+          Official and community Model Context Protocol servers, each with the
+          config block your agent needs and the licence it ships under.
         </p>
       </div>
       <a class="button" href="{{ '/mcp-server-index/' | relative_url }}">Browse all MCP servers</a>
@@ -475,8 +501,36 @@ seo:
   </div>
 </section>
 
-<!-- 10  Ask AI Agents ================================================== -->
+<!-- 10  Agent files ==================================================== -->
+{%- if site.agent_files.size > 0 -%}
+<section class="band band--tight" aria-labelledby="agent-files-home-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow-mono">Agent Files · {{ site.agent_files | size }}</p>
+        <h2 class="display-md section-head__title" id="agent-files-home-title">Tell the agent how the work is done</h2>
+        <p class="body-lg section-head__lede">
+          AGENTS.md sets the commands, conventions and boundaries for a
+          repository. DESIGN.md sets the look, as tokens plus the reasoning
+          behind them. Both are copied from projects that publish their own.
+        </p>
+      </div>
+      <a class="button" href="{{ '/agent-files/' | relative_url }}">Browse all agent files</a>
+    </div>
+
+    {%- assign agent_files_home = site.agent_files | sort: "title" -%}
+    <div class="grid grid-3">
+      {%- for file in agent_files_home limit: 3 -%}
+        {%- assign delay_class = "reveal--" | append: forloop.index -%}
+        {% include agent-file-card.html item=file heading_tag="h3" delay=delay_class %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- 11  Ask AI Agents ================================================== -->
 {% include ask-ai-agents.html %}
 
-<!-- 11  Latest prompts & archive engine ================================ -->
+<!-- 12  Latest prompts & archive engine ================================ -->
 {% include archive.html limit=12 more_href="/prompts/" %}
