@@ -8,6 +8,7 @@ excerpt: "A 300-line rulebook for a 84-component React library: style precedence
 creator: "Ant Design"
 license: "MIT"
 repo_url: "https://github.com/ant-design/ant-design"
+repo_branch: "master"
 source_file: "AGENTS.md"
 tags: [react, component library, conventions, pull requests, chinese]
 related_files: [airflow-agents, agents-md]

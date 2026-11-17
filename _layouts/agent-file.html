@@ -3,7 +3,7 @@ layout: default
 ---
 {%- assign repo = "" -%}
 {%- assign repo_owner = "" -%}
-{%- assign branch = "main" -%}
+{%- assign branch = page.repo_branch | default: "main" -%}
 {%- assign subpath = "" -%}
 {%- if page.repo_url and page.repo_url contains "github.com/" -%}
   {%- assign repo_path = page.repo_url | remove: "https://github.com/" | remove: ".git" -%}
@@ -139,7 +139,7 @@ layout: default
             {%- if page.file_content -%}
             <pre class="prompt-body skill-md-body" id="skill-md-content" data-skill-content data-source-file="{{ source_file | escape }}" data-download-name="{{ file_basename | escape }}">{{ page.file_content | escape }}</pre>
             {%- else -%}
-            <pre class="prompt-body skill-md-body" id="skill-md-content" data-skill-content data-repo-url="{{ page.repo_url | escape }}" data-source-file="{{ source_file | escape }}" data-download-name="{{ file_basename | escape }}">Fetching {{ file_basename }} from GitHub...</pre>
+            <pre class="prompt-body skill-md-body" id="skill-md-content" data-skill-content data-repo-url="{{ page.repo_url | escape }}" data-repo-branch="{{ branch | escape }}" data-source-file="{{ source_file | escape }}" data-download-name="{{ file_basename | escape }}">Fetching {{ file_basename }} from GitHub...</pre>
             <noscript><p class="body-sm detail-section__copy">JavaScript is off, so the file cannot be fetched here. <a href="{{ file_url }}">Open it on GitHub</a> instead.</p></noscript>
             {%- endif -%}
           </div>
@@ -240,6 +240,9 @@ layout: default
   var downloadButtons = Array.prototype.slice.call(document.querySelectorAll('[data-download-skill]'));
   var fileLink = document.querySelector('[data-skill-file-link]');
   var sourceFile = content && content.getAttribute('data-source-file') || 'AGENTS.md';
+  /* The publisher's default branch, not a guess: a repo on master would
+     otherwise build a raw URL that 404s when the API path falls through. */
+  var defaultBranch = content && content.getAttribute('data-repo-branch') || 'main';
 
   function enable() {
     copyButtons.forEach(function (button) { button.disabled = false; });
@@ -255,7 +258,7 @@ layout: default
     var parts = path.split('/').filter(Boolean);
     var owner = parts[0];
     var repo = parts[1];
-    var branch = 'main';
+    var branch = defaultBranch;
     var subpath = '';
     if (parts[2] === 'tree' && parts[3]) {
       branch = parts[3];

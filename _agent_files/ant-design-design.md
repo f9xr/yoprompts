@@ -8,6 +8,7 @@ excerpt: "An enterprise design system written for agents: #1677FF primary, a ful
 creator: "Ant Design"
 license: "MIT"
 repo_url: "https://github.com/ant-design/ant-design"
+repo_branch: "master"
 source_file: "DESIGN.md"
 tags: [design tokens, react, design system, typography, colors]
 related_files: [design-md-spec, ai2-asta-design]
